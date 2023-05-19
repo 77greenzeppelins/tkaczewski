@@ -13,7 +13,8 @@ export const metadata = {
   description: 'Provider of true take-offs in the Internet. ',
 };
 
-const sceneWrapperConfig = 'fixed top-0 left-0 w-full h-full overflow-hidden';
+const sceneWrapperConfig =
+  'fixed top-0 left-0 w-full h-full overflow-hidden z-1';
 /**---------------------------------**/
 export default function RootLayout({
   children,
@@ -30,7 +31,7 @@ export default function RootLayout({
         </div>
         ;
         <main
-          className="w-full h-full"
+          className="z-10 w-full h-full"
           //  className="app"
         >
           {children}
