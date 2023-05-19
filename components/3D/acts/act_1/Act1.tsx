@@ -1,8 +1,9 @@
 'use client';
 import React, { useRef } from 'react';
+import { usePathname } from 'next/navigation';
 /**Components**/
 // import Box from '../../basicShapes/Box/Box';
-import Sphere from '../../basicShapes/sphere/Sphere';
+// import Sphere from '../../basicShapes/sphere/Sphere';
 // import Triangles from '../../customeObjects/tiangles/Triangles';
 import BasicFrame from '../../customeObjects/frame/BasicFrame';
 /**R3F Staff*/
@@ -12,7 +13,7 @@ import { OrbitControls, PivotControls } from '@react-three/drei';
 /**Monitorin Staff**/
 import { Perf } from 'r3f-perf';
 /**BasicData*/
-import { colors } from '@/data/basicData';
+import { colors, pagesLinks } from '@/data/basicData';
 
 /**-----------------**/
 const Act1 = () => {
@@ -28,12 +29,15 @@ const Act1 = () => {
     // state.camera.lookAt(0, 0, 0);
     // console.log('state.clock.elapsedTime = ', state.clock.elapsedTime);
   });
+
+  const path = usePathname();
+  // const isActive = path === url;
   /**JSX**/
   return (
     <>
       {/* <fog attach="fog" args={['#17171b', 30, 40]} /> */}
       <color attach="background" args={[colors.dark]} />
-      <Perf position="bottom-right" />
+      {/* <Perf position="bottom-right" /> */}
       <OrbitControls makeDefault />
       {/* <ambientLight intensity={0.5} /> */}
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
@@ -49,7 +53,20 @@ const Act1 = () => {
         >
           <Box position={[-1.2, 0, 0]} />
         </PivotControls> */}
-        <BasicFrame groupProps={{ position: [0, 0, 0] }} variantsSwitcher={1} />
+
+        {path === pagesLinks[0].href ? (
+          <BasicFrame
+            groupProps={{ position: [0, 0, 0] }}
+            variantsSwitcher={1}
+          />
+        ) : null}
+
+        {path === pagesLinks[1].href ? (
+          <BasicFrame
+            groupProps={{ position: [0, 0, 0] }}
+            variantsSwitcher={0}
+          />
+        ) : null}
 
         {/* <BasicFrame groupProps={{ position: [0, 0, 0] }} variantsSwitcher={0} /> */}
 

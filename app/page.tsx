@@ -19,9 +19,32 @@ export default function Home() {
   return (
     <LocomotiveTemplate>
       <div data-scroll-section className="w-full h-full min-h-screen">
-        <div className={sceneWrapperConfig}>
+        {/* <div className={sceneWrapperConfig}>
           <Scene3D />
+        </div> */}
+        <div className="flex gap-3 justify-center items-center  h-[50vh] w-full ">
+          <p className="select-none text-slate-200">Home</p>
+          <p className="select-none text-sky-400">Home</p>
+          <p className="select-none text-sky-500">Homeme</p>
+          <p className="text-blue-500 select-none">Home</p>
+          <p className="text-blue-600 select-none">Home</p>
         </div>
+        <div className="flex justify-center items-center  h-[50vh] w-full bg-[#02040c]">
+          <p className="text-gray-100 select-none">Contact Page</p>
+        </div>
+        <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-800">
+          <p className="text-gray-100 select-none">3</p>
+        </div>
+        <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-700">
+          <p className="text-gray-100 select-none">Contact Page</p>
+        </div>
+        <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-600">
+          <p className="text-gray-100 select-none">5</p>
+        </div>
+        <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-500">
+          <p className="text-gray-100 select-none">Contact Page</p>
+        </div>{' '}
+        */
       </div>
     </LocomotiveTemplate>
   );
@@ -32,22 +55,22 @@ export default function Home() {
           <p className="select-none text-slate-200">Home</p>
           <p className="select-none text-sky-400">Home</p>
           <p className="select-none text-sky-500">Homeme</p>
-          <p className="select-none text-blue-500">Home</p>
-          <p className="select-none text-blue-600">Home</p>
+          <p className="text-blue-500 select-none">Home</p>
+          <p className="text-blue-600 select-none">Home</p>
         </div>
         <div className="flex justify-center items-center  h-[50vh] w-full bg-[#02040c]">
-          <p className="select-none text-gray-100">Contact Page</p>
+          <p className="text-gray-100 select-none">Contact Page</p>
         </div>
         <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-800">
-          <p className="select-none text-gray-100">3</p>
+          <p className="text-gray-100 select-none">3</p>
         </div>
         <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-700">
-          <p className="select-none text-gray-100">Contact Page</p>
+          <p className="text-gray-100 select-none">Contact Page</p>
         </div>
         <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-600">
-          <p className="select-none text-gray-100">5</p>
+          <p className="text-gray-100 select-none">5</p>
         </div>
         <div className="flex justify-center items-center  h-[50vh] w-full bg-gray-500">
-          <p className="select-none text-gray-100">Contact Page</p>
+          <p className="text-gray-100 select-none">Contact Page</p>
         </div> */
 }

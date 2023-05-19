@@ -1,15 +1,23 @@
+'use client';
 import React from 'react';
+import { usePathname } from 'next/navigation';
 /**Components**/
 import MainCanvas from '../3D_Canvas/MainCanvas';
 import Act1 from '../acts/act_1/Act1';
 
+/**Basic Data**/
+import { pagesLinks } from '@/data/basicData';
+
+pagesLinks;
 /**--------------------**/
 const Scene3D = () => {
+  /**Hooks Section**/
+
   return (
     <MainCanvas>
       {/*-----Canvas "attributes"--------------------------------*/}
 
-      {/* <fog attach="fog" args={[colors.dark, 2, 3]} /> */}
+      {/* {path === pagesLinks[0].href ? <Act1 /> : null} */}
       <Act1 />
     </MainCanvas>
   );

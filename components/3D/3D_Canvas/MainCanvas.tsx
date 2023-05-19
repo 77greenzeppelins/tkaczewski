@@ -6,6 +6,8 @@ import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 /**BasicData*/
 import { colors } from '@/data/basicData';
+/**Monitorin Staff**/
+import { Perf } from 'r3f-perf';
 
 /**TS**/
 interface Props {
@@ -20,10 +22,10 @@ we can't play / animate with camera's attributer within useFrame() here!
 */
 const MainCanvas = ({ children }: Props) => {
   /**Call this function when Canvas is ready*/
-  const whileCanvasMounted = (state: { gl: any; scene: any }) => {
-    state.gl.setClearColor(colors.dark, 1); // color, alpha
-    // state.scene.background = new THREE.Color(colors.corpo);
-  };
+  // const whileCanvasMounted = (state: { gl: any; scene: any }) => {
+  //   state.gl.setClearColor(colors.dark, 1); // color, alpha
+  //   // state.scene.background = new THREE.Color(colors.corpo);
+  // };
 
   /**JSX**/
   return (
@@ -42,6 +44,7 @@ const MainCanvas = ({ children }: Props) => {
       // onCreated={whileCanvasMounted}
     >
       {children}
+      <Perf position="bottom-right" />
     </Canvas>
   );
 };

@@ -15,8 +15,8 @@ const PageCv = () => {
           <p className="select-none text-zinc-300">PageCv</p>
           <p className="select-none text-sky-400">PageCv</p>
           <p className="select-none text-sky-500">PageCv</p>
-          <p className="select-none text-blue-500">PageCv</p>
-          <p className="select-none text-blue-600">PageCv</p>
+          <p className="text-blue-500 select-none">PageCv</p>
+          <p className="text-blue-600 select-none">PageCv</p>
         </div>
         <div className="flex justify-center items-center  h-[50vh] w-full bg-zinc-800">
           <p className="select-none text-zinc-300">3</p>
@@ -27,7 +27,7 @@ const PageCv = () => {
         <div className="flex justify-center items-center  h-[50vh] w-full bg-zinc-600">
           <p className="select-none text-zinc-300">5</p>
         </div>
-        <div className="flex justify-center items-center  h-[50vh] w-full bg-zinc-500">
+        <div className="flex justify-center items-center  h-[100vh] w-full bg-zinc-500">
           <p className="select-none text-zinc-300">PageCv</p>
         </div>
       </div>

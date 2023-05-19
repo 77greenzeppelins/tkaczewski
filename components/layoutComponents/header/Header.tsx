@@ -1,13 +1,10 @@
 import React from 'react';
+/**Components**/
 import HeaderLink from './headerLink/HeaderLink';
+/**BasicData**/
+import { pagesLinks } from '@/data/basicData';
 
-const links = [
-  { href: '/', label: '3D' },
-  { href: '/2d', label: '2D' },
-  { href: '/cv', label: 'CV' },
-  { href: '/contact', label: 'Contact' },
-];
-
+/**---------------------------**/
 export const Header = () => {
   /**JSX**/
   return (
@@ -16,7 +13,7 @@ export const Header = () => {
     >
       <div className="h-full wrapper-1">
         <ul className="flex items-center justify-end h-full gap-6 ">
-          {links.map(link => (
+          {pagesLinks.map(link => (
             <li key={link.href}>
               <HeaderLink label={link.label} url={link.href} />
             </li>
