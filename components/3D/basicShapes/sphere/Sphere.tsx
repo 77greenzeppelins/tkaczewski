@@ -4,15 +4,14 @@ import React, { useRef } from 'react';
 // import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 
-const Sphere = ({
-  meshProps,
-  geometryProps,
-  materialProps,
-}: {
+/**TS**/
+interface Props {
   meshProps: JSX.IntrinsicElements['mesh'];
   geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
   materialProps?: {};
-}) => {
+}
+
+const Sphere = ({ meshProps, geometryProps, materialProps }: Props) => {
   /**References Section**/
   const meshRef = useRef<THREE.Mesh>(null!);
   /**useFrame Section**/
@@ -23,9 +22,9 @@ const Sphere = ({
     meshRef.current.rotation.y += delta * 0.1;
   });
   /**useThree Section**/
-  useThree(state => {
-    console.log('Sphere / state:', state);
-  });
+  // useThree(state => {
+  //   console.log('Sphere / state:', state);
+  // });
 
   /**JSX**/
   return (

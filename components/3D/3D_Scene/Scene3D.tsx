@@ -2,15 +2,13 @@ import React from 'react';
 /**Components**/
 import MainCanvas from '../3D_Canvas/MainCanvas';
 import Act1 from '../acts/act_1/Act1';
-/**BasicData*/
-import { colors } from '@/data/basicData';
 
 /**--------------------**/
 const Scene3D = () => {
   return (
     <MainCanvas>
       {/*-----Canvas "attributes"--------------------------------*/}
-      <color attach="background" args={[colors.dark]} />
+
       {/* <fog attach="fog" args={[colors.dark, 2, 3]} /> */}
       <Act1 />
     </MainCanvas>

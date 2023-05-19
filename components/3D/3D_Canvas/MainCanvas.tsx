@@ -4,6 +4,8 @@ import React, { ReactNode } from 'react';
 import * as THREE from 'three';
 /**R3F Staff**/
 import { Canvas } from '@react-three/fiber';
+/**BasicData*/
+import { colors } from '@/data/basicData';
 
 /**TS**/
 interface Props {
@@ -17,6 +19,12 @@ we can set the attributes of camera her;
 we can't play / animate with camera's attributer within useFrame() here!
 */
 const MainCanvas = ({ children }: Props) => {
+  /**Call this function when Canvas is ready*/
+  const whileCanvasMounted = (state: { gl: any; scene: any }) => {
+    state.gl.setClearColor(colors.dark, 1); // color, alpha
+    // state.scene.background = new THREE.Color(colors.corpo);
+  };
+
   /**JSX**/
   return (
     <Canvas
@@ -31,6 +39,7 @@ const MainCanvas = ({ children }: Props) => {
       }}
       camera={{ position: [0, 0, 5], fov: 75, near: 0.1, far: 1000 }}
       //default: camera={{ position: [0, 0, 5],fov: 75, near: 0.1, far: 1000, zoom: 1 }}
+      // onCreated={whileCanvasMounted}
     >
       {children}
     </Canvas>
