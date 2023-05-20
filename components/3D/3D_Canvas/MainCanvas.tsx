@@ -39,7 +39,7 @@ const MainCanvas = ({ children }: Props) => {
         // outputEncoding: THREE.LinearEncoding // depricated
         // outputColorSpace: 'srgb',
       }}
-      camera={{ position: [0, 0, 5], fov: 75, near: 0.1, far: 1000 }}
+      camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 1000 }}
       //default: camera={{ position: [0, 0, 5],fov: 75, near: 0.1, far: 1000, zoom: 1 }}
       // onCreated={whileCanvasMounted}
     >

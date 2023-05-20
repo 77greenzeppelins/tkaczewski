@@ -84,6 +84,50 @@ html.has-scroll-dragging {
   right: auto;
   bottom: 0;
 }
+* {
+  box-sizing: border-box;
+}
+
+/*
+This Style psecifies some most-root container and is ment to bridge 2D & 3D world;
+These classess are used in layout.tsx 
+*/
+
+html,
+body,
+.root,
+.content2D {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  overflow: hidden;
+}
+
+body {
+  position: fixed;
+  overflow: hidden;
+  overscroll-behavior-y: none;
+}
+.root {
+  overflow: auto;
+}
+.content2D {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+.content3D {
+  display: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/*
+pointer-events: none;
+*/
 
 /* 
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 

@@ -15,6 +15,9 @@ export const metadata = {
 
 const sceneWrapperConfig =
   'fixed top-0 left-0 w-full h-full overflow-hidden z-1';
+
+const canvasWrapperStyle =
+  'relative w-full h-full overflow-hidden pointer-events-none bg-corpo';
 /**---------------------------------**/
 export default function RootLayout({
   children,
@@ -24,18 +27,24 @@ export default function RootLayout({
   /**JSX**/
   return (
     <html lang="en" className={inter.className}>
-      <body className="">
+      <body>
         <Header />
-        <div className={sceneWrapperConfig}>
+        {/* <div data-layout="Scene3D__wrapper" className={sceneWrapperConfig}>
           <Scene3D />
+        </div> */}
+        <div className="root">
+          <div className="content3D">
+            <Scene3D />
+          </div>
+          <div className="content2D">
+            <main
+              className="w-full h-full "
+              //  className="app"
+            >
+              {children}
+            </main>
+          </div>
         </div>
-        ;
-        <main
-          className="z-10 w-full h-full"
-          //  className="app"
-        >
-          {children}
-        </main>
       </body>
     </html>
   );
