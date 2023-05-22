@@ -1,6 +1,6 @@
 import React from 'react';
 /**Components*/
-// import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
+import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
 
 // const sceneWrapperConfig = {
 //   position:"fixed",
@@ -16,26 +16,33 @@ const sceneWrapperConfig = 'fixed top-0 left-0 w-full h-full overflow-hidden';
 export default function Home() {
   /**JSX**/
   return (
-    // <LocomotiveTemplate>
-    <div
-      //  data-scroll-section
-      className="w-full h-full "
-    >
-      {/* <div className={sceneWrapperConfig}>
+    <LocomotiveTemplate>
+      <div data-scroll-section className="w-full h-full pointer-events-none">
+        {/* <div className={sceneWrapperConfig}>
           <Scene3D />
         </div> */}
-      <div className="flex  gap-3 justify-center items-center h-[100vh] w-full pointer-events-none"></div>
+        <div
+          className="flex justify-start items-center h-[200vh] w-full "
+          ///___pointer-events-none
+        >
+          {' '}
+          <div className="w-[100px] h-[100px] bg-corpo"></div>
+        </div>
+        <div
+          className="flex justify-center items-center h-[200vh] w-full "
+          ///___pointer-events-none
+        ></div>
 
-      <div className="flex justify-center items-center  h-[100vh] w-full bg-dark">
-        <p className="select-none text-slate-200">Home</p>
-        <p className="select-none text-sky-400">Home</p>
-        <p className="select-none text-sky-500">Home</p>
-        <p className="text-blue-500 select-none">Home</p>
-        <p className="text-blue-600 select-none">Home</p>
-        <p className="text-gray-100 select-none">100vh</p>
+        <div className="flex justify-center items-center  h-[100vh] w-full bg-dark">
+          <p className="select-none text-slate-200">Home</p>
+          <p className="select-none text-sky-400">Home</p>
+          <p className="select-none text-sky-500">Home</p>
+          <p className="text-blue-500 select-none">Home</p>
+          <p className="text-blue-600 select-none">Home</p>
+          <p className="text-gray-100 select-none">100vh</p>
+        </div>
       </div>
-    </div>
-    // </LocomotiveTemplate>
+    </LocomotiveTemplate>
   );
 }
 

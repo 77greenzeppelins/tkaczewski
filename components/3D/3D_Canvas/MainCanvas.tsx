@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 /**BasicData*/
 import { colors } from '@/data/basicData';
-/**Monitorin Staff**/
+/**Monitoring Staff**/
 import { Perf } from 'r3f-perf';
 
 /**TS**/
@@ -26,10 +26,13 @@ const MainCanvas = ({ children }: Props) => {
   //   state.gl.setClearColor(colors.dark, 1); // color, alpha
   //   // state.scene.background = new THREE.Color(colors.corpo);
   // };
-
   /**JSX**/
   return (
     <Canvas
+      // eventSource={
+      //   document.getElementById('root') !== null &&
+      //   document.getElementById('root')
+      // }
       // dpr={[1, 2]} // has this values in default settings
       // flat // no toneMapping = only defoult collors; no pseudo-HDR
       gl={{

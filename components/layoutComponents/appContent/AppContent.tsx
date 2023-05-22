@@ -33,10 +33,10 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
   /**JSX**/
   return (
     // <LayoutContext.Provider value={{ fakeVal }}>
-    <div className="root">
-      <div className="content3D relative">
-        <Scene3D scrollProgress={scrollProgress} />
-      </div>
+    <div id="root" className="root">
+      {/* <div className="content3D relative"> */}
+      <Scene3D scrollProgress={scrollProgress} />
+      {/* </div> */}
       <div
         className="content2D scroll-bar-style"
         onScroll={event => {

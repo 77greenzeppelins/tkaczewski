@@ -9,7 +9,7 @@ import BasicFrame from '../../customeObjects/frame/BasicFrame';
 /**R3F Staff*/
 import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
-import { OrbitControls, PivotControls } from '@react-three/drei';
+import { OrbitControls, PivotControls, Float } from '@react-three/drei';
 /**Monitorin Staff**/
 import { Perf } from 'r3f-perf';
 /**BasicData*/
@@ -26,6 +26,7 @@ const Act1 = ({ scrollProgress }: Props) => {
 
   /**useFrame Section**/
   useFrame((state, delta) => {
+    groupRef.current.position.z = scrollProgress.current;
     // console.log('Act1 / scrollPr: ', scrollPr);
     // console.log('Act1 / scrollP: ', scrollP.current);
     //__Group Playground
@@ -50,6 +51,17 @@ const Act1 = ({ scrollProgress }: Props) => {
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} /> */}
       <group ref={groupRef}>
+        <Float
+          speed={2} // Animation speed, defaults to 1
+          rotationIntensity={1} // XYZ rotation intensity, defaults to 1
+          floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+          floatingRange={[0, 0.3]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+        >
+          <BasicFrame
+            groupProps={{ position: [0, 0, 0] }}
+            variantsSwitcher={1}
+          />
+        </Float>
         {/* <Box position={[-1.2, 0, 0]} /> */}
         {/* <PivotControls
           anchor={[0, 0, 0]}
@@ -61,19 +73,26 @@ const Act1 = ({ scrollProgress }: Props) => {
           <Box position={[-1.2, 0, 0]} />
         </PivotControls> */}
 
-        {path === pagesLinks[0].href ? (
-          <BasicFrame
-            groupProps={{ position: [0, 0, 0] }}
-            variantsSwitcher={1}
-          />
-        ) : null}
+        {/* {path === pagesLinks[0].href ? (
+          <Float
+            speed={2} // Animation speed, defaults to 1
+            rotationIntensity={1} // XYZ rotation intensity, defaults to 1
+            floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+            floatingRange={[0, 0.3]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+          >
+            <BasicFrame
+              groupProps={{ position: [0, 0, 0] }}
+              variantsSwitcher={1}
+            />
+          </Float>
+        ) : null} */}
 
-        {path === pagesLinks[1].href ? (
+        {/* {path === pagesLinks[1].href ? (
           <BasicFrame
             groupProps={{ position: [0, 0, 0] }}
             variantsSwitcher={0}
           />
-        ) : null}
+        ) : null} */}
 
         {/* <BasicFrame groupProps={{ position: [0, 0, 0] }} variantsSwitcher={0} /> */}
 

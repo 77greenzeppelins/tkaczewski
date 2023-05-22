@@ -34,29 +34,23 @@ const BasicFrame = ({ groupProps, variantsSwitcher }: Props) => {
 
   /**JSX**/
   return (
-    <group {...groupProps} dispose={null}>
-      {variantsSwitcher ? (
-        <mesh
-          name="PlaneSlim"
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001.geometry}
-          rotation={[Math.PI / 2, 0, 0]}
-        >
-          <FrameMatcapTexture textureIndex={'1'} />
-        </mesh>
-      ) : (
-        <mesh
-          name="PlaneStandard"
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane.geometry}
-          //   material={materials['default']}
-          rotation={[Math.PI / 2, 0, 0]}
-        >
-          <FrameMatcapTexture textureIndex={'1'} />
-        </mesh>
-      )}
+    <group
+      {...groupProps}
+      // dispose={null}
+      // onPointerOver={e => (
+      //   e.stopPropagation(), console.log('e.object.name', e.object.name)
+      // )}
+      // onPointerOut={e => (e.stopPropagation(), console.log('...onPointerOut'))}
+    >
+      <mesh
+        name="PlaneSlim"
+        castShadow
+        receiveShadow
+        geometry={nodes.Plane001.geometry}
+        rotation={[Math.PI / 2, 0, 0]}
+      >
+        <FrameMatcapTexture textureIndex={'1'} />
+      </mesh>
     </group>
   );
 };
