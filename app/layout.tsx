@@ -7,6 +7,7 @@ import '@/styles/globals.css';
 import AppContent from '@/components/layoutComponents/appContent/AppContent';
 /**Font Staff*/
 import { Inter } from 'next/font/google';
+import CanvasWithHtml from '@/components/3D/_Drei/canvas/CanvasWithHtml';
 const inter = Inter({ subsets: ['latin'] });
 /**<Head> staff*/
 export const metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body>
         <Header />
         <AppContent>{children}</AppContent>
+        {/* <CanvasWithHtml /> */}
       </body>
     </html>
   );

@@ -2,27 +2,7 @@
 import React, { useRef } from 'react';
 /**Components**/
 import Scene3D from '@/components/3D/3D_Scene/Scene3D';
-import ScrollProgressDisplayer from '@/components/multipagesComponents/scrollProgressDisplayer/ScrollProgressDisplayer';
-
-/**TS**/
-// import { PageProps } from '@/ts/typeScriptStaff';
-
-// const sceneWrapperConfig =
-//   'fixed top-0 left-0 w-full h-full overflow-hidden z-1';
-
-// const canvasWrapperStyle =
-//   'relative w-full h-full overflow-hidden pointer-events-none bg-corpo';
-
-// interface PageProps {
-//   //   pageRef: React.MutableRefObject<any>;
-//   fakeVal: number;
-// }
-
-// export const LayoutContext = createContext<PageProps>({
-//   // eslint-disable-next-line react-hooks/rules-of-hooks
-//   //   pageRef: ,
-//   fakeVal: 0,
-// });
+import CanvasWithHtml from '@/components/3D/_Drei/canvas/CanvasWithHtml';
 
 /**----------------------------------------------------------------------**/
 const AppContent = ({ children }: { children: React.ReactNode }) => {
@@ -32,11 +12,9 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
 
   /**JSX**/
   return (
-    // <LayoutContext.Provider value={{ fakeVal }}>
     <div id="root" className="root">
-      {/* <div className="content3D relative"> */}
       <Scene3D scrollProgress={scrollProgress} />
-      {/* </div> */}
+      {/* <CanvasWithHtml /> */}
       <div
         className="content2D scroll-bar-style"
         onScroll={event => {
@@ -45,7 +23,6 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
           2__target object has lots of properties, yet EventTarget doesn't inherit from HTMLElements by defaults, because HTML elements are not the only things that can be event targets;
           3__cast the type of event.target to HTMLDivElement when creating the target variable 
           */
-
           const target = event.target as HTMLDivElement;
           scrollProgress.current =
             target.scrollTop / (target.scrollHeight - window.innerHeight);
@@ -62,18 +39,9 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
         >
           0.00
         </div>
-        <div className="fixed top-[80px] left-[20px] m-[10px] text-light text-[1rem] pointer-events-none slashed-zero tabular-nums z-[15]">
-          {scrollProgress.current.toFixed(2).toString()}
-        </div>
-        <main
-          className="z-10 w-full h-full"
-          //  className="app"
-        >
-          {children}
-        </main>
+        <main className="z-10 w-full h-full">{children}</main>
       </div>
     </div>
-    // </LayoutContext.Provider>
   );
 };
 

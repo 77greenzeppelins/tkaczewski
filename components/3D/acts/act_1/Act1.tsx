@@ -2,8 +2,8 @@
 import React, { MutableRefObject, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
-// import Box from '../../basicShapes/Box/Box';
-// import Sphere from '../../basicShapes/sphere/Sphere';
+
+import Sphere from '../../basicShapes/sphere/Sphere';
 // import Triangles from '../../customeObjects/tiangles/Triangles';
 import BasicFrame from '../../customeObjects/frame/BasicFrame';
 /**R3F Staff*/
@@ -43,26 +43,26 @@ const Act1 = ({ scrollProgress }: Props) => {
   /**JSX**/
   return (
     <>
-      {/* <fog attach="fog" args={['#17171b', 30, 40]} /> */}
+      <fog attach="fog" args={['#01030d', 3, 3.5]} />
       {/* <color attach="background" args={[colors.dark]} /> */}
-      {/* <Perf position="bottom-right" /> */}
+
       {/* <OrbitControls makeDefault /> */}
-      {/* <ambientLight intensity={0.5} /> */}
+      <ambientLight intensity={0.5} />
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} /> */}
       <group ref={groupRef}>
         <Float
           speed={2} // Animation speed, defaults to 1
           rotationIntensity={1} // XYZ rotation intensity, defaults to 1
-          floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-          floatingRange={[0, 0.3]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+          floatIntensity={0.2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+          floatingRange={[-0.1, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
         >
           <BasicFrame
             groupProps={{ position: [0, 0, 0] }}
             variantsSwitcher={1}
           />
         </Float>
-        {/* <Box position={[-1.2, 0, 0]} /> */}
+
         {/* <PivotControls
           anchor={[0, 0, 0]}
           depthTest={false}
@@ -96,9 +96,9 @@ const Act1 = ({ scrollProgress }: Props) => {
 
         {/* <BasicFrame groupProps={{ position: [0, 0, 0] }} variantsSwitcher={0} /> */}
 
-        {/* <Sphere
+        <Sphere
           meshProps={{
-            position: [2.5, 0, 0],
+            position: [0, 0, -2],
             // position-x: 1.5, //  alternative approach but doesn't work ???
             rotation: [Math.PI * 0.25, 0, 0],
             // rotation-x: Math.PI * 0.25 //  alternative approach but doesn't work ???
@@ -109,7 +109,7 @@ const Act1 = ({ scrollProgress }: Props) => {
           geometryProps={{ args: [1, 24, 24] }}
           materialProps={{ color: colors.corpo, wireframe: true }}
           //args={[{color: colors.corpo, wireframe: true}]}
-        /> */}
+        />
 
         {/* <Triangles /> */}
       </group>
