@@ -15,6 +15,7 @@ import { Perf } from 'r3f-perf';
 /**BasicData*/
 import { colors, pagesLinks } from '@/data/basicData';
 
+/**TS**/
 interface Props {
   scrollProgress: MutableRefObject<number>;
 }
@@ -22,6 +23,7 @@ interface Props {
 const Act1 = ({ scrollProgress }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
+
   /**useFrame Section**/
   useFrame((state, delta) => {
     // console.log('Act1 / scrollPr: ', scrollPr);
@@ -41,9 +43,9 @@ const Act1 = ({ scrollProgress }: Props) => {
   return (
     <>
       {/* <fog attach="fog" args={['#17171b', 30, 40]} /> */}
-      <color attach="background" args={[colors.dark]} />
+      {/* <color attach="background" args={[colors.dark]} /> */}
       {/* <Perf position="bottom-right" /> */}
-      <OrbitControls makeDefault />
+      {/* <OrbitControls makeDefault /> */}
       {/* <ambientLight intensity={0.5} /> */}
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} /> */}

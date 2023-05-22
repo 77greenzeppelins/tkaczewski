@@ -24,16 +24,14 @@ export default function Home() {
       {/* <div className={sceneWrapperConfig}>
           <Scene3D />
         </div> */}
-      <div className="flex  gap-3 justify-center items-center  h-[100vh] w-full ">
+      <div className="flex  gap-3 justify-center items-center h-[100vh] w-full pointer-events-none"></div>
+
+      <div className="flex justify-center items-center  h-[100vh] w-full bg-dark">
         <p className="select-none text-slate-200">Home</p>
         <p className="select-none text-sky-400">Home</p>
         <p className="select-none text-sky-500">Home</p>
         <p className="text-blue-500 select-none">Home</p>
         <p className="text-blue-600 select-none">Home</p>
-        <p className="select-none text-sky-500">100vh</p>
-      </div>
-
-      <div className="flex justify-center items-center  h-[100vh] w-full bg-gray-500">
         <p className="text-gray-100 select-none">100vh</p>
       </div>
     </div>

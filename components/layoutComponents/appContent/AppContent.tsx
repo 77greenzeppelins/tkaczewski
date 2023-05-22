@@ -34,11 +34,11 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
   return (
     // <LayoutContext.Provider value={{ fakeVal }}>
     <div className="root">
-      <div className="content3D">
+      <div className="content3D relative">
         <Scene3D scrollProgress={scrollProgress} />
       </div>
       <div
-        className="content2D"
+        className="content2D scroll-bar-style"
         onScroll={event => {
           /*
           1__initially event.target is of type EventTarget and has only three methods;

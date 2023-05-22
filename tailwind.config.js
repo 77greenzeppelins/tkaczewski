@@ -21,6 +21,7 @@ module.exports = {
     extend: {
       colors: {
         dark: 'var(--color-dark)',
+        darkTint: 'var(--color-darkTint)',
         light: 'var(--color-light)',
         corpo: 'var(--color-corpo)',
       },
