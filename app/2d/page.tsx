@@ -3,8 +3,12 @@
 import React from 'react';
 /**Components*/
 import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
+import { PageProps } from '@/ts/typeScriptStaff';
 
-export default function Page2D() {
+export default function Page2D(props: PageProps) {
+  /**...*/
+  console.log('Page2D / props: ', props);
+
   return (
     <LocomotiveTemplate>
       <div data-scroll-section className="w-full h-full ">

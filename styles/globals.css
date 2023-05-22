@@ -106,7 +106,7 @@ body,
 }
 
 body {
-  position: fixed;
+  /* position: fixed; */
   overflow: hidden;
   overscroll-behavior-y: none;
 }
@@ -117,7 +117,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  overflow-y: auto;
+  overflow-y: visible;
 }
 .content3D {
   display: relative;

@@ -8,6 +8,8 @@ import Act1 from '../acts/act_1/Act1';
 /**Basic Data**/
 import { pagesLinks } from '@/data/basicData';
 
+/**TS**/
+
 pagesLinks;
 /**--------------------**/
 const Scene3D = () => {

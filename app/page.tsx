@@ -1,7 +1,9 @@
 import React from 'react';
 /**Components*/
 import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
-import Scene3D from '@/components/3D/3D_Scene/Scene3D';
+
+/**TS**/
+import { PageProps } from '@/ts/typeScriptStaff';
 
 // const sceneWrapperConfig = {
 //   position:"fixed",
@@ -14,28 +16,33 @@ import Scene3D from '@/components/3D/3D_Scene/Scene3D';
 const sceneWrapperConfig = 'fixed top-0 left-0 w-full h-full overflow-hidden';
 
 /**------------------------------* */
-export default function Home() {
+export default function Home(props: PageProps) {
+  /**...*/
+  console.log('Home / props: ', props);
   /**JSX**/
   return (
-    <LocomotiveTemplate>
-      <div data-scroll-section className="w-full h-full ">
-        {/* <div className={sceneWrapperConfig}>
+    // <LocomotiveTemplate>
+    <div
+      //  data-scroll-section
+      className="w-full h-full "
+    >
+      {/* <div className={sceneWrapperConfig}>
           <Scene3D />
         </div> */}
-        <div className="flex  gap-3 justify-center items-center  h-[100vh] w-full ">
-          <p className="select-none text-slate-200">Home</p>
-          <p className="select-none text-sky-400">Home</p>
-          <p className="select-none text-sky-500">Home</p>
-          <p className="text-blue-500 select-none">Home</p>
-          <p className="text-blue-600 select-none">Home</p>
-          <p className="select-none text-sky-500">100vh</p>
-        </div>
-
-        <div className="flex justify-center items-center  h-[100vh] w-full bg-gray-500">
-          <p className="text-gray-100 select-none">100vh</p>
-        </div>
+      <div className="flex  gap-3 justify-center items-center  h-[100vh] w-full ">
+        <p className="select-none text-slate-200">Home</p>
+        <p className="select-none text-sky-400">Home</p>
+        <p className="select-none text-sky-500">Home</p>
+        <p className="text-blue-500 select-none">Home</p>
+        <p className="text-blue-600 select-none">Home</p>
+        <p className="select-none text-sky-500">100vh</p>
       </div>
-    </LocomotiveTemplate>
+
+      <div className="flex justify-center items-center  h-[100vh] w-full bg-gray-500">
+        <p className="text-gray-100 select-none">100vh</p>
+      </div>
+    </div>
+    // </LocomotiveTemplate>
   );
 }
 

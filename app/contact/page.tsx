@@ -2,9 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 /**Components**/
 import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
+import { PageProps } from '@/ts/typeScriptStaff';
 
 /**------------------------**/
-const PageContact = () => {
+const PageContact = (props: PageProps) => {
   return (
     <LocomotiveTemplate>
       <div data-scroll-section className="w-full bg-[#070707]">
