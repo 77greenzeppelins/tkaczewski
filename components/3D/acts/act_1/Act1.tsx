@@ -2,10 +2,11 @@
 import React, { MutableRefObject, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
-
 import Sphere from '../../basicShapes/sphere/Sphere';
 // import Triangles from '../../customeObjects/tiangles/Triangles';
 import BasicFrame from '../../customeObjects/frame/BasicFrame';
+/**THREE staff*/
+import * as THREE from 'three';
 /**R3F Staff*/
 import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
@@ -18,15 +19,25 @@ import { colors, pagesLinks } from '@/data/basicData';
 /**TS**/
 interface Props {
   scrollProgress: MutableRefObject<number>;
+  direction: MutableRefObject<number>;
 }
 /**-----------------**/
-const Act1 = ({ scrollProgress }: Props) => {
+const Act1 = ({ scrollProgress, direction }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
+  // console.log('direction:', direction.current);
+
   /**useFrame Section**/
   useFrame((state, delta) => {
-    groupRef.current.position.z = scrollProgress.current * 4.5;
+    // console.log('direction:', direction.current);
+    // groupRef.current.position.z = scrollProgress.current * 0.5;
+    groupRef.current.position.z = THREE.MathUtils.lerp(
+      groupRef.current.position.z,
+      scrollProgress.current * 5,
+      0.05
+    );
+    // groupRef.current.position.z += scrollProgress.current;
     // console.log('Act1 / scrollPr: ', scrollPr);
     // console.log('Act1 / scrollP: ', scrollP.current);
     //__Group Playground
@@ -39,7 +50,7 @@ const Act1 = ({ scrollProgress }: Props) => {
   });
 
   const path = usePathname();
-  // const isActive = path === url;
+  const isVisible = path === pagesLinks[0].href;
   /**JSX**/
   return (
     <>
@@ -50,7 +61,7 @@ const Act1 = ({ scrollProgress }: Props) => {
       <ambientLight intensity={0.5} />
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} /> */}
-      <group ref={groupRef}>
+      <group ref={groupRef} visible={isVisible}>
         <Float
           speed={2} // Animation speed, defaults to 1
           rotationIntensity={1} // XYZ rotation intensity, defaults to 1

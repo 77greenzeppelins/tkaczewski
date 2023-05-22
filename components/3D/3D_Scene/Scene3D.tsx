@@ -11,11 +11,12 @@ import { pagesLinks } from '@/data/basicData';
 /**TS**/
 interface Props {
   scrollProgress: MutableRefObject<number>;
+  direction: MutableRefObject<number>;
 }
 
 pagesLinks;
 /**--------------------**/
-const Scene3D = ({ scrollProgress }: Props) => {
+const Scene3D = ({ scrollProgress, direction }: Props) => {
   /**Hooks Section**/
 
   return (
@@ -23,7 +24,7 @@ const Scene3D = ({ scrollProgress }: Props) => {
       {/*-----Canvas "attributes"--------------------------------*/}
 
       {/* {path === pagesLinks[0].href ? <Act1 /> : null} */}
-      <Act1 scrollProgress={scrollProgress} />
+      <Act1 scrollProgress={scrollProgress} direction={direction} />
     </MainCanvas>
   );
 };

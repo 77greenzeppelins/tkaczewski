@@ -9,28 +9,51 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
   /**References**/
   const scrollProgress = useRef<number>(0);
   const scrollableContainer = useRef<HTMLDivElement>(null!);
+  const prevScrollPosRef = useRef(0);
+  const direction = useRef(0);
 
   /**JSX**/
   return (
     <div id="root" className="root">
-      <Scene3D scrollProgress={scrollProgress} />
+      <Scene3D scrollProgress={scrollProgress} direction={direction} />
       {/* <CanvasWithHtml /> */}
       <div
         className="content2D scroll-bar-style"
         onScroll={event => {
+          // console.log(event);
           /*
           1__initially event.target is of type EventTarget and has only three methods;
           2__target object has lots of properties, yet EventTarget doesn't inherit from HTMLElements by defaults, because HTML elements are not the only things that can be event targets;
           3__cast the type of event.target to HTMLDivElement when creating the target variable 
           */
           const target = event.target as HTMLDivElement;
+          /*
+          set value of scrollProgress
+          */
           scrollProgress.current =
             target.scrollTop / (target.scrollHeight - window.innerHeight);
           scrollableContainer.current.innerText =
             scrollProgress.current.toFixed(2);
-          // console.log('scroll.current: ', scroll.current);
+          // console.log('target.scrollTop: ', target.scrollTop);
           // console.log('target.scrollHeight: ', target.scrollHeight);
-          // scrollProgress.current.innerText = target.scrollHeight.toString();
+          // // scrollProgress.current.innerText = target.scrollHeight.toString();
+          // console.log('scrollProgress.current: ', scrollProgress.current);
+
+          //___
+          const currentScrollPos = target.scrollTop;
+
+          if (currentScrollPos > prevScrollPosRef.current) {
+            // console.log('Scrolling down');
+            direction.current = 1;
+          } else {
+            // console.log('Scrolling up');
+            direction.current = 0;
+          }
+
+          prevScrollPosRef.current = currentScrollPos;
+          // prevScrollPosRef.current = indicator;
+
+          // console.log('...prevScrollPosRef', prevScrollPosRef.current);
         }}
       >
         <div
