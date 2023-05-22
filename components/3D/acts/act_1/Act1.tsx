@@ -26,7 +26,7 @@ const Act1 = ({ scrollProgress }: Props) => {
 
   /**useFrame Section**/
   useFrame((state, delta) => {
-    groupRef.current.position.z = scrollProgress.current;
+    groupRef.current.position.z = scrollProgress.current * 4.5;
     // console.log('Act1 / scrollPr: ', scrollPr);
     // console.log('Act1 / scrollP: ', scrollP.current);
     //__Group Playground
