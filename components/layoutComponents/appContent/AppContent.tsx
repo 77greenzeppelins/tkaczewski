@@ -52,6 +52,8 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
           scroll.current =
             target.scrollTop / (target.scrollHeight - window.innerHeight);
           scrollProgress.current.innerText = scroll.current.toFixed(2);
+          console.log('scroll.current: ', scroll.current);
+
           // console.log('target.scrollHeight: ', target.scrollHeight);
           // scrollProgress.current.innerText = target.scrollHeight.toString();
         }}
@@ -61,6 +63,9 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
           className="fixed top-[50px] left-[20px] m-[10px] text-light text-[1rem] pointer-events-none slashed-zero tabular-nums z-[15]"
         >
           0.00
+        </div>
+        <div className="fixed top-[80px] left-[20px] m-[10px] text-light text-[1rem] pointer-events-none slashed-zero tabular-nums z-[15]">
+          {scroll.current.toFixed(2).toString()}
         </div>
         <main
           className="z-10 w-full h-full"

@@ -1,9 +1,6 @@
 import React from 'react';
 /**Components*/
-import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
-
-/**TS**/
-import { PageProps } from '@/ts/typeScriptStaff';
+// import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
 
 // const sceneWrapperConfig = {
 //   position:"fixed",
@@ -16,9 +13,7 @@ import { PageProps } from '@/ts/typeScriptStaff';
 const sceneWrapperConfig = 'fixed top-0 left-0 w-full h-full overflow-hidden';
 
 /**------------------------------* */
-export default function Home(props: PageProps) {
-  /**...*/
-  console.log('Home / props: ', props);
+export default function Home() {
   /**JSX**/
   return (
     // <LocomotiveTemplate>
