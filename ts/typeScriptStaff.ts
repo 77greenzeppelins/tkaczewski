@@ -2,7 +2,7 @@
 //   pageRef: React.MutableRefObject<any>;
 // }
 
-interface PageProps {
-  fakeVal: number;
-}
-export type { PageProps };
+// interface PageProps {
+//   fakeVal: number;
+// }
+// export type { PageProps };

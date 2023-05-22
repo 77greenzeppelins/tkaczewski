@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
 import MainCanvas from '../3D_Canvas/MainCanvas';
@@ -9,10 +9,13 @@ import Act1 from '../acts/act_1/Act1';
 import { pagesLinks } from '@/data/basicData';
 
 /**TS**/
+interface Props {
+  scrollProgress: MutableRefObject<number>;
+}
 
 pagesLinks;
 /**--------------------**/
-const Scene3D = () => {
+const Scene3D = ({ scrollProgress }: Props) => {
   /**Hooks Section**/
 
   return (
@@ -20,7 +23,7 @@ const Scene3D = () => {
       {/*-----Canvas "attributes"--------------------------------*/}
 
       {/* {path === pagesLinks[0].href ? <Act1 /> : null} */}
-      <Act1 />
+      <Act1 scrollProgress={scrollProgress} />
     </MainCanvas>
   );
 };

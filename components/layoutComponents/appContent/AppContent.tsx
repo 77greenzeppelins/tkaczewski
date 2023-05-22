@@ -1,6 +1,5 @@
 'use client';
-import React, { ReactElement, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import React, { useRef } from 'react';
 /**Components**/
 import Scene3D from '@/components/3D/3D_Scene/Scene3D';
 import ScrollProgressDisplayer from '@/components/multipagesComponents/scrollProgressDisplayer/ScrollProgressDisplayer';
@@ -27,45 +26,44 @@ import ScrollProgressDisplayer from '@/components/multipagesComponents/scrollPro
 
 /**----------------------------------------------------------------------**/
 const AppContent = ({ children }: { children: React.ReactNode }) => {
-  /**...**/
-  const path = usePathname();
-  // children && console.log('children:',  children.length);
-  const pageRef = useRef();
-  const caption = useRef();
-  const scroll = useRef<number>(0);
-  const fakeVal: number = 0;
-
-  /**........*/
-  const scrollProgress = useRef<HTMLDivElement>(null!);
+  /**References**/
+  const scrollProgress = useRef<number>(0);
+  const scrollableContainer = useRef<HTMLDivElement>(null!);
 
   /**JSX**/
   return (
     // <LayoutContext.Provider value={{ fakeVal }}>
     <div className="root">
       <div className="content3D">
-        <Scene3D />
+        <Scene3D scrollProgress={scrollProgress} />
       </div>
       <div
         className="content2D"
-        onScroll={e => {
-          const target = e.target as HTMLDivElement;
-          scroll.current =
-            target.scrollTop / (target.scrollHeight - window.innerHeight);
-          scrollProgress.current.innerText = scroll.current.toFixed(2);
-          console.log('scroll.current: ', scroll.current);
+        onScroll={event => {
+          /*
+          1__initially event.target is of type EventTarget and has only three methods;
+          2__target object has lots of properties, yet EventTarget doesn't inherit from HTMLElements by defaults, because HTML elements are not the only things that can be event targets;
+          3__cast the type of event.target to HTMLDivElement when creating the target variable 
+          */
 
+          const target = event.target as HTMLDivElement;
+          scrollProgress.current =
+            target.scrollTop / (target.scrollHeight - window.innerHeight);
+          scrollableContainer.current.innerText =
+            scrollProgress.current.toFixed(2);
+          // console.log('scroll.current: ', scroll.current);
           // console.log('target.scrollHeight: ', target.scrollHeight);
           // scrollProgress.current.innerText = target.scrollHeight.toString();
         }}
       >
         <div
-          ref={scrollProgress}
+          ref={scrollableContainer}
           className="fixed top-[50px] left-[20px] m-[10px] text-light text-[1rem] pointer-events-none slashed-zero tabular-nums z-[15]"
         >
           0.00
         </div>
         <div className="fixed top-[80px] left-[20px] m-[10px] text-light text-[1rem] pointer-events-none slashed-zero tabular-nums z-[15]">
-          {scroll.current.toFixed(2).toString()}
+          {scrollProgress.current.toFixed(2).toString()}
         </div>
         <main
           className="z-10 w-full h-full"

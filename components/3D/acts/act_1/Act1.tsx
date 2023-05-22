@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { MutableRefObject, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
 // import Box from '../../basicShapes/Box/Box';
@@ -15,12 +15,17 @@ import { Perf } from 'r3f-perf';
 /**BasicData*/
 import { colors, pagesLinks } from '@/data/basicData';
 
+interface Props {
+  scrollProgress: MutableRefObject<number>;
+}
 /**-----------------**/
-const Act1 = () => {
+const Act1 = ({ scrollProgress }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
   /**useFrame Section**/
   useFrame((state, delta) => {
+    // console.log('Act1 / scrollPr: ', scrollPr);
+    // console.log('Act1 / scrollP: ', scrollP.current);
     //__Group Playground
     // groupRef.current.rotation.y += delta * 0.1;
     //__Camera Playground
