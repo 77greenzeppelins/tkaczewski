@@ -22,7 +22,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
       </div>
       <div
         id="container2D"
-        className="content2D scroll-bar-style z-1 pointer-events-auto"
+        className="content2D scroll-bar-style"
         onScroll={event => {
           /*
           1__initially event.target is of type EventTarget and has only three methods;
@@ -62,7 +62,9 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
         >
           0.00
         </div>
-        <main className="z-10 w-full h-full">{children}</main>
+        <main id="app-main" className="z-10 w-full h-full">
+          {children}
+        </main>
       </div>
     </div>
   );

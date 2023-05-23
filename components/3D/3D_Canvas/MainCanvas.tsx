@@ -21,6 +21,17 @@ we can set the attributes of camera her;
 we can't play / animate with camera's attributer within useFrame() here!
 */
 const MainCanvas = ({ children }: Props) => {
+  /**about document...**/
+  let eventsRoot;
+  if (typeof document !== 'undefined') {
+    // you are safe to use the "document" object here
+    console.log('MainCanvas / document.location.href:', document.location.href);
+    // eventsRoot = document.getElementById('container2D') as HTMLDivElement;
+    eventsRoot = document.getElementById('root') as HTMLDivElement;
+    console.log('MainCanvas / eventsRoot:', eventsRoot);
+  } else {
+    console.log('MainCanvas : document === undefined');
+  }
   // const eventsRoot = document.getElementById('container2D') as HTMLDivElement;
   // console.log('eventsRoot', eventsRoot);
   /**Call this function when Canvas is ready*/
@@ -31,7 +42,7 @@ const MainCanvas = ({ children }: Props) => {
   /**JSX**/
   return (
     <Canvas
-      // eventSource={eventsRoot}
+      eventSource={eventsRoot}
       // eventSource={
       //   document.getElementById('root') !== null &&
       //   document.getElementById('root')
