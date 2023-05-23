@@ -1,10 +1,11 @@
 'use client';
-import React, { MutableRefObject } from 'react';
-import { usePathname } from 'next/navigation';
+import React, { MutableRefObject, useRef } from 'react';
 /**Components**/
-import MainCanvas from '../3D_Canvas/MainCanvas';
 import Act1 from '../acts/act_1/Act1';
-
+/**THREE Staff*/
+import * as THREE from 'three';
+/**R3F Staff*/
+import { useFrame } from '@react-three/fiber';
 /**Basic Data**/
 import { pagesLinks } from '@/data/basicData';
 
@@ -17,15 +18,32 @@ interface Props {
 pagesLinks;
 /**--------------------**/
 const Scene3D = ({ scrollProgress, direction }: Props) => {
-  /**Hooks Section**/
-
+  /**References**/
+  const groupRef = useRef<THREE.Group>(null!);
+  /*
+  (!) Main engine that allow to travel on z-axis moving canvase's content, not camera;
+  */
+  useFrame((state, delta) => {
+    groupRef.current.position.z = THREE.MathUtils.lerp(
+      groupRef.current.position.z,
+      scrollProgress.current * 10,
+      0.05
+    );
+  });
+  /**JSX**/
   return (
-    <MainCanvas>
-      {/*-----Canvas "attributes"--------------------------------*/}
-
-      {/* {path === pagesLinks[0].href ? <Act1 /> : null} */}
-      <Act1 scrollProgress={scrollProgress} direction={direction} />
-    </MainCanvas>
+    <>
+      {/*-----Canvas Infrastructure--------------------------------*/}
+      <fog attach="fog" args={['#01030d', 3, 3.5]} />
+      {/* <color attach="background" args={[colors.dark]} /> */}
+      {/* <OrbitControls makeDefault /> */}
+      <ambientLight intensity={0.5} />
+      {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+      {/*-----Canvas Content--------------------------------*/}
+      <group ref={groupRef}>
+        <Act1 scrollProgress={scrollProgress} direction={direction} />
+      </group>
+    </>
   );
 };
 

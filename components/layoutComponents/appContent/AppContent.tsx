@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef } from 'react';
 /**Components**/
-import Scene3D from '@/components/3D/3D_Scene/Scene3D';
+import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
 
 /**----------------------------------------------------------------------**/
 const AppContent = ({ children }: { children: React.ReactNode }) => {
@@ -18,7 +18,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
         className="content3D "
         //___relative z-10 pointer-events-none
       >
-        <Scene3D scrollProgress={scrollProgress} direction={direction} />
+        <MainCanvas scrollProgress={scrollProgress} direction={direction} />
       </div>
       <div
         id="container2D"
