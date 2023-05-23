@@ -8,6 +8,7 @@ import { Canvas } from '@react-three/fiber';
 import Scene3D from '../3D_Scene/Scene3D';
 /**Monitoring Staff**/
 import { Perf } from 'r3f-perf';
+import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 
 /**TS**/ interface Props {
   scrollProgress: MutableRefObject<number>;
@@ -43,10 +44,22 @@ const MainCanvas = ({ scrollProgress, direction }: Props) => {
         // outputEncoding: THREE.LinearEncoding // depricated
         // outputColorSpace: 'srgb',
       }}
-      camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 1000 }}
+      // camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 1000 }}
       //default: camera={{ position: [0, 0, 5],fov: 75, near: 0.1, far: 1000, zoom: 1 }}
       // onCreated={whileCanvasMounted}
+      // onCreated={({ gl }) => {
+      //   gl.toneMapping = THREE.NoToneMapping;
+      // }}
     >
+      <PerspectiveCamera
+        makeDefault
+        //
+        // name="customePerspectiveCamera"
+        // ref={cameraRef}
+        position={[0, 0, 3]}
+        far={5} //_____comments below
+        fov={45}
+      ></PerspectiveCamera>
       <Scene3D scrollProgress={scrollProgress} direction={direction} />
       <Perf position="bottom-right" />
     </Canvas>

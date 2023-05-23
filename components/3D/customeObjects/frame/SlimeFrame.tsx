@@ -9,11 +9,11 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 /**Comoponents**/
 import FrameMatcapTexture from '../../_Drei/textures/frameMatcapTextures/FrameMatcapTexture';
-/**BasicData**/
+/**Hardcoded Staff**/
 import { assetsPaths } from '@/data/basicData';
-
 /**TS**/
 import { GLTF } from 'three-stdlib';
+
 type GLTFResult = GLTF & {
   nodes: {
     Plane: THREE.Mesh;
@@ -30,7 +30,7 @@ interface Props {
 }
 
 /**------------------------------------------------------------**/
-const BasicFrame = ({ groupProps }: Props) => {
+const SlimeFrame = ({ groupProps }: Props) => {
   /**GLTFLoader Section**/
   const { nodes } = useGLTF(assetsPaths.frame) as GLTFResult;
 
@@ -38,13 +38,14 @@ const BasicFrame = ({ groupProps }: Props) => {
   return (
     <group
       {...groupProps}
-      // dispose={null}
+      //  dispose={null}
     >
       <mesh
-        name="PlaneOfBasicFrame"
+        name="PlaneStandard"
         castShadow
         receiveShadow
-        geometry={nodes.Plane001.geometry}
+        geometry={nodes.Plane.geometry}
+        //   material={materials['default']}
         rotation={[Math.PI / 2, 0, 0]}
       >
         <FrameMatcapTexture textureIndex={'1'} />
@@ -55,4 +56,4 @@ const BasicFrame = ({ groupProps }: Props) => {
 
 useGLTF.preload(assetsPaths.frame);
 
-export default BasicFrame;
+export default SlimeFrame;

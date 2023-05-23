@@ -2,9 +2,9 @@
 import React, { MutableRefObject, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
-import Sphere from '../../basicShapes/sphere/Sphere';
-// import Triangles from '../../customeObjects/tiangles/Triangles';
 import BasicFrame from '../../customeObjects/frame/BasicFrame';
+import ImageCanvas from '../../customeObjects/imageCanvas/ImageCanvas';
+import Triangles from '../../customeObjects/tiangles/Triangles';
 /**THREE staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
@@ -12,7 +12,7 @@ import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
 import { Float } from '@react-three/drei';
 /**BasicData*/
-import { colors, pagesLinks } from '@/data/basicData';
+import { pagesLinks, assetsPaths, imagesData } from '@/data/basicData';
 
 /**TS**/
 interface Props {
@@ -35,40 +35,49 @@ const Act1 = ({ scrollProgress, direction }: Props) => {
       (state.mouse.x * Math.PI) / 8,
       0.05
     );
+    // groupRef.current.rotation.x = THREE.MathUtils.lerp(
+    //   groupRef.current.rotation.x,
+    //   (state.mouse.y * Math.PI) / -8,
+    //   0.05
+    // );
+    groupRef.current.rotation.z = THREE.MathUtils.lerp(
+      groupRef.current.rotation.z,
+      (state.mouse.y * Math.PI) / 50,
+      0.01
+    );
   });
 
   /**JSX**/
   return (
     <>
-      <group ref={groupRef} visible={isVisible}>
+      <group
+        ref={groupRef}
+        visible={isVisible}
+        onClick={() => {
+          console.log('..............');
+        }}
+      >
         <Float
           speed={2} // Animation speed, defaults to 1
-          rotationIntensity={1} // XYZ rotation intensity, defaults to 1
-          floatIntensity={0.2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-          floatingRange={[-0.1, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+          rotationIntensity={0.25} // XYZ rotation intensity, defaults to 1
+          floatIntensity={0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+          floatingRange={[-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
         >
           <BasicFrame
-            groupProps={{ position: [0, 0, 0] }}
-            variantsSwitcher={1}
+            groupProps={{ position: [0, 0, 0], scale: [0.86, 1, 1.13] }}
+          />
+          <ImageCanvas
+            meshProps={{ scale: [0.9, 0.85, 0.85] }}
+            argsWidth={imagesData.botticelliVenus.width * 2}
+            argsHeight={imagesData.botticelliVenus.height * 2}
+            image={imagesData.botticelliVenus.path}
           />
         </Float>
 
-        <Sphere
-          meshProps={{
-            position: [0, 0, -2],
-            // position-x: 1.5, //  alternative approach but doesn't work ???
-            rotation: [Math.PI * 0.25, 0, 0],
-            // rotation-x: Math.PI * 0.25 //  alternative approach but doesn't work ???
-            //rotateX: Math.PI * 0.5, //  alternative approach but doesn't work ???
-            scale: 1,
-            // scale:[1,2,1] // alternative approach
-          }}
-          geometryProps={{ args: [1, 24, 24] }}
-          materialProps={{ color: colors.corpo, wireframe: true }}
-          //args={[{color: colors.corpo, wireframe: true}]}
+        <Triangles
+          meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
+          matcapMaterial={true}
         />
-
-        {/* <Triangles /> */}
       </group>
     </>
   );

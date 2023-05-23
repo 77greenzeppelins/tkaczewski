@@ -2,6 +2,7 @@
 import React, { MutableRefObject, useRef } from 'react';
 /**Components**/
 import Act1 from '../acts/act_1/Act1';
+import Act2 from '../acts/act_2/Act2';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
@@ -20,10 +21,12 @@ pagesLinks;
 const Scene3D = ({ scrollProgress, direction }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
-  /*
+
+  /**Animations / Manipulations**/
+  useFrame((state, delta) => {
+    /*
   (!) Main engine that allow to travel on z-axis moving canvase's content, not camera;
   */
-  useFrame((state, delta) => {
     groupRef.current.position.z = THREE.MathUtils.lerp(
       groupRef.current.position.z,
       scrollProgress.current * 10,
@@ -38,10 +41,11 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
       {/* <color attach="background" args={[colors.dark]} /> */}
       {/* <OrbitControls makeDefault /> */}
       <ambientLight intensity={0.5} />
-      {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       {/*-----Canvas Content--------------------------------*/}
       <group ref={groupRef}>
         <Act1 scrollProgress={scrollProgress} direction={direction} />
+        <Act2 scrollProgress={scrollProgress} direction={direction} />
       </group>
     </>
   );

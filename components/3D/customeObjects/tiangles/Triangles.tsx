@@ -1,14 +1,27 @@
 import React, { useRef, useMemo, useEffect } from 'react';
-/** */
+/**THREE Staff**/
 import * as THREE from 'three';
+/**Reusable Staff*/
+import FrameMatcapTexture from '../../_Drei/textures/frameMatcapTextures/FrameMatcapTexture';
 /**HardCoded Data**/
 const trianglesNumb = 10;
 const verticesNumb = trianglesNumb * 3; // 3 for each vertx in triangle
 const verticesCoords = verticesNumb * 3; // 3 for x, y, z coords in each vertex
-import { colors } from '@/data/basicData';
 
+/**TS**/
+interface Props {
+  meshProps?: JSX.IntrinsicElements['mesh'];
+  geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
+  materialProps?: {};
+  matcapMaterial?: boolean;
+}
 /** */
-const Triangles = () => {
+const Triangles = ({
+  meshProps,
+  geometryProps,
+  materialProps,
+  matcapMaterial,
+}: Props) => {
   /**..**/
   const geometryRef = useRef<THREE.BufferGeometry>(null!);
   /**...**/
@@ -31,7 +44,7 @@ const Triangles = () => {
 
   /**JSX**/
   return (
-    <mesh>
+    <mesh {...meshProps}>
       <bufferGeometry ref={geometryRef}>
         <bufferAttribute
           attach="attributes-position"
@@ -41,7 +54,15 @@ const Triangles = () => {
           //___equivalent to: geometry.attribute.position
         />
       </bufferGeometry>
-      <meshStandardMaterial color="red" side={THREE.DoubleSide} />
+      {matcapMaterial ? (
+        <FrameMatcapTexture textureIndex={'1'} />
+      ) : (
+        <meshStandardMaterial
+          {...materialProps}
+          color="red"
+          side={THREE.DoubleSide}
+        />
+      )}
     </mesh>
   );
 };

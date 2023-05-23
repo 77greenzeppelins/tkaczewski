@@ -3,15 +3,23 @@ import React, { useRef } from 'react';
 /**R3F Staff**/
 // import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
+/**Reusable Staff*/
+import FrameMatcapTexture from '../../_Drei/textures/frameMatcapTextures/FrameMatcapTexture';
 
 /**TS**/
 interface Props {
   meshProps: JSX.IntrinsicElements['mesh'];
   geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
   materialProps?: {};
+  matcapMaterial: boolean;
 }
 
-const Sphere = ({ meshProps, geometryProps, materialProps }: Props) => {
+const Sphere = ({
+  meshProps,
+  geometryProps,
+  materialProps,
+  matcapMaterial,
+}: Props) => {
   /**References Section**/
   const meshRef = useRef<THREE.Mesh>(null!);
   /**useFrame Section**/
@@ -30,8 +38,11 @@ const Sphere = ({ meshProps, geometryProps, materialProps }: Props) => {
   return (
     <mesh ref={meshRef} {...meshProps}>
       <sphereGeometry {...geometryProps} />
-      <meshBasicMaterial {...materialProps} />
-      {/* <meshNormalMaterial /> */}
+      {matcapMaterial ? (
+        <FrameMatcapTexture textureIndex={'1'} />
+      ) : (
+        <meshBasicMaterial {...materialProps} />
+      )}
     </mesh>
   );
 };

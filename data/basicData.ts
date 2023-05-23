@@ -10,4 +10,14 @@ const pagesLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
-export { colors, pagesLinks };
+const assetsPaths = {
+  frame: '/assets/3D/glb/frame_4_draco.glb',
+  venus: '/assets/images/art/botticelli_venus_.webp',
+  school: '/assets/images/art/botticelli_venus_.webp',
+};
+const imagesData = {
+  botticelliVenus: { path: assetsPaths.venus, width: 0.445, height: 0.8 },
+  raphaelSchool: { path: assetsPaths.school, width: 0.445, height: 0.8 },
+};
+
+export { colors, pagesLinks, assetsPaths, imagesData };
