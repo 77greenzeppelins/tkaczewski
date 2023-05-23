@@ -18,14 +18,16 @@ import { pagesLinks, assetsPaths, imagesData } from '@/data/basicData';
 interface Props {
   scrollProgress: MutableRefObject<number>;
   direction: MutableRefObject<number>;
+  isTouch: boolean;
 }
 /**-----------------**/
-const Act1 = ({ scrollProgress, direction }: Props) => {
+const Act1 = ({ scrollProgress, direction, isTouch }: Props) => {
   // let eventSubject;
   // if (typeof document !== 'undefined') {
   //   //document is accesible only on client! you are safe to use the "document" object here
   //   eventSubject = document.body.style;
   // }
+  console.log('isTouch', isTouch);
 
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
@@ -36,21 +38,25 @@ const Act1 = ({ scrollProgress, direction }: Props) => {
 
   /**useFrame Section**/
   useFrame(state => {
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(
-      groupRef.current.rotation.y,
-      (state.mouse.x * Math.PI) / 8,
-      0.05
-    );
+    groupRef.current.rotation.y = isTouch
+      ? 0
+      : THREE.MathUtils.lerp(
+          groupRef.current.rotation.y,
+          (state.mouse.x * Math.PI) / 8,
+          0.05
+        );
     // groupRef.current.rotation.x = THREE.MathUtils.lerp(
     //   groupRef.current.rotation.x,
     //   (state.mouse.y * Math.PI) / -8,
     //   0.05
     // );
-    groupRef.current.rotation.z = THREE.MathUtils.lerp(
-      groupRef.current.rotation.z,
-      (state.mouse.y * Math.PI) / 50,
-      0.01
-    );
+    groupRef.current.rotation.z = isTouch
+      ? 0
+      : THREE.MathUtils.lerp(
+          groupRef.current.rotation.z,
+          (state.mouse.y * Math.PI) / 50,
+          0.01
+        );
   });
 
   /**JSX**/
@@ -72,9 +78,9 @@ const Act1 = ({ scrollProgress, direction }: Props) => {
       >
         <Float
           speed={2} // Animation speed, defaults to 1
-          rotationIntensity={0.25} // XYZ rotation intensity, defaults to 1
-          floatIntensity={0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-          floatingRange={[-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+          rotationIntensity={isTouch ? 0.4 : 0.25} // XYZ rotation intensity, defaults to 1
+          floatIntensity={isTouch ? 0.2 : 0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+          floatingRange={isTouch ? [-0.075, 0.075] : [-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
         >
           <BasicFrame
             groupProps={{ position: [0, 0, 0], scale: [0.86, 1, 1.13] }}

@@ -1,5 +1,5 @@
 'use client';
-import React, { MutableRefObject, useRef } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 /**Components**/
 import Act1 from '../acts/act_1/Act1';
 import Act2 from '../acts/act_2/Act2';
@@ -25,7 +25,13 @@ pagesLinks;
 const Scene3D = ({ scrollProgress, direction }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
-  const cameraRef = useRef(null!);
+
+  /*Basic Test for touchScreens*/
+  const [isTouch, setTouch] = useState(false);
+  useEffect(() => {
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setTouch(isTouch);
+  }, []);
 
   /**Animations / Manipulations**/
   useFrame((state, delta) => {
@@ -68,7 +74,11 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
         />
-        <Act1 scrollProgress={scrollProgress} direction={direction} />
+        <Act1
+          scrollProgress={scrollProgress}
+          direction={direction}
+          isTouch={isTouch}
+        />
         {/* <Act2 scrollProgress={scrollProgress} direction={direction} /> */}
       </group>
     </>
