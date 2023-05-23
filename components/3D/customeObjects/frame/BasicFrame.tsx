@@ -48,6 +48,9 @@ const BasicFrame = ({ groupProps, variantsSwitcher }: Props) => {
         receiveShadow
         geometry={nodes.Plane001.geometry}
         rotation={[Math.PI / 2, 0, 0]}
+        onClick={() => {
+          console.log('..............');
+        }}
       >
         <FrameMatcapTexture textureIndex={'1'} />
       </mesh>

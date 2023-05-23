@@ -37,6 +37,13 @@ const Act1 = ({ scrollProgress, direction }: Props) => {
       scrollProgress.current * 5,
       0.05
     );
+
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(
+      groupRef.current.rotation.y,
+      (state.mouse.x * Math.PI) / 8,
+      0.05
+    );
+
     // groupRef.current.position.z += scrollProgress.current;
     // console.log('Act1 / scrollPr: ', scrollPr);
     // console.log('Act1 / scrollP: ', scrollP.current);

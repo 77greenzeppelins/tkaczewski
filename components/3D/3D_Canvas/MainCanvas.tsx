@@ -21,6 +21,8 @@ we can set the attributes of camera her;
 we can't play / animate with camera's attributer within useFrame() here!
 */
 const MainCanvas = ({ children }: Props) => {
+  const eventsRoot = document.getElementById('container2D') as HTMLDivElement;
+  console.log('eventsRoot', eventsRoot);
   /**Call this function when Canvas is ready*/
   // const whileCanvasMounted = (state: { gl: any; scene: any }) => {
   //   state.gl.setClearColor(colors.dark, 1); // color, alpha
@@ -29,6 +31,7 @@ const MainCanvas = ({ children }: Props) => {
   /**JSX**/
   return (
     <Canvas
+      eventSource={eventsRoot}
       // eventSource={
       //   document.getElementById('root') !== null &&
       //   document.getElementById('root')

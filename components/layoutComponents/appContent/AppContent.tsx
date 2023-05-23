@@ -2,25 +2,28 @@
 import React, { useRef } from 'react';
 /**Components**/
 import Scene3D from '@/components/3D/3D_Scene/Scene3D';
-import CanvasWithHtml from '@/components/3D/_Drei/canvas/CanvasWithHtml';
 
 /**----------------------------------------------------------------------**/
 const AppContent = ({ children }: { children: React.ReactNode }) => {
   /**References**/
   const scrollProgress = useRef<number>(0);
-  const scrollableContainer = useRef<HTMLDivElement>(null!);
+  const scrollProgressDisplayer = useRef<HTMLDivElement>(null!);
   const prevScrollPosRef = useRef(0);
   const direction = useRef(0);
 
   /**JSX**/
   return (
-    <div id="root" className="root">
-      <Scene3D scrollProgress={scrollProgress} direction={direction} />
-      {/* <CanvasWithHtml /> */}
+    <div data-component="AppContent" id="root" className="root">
       <div
-        className="content2D scroll-bar-style"
+        className="content3D "
+        //___relative z-10 pointer-events-none
+      >
+        <Scene3D scrollProgress={scrollProgress} direction={direction} />
+      </div>
+      <div
+        id="container2D"
+        className="content2D scroll-bar-style z-1 pointer-events-auto"
         onScroll={event => {
-          // console.log(event);
           /*
           1__initially event.target is of type EventTarget and has only three methods;
           2__target object has lots of properties, yet EventTarget doesn't inherit from HTMLElements by defaults, because HTML elements are not the only things that can be event targets;
@@ -32,7 +35,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
           */
           scrollProgress.current =
             target.scrollTop / (target.scrollHeight - window.innerHeight);
-          scrollableContainer.current.innerText =
+          scrollProgressDisplayer.current.innerText =
             scrollProgress.current.toFixed(2);
           // console.log('target.scrollTop: ', target.scrollTop);
           // console.log('target.scrollHeight: ', target.scrollHeight);
@@ -51,13 +54,10 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
           }
 
           prevScrollPosRef.current = currentScrollPos;
-          // prevScrollPosRef.current = indicator;
-
-          // console.log('...prevScrollPosRef', prevScrollPosRef.current);
         }}
       >
         <div
-          ref={scrollableContainer}
+          ref={scrollProgressDisplayer}
           className="fixed top-[50px] left-[20px] m-[10px] text-light text-[1rem] pointer-events-none slashed-zero tabular-nums z-[15]"
         >
           0.00

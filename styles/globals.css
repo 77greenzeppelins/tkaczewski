@@ -89,7 +89,7 @@ html.has-scroll-dragging {
 }
 
 /*
-This Style psecifies some most-root container and is ment to bridge 2D & 3D world;
+This Style specifies some most-root container and is ment to bridge 2D & 3D world;
 These classess are used in layout.tsx 
 */
 
@@ -107,23 +107,30 @@ body,
 
 body {
   /* position: fixed; */
-  overflow: hidden;
-  overscroll-behavior-y: none;
+  /* overflow: hidden; */
+  /* overscroll-behavior-y: none; */
 }
 .root {
-  overflow: auto;
-}
-.content2D {
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow-y: visible;
+  /* overflow: auto; */
 }
 .content3D {
-  display: relative;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* overflow-y: visible; */
+  overflow: hidden;
+  /* z-index: 15; */
+}
+.content2D {
+  position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-y: visible;
+  /* background-color: red;
+  z-index: 10; */
 }
 /*
 pointer-events: none;
@@ -195,8 +202,8 @@ pointer-events: none;
     padding: 0;
   }
 }
-/* Tailwind Styles */
 
+/* Tailwind Styles */
 @layer base {
   body {
     @apply overflow-x-hidden;

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 /**Components*/
 import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
@@ -17,12 +18,12 @@ export default function Home() {
   /**JSX**/
   return (
     <LocomotiveTemplate>
-      <div data-scroll-section className="w-full h-full pointer-events-none">
+      <div data-scroll-section className="w-full h-full pointer-events-auto">
         {/* <div className={sceneWrapperConfig}>
           <Scene3D />
         </div> */}
         <div
-          className="flex justify-start items-center h-[200vh] w-full "
+          className="flex justify-start items-center h-[200vh]"
           ///___pointer-events-none
         >
           {' '}
@@ -40,6 +41,14 @@ export default function Home() {
           <p className="text-blue-500 select-none">Home</p>
           <p className="text-blue-600 select-none">Home</p>
           <p className="text-gray-100 select-none">100vh</p>
+          <button
+            className="select-none text-sky-400"
+            onClick={() => {
+              console.log('...BUTTON');
+            }}
+          >
+            BUTTON
+          </button>
         </div>
       </div>
     </LocomotiveTemplate>
