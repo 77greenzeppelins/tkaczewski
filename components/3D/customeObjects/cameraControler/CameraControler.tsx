@@ -46,9 +46,10 @@ const CameraControler = ({ scrollProgress, meshProps }: Props) => {
         position={[0, 0, 0]}
         //   scale={[0.5, 0.5, 0.5]}
         //  {...meshProps}
+        visible={false}
       >
         <ThreePlane argsWidth={1} argsHeight={1} />
-        <meshBasicMaterial color="red" wireframe />
+        <meshBasicMaterial color="red" />
       </mesh>
     </group>
   );

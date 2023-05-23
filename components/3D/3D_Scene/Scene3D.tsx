@@ -69,7 +69,7 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
         />
         <Act1 scrollProgress={scrollProgress} direction={direction} />
-        <Act2 scrollProgress={scrollProgress} direction={direction} />
+        {/* <Act2 scrollProgress={scrollProgress} direction={direction} /> */}
       </group>
     </>
   );

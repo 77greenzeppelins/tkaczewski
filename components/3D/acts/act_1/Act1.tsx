@@ -63,12 +63,12 @@ const Act1 = ({ scrollProgress, direction }: Props) => {
           event.stopPropagation();
           console.log('..............');
         }}
-        onPointerEnter={() => {
-          document.body.style.cursor = 'pointer';
-        }}
-        onPointerLeave={() => {
-          document.body.style.cursor = 'default';
-        }}
+        // onPointerEnter={() => {
+        //   document.body.style.cursor = 'pointer';
+        // }}
+        // onPointerLeave={() => {
+        //   document.body.style.cursor = 'default';
+        // }}
       >
         <Float
           speed={2} // Animation speed, defaults to 1
@@ -87,10 +87,10 @@ const Act1 = ({ scrollProgress, direction }: Props) => {
           />
         </Float>
 
-        <Triangles
+        {/* <Triangles
           meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
           matcapMaterial={true}
-        />
+        /> */}
       </group>
     </>
   );
