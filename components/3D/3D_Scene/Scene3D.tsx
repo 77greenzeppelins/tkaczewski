@@ -3,10 +3,14 @@ import React, { MutableRefObject, useRef } from 'react';
 /**Components**/
 import Act1 from '../acts/act_1/Act1';
 import Act2 from '../acts/act_2/Act2';
+import CameraControler from '../customeObjects/cameraControler/CameraControler';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
 import { useFrame } from '@react-three/fiber';
+/**Drei Staff*/
+// import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
+import { PerspectiveCamera } from '@react-three/drei/native';
 /**Basic Data**/
 import { pagesLinks } from '@/data/basicData';
 
@@ -21,29 +25,49 @@ pagesLinks;
 const Scene3D = ({ scrollProgress, direction }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
+  const cameraRef = useRef(null!);
 
   /**Animations / Manipulations**/
   useFrame((state, delta) => {
     /*
   (!) Main engine that allow to travel on z-axis moving canvase's content, not camera;
   */
-    groupRef.current.position.z = THREE.MathUtils.lerp(
-      groupRef.current.position.z,
-      scrollProgress.current * 10,
-      0.05
-    );
+    // groupRef.current.position.z = THREE.MathUtils.lerp(
+    //   groupRef.current.position.z,
+    //   scrollProgress.current * 10,
+    //   0.05
+    // );
+    // cameraRef.current.position.z = THREE.MathUtils.lerp(
+    //   groupRef.current.position.z,
+    //   scrollProgress.current * 10,
+    //   0.05
+    // );
   });
   /**JSX**/
   return (
     <>
+      {/* <PerspectiveCamera
+        ref={cameraRef}
+        makeDefault
+        //
+        // name="customePerspectiveCamera"
+        // ref={cameraRef}
+        position={[0, 0, 3]}
+        far={5} //_____comments below
+        fov={45}
+      ></PerspectiveCamera> */}
       {/*-----Canvas Infrastructure--------------------------------*/}
       <fog attach="fog" args={['#01030d', 3, 3.5]} />
       {/* <color attach="background" args={[colors.dark]} /> */}
-      {/* <OrbitControls makeDefault /> */}
+      {/* <OrbitControls makeDefault enableZoom={false} /> */}
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       {/*-----Canvas Content--------------------------------*/}
       <group ref={groupRef}>
+        <CameraControler
+          scrollProgress={scrollProgress}
+          meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
+        />
         <Act1 scrollProgress={scrollProgress} direction={direction} />
         <Act2 scrollProgress={scrollProgress} direction={direction} />
       </group>

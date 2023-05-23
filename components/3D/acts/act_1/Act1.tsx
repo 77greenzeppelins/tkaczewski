@@ -10,7 +10,7 @@ import * as THREE from 'three';
 /**R3F Staff*/
 import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
-import { Float } from '@react-three/drei';
+import { Float, meshBounds } from '@react-three/drei';
 /**BasicData*/
 import { pagesLinks, assetsPaths, imagesData } from '@/data/basicData';
 
@@ -21,6 +21,12 @@ interface Props {
 }
 /**-----------------**/
 const Act1 = ({ scrollProgress, direction }: Props) => {
+  // let eventSubject;
+  // if (typeof document !== 'undefined') {
+  //   //document is accesible only on client! you are safe to use the "document" object here
+  //   eventSubject = document.body.style;
+  // }
+
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
@@ -53,8 +59,15 @@ const Act1 = ({ scrollProgress, direction }: Props) => {
       <group
         ref={groupRef}
         visible={isVisible}
-        onClick={() => {
+        onClick={event => {
+          event.stopPropagation();
           console.log('..............');
+        }}
+        onPointerEnter={() => {
+          document.body.style.cursor = 'pointer';
+        }}
+        onPointerLeave={() => {
+          document.body.style.cursor = 'default';
         }}
       >
         <Float
