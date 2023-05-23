@@ -27,7 +27,7 @@ export default function Home() {
           ///___pointer-events-none
         >
           {' '}
-          <div className="w-[100px] h-[100px] bg-corpo"></div>
+          {/* <div className="w-[100px] h-[100px] bg-corpo"></div> */}
         </div>
         <div
           className="flex justify-center items-center h-[200vh] w-full "

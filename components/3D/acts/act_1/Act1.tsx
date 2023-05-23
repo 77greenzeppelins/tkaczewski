@@ -34,7 +34,8 @@ const Act1 = ({ scrollProgress, direction, isTouch }: Props) => {
 
   /**Condition of visibility**/
   const path = usePathname();
-  const isVisible = path === pagesLinks[0].href;
+  const isVisible =
+    path === pagesLinks[0].href || scrollProgress.current > 0.35;
 
   /**useFrame Section**/
   useFrame(state => {
