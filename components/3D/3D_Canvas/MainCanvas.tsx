@@ -62,7 +62,12 @@ const MainCanvas = ({ scrollProgress, direction }: Props) => {
         fov={45}
       ></PerspectiveCamera> */}
       <Scene3D scrollProgress={scrollProgress} direction={direction} />
-      <Perf position="bottom-right" />
+      <Perf
+        position="bottom-right"
+        showGraph={false}
+        // deepAnalyze={true}
+        minimal={true}
+      />
     </Canvas>
   );
 };
