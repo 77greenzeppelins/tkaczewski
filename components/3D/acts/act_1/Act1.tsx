@@ -14,6 +14,9 @@ import { Float, meshBounds } from '@react-three/drei';
 /**BasicData*/
 import { pagesLinks, assetsPaths, imagesData } from '@/data/basicData';
 
+/**HardCoded Staff*/
+const outOfScene = 0.35;
+
 /**TS**/
 interface Props {
   scrollProgress: MutableRefObject<number>;
@@ -35,7 +38,7 @@ const Act1 = ({ scrollProgress, direction, isTouch }: Props) => {
   /**Condition of visibility**/
   const path = usePathname();
   const isVisible =
-    path === pagesLinks[0].href || scrollProgress.current > 0.35;
+    path === pagesLinks[0].href || scrollProgress.current > outOfScene;
 
   /**useFrame Section**/
   useFrame(state => {
