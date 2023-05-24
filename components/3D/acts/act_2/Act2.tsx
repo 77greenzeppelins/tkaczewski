@@ -10,7 +10,7 @@ import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
 import { Float, Text } from '@react-three/drei';
 /**BasicData*/
-import { colors, pagesLinks } from '@/data/basicData';
+import { colors, pagesLinks, page3DConfigs } from '@/data/basicData';
 import DreiText from '../../_Drei/text/DreiText';
 
 /**TS**/
@@ -44,7 +44,18 @@ const Act2 = ({ scrollProgress, direction, groupProps }: Props) => {
         {/* <Text color="white" anchorX="center" anchorY="middle">
           hello world!
         </Text> */}
-        <DreiText text="Thanks" fontSize={0.25} color="white" />
+        <DreiText
+          hasMatcap={true}
+          text={page3DConfigs.act2.text1}
+          fontSize={0.25}
+          color="white"
+          textAlign="center"
+          maxWidth={2}
+          anchorX="center"
+          // fillOpacity={0}
+          // strokeColor={'white'}
+          // strokeWidth={0.001}
+        />
         {/* <Float
           speed={2} // Animation speed, defaults to 1
           rotationIntensity={1} // XYZ rotation intensity, defaults to 1

@@ -1,5 +1,5 @@
 'use client';
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useState } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff**/
@@ -10,6 +10,8 @@ import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 import Scene3D from '../3D_Scene/Scene3D';
 /**Monitoring Staff**/
 import { Perf } from 'r3f-perf';
+/**Hooks*/
+import useWindowSize from '@/hooks/useWindowSize';
 
 /**TS**/ interface Props {
   scrollProgress: MutableRefObject<number>;
@@ -23,13 +25,16 @@ we can set the attributes of camera her;
 we can't play / animate with camera's attributer within useFrame() here!
 */
 const MainCanvas = ({ scrollProgress, direction }: Props) => {
-  //
+  /**Local State**/
   const [eventsRoot, setEventsRoot] = useState<HTMLDivElement>(null!);
 
   useEffect(() => {
     let eventSource = document.getElementById('root') as HTMLDivElement;
     setEventsRoot(eventSource);
   }, []);
+
+  /**...*/
+  const { width } = useWindowSize();
 
   /**JSX**/
   return (
@@ -65,9 +70,9 @@ const MainCanvas = ({ scrollProgress, direction }: Props) => {
       <Scene3D scrollProgress={scrollProgress} direction={direction} />
       <Perf
         position="bottom-right"
-        showGraph={false}
+        showGraph={width > 800 ? true : false}
         // deepAnalyze={true}
-        minimal={true}
+        minimal={width > 800 ? false : true}
       />
     </Canvas>
   );
