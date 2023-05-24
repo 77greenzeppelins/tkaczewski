@@ -25,7 +25,9 @@ const CameraControler = ({ scrollProgress, meshProps }: Props) => {
       0.1
     );
 
-    const targetPosition = new THREE.Vector3(0, 0, meshRef.current.position.z);
+    // const targetPosition = new THREE.Vector3(0, 0, meshRef.current.position.z);//
+    const targetPosition = new THREE.Vector3(0, meshRef.current.position.y, 0);
+
     // console.log('targetPosition', targetPosition);
     const cameraPosition = new THREE.Vector3();
     cameraPosition.copy(targetPosition);
