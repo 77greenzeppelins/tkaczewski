@@ -21,7 +21,8 @@ const CameraControler = ({ scrollProgress, meshProps }: Props) => {
     meshRef.current.position.z = THREE.MathUtils.lerp(
       meshRef.current.position.z,
       scrollProgress.current * -50,
-      0.05
+      // 0.05
+      0.1
     );
 
     const targetPosition = new THREE.Vector3(0, 0, meshRef.current.position.z);
