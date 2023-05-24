@@ -55,9 +55,9 @@ Props) => {
     /*
   (!) Main engine that allow to travel on z-axis moving canvase's content, not camera;
   */
-    groupRef.current.position.z = THREE.MathUtils.lerp(
-      groupRef.current.position.z,
-      scrollProgress.current * 50,
+    groupRef.current.position.y = THREE.MathUtils.lerp(
+      groupRef.current.position.y,
+      scrollProgress.current * 5,
       0.05
     );
   });
