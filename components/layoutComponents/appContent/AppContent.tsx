@@ -2,6 +2,8 @@
 import React, { useRef } from 'react';
 /**Components**/
 import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
+/**FramerMotion*/
+import { useScroll } from 'framer-motion';
 
 /**----------------------------------------------------------------------**/
 const AppContent = ({ children }: { children: React.ReactNode }) => {
@@ -11,6 +13,10 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
   const prevScrollPosRef = useRef(0);
   const direction = useRef(0);
 
+  /**...**/
+  const scrollableElement = useRef<HTMLDivElement>(null!);
+  const { scrollYProgress } = useScroll({ container: scrollableElement });
+
   /**JSX**/
   return (
     <div data-component="AppContent" id="root" className="root">
@@ -18,9 +24,14 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
         className="content3D "
         //___relative z-10 pointer-events-none
       >
-        <MainCanvas scrollProgress={scrollProgress} direction={direction} />
+        <MainCanvas
+          scrollProgress={scrollProgress}
+          direction={direction}
+          scrollYProgress={scrollYProgress}
+        />
       </div>
       <div
+        ref={scrollableElement}
         id="container2D"
         className="content2D scroll-bar-style"
         onScroll={event => {

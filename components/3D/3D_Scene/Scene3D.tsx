@@ -14,15 +14,28 @@ import { PerspectiveCamera } from '@react-three/drei/native';
 /**Basic Data**/
 import { pagesLinks, page3DConfigs } from '@/data/basicData';
 
+/**FramerMotion Staff*/
+import { motion } from 'framer-motion-3d';
+import { MotionValue, useTransform } from 'framer-motion';
+import { useSpring } from 'framer-motion';
+const springOptions = {
+  stiffness: 100,
+  damping: 30,
+  // stiffness: 10,
+  // damping: 20,
+  restDelta: 0.001,
+};
+
 /**TS**/
 interface Props {
   scrollProgress: MutableRefObject<number>;
   direction: MutableRefObject<number>;
+  scrollYProgress: MotionValue<number>;
 }
 
 pagesLinks;
 /**--------------------**/
-const Scene3D = ({ scrollProgress, direction }: Props) => {
+const Scene3D = ({ scrollProgress, direction, scrollYProgress }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
@@ -49,6 +62,11 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
     //   0.05
     // );
   });
+
+  /**FramerMotion Section*/
+  const spring = useSpring(scrollYProgress, springOptions);
+  const transformedYProgress = useTransform(spring, value => value * 10);
+
   /**JSX**/
   return (
     <>
@@ -69,11 +87,14 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       {/*-----Canvas Content--------------------------------*/}
-      <group ref={groupRef}>
-        <CameraControler
+      <motion.group
+        position-z={transformedYProgress}
+        //  ref={groupRef}
+      >
+        {/* <CameraControler
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
-        />
+        /> */}
         <Act1
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
@@ -89,7 +110,7 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
           scrollProgress={scrollProgress}
           direction={direction}
         />
-      </group>
+      </motion.group>
     </>
   );
 };

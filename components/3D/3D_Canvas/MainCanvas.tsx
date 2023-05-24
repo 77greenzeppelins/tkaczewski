@@ -13,9 +13,13 @@ import { Perf } from 'r3f-perf';
 /**Hooks*/
 import useWindowSize from '@/hooks/useWindowSize';
 
+/**FramerMotion Staff*/
+import { MotionValue } from 'framer-motion';
+
 /**TS**/ interface Props {
   scrollProgress: MutableRefObject<number>;
   direction: MutableRefObject<number>;
+  scrollYProgress: MotionValue<number>;
 }
 
 /**--------------------------------------------**/
@@ -24,7 +28,7 @@ default version of <Canvas> includs initial-settings of this element: scene, cam
 we can set the attributes of camera her;
 we can't play / animate with camera's attributer within useFrame() here!
 */
-const MainCanvas = ({ scrollProgress, direction }: Props) => {
+const MainCanvas = ({ scrollProgress, direction, scrollYProgress }: Props) => {
   /**Local State**/
   const [eventsRoot, setEventsRoot] = useState<HTMLDivElement>(null!);
 
@@ -67,7 +71,11 @@ const MainCanvas = ({ scrollProgress, direction }: Props) => {
         far={5} //_____comments below
         fov={45}
       ></PerspectiveCamera> */}
-      <Scene3D scrollProgress={scrollProgress} direction={direction} />
+      <Scene3D
+        scrollYProgress={scrollYProgress}
+        scrollProgress={scrollProgress}
+        direction={direction}
+      />
       <Perf
         position="bottom-right"
         showGraph={width > 800 ? true : false}
