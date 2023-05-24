@@ -55,11 +55,11 @@ Props) => {
     /*
   (!) Main engine that allow to travel on z-axis moving canvase's content, not camera;
   */
-    groupRef.current.position.y = THREE.MathUtils.lerp(
-      groupRef.current.position.y,
-      scrollProgress.current * 30,
-      0.05
-    );
+    // groupRef.current.position.y = THREE.MathUtils.lerp(
+    //   groupRef.current.position.y,
+    //   scrollProgress.current * 30,
+    //   0.05
+    // );
   });
 
   /**FramerMotion Section*/
@@ -90,10 +90,10 @@ Props) => {
         // position-z={transformedYProgress}
         ref={groupRef}
       >
-        {/* <CameraControler
+        <CameraControler
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
-        /> */}
+        />
         <Act1
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),

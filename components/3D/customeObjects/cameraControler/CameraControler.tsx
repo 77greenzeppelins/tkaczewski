@@ -18,9 +18,9 @@ const CameraControler = ({ scrollProgress, meshProps }: Props) => {
   /**Animations / Manipulations*/
   useFrame(state => {
     //__basic settings to move plane
-    meshRef.current.position.z = THREE.MathUtils.lerp(
-      meshRef.current.position.z,
-      scrollProgress.current * -50,
+    meshRef.current.position.y = THREE.MathUtils.lerp(
+      meshRef.current.position.y,
+      scrollProgress.current * 30,
       // 0.05
       0.1
     );
