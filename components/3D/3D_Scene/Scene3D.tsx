@@ -55,16 +55,11 @@ Props) => {
     /*
   (!) Main engine that allow to travel on z-axis moving canvase's content, not camera;
   */
-    // groupRef.current.position.z = THREE.MathUtils.lerp(
-    //   groupRef.current.position.z,
-    //   scrollProgress.current * 10,
-    //   0.05
-    // );
-    // cameraRef.current.position.z = THREE.MathUtils.lerp(
-    //   groupRef.current.position.z,
-    //   scrollProgress.current * 10,
-    //   0.05
-    // );
+    groupRef.current.position.z = THREE.MathUtils.lerp(
+      groupRef.current.position.z,
+      scrollProgress.current * 50,
+      0.05
+    );
   });
 
   /**FramerMotion Section*/
@@ -92,13 +87,13 @@ Props) => {
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       {/*-----Canvas Content--------------------------------*/}
       <group
-      // position-z={transformedYProgress}
-      //  ref={groupRef}
+        // position-z={transformedYProgress}
+        ref={groupRef}
       >
-        <CameraControler
+        {/* <CameraControler
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
-        />
+        /> */}
         <Act1
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),

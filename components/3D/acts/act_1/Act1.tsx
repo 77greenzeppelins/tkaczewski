@@ -90,12 +90,12 @@ const Act1 = ({ scrollProgress, direction, isTouch, groupProps }: Props) => {
           floatingRange={isTouch ? [-0.075, 0.075] : [-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
         > */}
         <BasicFrame groupProps={{ scale: [0.86, 1, 1.13] }} />
-        {/* <ImageCanvas
+        <ImageCanvas
           meshProps={{ scale: [0.9, 0.85, 0.85] }}
           argsWidth={imagesData.botticelliVenus.width * 2}
           argsHeight={imagesData.botticelliVenus.height * 2}
           image={imagesData.botticelliVenus.path}
-        /> */}
+        />
         {/* </Float> */}
 
         {!isTouch ? (
