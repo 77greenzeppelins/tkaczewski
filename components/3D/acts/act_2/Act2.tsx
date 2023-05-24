@@ -3,24 +3,24 @@ import React, { MutableRefObject, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
 import Sphere from '../../basicShapes/sphere/Sphere';
-// import Triangles from '../../customeObjects/tiangles/Triangles';
-import BasicFrame from '../../customeObjects/frame/BasicFrame';
 /**THREE staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
 import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
-import { Float } from '@react-three/drei';
+import { Float, Text } from '@react-three/drei';
 /**BasicData*/
 import { colors, pagesLinks } from '@/data/basicData';
+import DreiText from '../../_Drei/text/DreiText';
 
 /**TS**/
 interface Props {
+  groupProps: JSX.IntrinsicElements['group'];
   scrollProgress: MutableRefObject<number>;
   direction: MutableRefObject<number>;
 }
 /**-----------------**/
-const Act2 = ({ scrollProgress, direction }: Props) => {
+const Act2 = ({ scrollProgress, direction, groupProps }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
@@ -40,21 +40,19 @@ const Act2 = ({ scrollProgress, direction }: Props) => {
   /**JSX**/
   return (
     <>
-      <group
-        ref={groupRef}
-        visible={isVisible}
-        onClick={() => {
-          console.log('..............');
-        }}
-      >
-        <Float
+      <group {...groupProps} ref={groupRef} visible={isVisible}>
+        {/* <Text color="white" anchorX="center" anchorY="middle">
+          hello world!
+        </Text> */}
+        <DreiText text="Thanks" fontSize={0.25} color="white" />
+        {/* <Float
           speed={2} // Animation speed, defaults to 1
           rotationIntensity={1} // XYZ rotation intensity, defaults to 1
           floatIntensity={0.2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
           floatingRange={[-0.1, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-        ></Float>
+        ></Float> */}
 
-        <Sphere
+        {/* <Sphere
           meshProps={{
             position: [0, 0, -2],
             // position-x: 1.5, //  alternative approach but doesn't work ???
@@ -68,7 +66,7 @@ const Act2 = ({ scrollProgress, direction }: Props) => {
           materialProps={{ color: colors.corpo, wireframe: true }}
           //args={[{color: colors.corpo, wireframe: true}]}
           matcapMaterial={false}
-        />
+        /> */}
 
         {/* <Triangles /> */}
       </group>

@@ -1,5 +1,5 @@
 'use client';
-import React, { MutableRefObject } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff**/
@@ -23,19 +23,20 @@ we can set the attributes of camera her;
 we can't play / animate with camera's attributer within useFrame() here!
 */
 const MainCanvas = ({ scrollProgress, direction }: Props) => {
-  /*
-  (!) this "reference" is crucial; it allows 3D objects to react on user events!; 
-  */
-  let eventsRoot;
-  if (typeof document !== 'undefined') {
-    //document is accesible only on client! you are safe to use the "document" object here
-    eventsRoot = document.getElementById('root') as HTMLDivElement;
-  }
+  //
+  const [eventsRoot, setEventsRoot] = useState<HTMLDivElement>(null!);
+
+  useEffect(() => {
+    let eventSource = document.getElementById('root') as HTMLDivElement;
+    setEventsRoot(eventSource);
+  }, []);
 
   /**JSX**/
   return (
     <Canvas
+      // eventSource={ccc}
       eventSource={eventsRoot}
+      // eventSource={x.current}
       // dpr={[1, 2]} // Canvas has this values in default settings
       // flat // means no toneMapping is applied = only default collors of odjects = no pseudo-HDR
       gl={{

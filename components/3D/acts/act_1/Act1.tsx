@@ -19,26 +19,28 @@ const outOfScene = 0.35;
 
 /**TS**/
 interface Props {
+  groupProps: JSX.IntrinsicElements['group'];
+  // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
   scrollProgress: MutableRefObject<number>;
   direction: MutableRefObject<number>;
   isTouch: boolean;
 }
 /**-----------------**/
-const Act1 = ({ scrollProgress, direction, isTouch }: Props) => {
+const Act1 = ({ scrollProgress, direction, isTouch, groupProps }: Props) => {
   // let eventSubject;
   // if (typeof document !== 'undefined') {
   //   //document is accesible only on client! you are safe to use the "document" object here
   //   eventSubject = document.body.style;
   // }
-  console.log('isTouch', isTouch);
+  // console.log('isTouch', isTouch);
 
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
   /**Condition of visibility**/
   const path = usePathname();
-  const isVisible =
-    path === pagesLinks[0].href || scrollProgress.current > outOfScene;
+  const isVisible = path === pagesLinks[0].href;
+  //___|| scrollProgress.current > outOfScene;
 
   /**useFrame Section**/
   useFrame(state => {
@@ -67,6 +69,7 @@ const Act1 = ({ scrollProgress, direction, isTouch }: Props) => {
   return (
     <>
       <group
+        {...groupProps}
         ref={groupRef}
         visible={isVisible}
         onClick={event => {
@@ -86,9 +89,7 @@ const Act1 = ({ scrollProgress, direction, isTouch }: Props) => {
           floatIntensity={isTouch ? 0.2 : 0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
           floatingRange={isTouch ? [-0.075, 0.075] : [-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
         >
-          <BasicFrame
-            groupProps={{ position: [0, 0, 0], scale: [0.86, 1, 1.13] }}
-          />
+          <BasicFrame groupProps={{ scale: [0.86, 1, 1.13] }} />
           <ImageCanvas
             meshProps={{ scale: [0.9, 0.85, 0.85] }}
             argsWidth={imagesData.botticelliVenus.width * 2}
@@ -97,10 +98,12 @@ const Act1 = ({ scrollProgress, direction, isTouch }: Props) => {
           />
         </Float>
 
-        {/* <Triangles
-          meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
-          matcapMaterial={true}
-        /> */}
+        {!isTouch ? (
+          <Triangles
+            meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
+            matcapMaterial={true}
+          />
+        ) : null}
       </group>
     </>
   );

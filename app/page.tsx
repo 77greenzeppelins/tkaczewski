@@ -30,7 +30,7 @@ export default function Home() {
           {/* <div className="w-[100px] h-[100px] bg-corpo"></div> */}
         </div>
         <div
-          className="flex justify-center items-center h-[200vh] w-full "
+          className="flex justify-center items-center h-[800vh] w-full "
           ///___pointer-events-none
         ></div>
 

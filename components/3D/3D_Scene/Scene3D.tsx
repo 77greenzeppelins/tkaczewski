@@ -12,7 +12,7 @@ import { useFrame } from '@react-three/fiber';
 // import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 import { PerspectiveCamera } from '@react-three/drei/native';
 /**Basic Data**/
-import { pagesLinks } from '@/data/basicData';
+import { pagesLinks, page3DConfigs } from '@/data/basicData';
 
 /**TS**/
 interface Props {
@@ -63,7 +63,7 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
         fov={45}
       ></PerspectiveCamera> */}
       {/*-----Canvas Infrastructure--------------------------------*/}
-      <fog attach="fog" args={['#01030d', 3, 3.5]} />
+      <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/* <color attach="background" args={[colors.dark]} /> */}
       {/* <OrbitControls makeDefault enableZoom={false} /> */}
       <ambientLight intensity={0.5} />
@@ -75,11 +75,20 @@ const Scene3D = ({ scrollProgress, direction }: Props) => {
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
         />
         <Act1
+          groupProps={{
+            position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
+          }}
           scrollProgress={scrollProgress}
           direction={direction}
           isTouch={isTouch}
         />
-        {/* <Act2 scrollProgress={scrollProgress} direction={direction} /> */}
+        <Act2
+          groupProps={{
+            position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
+          }}
+          scrollProgress={scrollProgress}
+          direction={direction}
+        />
       </group>
     </>
   );

@@ -20,4 +20,13 @@ const imagesData = {
   raphaelSchool: { path: assetsPaths.school, width: 0.445, height: 0.8 },
 };
 
-export { colors, pagesLinks, assetsPaths, imagesData };
+const page3DConfigs = {
+  actsPositions: [
+    [0, 0, 0],
+    [0, 0, -5],
+    [0, 0, -6],
+  ],
+  act2: { text1: '', text2: '', text3: '' },
+};
+
+export { colors, pagesLinks, assetsPaths, imagesData, page3DConfigs };
