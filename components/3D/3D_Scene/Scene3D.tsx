@@ -57,7 +57,7 @@ Props) => {
   */
     groupRef.current.position.y = THREE.MathUtils.lerp(
       groupRef.current.position.y,
-      scrollProgress.current * 5,
+      scrollProgress.current * 30,
       0.05
     );
   });
