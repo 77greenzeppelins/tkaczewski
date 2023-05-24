@@ -15,27 +15,31 @@ import { PerspectiveCamera } from '@react-three/drei/native';
 import { pagesLinks, page3DConfigs } from '@/data/basicData';
 
 /**FramerMotion Staff*/
-import { motion } from 'framer-motion-3d';
-import { MotionValue, useTransform } from 'framer-motion';
-import { useSpring } from 'framer-motion';
-const springOptions = {
-  stiffness: 100,
-  damping: 30,
-  // stiffness: 10,
-  // damping: 20,
-  restDelta: 0.001,
-};
+// import { motion } from 'framer-motion-3d';
+// import { MotionValue, useTransform } from 'framer-motion';
+// import { useSpring } from 'framer-motion';
+// const springOptions = {
+//   stiffness: 100,
+//   damping: 50,
+//   // stiffness: 10,
+//   // damping: 20,
+//   restDelta: 0.001,
+// };
 
 /**TS**/
 interface Props {
   scrollProgress: MutableRefObject<number>;
   direction: MutableRefObject<number>;
-  scrollYProgress: MotionValue<number>;
+  // scrollYProgress: MotionValue<number>;
 }
 
 pagesLinks;
 /**--------------------**/
-const Scene3D = ({ scrollProgress, direction, scrollYProgress }: Props) => {
+const Scene3D = ({
+  scrollProgress,
+  direction,
+}: //  scrollYProgress
+Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
@@ -64,8 +68,8 @@ const Scene3D = ({ scrollProgress, direction, scrollYProgress }: Props) => {
   });
 
   /**FramerMotion Section*/
-  const spring = useSpring(scrollYProgress, springOptions);
-  const transformedYProgress = useTransform(spring, value => value * 10);
+  // const spring = useSpring(scrollYProgress, springOptions);
+  // const transformedYProgress = useTransform(spring, value => value * 20);
 
   /**JSX**/
   return (
@@ -87,14 +91,14 @@ const Scene3D = ({ scrollProgress, direction, scrollYProgress }: Props) => {
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       {/*-----Canvas Content--------------------------------*/}
-      <motion.group
-        position-z={transformedYProgress}
-        //  ref={groupRef}
+      <group
+      // position-z={transformedYProgress}
+      //  ref={groupRef}
       >
-        {/* <CameraControler
+        <CameraControler
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
-        /> */}
+        />
         <Act1
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
@@ -110,7 +114,7 @@ const Scene3D = ({ scrollProgress, direction, scrollYProgress }: Props) => {
           scrollProgress={scrollProgress}
           direction={direction}
         />
-      </motion.group>
+      </group>
     </>
   );
 };
