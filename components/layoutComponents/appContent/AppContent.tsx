@@ -20,16 +20,16 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
   /**JSX**/
   return (
     <div data-component="AppContent" id="root" className="root">
-      <div
-        className="content3D "
-        //___relative z-10 pointer-events-none
-      >
-        <MainCanvas
-          scrollProgress={scrollProgress}
-          direction={direction}
-          // scrollYProgress={scrollYProgress}
-        />
-      </div>
+      {/* <div
+      // className="content3D "
+      //___relative z-10 pointer-events-none
+      > */}
+      <MainCanvas
+        scrollProgress={scrollProgress}
+        direction={direction}
+        // scrollYProgress={scrollYProgress}
+      />
+      {/* </div> */}
       <div
         // ref={scrollableElement}
         id="container2D"
