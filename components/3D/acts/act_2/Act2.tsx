@@ -45,7 +45,7 @@ const Act2 = ({ scrollProgress, direction, groupProps }: Props) => {
           hello world!
         </Text> */}
         <DreiText
-          hasMatcap={true}
+          hasMatcap={false}
           text={page3DConfigs.act2.text1}
           fontSize={0.25}
           color="white"
