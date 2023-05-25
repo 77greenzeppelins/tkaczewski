@@ -7,6 +7,7 @@ import '@/styles/globals.css';
 import AppContent from '@/components/layoutComponents/appContent/AppContent';
 /**Font Staff*/
 import { Inter } from 'next/font/google';
+import AppContentScrollControls from '@/components/layoutComponents/appContent/AppContentScrollControls';
 const inter = Inter({ subsets: ['latin'] });
 /**<Head> staff*/
 export const metadata = {
@@ -25,7 +26,8 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <Header />
-        <AppContent>{children}</AppContent>
+        {/* <AppContent>{children}</AppContent> */}
+        <AppContentScrollControls>{children}</AppContentScrollControls>
       </body>
     </html>
   );
