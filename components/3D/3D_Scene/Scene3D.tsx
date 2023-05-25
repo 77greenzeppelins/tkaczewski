@@ -94,21 +94,21 @@ Props) => {
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
         />
-        <Act1
+        {/* <Act1
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
           }}
           scrollProgress={scrollProgress}
           direction={direction}
           isTouch={isTouch}
-        />
-        <Act2
+        /> */}
+        {/* <Act2
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
           }}
           scrollProgress={scrollProgress}
           direction={direction}
-        />
+        /> */}
       </group>
     </>
   );
