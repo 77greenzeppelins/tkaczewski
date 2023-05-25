@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { useScroll, useAnimations } from '@react-three/drei';
 
 import BasicFrame from '../customeObjects/frame/BasicFrame';
@@ -14,7 +14,6 @@ const ScrollableScene3D = () => {
 
   /**...*/
   const scroll = useScroll();
-  console.log('......scroll:', scroll);
 
   useFrame(() => {
     // console.log('......scroll:', scroll);
@@ -24,7 +23,7 @@ const ScrollableScene3D = () => {
     //   // 0.05
     //   0.1
     // );
-    groupRef.current.position.z = scroll.offset * 5;
+    groupRef.current.position.z = scroll.offset * 40;
   });
   return (
     <>
