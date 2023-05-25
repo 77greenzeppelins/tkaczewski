@@ -36,7 +36,7 @@ const LocomotiveTemplate = ({ children }: Props) => {
     //   onUpdate={() => console.log('Updated, but not on location change!')} // Will trigger on
     // >
     <motion.div
-      data-scroll-container
+      // data-scroll-container
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}

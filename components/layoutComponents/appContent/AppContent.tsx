@@ -1,121 +1,114 @@
 'use client';
-import React, { useRef } from 'react';
-/**Components**/
+
+import { Suspense, useEffect, useRef, useState } from 'react';
+/**THREE Staff**/
+import * as THREE from 'three';
+/**R3F Staff**/
+import { Canvas } from '@react-three/fiber';
+/**Drei Staff**/
+import { Preload, Scroll, ScrollControls } from '@react-three/drei';
+import { Perf } from 'r3f-perf';
+import { usePathname } from 'next/navigation';
+import CanvasContent from '@/components/3D/3D_Canvas/canvasContent/CanvasContent';
 import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
-/**FramerMotion*/
-// import { useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-/**----------------------------------------------------------------------**/
+/**--------------------------------------**/
 const AppContent = ({ children }: { children: React.ReactNode }) => {
-  /**References**/
-  const scrollProgress = useRef<number>(0);
-  const scrollProgressDisplayer = useRef<HTMLDivElement>(null!);
-  const prevScrollPosRef = useRef(0);
-  const direction = useRef(0);
+  const path = usePathname();
 
-  /**...**/
-  // const scrollableElement = useRef<HTMLDivElement>(null!);
-  // const { scrollYProgress } = useScroll({ container: scrollableElement });
+  /**Local State**/
+  const [eventsRoot, setEventsRoot] = useState<HTMLDivElement>(null!);
+
+  useEffect(() => {
+    let eventSource = document.getElementById('root') as HTMLDivElement;
+    setEventsRoot(eventSource);
+  }, []);
+
+  // console.log('...AppContent / children', children);
 
   /**JSX**/
   return (
-    <div data-component="AppContent" id="root" className="root">
-      {/* <div
-      // className="content3D "
-      //___relative z-10 pointer-events-none
-      > */}
-      <MainCanvas
-        scrollProgress={scrollProgress}
-        direction={direction}
-        // scrollYProgress={scrollYProgress}
+    <Canvas
+      eventSource={eventsRoot}
+      eventPrefix="client"
+      gl={{
+        toneMapping: THREE.ACESFilmicToneMapping,
+      }}
+      camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
+    >
+      <ScrollControls damping={0.5} pages={5}>
+        {/* <ScrollableScene3D /> */}
+        <Scroll html>
+          <motion.div
+            key={path}
+            data-scroll-container
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="w-full h-full"
+            // onClick={() => console.log('....clicked')}
+          >
+            {/* <h1
+              style={{
+                position: 'absolute',
+                top: '40vh',
+                left: '0.5em',
+                fontSize: '40vw',
+                color: 'white',
+              }}
+            >
+              to
+            </h1> */}
+            {/* <h1
+              style={{
+                position: 'absolute',
+                top: '120vh',
+                left: '60vw',
+                fontSize: '10vw',
+                color: 'white',
+              }}
+            >
+              be
+            </h1> */}
+            {/* <h1
+              style={{
+                position: 'absolute',
+                top: '198.5vh',
+                left: '0.5vw',
+                fontSize: '30vw',
+                color: 'white',
+              }}
+            >
+              hello
+            </h1> */}
+            {/* {children} */}
+          </motion.div>
+        </Scroll>
+      </ScrollControls>
+      <Perf
+        position="bottom-right"
+        // showGraph={width > 800 ? true : false}
+        // // deepAnalyze={true}
+        // minimal={width > 800 ? false : true}
       />
-      {/* </div> */}
-      <div
-        // ref={scrollableElement}
-        id="container2D"
-        className="content2D scroll-bar-style"
-        onScroll={event => {
-          /*
-          1__initially event.target is of type EventTarget and has only three methods;
-          2__target object has lots of properties, yet EventTarget doesn't inherit from HTMLElements by defaults, because HTML elements are not the only things that can be event targets;
-          3__cast the type of event.target to HTMLDivElement when creating the target variable 
-          */
-          const target = event.target as HTMLDivElement;
-          /*
-          set value of scrollProgress
-          */
-          scrollProgress.current =
-            target.scrollTop / (target.scrollHeight - window.innerHeight);
-          scrollProgressDisplayer.current.innerText =
-            scrollProgress.current.toFixed(2);
-          // console.log('target.scrollTop: ', target.scrollTop);
-          // console.log('target.scrollHeight: ', target.scrollHeight);
-          // // scrollProgress.current.innerText = target.scrollHeight.toString();
-          // console.log('scrollProgress.current: ', scrollProgress.current);
-
-          //___
-          const currentScrollPos = target.scrollTop;
-
-          if (currentScrollPos > prevScrollPosRef.current) {
-            // console.log('Scrolling down');
-            direction.current = 1;
-          } else {
-            // console.log('Scrolling up');
-            direction.current = 0;
-          }
-
-          prevScrollPosRef.current = currentScrollPos;
-        }}
-      >
-        <div
-          ref={scrollProgressDisplayer}
-          className="fixed top-[50px] left-[20px] m-[10px] text-light text-[1rem] pointer-events-none slashed-zero tabular-nums z-[15]"
-        >
-          0.00
-        </div>
-        <main id="app-main" className="z-10 w-full h-full">
-          {children}
-        </main>
-      </div>
-    </div>
+    </Canvas>
+    // <MainCanvas>
+    //   <CanvasContent>{children}</CanvasContent>
+    // </MainCanvas>
   );
 };
 
 export default AppContent;
-
-/**...*/
-// useEffect(() => {
-//   const handleScroll = () => {
-//     const { scrollTop, scrollHeight, clientHeight } =
-//       document.documentElement;
-//     const newScrollProgress =
-//       (scrollTop / (scrollHeight - clientHeight)) * 100;
-//     console.log('scrollTop:', scrollTop);
-//     console.log('scrollHeight:', scrollHeight);
-//     console.log('scrollTclientHeightop:', clientHeight);
-
-//     // console.log('newScrollProgress:', newScrollProgress);
-//     // setScrollProgress(newScrollProgress);
-//   };
-
-//   // console.log(
-//   //   'document.documentElement.scrollTop:',
-//   //   document.documentElement.scrollTop
-//   // );
-//   // console.log(
-//   //   'document.documentElement.scrollHeight:',
-//   //   document.documentElement.scrollHeight
-//   // );
-//   // console.log(
-//   //   'document.documentElement.clientHeight:',
-//   //   document.documentElement.clientHeight
-//   // );
-//   // console.log('window.innerHeight:', window.innerHeight);
-//   // Add event listeners for scroll and resize
-//   window.addEventListener('scroll', handleScroll);
-
-//   // Clean up event listeners on component unmount
-//   return () => {
-//     window.removeEventListener('scroll', handleScroll);
-//   };
-// }, [path]);
+// <Canvas
+//   eventSource={eventsRoot}
+//   eventPrefix="client"
+//   gl={{ antialias: false }}
+//   dpr={[1, 1.5]}
+//   camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
+// >
+//   <CanvasContent>{children}</CanvasContent>
+//   {/* <Preload /> */}
+//   {/* </Suspense> */}
+//   <Perf position="top-left" />
+// </Canvas>

@@ -1,29 +1,83 @@
 import * as THREE from 'three';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useScroll, useAnimations } from '@react-three/drei';
+import { useAnimations } from '@react-three/drei';
 
 import BasicFrame from '../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../customeObjects/imageCanvas/ImageCanvas';
 import { imagesData, page3DConfigs } from '@/data/basicData';
 import DreiText from '../_Drei/text/DreiText';
 
+interface ScrollPosition {
+  scrollX: number;
+  scrollY: number;
+}
+/**-------------------------------**/
 const ScrollableScene3D = () => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
-
+  const botticelliRef = useRef<THREE.Group>(null!);
+  /**------------------**/
   /**...*/
-  const scroll = useScroll();
+  //   const scroll = useScroll();
+  const scrollProg = useRef<number>(0);
 
-  useFrame(() => {
-    // console.log('......scroll:', scroll);
-    // groupRef.current.position.z = THREE.MathUtils.lerp(
-    //   groupRef.current.position.z,
-    //   scroll.offset * 50,
-    //   // 0.05
-    //   0.1
-    // );
-    groupRef.current.position.z = scroll.offset * 40;
+  /*
+  ----------------------
+  */
+  const [scrollY, setScrollY] = useState(0);
+  // const [size, setSize] = useState('');
+
+  //   const onScroll = useCallback(() => {
+  //     const { pageYOffset, scrollY } = window;
+  //     console.log('yOffset', pageYOffset, 'scrollY', scrollY);
+  //     setScrollY(window.pageYOffset);
+  //   }, []);
+
+  useEffect(() => {
+    //   const onResize = () => {
+    //     if (window.innerWidth > 800) {
+    //       console.log('window.innerWidth > 800');
+    //       setSize('more then 800');
+    //     } else {
+    //       console.log('window.innerWidth < 800');
+    //       setSize('less then 800');
+    //     }
+    //   };
+
+    const onScroll = () => {
+      const { pageYOffset, scrollY } = window;
+      console.log('yOffset', pageYOffset, 'scrollY', scrollY);
+      setScrollY(window.pageYOffset);
+    };
+
+    window.addEventListener('scroll', onScroll); //, { passive: true }
+    //document.body.
+    //___remove event on unmount to prevent a memory leak
+    () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  /*
+  -----------------------
+  */
+
+  useFrame(state => {
+    //__ used with scrollProgress taken from onScroll in main ontainer;
+    groupRef.current.position.z = THREE.MathUtils.lerp(
+      groupRef.current.position.z,
+      scrollY / 200,
+      // 0.05
+      0.1
+    );
+    //__main engin; based on Drei useScroll & ScrollControls staff
+    // groupRef.current.position.z = scroll.offset * 40;
+
+    //__just to interact with cursor
+    botticelliRef.current.rotation.y = THREE.MathUtils.lerp(
+      botticelliRef.current.rotation.y,
+      (state.mouse.x * Math.PI) / 8,
+      0.05
+    );
   });
   return (
     <>
@@ -52,7 +106,7 @@ const ScrollableScene3D = () => {
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
         /> */}
-        <group position={[0, 0, 0]}>
+        <group ref={botticelliRef} position={[0, 0, 0]}>
           <BasicFrame groupProps={{ scale: [0.86, 1, 1.13] }} />
           <ImageCanvas
             meshProps={{ scale: [0.9, 0.85, 0.85] }}
