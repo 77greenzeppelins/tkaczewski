@@ -7,24 +7,12 @@ import CameraControler from '../customeObjects/cameraControler/CameraControler';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
-import { useFrame } from '@react-three/fiber';
+// import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
 // import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 import { PerspectiveCamera } from '@react-three/drei/native';
 /**Basic Data**/
 import { pagesLinks, page3DConfigs } from '@/data/basicData';
-
-/**FramerMotion Staff*/
-// import { motion } from 'framer-motion-3d';
-// import { MotionValue, useTransform } from 'framer-motion';
-// import { useSpring } from 'framer-motion';
-// const springOptions = {
-//   stiffness: 100,
-//   damping: 50,
-//   // stiffness: 10,
-//   // damping: 20,
-//   restDelta: 0.001,
-// };
 
 /**TS**/
 interface Props {
@@ -50,18 +38,6 @@ Props) => {
     setTouch(isTouch);
   }, []);
 
-  /**Animations / Manipulations**/
-  useFrame((state, delta) => {
-    /*
-  (!) Main engine that allow to travel on z-axis moving canvase's content, not camera;
-  */
-    // groupRef.current.position.y = THREE.MathUtils.lerp(
-    //   groupRef.current.position.y,
-    //   scrollProgress.current * 30,
-    //   0.05
-    // );
-  });
-
   /**FramerMotion Section*/
   // const spring = useSpring(scrollYProgress, springOptions);
   // const transformedYProgress = useTransform(spring, value => value * 20);
@@ -83,8 +59,8 @@ Props) => {
       <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/* <color attach="background" args={[colors.dark]} /> */}
       {/* <OrbitControls makeDefault enableZoom={false} /> */}
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+      {/* <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
       {/*-----Canvas Content--------------------------------*/}
       <group
         // position-z={transformedYProgress}
@@ -102,13 +78,13 @@ Props) => {
           direction={direction}
           isTouch={isTouch}
         /> */}
-        {/* <Act2
+        <Act2
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
           }}
           scrollProgress={scrollProgress}
           direction={direction}
-        /> */}
+        />
       </group>
     </>
   );

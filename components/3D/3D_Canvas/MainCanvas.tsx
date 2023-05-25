@@ -79,9 +79,9 @@ const MainCanvas = ({ scrollProgress, direction }: Props) => {
       />
       <Perf
         position="bottom-right"
-        showGraph={width > 800 ? true : false}
-        // deepAnalyze={true}
-        minimal={width > 800 ? false : true}
+        // showGraph={width > 800 ? true : false}
+        // // deepAnalyze={true}
+        // minimal={width > 800 ? false : true}
       />
     </Canvas>
   );
