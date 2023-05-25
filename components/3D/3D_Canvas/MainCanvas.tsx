@@ -44,7 +44,8 @@ const MainCanvas = ({ scrollProgress, direction }: Props) => {
   return (
     <Canvas
       // eventSource={ccc}
-      // eventSource={eventsRoot}
+      eventSource={eventsRoot}
+      eventPrefix="client"
       // eventSource={x.current}
       // dpr={[1, 2]} // Canvas has this values in default settings
       // flat // means no toneMapping is applied = only default collors of odjects = no pseudo-HDR
