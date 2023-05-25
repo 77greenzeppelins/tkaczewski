@@ -7,7 +7,7 @@ import CameraControler from '../customeObjects/cameraControler/CameraControler';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
-// import { useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
 // import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 import { PerspectiveCamera } from '@react-three/drei/native';
@@ -42,6 +42,15 @@ Props) => {
   // const spring = useSpring(scrollYProgress, springOptions);
   // const transformedYProgress = useTransform(spring, value => value * 20);
 
+  useFrame(() => {
+    groupRef.current.position.z = THREE.MathUtils.lerp(
+      groupRef.current.position.z,
+      scrollProgress.current * 50,
+      // 0.05
+      0.1
+    );
+  });
+
   /**JSX**/
   return (
     <>
@@ -66,18 +75,18 @@ Props) => {
         // position-z={transformedYProgress}
         ref={groupRef}
       >
-        <CameraControler
+        {/* <CameraControler
           scrollProgress={scrollProgress}
           meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
-        />
-        {/* <Act1
+        /> */}
+        <Act1
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
           }}
           scrollProgress={scrollProgress}
           direction={direction}
           isTouch={isTouch}
-        /> */}
+        />
         <Act2
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
