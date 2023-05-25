@@ -20,9 +20,13 @@ const AppContentScrollControls = ({
   children: React.ReactNode;
 }) => {
   return (
-    <Canvas gl={{ antialias: false }} dpr={[1, 1.5]}>
+    <Canvas
+      gl={{ antialias: false }}
+      dpr={[1, 1.5]}
+      camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
+    >
       {/* <Suspense fallback={null}> */}
-      <ScrollControls damping={4} pages={3}>
+      <ScrollControls damping={0.5} pages={3}>
         <ScrollableScene3D />
         {/* <Scroll>
             <Images />

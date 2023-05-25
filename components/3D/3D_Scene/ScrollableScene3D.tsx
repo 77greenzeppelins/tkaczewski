@@ -1,15 +1,31 @@
 import * as THREE from 'three';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useScroll, useAnimations } from '@react-three/drei';
-import Act1 from '../acts/act_1/Act1';
-import Act2 from '../acts/act_2/Act2';
+
 import BasicFrame from '../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../customeObjects/imageCanvas/ImageCanvas';
 import { imagesData, page3DConfigs } from '@/data/basicData';
 import DreiText from '../_Drei/text/DreiText';
 
 const ScrollableScene3D = () => {
+  /**References**/
+  const groupRef = useRef<THREE.Group>(null!);
+
+  /**...*/
+  const scroll = useScroll();
+  console.log('......scroll:', scroll);
+
+  useFrame(() => {
+    // console.log('......scroll:', scroll);
+    // groupRef.current.position.z = THREE.MathUtils.lerp(
+    //   groupRef.current.position.z,
+    //   scroll.offset * 50,
+    //   // 0.05
+    //   0.1
+    // );
+    groupRef.current.position.z = scroll.offset * 5;
+  });
   return (
     <>
       {/* <PerspectiveCamera
@@ -30,8 +46,8 @@ const ScrollableScene3D = () => {
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
       {/*-----Canvas Content--------------------------------*/}
       <group
-      // position-z={transformedYProgress}
-      // ref={groupRef}
+        // position-z={transformedYProgress}
+        ref={groupRef}
       >
         {/* <CameraControler
           scrollProgress={scrollProgress}
