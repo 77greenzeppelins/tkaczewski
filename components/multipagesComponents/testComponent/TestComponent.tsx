@@ -37,7 +37,7 @@ const TestComponent = () => {
   /**JSX**/
   return (
     <div className="fixed flex flex-col gap-4 top-[50vh] right-10">
-      <p className=" select-none text-sky-500">Height: {scrollY}</p>
+      <p className=" select-none text-sky-500">Height: {Math.trunc(scrollY)}</p>
       <button
         className="select-none text-sky-400"
         onClick={() => {

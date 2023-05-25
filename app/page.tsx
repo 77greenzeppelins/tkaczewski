@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <LocomotiveTemplate>
       <div className="w-full h-full pointer-events-auto">
-        <div className="flex gap-x-10 justify-start items-center h-[200vh]">
+        <div className="flex gap-x-10 justify-start items-center h-[400vh]">
           {' '}
           <p className="select-none text-slate-200">Home</p>
           <p className="select-none text-sky-400">Home</p>

@@ -65,7 +65,7 @@ const ScrollableScene3D = () => {
     //__ used with scrollProgress taken from onScroll in main ontainer;
     groupRef.current.position.z = THREE.MathUtils.lerp(
       groupRef.current.position.z,
-      scrollY / 200,
+      scrollY / 400,
       // 0.05
       0.1
     );
@@ -92,7 +92,7 @@ const ScrollableScene3D = () => {
         fov={45}
       ></PerspectiveCamera> */}
       {/*-----Canvas Infrastructure--------------------------------*/}
-      {/* <fog attach="fog" args={['#01030d', 3, 4.3]} /> */}
+      <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/* <color attach="background" args={[colors.dark]} /> */}
       {/* <OrbitControls makeDefault enableZoom={false} /> */}
       {/* <ambientLight intensity={0.5} />
@@ -115,7 +115,7 @@ const ScrollableScene3D = () => {
             image={imagesData.botticelliVenus.path}
           />
         </group>
-        {/* <group>
+        <group position={[0, 0, -4]}>
           <DreiText
             hasMatcap={false}
             text={page3DConfigs.act2.text1}
@@ -125,7 +125,7 @@ const ScrollableScene3D = () => {
             maxWidth={2}
             anchorX="center"
           />
-        </group> */}
+        </group>
       </group>
     </>
   );
