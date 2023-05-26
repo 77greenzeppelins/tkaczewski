@@ -6,7 +6,10 @@ const AppContainer = ({ children }: { children: React.ReactNode }) => {
   /**JSX**/
   return (
     <main data-component="AppContainer" id="appContainer">
-      <div className="fixed top-0 left-0 right-0 bottom-0">
+      <div
+        //  className="fixed top-0 left-0 right-0 bottom-0"
+        className="w-screen h-screen"
+      >
         <MainCanvas />
       </div>
       <div className="relative z-10">{children}</div>
