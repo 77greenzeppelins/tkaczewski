@@ -24,12 +24,12 @@ const imagesData = {
 const page3DConfigs = {
   actsPositions: [
     [0, 0, 0],
-    [0, 0, -5], //
+    [0, 0, -4], //
     // [0, -2, 0],
     [0, 0, -6],
   ],
   act2: {
-    text1: 'Thank you for visiting me',
+    text1: 'Thank you for visiting me!',
     text2: "I'm front-end developer",
     text3: '',
   },

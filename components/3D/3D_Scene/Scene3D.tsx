@@ -1,13 +1,17 @@
+import { useEffect, useRef, useState } from 'react';
+/**THREE Staff* */
 import * as THREE from 'three';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-
-import BasicFrame from '../customeObjects/frame/BasicFrame';
-import ImageCanvas from '../customeObjects/imageCanvas/ImageCanvas';
-import { imagesData, page3DConfigs } from '@/data/basicData';
+/**Drei Staff**/
 import DreiText from '../_Drei/text/DreiText';
-import useScrollPosition from '@/hooks/useScrollPosition';
+/**FramerMotion Staff*/
+import { useFrame } from '@react-three/fiber';
+/**Components**/
 import Act1 from '../acts/act_1/Act1';
+/**Hooks*/
+import useScrollPosition from '@/hooks/useScrollPosition';
+/**BasicData*/
+import { page3DConfigs } from '@/data/basicData';
+import Act2 from '../acts/act_2/Act2';
 
 /**-------------------------------**/
 const Scene3D = () => {
@@ -26,8 +30,7 @@ const Scene3D = () => {
     groupRef.current.position.z = THREE.MathUtils.lerp(
       groupRef.current.position.z,
       scrollY / 200, //lover number gives larger speed
-      // 0.05
-      0.08 // lover number gives more fluent move
+      0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
     );
   });
 
@@ -62,19 +65,18 @@ const Scene3D = () => {
         // position-z={transformedYProgress}
         ref={groupRef}
       >
-        <Act1 groupProps={{ position: [0, 0, 0] }} isTouch={isTouch} />
+        <Act1
+          groupProps={{
+            position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
+          }}
+          isTouch={isTouch}
+        />
 
-        <group position={[0, 0, -4]}>
-          <DreiText
-            hasMatcap={false}
-            text={page3DConfigs.act2.text1}
-            fontSize={0.25}
-            color="white"
-            textAlign="center"
-            maxWidth={2}
-            anchorX="center"
-          />
-        </group>
+        <Act2
+          groupProps={{
+            position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
+          }}
+        />
       </group>
     </>
   );
