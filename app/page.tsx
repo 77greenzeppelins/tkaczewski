@@ -1,13 +1,14 @@
 // 'use client';
 import React from 'react';
 /**Components*/
-import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
+
+import PageWrapper from '@/components/multipagesComponents/pageWrapper/PageWrapper';
 
 /**------------------------------* */
 export default function Home() {
   /**JSX**/
   return (
-    <LocomotiveTemplate>
+    <PageWrapper>
       <div className="w-full h-full pointer-events-auto">
         <div className="flex gap-x-10 justify-start items-center h-[400vh]">
           {' '}
@@ -20,7 +21,7 @@ export default function Home() {
         <div className="flex justify-center items-center h-[100vh] w-full" />
         <div className="flex justify-center items-center h-[150vh] w-full bg-dark" />
       </div>
-    </LocomotiveTemplate>
+    </PageWrapper>
   );
 }
 

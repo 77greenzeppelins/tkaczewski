@@ -1,13 +1,12 @@
-import Link from 'next/link';
 import React from 'react';
 /**Components**/
-import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
+import PageWrapper from '@/components/multipagesComponents/pageWrapper/PageWrapper';
 
 /**------------------------**/
 const PageContact = () => {
   return (
-    <LocomotiveTemplate>
-      <div data-scroll-section className="w-full">
+    <PageWrapper>
+      <div className="w-full">
         <div className="flex justify-center items-center  h-[100vh] w-full">
           <p className="select-none text-neutral-300 text-4xl">
             contact / 1 / 100vh
@@ -19,7 +18,7 @@ const PageContact = () => {
           </p>
         </div>
       </div>
-    </LocomotiveTemplate>
+    </PageWrapper>
   );
 };
 

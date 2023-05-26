@@ -13,28 +13,9 @@ const ScrollableScene3D = () => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
   const botticelliRef = useRef<THREE.Group>(null!);
-  /**------------------**/
-  /**...*/
+
+  /**Scroll Progress Detector**/
   const scrollY = useScrollPosition();
-
-  /*
-  ----------------------
-  */
-  // const [scrollY, setScrollY] = useState(0);
-
-  // useEffect(() => {
-  //   //___handler
-  //   const onScroll = () => {
-  //     const { pageYOffset, scrollY } = window;
-  //     // console.log('...yOffset', pageYOffset, '...scrollY', scrollY);
-  //     setScrollY(window.pageYOffset);
-  //   };
-  //   //___event listener
-  //   window.addEventListener('scroll', onScroll); //, { passive: true }
-  //   //document.body.
-  //   //___ event cleaner
-  //   () => window.removeEventListener('scroll', onScroll);
-  // }, []);
 
   /**Animations / Manipulations**/
 

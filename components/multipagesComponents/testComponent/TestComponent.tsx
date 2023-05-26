@@ -1,26 +1,9 @@
 'use client';
-import React, { useCallback, useEffect, useState } from 'react';
+import useScrollPosition from '@/hooks/useScrollPosition';
+import React from 'react';
 
 const TestComponent = () => {
-  const [scrollY, setScrollY] = useState(0);
-  //   const onScroll = useCallback(() => {
-  //     const { pageYOffset, scrollY } = window;
-  //     console.log('yOffset', pageYOffset, 'scrollY', scrollY);
-  //     setScrollY(window.pageYOffset);
-  //   }, []);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const { pageYOffset, scrollY } = window;
-      console.log('yOffset', pageYOffset, 'scrollY', scrollY);
-      setScrollY(window.pageYOffset);
-    };
-
-    window.addEventListener('scroll', onScroll); //, { passive: true }
-    //document.body.
-    //___remove event on unmount to prevent a memory leak
-    () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const scrollY = useScrollPosition();
 
   /**JSX**/
   return (

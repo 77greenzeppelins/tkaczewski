@@ -1,13 +1,13 @@
 import React from 'react';
 /**Components**/
-import LocomotiveTemplate from '@/components/multipagesComponents/LocomotiveTemplate/LocomotiveTemplate';
+import PageWrapper from '@/components/multipagesComponents/pageWrapper/PageWrapper';
 
 /**----------------**/
 const PageCv = () => {
   /**JSX**/
   return (
-    <LocomotiveTemplate>
-      <div data-scroll-section className="w-full">
+    <PageWrapper>
+      <div className="w-full">
         <div className="flex justify-center items-center h-[100vh] w-full ">
           <p className="select-none text-sky-400 text-5xl">PageCv</p>
         </div>
@@ -16,7 +16,7 @@ const PageCv = () => {
         <div className="flex gap-2 justify-center items-center h-[100vh] w-full" />
         <div className="flex gap-2 justify-center items-center h-[100vh] w-full bg-dark" />
       </div>
-    </LocomotiveTemplate>
+    </PageWrapper>
   );
 };
 
