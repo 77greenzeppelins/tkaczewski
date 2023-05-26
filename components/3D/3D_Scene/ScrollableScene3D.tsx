@@ -26,8 +26,6 @@ const ScrollableScene3D = () => {
   ----------------------
   */
   const [scrollY, setScrollY] = useState(0);
-  // const [size, setSize] = useState('');
-
   //   const onScroll = useCallback(() => {
   //     const { pageYOffset, scrollY } = window;
   //     console.log('yOffset', pageYOffset, 'scrollY', scrollY);
@@ -35,34 +33,25 @@ const ScrollableScene3D = () => {
   //   }, []);
 
   useEffect(() => {
-    //   const onResize = () => {
-    //     if (window.innerWidth > 800) {
-    //       console.log('window.innerWidth > 800');
-    //       setSize('more then 800');
-    //     } else {
-    //       console.log('window.innerWidth < 800');
-    //       setSize('less then 800');
-    //     }
-    //   };
-
+    //___handler
     const onScroll = () => {
       const { pageYOffset, scrollY } = window;
-      console.log('yOffset', pageYOffset, 'scrollY', scrollY);
+      // console.log('...yOffset', pageYOffset, '...scrollY', scrollY);
       setScrollY(window.pageYOffset);
     };
-
+    //___event listener
     window.addEventListener('scroll', onScroll); //, { passive: true }
     //document.body.
-    //___remove event on unmount to prevent a memory leak
+    //___ event cleaner
     () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /*
-  -----------------------
-  */
+  /**Animations / Manipulations**/
 
   useFrame(state => {
-    //__ used with scrollProgress taken from onScroll in main ontainer;
+    /*
+    this code is a sort of engine; allows to dive deeper into scene on z-axis
+    */
     groupRef.current.position.z = THREE.MathUtils.lerp(
       groupRef.current.position.z,
       scrollY / 400,

@@ -34,7 +34,7 @@ export default function RootLayout({
         {/* <MainCanvas /> */}
         {/* <AppContent>{children}</AppContent> */}
         {/* <AppContentScrollControls>{children}</AppContentScrollControls> */}
-        {/* <TestComponent /> */}
+        <TestComponent />
       </body>
     </html>
   );

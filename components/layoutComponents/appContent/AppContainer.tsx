@@ -1,9 +1,11 @@
 import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
 import React from 'react';
 
+/**---------------------------------------------------------------------**/
 const AppContainer = ({ children }: { children: React.ReactNode }) => {
+  /**JSX**/
   return (
-    <main id="relative root">
+    <main data-component="AppContainer" id="appContainer">
       <div className="fixed top-0 left-0 right-0 h-screen">
         <MainCanvas />
       </div>

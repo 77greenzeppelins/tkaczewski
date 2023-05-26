@@ -3,8 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 const TestComponent = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [size, setSize] = useState('');
-
   //   const onScroll = useCallback(() => {
   //     const { pageYOffset, scrollY } = window;
   //     console.log('yOffset', pageYOffset, 'scrollY', scrollY);
@@ -12,16 +10,6 @@ const TestComponent = () => {
   //   }, []);
 
   useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth > 800) {
-        console.log('window.innerWidth > 800');
-        setSize('more then 800');
-      } else {
-        console.log('window.innerWidth < 800');
-        setSize('less then 800');
-      }
-    };
-
     const onScroll = () => {
       const { pageYOffset, scrollY } = window;
       console.log('yOffset', pageYOffset, 'scrollY', scrollY);
@@ -36,10 +24,15 @@ const TestComponent = () => {
 
   /**JSX**/
   return (
-    <div className="fixed flex flex-col gap-4 top-[50vh] right-10">
-      <p className=" select-none text-sky-500">Height: {Math.trunc(scrollY)}</p>
+    <div
+      data-compoent="TestComponent"
+      className="fixed flex flex-col gap-4 top-[50vh] right-10"
+    >
+      <p className="fc w-[200px] select-none text-sky-500">
+        Height: {Math.trunc(scrollY)}
+      </p>
       <button
-        className="select-none text-sky-400"
+        className="select-none text-sky-400 rounded-sm border border-corpo py-1  cursor-grab"
         onClick={() => {
           console.log('...BUTTON');
         }}

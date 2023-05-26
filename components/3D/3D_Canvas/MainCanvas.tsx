@@ -5,18 +5,15 @@ import * as THREE from 'three';
 /**R3F Staff**/
 import { Canvas } from '@react-three/fiber';
 /**Drei Staff*/
-import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
+// import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 /**Components**/
-import Scene3D from '../3D_Scene/Scene3D';
+import ScrollableScene3D from '../3D_Scene/ScrollableScene3D';
+// import Scene3D from '../3D_Scene/Scene3D';
+// import CanvasContent from './canvasContent/CanvasContent';
 /**Monitoring Staff**/
 import { Perf } from 'r3f-perf';
 /**Hooks*/
 import useWindowSize from '@/hooks/useWindowSize';
-import CanvasContent from './canvasContent/CanvasContent';
-import ScrollableScene3D from '../3D_Scene/ScrollableScene3D';
-
-// /**FramerMotion Staff*/
-// import { MotionValue } from 'framer-motion';
 
 /**--------------------------------------------**/
 /*
@@ -25,15 +22,19 @@ we can set the attributes of camera her;
 we can't play / animate with camera's attributer within useFrame() here!
 */
 const MainCanvas = () => {
-  /**Local State**/
+  /*
+  this code section is for eventSource settings
+  */
   const [eventsRoot, setEventsRoot] = useState<HTMLDivElement>(null!);
 
   useEffect(() => {
-    let eventSource = document.getElementById('root') as HTMLDivElement;
+    let eventSource = document.getElementById('appContainer') as HTMLDivElement;
     setEventsRoot(eventSource);
   }, []);
 
-  /**...*/
+  /*
+  this code section is for Perf settings
+  */
   const { width } = useWindowSize();
 
   /**JSX**/
