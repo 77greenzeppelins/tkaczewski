@@ -27,7 +27,7 @@ export default function RootLayout({
   /**JSX**/
   return (
     <html lang="en" className={inter.className}>
-      <body>
+      <body className="relative">
         <Header />
         <AppContainer>{children}</AppContainer>
         {/* <MainCanvas /> */}
