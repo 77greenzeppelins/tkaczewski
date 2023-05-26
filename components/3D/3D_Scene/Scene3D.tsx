@@ -8,11 +8,12 @@ import DreiText from '../_Drei/text/DreiText';
 import { useFrame } from '@react-three/fiber';
 /**Components**/
 import Act1 from '../acts/act_1/Act1';
+import Act2 from '../acts/act_2/Act2';
+import Act3 from '../acts/act3/Act3';
 /**Hooks*/
 import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
 import { pagesLinks, page3DConfigs } from '@/data/basicData';
-import Act2 from '../acts/act_2/Act2';
 
 /**-------------------------------**/
 const Scene3D = () => {
@@ -83,6 +84,12 @@ const Scene3D = () => {
         <Act2
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
+          }}
+          isVisible={visibleOnHome}
+        />
+        <Act3
+          groupProps={{
+            position: new THREE.Vector3(...page3DConfigs.actsPositions[2]),
           }}
           isVisible={visibleOnHome}
         />

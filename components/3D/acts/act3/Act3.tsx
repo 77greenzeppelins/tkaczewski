@@ -17,31 +17,23 @@ interface Props {
   // scrollProgress: MutableRefObject<number>;
 }
 /**-----------------**/
-const Act2 = ({ groupProps, isVisible }: Props) => {
+const Act3 = ({ groupProps, isVisible }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
-
-  // const windowSize = useWindowSize();
-  // console.log('windowSize.width: ', windowSize.width);
-  const state = useThree();
 
   /**JSX**/
   return (
     <group {...groupProps} ref={groupRef} visible={isVisible}>
-      {page3DConfigs.act2.text1.map(({ text, position }, index) => (
+      {page3DConfigs.act2.text2.map(({ text, position, rotation }, index) => (
         <DreiText
           key={index}
           hasMatcap={true}
           text={text}
           position={new THREE.Vector3(...position)}
+          rotation={new THREE.Euler(...rotation)}
           color="white"
           textAlign="center"
-          // maxWidth={state.size.width > 1000 ? 2 : 1}
           anchorX="center"
-
-          // fillOpacity={0}
-          // strokeColor={'white'}
-          // strokeWidth={0.001}
         />
       ))}
 
@@ -51,24 +43,8 @@ const Act2 = ({ groupProps, isVisible }: Props) => {
           floatIntensity={0.2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
           floatingRange={[-0.1, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
         ></Float> */}
-
-      {/* <Sphere
-          meshProps={{
-            position: [0, 0, -2],
-            // position-x: 1.5, //  alternative approach but doesn't work ???
-            rotation: [Math.PI * 0.25, 0, 0],
-            // rotation-x: Math.PI * 0.25 //  alternative approach but doesn't work ???
-            //rotateX: Math.PI * 0.5, //  alternative approach but doesn't work ???
-            scale: 1,
-            // scale:[1,2,1] // alternative approach
-          }}
-          geometryProps={{ args: [1, 12, 12] }}
-          materialProps={{ color: colors.corpo, wireframe: true }}
-          //args={[{color: colors.corpo, wireframe: true}]}
-          matcapMaterial={false}
-        /> */}
     </group>
   );
 };
 
-export default Act2;
+export default Act3;
