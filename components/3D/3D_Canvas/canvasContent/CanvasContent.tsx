@@ -5,7 +5,7 @@ import { Scroll, ScrollControls } from '@react-three/drei';
 /**FramerMotion Staff**/
 import { motion } from 'framer-motion';
 /**Components**/
-import ScrollableScene3D from '../../3D_Scene/ScrollableScene3D';
+import ScrollableScene3D from '../../3D_Scene/Scene3D';
 
 //___{ children }: { children: React.ReactNode }
 /**----------------------------------------------------------------------**/

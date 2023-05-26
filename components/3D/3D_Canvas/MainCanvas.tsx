@@ -1,5 +1,5 @@
 'use client';
-import React, { MutableRefObject, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff**/
@@ -7,9 +7,7 @@ import { Canvas } from '@react-three/fiber';
 /**Drei Staff*/
 // import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 /**Components**/
-import ScrollableScene3D from '../3D_Scene/ScrollableScene3D';
-// import Scene3D from '../3D_Scene/Scene3D';
-// import CanvasContent from './canvasContent/CanvasContent';
+import Scene3D from '../3D_Scene/Scene3D';
 /**Monitoring Staff**/
 import { Perf } from 'r3f-perf';
 /**Hooks*/
@@ -47,10 +45,7 @@ const MainCanvas = () => {
       }}
       camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
     >
-      {/*
-      //___apply if you want to use ScrollControls from Drei
-      <CanvasContent /> */}
-      <ScrollableScene3D />
+      <Scene3D />
       <Perf
         position="bottom-right"
         // showGraph={width > 800 ? true : false}

@@ -1,35 +1,35 @@
-'use client';
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
-/**Components**/
-import Act1 from '../acts/act_1/Act1';
-import Act2 from '../acts/act_2/Act2';
-import CameraControler from '../customeObjects/cameraControler/CameraControler';
-/**THREE Staff*/
 import * as THREE from 'three';
-/**R3F Staff*/
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-/**Drei Staff*/
-// import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
-import { PerspectiveCamera } from '@react-three/drei/native';
-/**Basic Data**/
-import { pagesLinks, page3DConfigs } from '@/data/basicData';
 
-/**TS**/
-interface Props {
-  scrollProgress: MutableRefObject<number>;
-  direction: MutableRefObject<number>;
-  // scrollYProgress: MotionValue<number>;
-}
+import BasicFrame from '../customeObjects/frame/BasicFrame';
+import ImageCanvas from '../customeObjects/imageCanvas/ImageCanvas';
+import { imagesData, page3DConfigs } from '@/data/basicData';
+import DreiText from '../_Drei/text/DreiText';
+import useScrollPosition from '@/hooks/useScrollPosition';
+import Act1 from '../acts/act_1/Act1';
 
-pagesLinks;
-/**--------------------**/
-const Scene3D = ({
-  scrollProgress,
-  direction,
-}: //  scrollYProgress
-Props) => {
+/**-------------------------------**/
+const Scene3D = () => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
+
+  /**Scroll Progress Detector; is used to fuel z-axis engine **/
+  const scrollY = useScrollPosition();
+
+  /**Animations / Manipulations**/
+
+  useFrame(state => {
+    /*
+    this code is a sort of engine; allows to dive deeper into scene on z-axis
+    */
+    groupRef.current.position.z = THREE.MathUtils.lerp(
+      groupRef.current.position.z,
+      scrollY / 200, //lover number gives larger speed
+      // 0.05
+      0.08 // lover number gives more fluent move
+    );
+  });
 
   /*Basic Test for touchScreens*/
   const [isTouch, setTouch] = useState(false);
@@ -37,19 +37,6 @@ Props) => {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setTouch(isTouch);
   }, []);
-
-  /**FramerMotion Section*/
-  // const spring = useSpring(scrollYProgress, springOptions);
-  // const transformedYProgress = useTransform(spring, value => value * 20);
-
-  useFrame(() => {
-    groupRef.current.position.z = THREE.MathUtils.lerp(
-      groupRef.current.position.z,
-      scrollProgress.current * 50,
-      // 0.05
-      0.1
-    );
-  });
 
   /**JSX**/
   return (
@@ -75,54 +62,22 @@ Props) => {
         // position-z={transformedYProgress}
         ref={groupRef}
       >
-        {/* <CameraControler
-          scrollProgress={scrollProgress}
-          meshProps={{ position: [0, 0, 0], scale: [0.5, 0.5, 0.5] }}
-        /> */}
-        <Act1
-          groupProps={{
-            position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
-          }}
-          scrollProgress={scrollProgress}
-          direction={direction}
-          isTouch={isTouch}
-        />
-        <Act2
-          groupProps={{
-            position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
-          }}
-          scrollProgress={scrollProgress}
-          direction={direction}
-        />
+        <Act1 groupProps={{ position: [0, 0, 0] }} isTouch={isTouch} />
+
+        <group position={[0, 0, -4]}>
+          <DreiText
+            hasMatcap={false}
+            text={page3DConfigs.act2.text1}
+            fontSize={0.25}
+            color="white"
+            textAlign="center"
+            maxWidth={2}
+            anchorX="center"
+          />
+        </group>
       </group>
     </>
   );
 };
 
 export default Scene3D;
-
-/*
-...old settings 
-*/
-// sRGB={true}
-/*
-            suggestion from :https://docs.pmnd.rs/react-three-fiber/advanced/scaling-performance
-            */
-// frameloop="demand"
-// shadows
-/*
-            https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re
-            There was a problem with "white color" on plane's background i.e. I couldn't achieve pure white, and there was a difference batween "white" on canvas smog / backgrounde and "white" on otcher objects; 
-            there is one drawback though: colors are a bit flat... aluminium doesn look as impresive as it looks withou this setting
-            */
-// onCreated={({ gl }) => {
-//   gl.toneMapping = THREE.NoToneMapping;
-// }}
-/*
-            What "gl-shadowMaps-type" does???
-            */
-// gl-shadowMaps-type={THREE.PCFSoftShadowMap}
-// dpr={[1, 2]} // doubles canvas' width and size ???
-// pixelRatio={[1, 2]} //?? syntax
-// pixelRatio={window.devicePixelRatio} //?? syntax
-// camera={{ fov: 45, position: [0, 0, 3] }}

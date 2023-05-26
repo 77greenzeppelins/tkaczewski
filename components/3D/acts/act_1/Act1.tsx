@@ -21,12 +21,10 @@ const outOfScene = 0.35;
 interface Props {
   groupProps: JSX.IntrinsicElements['group'];
   // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
-  scrollProgress: MutableRefObject<number>;
-  direction: MutableRefObject<number>;
   isTouch: boolean;
 }
 /**-----------------**/
-const Act1 = ({ scrollProgress, direction, isTouch, groupProps }: Props) => {
+const Act1 = ({ isTouch, groupProps }: Props) => {
   // let eventSubject;
   // if (typeof document !== 'undefined') {
   //   //document is accesible only on client! you are safe to use the "document" object here
@@ -44,25 +42,16 @@ const Act1 = ({ scrollProgress, direction, isTouch, groupProps }: Props) => {
 
   /**useFrame Section**/
   useFrame(state => {
-    groupRef.current.rotation.y = isTouch
-      ? 0
-      : THREE.MathUtils.lerp(
-          groupRef.current.rotation.y,
-          (state.mouse.x * Math.PI) / 8,
-          0.05
-        );
-    // groupRef.current.rotation.x = THREE.MathUtils.lerp(
-    //   groupRef.current.rotation.x,
-    //   (state.mouse.y * Math.PI) / -8,
-    //   0.05
-    // );
-    groupRef.current.rotation.z = isTouch
-      ? 0
-      : THREE.MathUtils.lerp(
-          groupRef.current.rotation.z,
-          (state.mouse.y * Math.PI) / 50,
-          0.01
-        );
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(
+      groupRef.current.rotation.y,
+      (state.mouse.x * Math.PI) / 4,
+      0.05
+    );
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(
+      groupRef.current.rotation.x,
+      (state.mouse.y * Math.PI) / -16,
+      0.05
+    );
   });
 
   /**JSX**/
@@ -98,12 +87,12 @@ const Act1 = ({ scrollProgress, direction, isTouch, groupProps }: Props) => {
         />
         {/* </Float> */}
 
-        {!isTouch ? (
+        {/* {!isTouch ? (
           <Triangles
             meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
             matcapMaterial={true}
           />
-        ) : null}
+        ) : null} */}
       </group>
     </>
   );
