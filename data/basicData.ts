@@ -27,6 +27,8 @@ const page3DConfigs = {
     [0, 0, -4], //
     // [0, -2, 0],
     [0, 0, -8],
+    [0, 0, -12],
+    [0, 0, -16],
   ],
   act2: {
     text1: [
@@ -43,8 +45,34 @@ const page3DConfigs = {
       },
       {
         text: 'developer',
-        position: [0.25, -0.29, -1],
+        position: [0, -0.29, -1],
         rotation: [0, -0.5, 0],
+      },
+    ],
+    text3: [
+      { text: 'Have you', position: [0, 0.4, 0], rotation: [-0.5, 0, 0] },
+      {
+        text: 'ever',
+        position: [0, 0.25, -1.2],
+        rotation: [0, 0, 0],
+      },
+      {
+        text: 'thought ',
+        position: [0, -0.1, -0.4],
+        rotation: [-0.5, 0, 0],
+      },
+      {
+        text: 'about... ',
+        position: [0, -0.45, -0.8],
+        rotation: [0.5, 0, 0],
+      },
+    ],
+    text4: [
+      { text: 'taking', position: [0, 0.15, 0], rotation: [0, 0, 0] },
+      {
+        text: 'off',
+        position: [0, -0.15, -0.6],
+        rotation: [0, 0, 0],
       },
     ],
   },

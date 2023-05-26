@@ -2,18 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 /**THREE Staff* */
 import * as THREE from 'three';
-/**Drei Staff**/
-import DreiText from '../_Drei/text/DreiText';
 /**FramerMotion Staff*/
 import { useFrame } from '@react-three/fiber';
 /**Components**/
 import Act1 from '../acts/act_1/Act1';
 import Act2 from '../acts/act_2/Act2';
-import Act3 from '../acts/act3/Act3';
+import Act3 from '../acts/act_3/Act3';
+import Act4 from '../acts/act_4/Act4';
 /**Hooks*/
 import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
 import { pagesLinks, page3DConfigs } from '@/data/basicData';
+import Act5 from '../acts/act_5/Act5';
 
 /**-------------------------------**/
 const Scene3D = () => {
@@ -90,6 +90,18 @@ const Scene3D = () => {
         <Act3
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[2]),
+          }}
+          isVisible={visibleOnHome}
+        />
+        <Act4
+          groupProps={{
+            position: new THREE.Vector3(...page3DConfigs.actsPositions[3]),
+          }}
+          isVisible={visibleOnHome}
+        />
+        <Act5
+          groupProps={{
+            position: new THREE.Vector3(...page3DConfigs.actsPositions[4]),
           }}
           isVisible={visibleOnHome}
         />
