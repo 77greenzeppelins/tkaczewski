@@ -8,7 +8,7 @@ const AppContainer = ({ children }: { children: React.ReactNode }) => {
     <main data-component="AppContainer" id="appContainer">
       <div
         //  className="fixed top-0 left-0 right-0 bottom-0"
-        className="w-screen h-screen"
+        className="fixed w-screen h-screen"
       >
         <MainCanvas />
       </div>
