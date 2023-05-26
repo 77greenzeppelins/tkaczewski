@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 /**THREE Staff* */
 import * as THREE from 'three';
 /**Drei Staff**/
@@ -10,7 +11,7 @@ import Act1 from '../acts/act_1/Act1';
 /**Hooks*/
 import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
-import { page3DConfigs } from '@/data/basicData';
+import { pagesLinks, page3DConfigs } from '@/data/basicData';
 import Act2 from '../acts/act_2/Act2';
 
 /**-------------------------------**/
@@ -19,17 +20,23 @@ const Scene3D = () => {
   const groupRef = useRef<THREE.Group>(null!);
 
   /**Scroll Progress Detector; is used to fuel z-axis engine **/
-  const scrollY = useScrollPosition();
+  const scrollYPosition = useScrollPosition();
+
+  /**Condition of visibility**/
+  const path = usePathname();
+  const visibleOnHome = path === pagesLinks[0].href;
+  const visibleOn2D = path === pagesLinks[1].href;
+
+  //___|| scrollProgress.current > outOfScene;
 
   /**Animations / Manipulations**/
-
   useFrame(state => {
     /*
     this code is a sort of engine; allows to dive deeper into scene on z-axis
     */
     groupRef.current.position.z = THREE.MathUtils.lerp(
       groupRef.current.position.z,
-      scrollY / 200, //lover number gives larger speed
+      scrollYPosition.val / 200, //lover number gives larger speed
       0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
     );
   });
@@ -70,12 +77,14 @@ const Scene3D = () => {
             position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
           }}
           isTouch={isTouch}
+          isVisible={visibleOnHome}
         />
 
         <Act2
           groupProps={{
             position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
           }}
+          isVisible={visibleOnHome}
         />
       </group>
     </>

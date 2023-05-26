@@ -1,6 +1,5 @@
 'use client';
-import React, { MutableRefObject, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import React, { useRef } from 'react';
 /**Components**/
 import BasicFrame from '../../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../../customeObjects/imageCanvas/ImageCanvas';
@@ -12,7 +11,7 @@ import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
 import { Float, meshBounds } from '@react-three/drei';
 /**BasicData*/
-import { pagesLinks, assetsPaths, imagesData } from '@/data/basicData';
+import { imagesData } from '@/data/basicData';
 
 /**HardCoded Staff*/
 const outOfScene = 0.35;
@@ -22,23 +21,12 @@ interface Props {
   groupProps: JSX.IntrinsicElements['group'];
   // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
   isTouch: boolean;
+  isVisible: boolean;
 }
 /**-----------------**/
-const Act1 = ({ isTouch, groupProps }: Props) => {
-  // let eventSubject;
-  // if (typeof document !== 'undefined') {
-  //   //document is accesible only on client! you are safe to use the "document" object here
-  //   eventSubject = document.body.style;
-  // }
-  // console.log('isTouch', isTouch);
-
+const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
-
-  /**Condition of visibility**/
-  const path = usePathname();
-  const isVisible = path === pagesLinks[0].href;
-  //___|| scrollProgress.current > outOfScene;
 
   /**useFrame Section**/
   useFrame(state => {
@@ -87,12 +75,12 @@ const Act1 = ({ isTouch, groupProps }: Props) => {
         />
         {/* </Float> */}
 
-        {/* {!isTouch ? (
+        {!isTouch ? (
           <Triangles
             meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
             matcapMaterial={true}
           />
-        ) : null} */}
+        ) : null}
       </group>
     </>
   );

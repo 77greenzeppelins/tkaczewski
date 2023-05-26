@@ -1,35 +1,31 @@
 'use client';
-import React, { MutableRefObject, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import React, { useRef } from 'react';
 /**Components**/
 import DreiText from '../../_Drei/text/DreiText';
-// import Sphere from '../../basicShapes/sphere/Sphere';
 /**THREE staff*/
 import * as THREE from 'three';
-/**R3F Staff*/
-import { useThree } from '@react-three/fiber';
-/**Drei Staff*/
-// import { Float, Text } from '@react-three/drei';
+/**Hooks**/
+import useWindowSize from '@/hooks/useWindowSize';
 /**BasicData*/
-import { pagesLinks, page3DConfigs } from '@/data/basicData';
+import { page3DConfigs } from '@/data/basicData';
+import { useThree } from '@react-three/fiber';
 
 /**TS**/
 interface Props {
   groupProps: JSX.IntrinsicElements['group'];
+  isVisible: boolean;
   // scrollProgress: MutableRefObject<number>;
 }
 /**-----------------**/
-const Act2 = ({ groupProps }: Props) => {
+const Act2 = ({ groupProps, isVisible }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
-  /**Condition of visibility**/
-  const path = usePathname();
-  const isVisible = path === pagesLinks[0].href;
-
-  /**useFrame Section**/
+  // const windowSize = useWindowSize();
+  // console.log('windowSize.width: ', windowSize.width);
   const state = useThree();
-  console.log('Act2 / state:', state);
+
+  console.log('state: ', state.size.width);
 
   /**JSX**/
   return (
@@ -37,10 +33,12 @@ const Act2 = ({ groupProps }: Props) => {
       <DreiText
         hasMatcap={false}
         text={page3DConfigs.act2.text1}
-        fontSize={0.25}
+        fontSize={
+          state.size.width > 1000 ? 0.25 : state.size.width > 400 ? 0.18 : 0.15
+        }
         color="white"
         textAlign="center"
-        maxWidth={2}
+        maxWidth={state.size.width > 1000 ? 2 : 1}
         anchorX="center"
         // fillOpacity={0}
         // strokeColor={'white'}

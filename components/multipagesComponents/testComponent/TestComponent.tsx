@@ -3,7 +3,7 @@ import useScrollPosition from '@/hooks/useScrollPosition';
 import React from 'react';
 
 const TestComponent = () => {
-  const scrollY = useScrollPosition();
+  const scrollYPosition = useScrollPosition();
 
   /**JSX**/
   return (
@@ -18,7 +18,7 @@ const TestComponent = () => {
         }}
       >
         <p className="fc w-[200px] select-none text-sky-500">
-          Height: {Math.trunc(scrollY)}
+          Height: {Math.trunc(scrollYPosition.val)}
         </p>
       </button>
     </div>
