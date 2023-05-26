@@ -29,7 +29,6 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <Header />
-
         <AppContainer>{children}</AppContainer>
         {/* <MainCanvas /> */}
         {/* <AppContent>{children}</AppContent> */}
