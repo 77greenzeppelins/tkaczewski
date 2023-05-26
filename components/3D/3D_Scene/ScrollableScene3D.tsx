@@ -1,17 +1,13 @@
 import * as THREE from 'three';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useAnimations } from '@react-three/drei';
 
 import BasicFrame from '../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../customeObjects/imageCanvas/ImageCanvas';
 import { imagesData, page3DConfigs } from '@/data/basicData';
 import DreiText from '../_Drei/text/DreiText';
+import useScrollPosition from '@/hooks/useScrollPosition';
 
-interface ScrollPosition {
-  scrollX: number;
-  scrollY: number;
-}
 /**-------------------------------**/
 const ScrollableScene3D = () => {
   /**References**/
@@ -19,32 +15,26 @@ const ScrollableScene3D = () => {
   const botticelliRef = useRef<THREE.Group>(null!);
   /**------------------**/
   /**...*/
-  //   const scroll = useScroll();
-  const scrollProg = useRef<number>(0);
+  const scrollY = useScrollPosition();
 
   /*
   ----------------------
   */
-  const [scrollY, setScrollY] = useState(0);
-  //   const onScroll = useCallback(() => {
-  //     const { pageYOffset, scrollY } = window;
-  //     console.log('yOffset', pageYOffset, 'scrollY', scrollY);
-  //     setScrollY(window.pageYOffset);
-  //   }, []);
+  // const [scrollY, setScrollY] = useState(0);
 
-  useEffect(() => {
-    //___handler
-    const onScroll = () => {
-      const { pageYOffset, scrollY } = window;
-      // console.log('...yOffset', pageYOffset, '...scrollY', scrollY);
-      setScrollY(window.pageYOffset);
-    };
-    //___event listener
-    window.addEventListener('scroll', onScroll); //, { passive: true }
-    //document.body.
-    //___ event cleaner
-    () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  // useEffect(() => {
+  //   //___handler
+  //   const onScroll = () => {
+  //     const { pageYOffset, scrollY } = window;
+  //     // console.log('...yOffset', pageYOffset, '...scrollY', scrollY);
+  //     setScrollY(window.pageYOffset);
+  //   };
+  //   //___event listener
+  //   window.addEventListener('scroll', onScroll); //, { passive: true }
+  //   //document.body.
+  //   //___ event cleaner
+  //   () => window.removeEventListener('scroll', onScroll);
+  // }, []);
 
   /**Animations / Manipulations**/
 
