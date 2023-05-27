@@ -74,7 +74,7 @@ const Act1 = ({ isTouch, groupProps }: Props) => {
       // onHoverEnd={e => setIsHovered(true)}
       initial={false}
       // animate={[isLiked ? 'liked' : 'unliked', isHover ? 'hover' : 'unhover']}
-      animate={isHovered ? 'hover' : 'unhover'}
+      animate={animationCondition ? 'hover' : 'unhover'}
       // animate={isHovered ? 'liked' : 'unliked'}
       variants={{
         unliked: {
