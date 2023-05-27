@@ -50,21 +50,21 @@ const page3DConfigs = {
       },
     ],
     text3: [
-      { text: 'Have you', position: [0, 0.4, 0], rotation: [-0.5, 0, 0] },
+      { text: 'Have you', position: [0, 0.5, 0], rotation: [0, -0.5, 0] },
       {
         text: 'ever',
-        position: [0, 0.25, -1.2],
+        position: [0, 0.35, -1.2],
         rotation: [0, 0, 0],
       },
       {
         text: 'thought ',
-        position: [0, -0.1, -0.4],
-        rotation: [-0.5, 0, 0],
+        position: [0, 0.1, -0.4],
+        rotation: [0, 0, 0],
       },
       {
         text: 'about... ',
-        position: [0, -0.45, -0.8],
-        rotation: [0.5, 0, 0],
+        position: [0, -0.35, -0.8],
+        rotation: [0, -0.5, 0],
       },
     ],
     text4: [

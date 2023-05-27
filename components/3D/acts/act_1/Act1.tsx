@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 /**Components**/
 import BasicFrame from '../../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../../customeObjects/imageCanvas/ImageCanvas';
@@ -12,6 +12,7 @@ import { useFrame } from '@react-three/fiber';
 import { Float, meshBounds } from '@react-three/drei';
 /**BasicData*/
 import { imagesData } from '@/data/basicData';
+import { motion } from 'framer-motion-3d';
 
 /**HardCoded Staff*/
 const outOfScene = 0.35;
@@ -28,8 +29,12 @@ const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
+  /** */
+  const [isHovered, setIsHovered] = useState(false);
+
   /**useFrame Section**/
   useFrame(state => {
+    // console.log('state.mouse.x: ', state.mouse.x);
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
       (state.mouse.x * Math.PI) / 4,
@@ -37,22 +42,78 @@ const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,
-      (state.mouse.y * Math.PI) / -16,
+      (state.mouse.y * Math.PI) / -8,
       0.05
     );
   });
 
   /**JSX**/
   return (
-    <>
+    <motion.group
+      dispose={null}
+      onPointerEnter={() => {
+        console.log('...onPointerEnter');
+        setIsHovered(true);
+        // document.body.style.cursor = 'pointer';
+      }}
+      onPointerLeave={() => {
+        console.log('...onPointerLeave');
+        setIsHovered(false);
+        // document.body.style.cursor = 'default';
+      }}
+      // onHoverStart={e => {
+      //   console.log('...onHoverStart');
+      //   setIsHovered(true);
+      // }}
+      // onHoverEnd={e => setIsHovered(true)}
+      initial={false}
+      // animate={[isLiked ? 'liked' : 'unliked', isHover ? 'hover' : 'unhover']}
+      animate={isHovered ? 'hover' : 'unhover'}
+      // animate={isHovered ? 'liked' : 'unliked'}
+      variants={{
+        unliked: {
+          x: [0, 0],
+          y: [0, 0],
+          scale: 0.9,
+        },
+        liked: {
+          x: 4,
+          y: [0, -1.5, 2],
+          scale: 0.9,
+          transition: { duration: 0.5 },
+        },
+        hover: {
+          rotateZ: Math.PI * 2,
+          // rotateY: Math.PI,
+          scale: 1.3,
+          transition: {
+            rotateZ: { duration: 5, ease: 'linear', repeat: Infinity },
+            // rotateY: { duration: 5, ease: 'linear' },
+          },
+        },
+        unhover: {
+          rotateZ: 0,
+          // rotateY: -Math.PI,
+          scale: 1.3,
+          transition: {
+            rotateZ: { duration: 5, ease: 'linear' },
+            // rotateY: { duration: 5, ease: 'linear' },
+          },
+        },
+      }}
+      onClick={event => {
+        event.stopPropagation();
+        console.log('..............');
+      }}
+    >
       <group
         {...groupProps}
         ref={groupRef}
         visible={isVisible}
-        onClick={event => {
-          event.stopPropagation();
-          console.log('..............');
-        }}
+        // onClick={event => {
+        //   event.stopPropagation();
+        //   console.log('..............');
+        // }}
         // onPointerEnter={() => {
         //   document.body.style.cursor = 'pointer';
         // }}
@@ -75,14 +136,14 @@ const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
         />
         {/* </Float> */}
 
-        {!isTouch ? (
+        {/* {!isTouch ? (
           <Triangles
             meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
             matcapMaterial={true}
           />
-        ) : null}
+        ) : null} */}
       </group>
-    </>
+    </motion.group>
   );
 };
 
