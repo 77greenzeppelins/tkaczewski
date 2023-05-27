@@ -5,15 +5,11 @@ import * as THREE from 'three';
 /**FramerMotion Staff*/
 import { useFrame } from '@react-three/fiber';
 /**Components**/
-import Act1 from '../acts/act_1/Act1';
-import Act2 from '../acts/act_2/Act2';
-import Act3 from '../acts/act_3/Act3';
-import Act4 from '../acts/act_4/Act4';
+import PageHome from '../page_1_home/PageHome';
 /**Hooks*/
 import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
 import { pagesLinks, page3DConfigs } from '@/data/basicData';
-import Act5 from '../acts/act_5/Act5';
 
 /**-------------------------------**/
 const Scene3D = () => {
@@ -26,7 +22,7 @@ const Scene3D = () => {
   /**Condition of visibility**/
   const path = usePathname();
   const visibleOnHome = path === pagesLinks[0].href;
-  const visibleOn2D = path === pagesLinks[1].href;
+  // const visibleOn2D = path === pagesLinks[1].href;
 
   //___|| scrollProgress.current > outOfScene;
 
@@ -69,43 +65,10 @@ const Scene3D = () => {
       {/* <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
       {/*-----Canvas Content--------------------------------*/}
-      <group
-        // position-z={transformedYProgress}
-        ref={groupRef}
-      >
-        <Act1
-          groupProps={{
-            position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
-          }}
-          isTouch={isTouch}
-          isVisible={visibleOnHome}
-        />
-
-        <Act2
-          groupProps={{
-            position: new THREE.Vector3(...page3DConfigs.actsPositions[1]),
-          }}
-          isVisible={visibleOnHome}
-        />
-        <Act3
-          groupProps={{
-            position: new THREE.Vector3(...page3DConfigs.actsPositions[2]),
-          }}
-          isVisible={visibleOnHome}
-        />
-        <Act4
-          groupProps={{
-            position: new THREE.Vector3(...page3DConfigs.actsPositions[3]),
-          }}
-          isVisible={visibleOnHome}
-        />
-        <Act5
-          groupProps={{
-            position: new THREE.Vector3(...page3DConfigs.actsPositions[4]),
-          }}
-          isVisible={visibleOnHome}
-        />
+      <group ref={groupRef} visible={visibleOnHome}>
+        <PageHome isTouch={isTouch} />
       </group>
+      <group></group>
     </>
   );
 };

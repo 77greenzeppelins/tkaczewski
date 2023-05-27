@@ -1,9 +1,9 @@
 'use client';
 import React, { useRef, useState } from 'react';
 /**Components**/
-import BasicFrame from '../../customeObjects/frame/BasicFrame';
-import ImageCanvas from '../../customeObjects/imageCanvas/ImageCanvas';
-import Triangles from '../../customeObjects/tiangles/Triangles';
+import BasicFrame from '../../../customeObjects/frame/BasicFrame';
+import ImageCanvas from '../../../customeObjects/imageCanvas/ImageCanvas';
+import Triangles from '../../../customeObjects/tiangles/Triangles';
 /**THREE staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
@@ -22,10 +22,9 @@ interface Props {
   groupProps: JSX.IntrinsicElements['group'];
   // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
   isTouch: boolean;
-  isVisible: boolean;
 }
 /**-----------------**/
-const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
+const Act1 = ({ isTouch, groupProps }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
@@ -85,7 +84,7 @@ const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
         hover: {
           rotateZ: Math.PI * 2,
           // rotateY: Math.PI,
-          scale: 1.3,
+          // scale: 1.3,
           transition: {
             rotateZ: { duration: 5, ease: 'linear', repeat: Infinity },
             // rotateY: { duration: 5, ease: 'linear' },
@@ -94,7 +93,7 @@ const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
         unhover: {
           rotateZ: 0,
           // rotateY: -Math.PI,
-          scale: 1.3,
+          // scale: 1.3,
           transition: {
             rotateZ: { duration: 5, ease: 'linear' },
             // rotateY: { duration: 5, ease: 'linear' },
@@ -109,7 +108,7 @@ const Act1 = ({ isTouch, groupProps, isVisible }: Props) => {
       <group
         {...groupProps}
         ref={groupRef}
-        visible={isVisible}
+
         // onClick={event => {
         //   event.stopPropagation();
         //   console.log('..............');
