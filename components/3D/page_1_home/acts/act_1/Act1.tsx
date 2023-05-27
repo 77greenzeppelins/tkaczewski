@@ -4,18 +4,21 @@ import React, { useRef, useState } from 'react';
 import BasicFrame from '../../../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../../../customeObjects/imageCanvas/ImageCanvas';
 import Triangles from '../../../customeObjects/tiangles/Triangles';
+/**Hooks**/
+import useWindowSize from '@/hooks/useWindowSize';
 /**THREE staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
 import { useFrame } from '@react-three/fiber';
 /**Drei Staff*/
-import { Float, meshBounds } from '@react-three/drei';
+// import { Float, meshBounds } from '@react-three/drei';
+/**FramerMotion Staff*/
+import { motion } from 'framer-motion-3d';
 /**BasicData*/
 import { imagesData } from '@/data/basicData';
-import { motion } from 'framer-motion-3d';
-
 /**HardCoded Staff*/
-const outOfScene = 0.35;
+const minWidthForAnimation = 769;
+// const outOfScene = 0.35;
 
 /**TS**/
 interface Props {
@@ -28,8 +31,12 @@ const Act1 = ({ isTouch, groupProps }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
-  /** */
+  /*
+  staff for "hover" animation; includes condition that excludes screens lower then 769
+  */
   const [isHovered, setIsHovered] = useState(false);
+  const { width } = useWindowSize();
+  const animationCondition = isHovered && width >= minWidthForAnimation;
 
   /**useFrame Section**/
   useFrame(state => {
@@ -95,7 +102,7 @@ const Act1 = ({ isTouch, groupProps }: Props) => {
           // rotateY: -Math.PI,
           // scale: 1.3,
           transition: {
-            rotateZ: { duration: 5, ease: 'linear' },
+            rotateZ: { duration: 5, ease: 'anticipate' },
             // rotateY: { duration: 5, ease: 'linear' },
           },
         },
@@ -105,21 +112,7 @@ const Act1 = ({ isTouch, groupProps }: Props) => {
         console.log('..............');
       }}
     >
-      <group
-        {...groupProps}
-        ref={groupRef}
-
-        // onClick={event => {
-        //   event.stopPropagation();
-        //   console.log('..............');
-        // }}
-        // onPointerEnter={() => {
-        //   document.body.style.cursor = 'pointer';
-        // }}
-        // onPointerLeave={() => {
-        //   document.body.style.cursor = 'default';
-        // }}
-      >
+      <group {...groupProps} ref={groupRef}>
         {/* <Float
           speed={2} // Animation speed, defaults to 1
           rotationIntensity={isTouch ? 0.4 : 0.25} // XYZ rotation intensity, defaults to 1
