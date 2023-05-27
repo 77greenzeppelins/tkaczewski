@@ -14,7 +14,8 @@ import { pagesLinks, page3DConfigs } from '@/data/basicData';
 /**-------------------------------**/
 const Scene3D = () => {
   /**References**/
-  const groupRef = useRef<THREE.Group>(null!);
+  const groupHome = useRef<THREE.Group>(null!);
+  const group2D = useRef<THREE.Group>(null!);
 
   /**Scroll Progress Detector; is used to fuel z-axis engine **/
   const scrollYPosition = useScrollPosition();
@@ -22,7 +23,7 @@ const Scene3D = () => {
   /**Condition of visibility**/
   const path = usePathname();
   const visibleOnHome = path === pagesLinks[0].href;
-  // const visibleOn2D = path === pagesLinks[1].href;
+  const visibleOn2D = path === pagesLinks[1].href;
 
   //___|| scrollProgress.current > outOfScene;
 
@@ -31,8 +32,17 @@ const Scene3D = () => {
     /*
     this code is a sort of engine; allows to dive deeper into scene on z-axis
     */
-    groupRef.current.position.z = THREE.MathUtils.lerp(
-      groupRef.current.position.z,
+    // if (visibleOnHome) {
+    //   console.log(',,,,,,,,,,,');
+    //   groupHome.current.position.z = THREE.MathUtils.lerp(
+    //     groupHome.current.position.z,
+    //     scrollYPosition.val / 200, //lover number gives larger speed
+    //     0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
+    //   );
+    // }
+
+    groupHome.current.position.z = THREE.MathUtils.lerp(
+      groupHome.current.position.z,
       scrollYPosition.val / 200, //lover number gives larger speed
       0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
     );
@@ -65,10 +75,10 @@ const Scene3D = () => {
       {/* <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
       {/*-----Canvas Content--------------------------------*/}
-      <group ref={groupRef} visible={visibleOnHome}>
+      <group ref={groupHome} visible={visibleOnHome}>
         <PageHome isTouch={isTouch} />
       </group>
-      <group></group>
+      <group ref={group2D} visible={visibleOn2D}></group>
     </>
   );
 };

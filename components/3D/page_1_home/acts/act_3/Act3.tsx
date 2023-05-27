@@ -22,7 +22,7 @@ const Act3 = ({ groupProps }: Props) => {
       {page3DConfigs.text2.map(({ text, position, rotation }, index) => (
         <DreiText
           key={index}
-          hasMatcap={true}
+          hasMatcap={false}
           text={text}
           position={new THREE.Vector3(...position)}
           rotation={new THREE.Euler(...rotation)}
