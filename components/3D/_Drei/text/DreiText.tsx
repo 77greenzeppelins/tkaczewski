@@ -13,6 +13,7 @@ import { Text } from '@react-three/drei';
 import { assetsPaths } from '@/data/basicData';
 /**Comoponents**/
 import FrameMatcapTexture from '../../_Drei/textures/frameMatcapTextures/FrameMatcapTexture';
+import { useBasicMaterial } from '../../_Three/materials/basicMaterial/ThreeBasicMaterial';
 
 interface Props {
   //___
@@ -60,6 +61,15 @@ const DreiText = ({
   strokeColor,
   strokeWidth,
 }: Props) => {
+  /**Material from Provider**/
+  const basicMaterial = useBasicMaterial();
+  // const material = hasMatcap ? (
+  //   <FrameMatcapTexture textureIndex={'1'} />
+  // ) : (
+  //   basicMaterial
+  // );
+
+  /**...**/
   const state = useThree();
   const fontSizeSetter =
     state.size.width > 1000 ? 0.25 : state.size.width > 400 ? 0.18 : 0.15;
@@ -67,6 +77,9 @@ const DreiText = ({
   /**JSX**/
   return (
     <Text
+      //___
+      // material={basicMaterial}
+      // material={material}
       font={assetsPaths.font}
       //___
       position={position}

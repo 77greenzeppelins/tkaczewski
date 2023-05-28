@@ -43,7 +43,7 @@ const MainCanvas = () => {
       gl={{
         toneMapping: THREE.ACESFilmicToneMapping,
       }}
-      camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
+      // camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
     >
       <Scene3D />
       <Perf

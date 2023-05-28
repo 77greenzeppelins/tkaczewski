@@ -7,6 +7,7 @@ interface Props {
 }
 
 const FrameMatcapTexture = ({ textureIndex }: Props) => {
+  /**...**/
   switch (textureIndex) {
     case '1':
       textureIndex = '434240_D3D3CF_898784_A4A49F';

@@ -4,12 +4,16 @@ import { usePathname } from 'next/navigation';
 import * as THREE from 'three';
 /**FramerMotion Staff*/
 import { useFrame } from '@react-three/fiber';
+/**Provider*/
+import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBasicMaterial';
 /**Components**/
+import DreiPerspectiveCamera from '../_Drei/camera/DreiPerspectiveCamera';
 import PageHome from '../page_1_home/PageHome';
+import Page2D from '../page_1_home/Page2D';
 /**Hooks*/
 import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
-import { pagesLinks, page3DConfigs } from '@/data/basicData';
+import { colors, pagesLinks } from '@/data/basicData';
 
 /**-------------------------------**/
 const Scene3D = () => {
@@ -55,20 +59,19 @@ const Scene3D = () => {
     setTouch(isTouch);
   }, []);
 
+  /**...**/
+  useEffect(() => {
+    if (!visibleOnHome) {
+      // groupHome.current.position.z = new THREE.Vector3(0, 0, 0);
+      groupHome.current.position.z = 0;
+    }
+  }, [path, visibleOnHome]);
+
   /**JSX**/
   return (
-    <>
-      {/* <PerspectiveCamera
-        ref={cameraRef}
-        makeDefault
-        //
-        // name="customePerspectiveCamera"
-        // ref={cameraRef}
-        position={[0, 0, 3]}
-        far={5} //_____comments below
-        fov={45}
-      ></PerspectiveCamera> */}
+    <BasicMaterialProvider color={colors.dark}>
       {/*-----Canvas Infrastructure--------------------------------*/}
+      <DreiPerspectiveCamera />
       <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/* <color attach="background" args={[colors.dark]} /> */}
       {/* <OrbitControls makeDefault enableZoom={false} /> */}
@@ -78,8 +81,10 @@ const Scene3D = () => {
       <group ref={groupHome} visible={visibleOnHome}>
         <PageHome isTouch={isTouch} />
       </group>
-      <group ref={group2D} visible={visibleOn2D}></group>
-    </>
+      <group ref={group2D} visible={visibleOn2D}>
+        <Page2D />
+      </group>
+    </BasicMaterialProvider>
   );
 };
 

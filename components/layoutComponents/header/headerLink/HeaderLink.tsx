@@ -30,8 +30,11 @@ const HeaderLink: React.FC<Props> = ({ label, url }) => {
     >
       {url === path && (
         <motion.span
-          layoutId="underline"
-          className="absolute left-0 top-full block h-[1px] w-full bg-corpo "
+          // layoutId="underline" // don't cooperate with canvas....
+          className="absolute top-full block h-[1px] bg-corpo origin-center"
+          initial={{ width: 0 }}
+          animate={{ width: '100%' }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         />
       )}
 
