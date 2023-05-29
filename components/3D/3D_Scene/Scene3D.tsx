@@ -10,8 +10,9 @@ import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBa
 import DreiPerspectiveCamera from '../_Drei/camera/DreiPerspectiveCamera';
 import PageHome from '../page_1_home/PageHome';
 import Page2D from '../page_1_home/Page2D';
+import PageContacts from '../page_9_contacts/PageContacts';
 /**Hooks*/
-import useScrollPosition from '@/hooks/useScrollPosition';
+// import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
 import { colors, pagesLinks } from '@/data/basicData';
 
@@ -20,6 +21,7 @@ const Scene3D = () => {
   /**References**/
   const groupHome = useRef<THREE.Group>(null!);
   const group2D = useRef<THREE.Group>(null!);
+  const groupContacts = useRef<THREE.Group>(null!);
 
   /**Scroll Progress Detector; is used to fuel z-axis engine **/
   // const scrollYPosition = useScrollPosition();
@@ -30,6 +32,7 @@ const Scene3D = () => {
   const path = usePathname();
   const visibleOnHome = path === pagesLinks[0].href;
   const visibleOn2D = path === pagesLinks[1].href;
+  const visibleOnContacts = path === pagesLinks[3].href;
 
   //___|| scrollProgress.current > outOfScene;
 
@@ -52,10 +55,25 @@ const Scene3D = () => {
     //   scrollYPosition.val / 200, //lover number gives larger speed
     //   0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
     // );
-    groupHome.current.position.z = THREE.MathUtils.lerp(
-      groupHome.current.position.z,
-      window.scrollY / 200, //lover number gives larger speed
-      0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
+
+    /*
+    (!) lets travel on z-axis
+    */
+    //___ver1:
+    // groupHome.current.position.z = THREE.MathUtils.lerp(
+    //   groupHome.current.position.z,
+    //   window.scrollY / 200, //lover number gives larger speed
+    //   0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
+    // );
+    //___ver2:
+    groupHome.current.position.set(
+      0,
+      0,
+      THREE.MathUtils.lerp(
+        groupHome.current.position.z,
+        window.scrollY / 200, //lover number gives larger speed
+        0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
+      )
     );
   });
 
@@ -90,6 +108,9 @@ const Scene3D = () => {
       </group>
       <group ref={group2D} visible={visibleOn2D}>
         <Page2D />
+      </group>
+      <group ref={groupContacts} visible={visibleOnContacts}>
+        <PageContacts />
       </group>
     </BasicMaterialProvider>
   );

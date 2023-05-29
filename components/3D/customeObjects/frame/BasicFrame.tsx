@@ -6,7 +6,7 @@ import React from 'react';
 /**THREE Staff**/
 import * as THREE from 'three';
 /**Drei Staff**/
-import { useGLTF } from '@react-three/drei';
+import { Merged, useGLTF } from '@react-three/drei';
 /**Comoponents**/
 import FrameMatcapTexture from '../../_Drei/textures/frameMatcapTextures/FrameMatcapTexture';
 /**BasicData**/
@@ -26,33 +26,46 @@ type GLTFResult = GLTF & {
 };
 
 interface Props {
-  groupProps: JSX.IntrinsicElements['group'];
+  meshProps?: JSX.IntrinsicElements['mesh'];
 }
 
 /**------------------------------------------------------------**/
-const BasicFrame = ({ groupProps }: Props) => {
+const BasicFrame = ({ meshProps }: Props) => {
   /**GLTFLoader Section**/
   const { nodes } = useGLTF(assetsPaths.frame) as GLTFResult;
 
   /**JSX**/
   return (
-    <group
-      {...groupProps}
-      // dispose={null}
+    <mesh
+      {...meshProps}
+      name="PlaneOfBasicFrame"
+      castShadow
+      receiveShadow
+      geometry={nodes.Plane001.geometry}
+      rotation={[Math.PI / 2, 0, 0]}
     >
-      <mesh
-        name="PlaneOfBasicFrame"
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane001.geometry}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
-        <FrameMatcapTexture textureIndex={'1'} />
-      </mesh>
-    </group>
+      <FrameMatcapTexture textureIndex={'1'} />
+    </mesh>
   );
 };
 
 useGLTF.preload(assetsPaths.frame);
 
 export default BasicFrame;
+
+// return (
+//   <Merged meshes={nodes}>
+//     {({ Plane001 }: { Plane001: THREE.Mesh }) => (
+//       <mesh
+//         {...meshProps}
+//         name="PlaneOfBasicFrame"
+//         castShadow
+//         receiveShadow
+//         geometry={Plane001.geometry}
+//         rotation={[Math.PI / 2, 0, 0]}
+//       >
+//         <FrameMatcapTexture textureIndex={'1'} />
+//       </mesh>
+//     )}
+//   </Merged>
+// );
