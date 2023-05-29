@@ -69,7 +69,7 @@ const Scene3D = () => {
 
   /**JSX**/
   return (
-    <BasicMaterialProvider color={colors.dark}>
+    <BasicMaterialProvider>
       {/*-----Canvas Infrastructure--------------------------------*/}
       <DreiPerspectiveCamera />
       <fog attach="fog" args={['#01030d', 3, 4.3]} />

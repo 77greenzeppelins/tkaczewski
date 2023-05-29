@@ -21,7 +21,7 @@ export const BasicMaterialProvider = ({
   children,
 }: MaterialProviderProps) => {
   const material = React.useMemo(
-    () => new MeshBasicMaterial({ color: color || 0xff0000 }),
+    () => new MeshBasicMaterial({ color: color || 0x01030d }),
     [color]
   );
 

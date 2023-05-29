@@ -9,8 +9,10 @@ import { useBasicMaterial } from '../../_Three/materials/basicMaterial/ThreeBasi
 /**Hook to follow path changes*/
 import { usePathname } from 'next/navigation';
 /**FramerMotion Staff*/
-import { AnimatePresence } from 'framer-motion';
+// import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion-3d';
+/*Basic Data*/
+import { colors } from '@/data/basicData';
 
 /**-----------------------------------**/
 const DreiPerspectiveCamera = () => {
@@ -55,11 +57,11 @@ const DreiPerspectiveCamera = () => {
           scale={[0.5, 0.5, 0.5]}
           //  {...meshProps}
           // visible={false}
-          material={basicMaterial}
+          // material={basicMaterial}
           // animate={{position:[0.5,0,0]}}
         >
           <ThreePlane argsWidth={1} argsHeight={1} />
-          {/* <meshBasicMaterial color="red" /> */}
+          <meshBasicMaterial color={colors.corpo} />
         </motion.mesh>
       )}
       {/* </AnimatePresence> */}
