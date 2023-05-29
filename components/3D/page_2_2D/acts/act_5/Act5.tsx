@@ -24,10 +24,9 @@ const minWidthForAnimation = 769;
 interface Props {
   groupProps: JSX.IntrinsicElements['group'];
   // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
-  isTouch: boolean;
 }
 /**-----------------**/
-const Act1 = ({ isTouch, groupProps }: Props) => {
+const Act5 = ({ groupProps }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
@@ -144,7 +143,7 @@ const Act1 = ({ isTouch, groupProps }: Props) => {
   );
 };
 
-export default Act1;
+export default Act5;
 
 {
   /* <PivotControls
