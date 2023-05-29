@@ -22,7 +22,9 @@ const Scene3D = () => {
   const group2D = useRef<THREE.Group>(null!);
 
   /**Scroll Progress Detector; is used to fuel z-axis engine **/
-  const scrollYPosition = useScrollPosition();
+  // const scrollYPosition = useScrollPosition();
+
+  // console.log('Scene3D / scrollYPosition', scrollYPosition);
 
   /**Condition of visibility**/
   const path = usePathname();
@@ -45,9 +47,14 @@ const Scene3D = () => {
     //   );
     // }
 
+    // groupHome.current.position.z = THREE.MathUtils.lerp(
+    //   groupHome.current.position.z,
+    //   scrollYPosition.val / 200, //lover number gives larger speed
+    //   0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
+    // );
     groupHome.current.position.z = THREE.MathUtils.lerp(
       groupHome.current.position.z,
-      scrollYPosition.val / 200, //lover number gives larger speed
+      window.scrollY / 200, //lover number gives larger speed
       0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
     );
   });

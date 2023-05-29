@@ -5,14 +5,14 @@ interface ScrollYPosition {
 }
 
 const useScrollPosition = (): ScrollYPosition => {
-  const [scrollYPosition, setScrollY] = useState({ val: 0 });
+  const [scrollYPosition, setScrollY] = useState({ val: window.scrollY });
 
   useEffect(() => {
     //___handler
     const onScroll = () => {
-      const { pageYOffset } = window;
+      const { scrollY } = window;
       // console.log('...yOffset', pageYOffset, '...scrollY', scrollY);
-      setScrollY({ val: pageYOffset });
+      setScrollY({ val: scrollY });
     };
     //___event listener
     window.addEventListener('scroll', onScroll); //, { passive: true }

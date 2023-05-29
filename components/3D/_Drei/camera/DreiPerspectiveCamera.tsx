@@ -48,7 +48,7 @@ const DreiPerspectiveCamera = () => {
       fov={45}
     >
       {/* <AnimatePresence> */}
-      {mounted && (
+      {/* {mounted && (
         <motion.mesh
           key={path}
           // ref={meshRef}
@@ -63,7 +63,7 @@ const DreiPerspectiveCamera = () => {
           <ThreePlane argsWidth={1} argsHeight={1} />
           <meshBasicMaterial color={colors.corpo} />
         </motion.mesh>
-      )}
+      )} */}
       {/* </AnimatePresence> */}
     </PerspectiveCamera>
   );

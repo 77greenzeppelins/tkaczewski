@@ -1,5 +1,6 @@
-import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
 import React from 'react';
+/**Components**/
+import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
 
 /**---------------------------------------------------------------------**/
 const AppContainer = ({ children }: { children: React.ReactNode }) => {
