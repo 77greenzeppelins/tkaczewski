@@ -22,33 +22,35 @@ const DreiPerspectiveCamera = () => {
   const path = usePathname();
 
   /**....**/
-  const [mounted, setMounted] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setMounted(false);
     // console.log('...useEffect / path:', path);
     const timer = setTimeout(() => {
-      setMounted(false);
+      setMounted(true);
     }, 1000);
     return () => clearTimeout(timer);
   }, [path]);
 
   /**JSX**/
   return (
-    <PerspectiveCamera
-      //   ref={cameraRef}
-      makeDefault
-      /*
+    <>
+      {mounted && (
+        <PerspectiveCamera
+          //   ref={cameraRef}
+          makeDefault
+          /*
       settingd from canvase's default cam
       camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
       */
-      position={[0, 0, 3]}
-      near={0.01}
-      far={50}
-      fov={45}
-    >
-      {/* <AnimatePresence> */}
-      {/* {mounted && (
+          position={[0, 0, 3]}
+          near={0.01}
+          far={50}
+          fov={45}
+        >
+          {/* <AnimatePresence> */}
+          {/* {mounted && (
         <motion.mesh
           key={path}
           // ref={meshRef}
@@ -64,8 +66,10 @@ const DreiPerspectiveCamera = () => {
           <meshBasicMaterial color={colors.corpo} />
         </motion.mesh>
       )} */}
-      {/* </AnimatePresence> */}
-    </PerspectiveCamera>
+          {/* </AnimatePresence> */}
+        </PerspectiveCamera>
+      )}
+    </>
   );
 };
 
