@@ -28,13 +28,13 @@ const imagesData = {
     path: assetsPaths.phone,
     width: 0.42,
     height: 0.592,
-    position: [0, 0.5, 0],
+    position: [0, 0.6, 0],
   },
   email: {
     path: assetsPaths.email,
     width: 0.42,
     height: 0.592,
-    position: [0, -0.5, 0],
+    position: [0, -0.6, 0],
   },
 };
 
