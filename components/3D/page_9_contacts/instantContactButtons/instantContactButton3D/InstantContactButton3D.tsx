@@ -38,9 +38,6 @@ const InstantContactButton3D = ({
         rotationIntensity={0.8} // XYZ rotation intensity, defaults to 1
         floatIntensity={0.2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
         floatingRange={[-0.2, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-        //   rotationIntensity={isTouch ? 0.4 : 0.25} // XYZ rotation intensity, defaults to 1
-        //   floatIntensity={isTouch ? 0.2 : 0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-        //   floatingRange={isTouch ? [-0.075, 0.075] : [-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
       >
         <BasicFrame meshProps={frameMeshProps} />
         <ImageCanvas
