@@ -56,16 +56,16 @@ const Act5 = ({ groupProps }: Props) => {
   return (
     <motion.group
       dispose={null}
-      onPointerEnter={() => {
-        console.log('...onPointerEnter');
-        setIsHovered(true);
-        // document.body.style.cursor = 'pointer';
-      }}
-      onPointerLeave={() => {
-        console.log('...onPointerLeave');
-        setIsHovered(false);
-        // document.body.style.cursor = 'default';
-      }}
+      // onPointerEnter={() => {
+      //   console.log('...onPointerEnter');
+      //   setIsHovered(true);
+      //   // document.body.style.cursor = 'pointer';
+      // }}
+      // onPointerLeave={() => {
+      //   console.log('...onPointerLeave');
+      //   setIsHovered(false);
+      //   // document.body.style.cursor = 'default';
+      // }}
       // onHoverStart={e => {
       //   console.log('...onHoverStart');
       //   setIsHovered(true);

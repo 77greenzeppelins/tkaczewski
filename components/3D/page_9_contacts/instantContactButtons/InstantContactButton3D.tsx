@@ -18,12 +18,6 @@ interface Props {
   // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
 }
 
-const floatConfig = {
-  rotationIntensity: 0.8,
-  floatIntensity: 0.2,
-  floatingRange: [-0.2, 0.2],
-};
-
 /**----------------------------------------------------------**/
 const InstantContactButton3D = ({
   groupProps,

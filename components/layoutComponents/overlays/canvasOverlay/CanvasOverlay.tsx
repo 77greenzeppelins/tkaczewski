@@ -1,7 +1,10 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+/**Framer Motion**/
+import { AnimatePresence, motion } from 'framer-motion';
+/**Basic Data**/
+import { page3DConfigs } from '@/data/basicData';
 
 /**----------------------------**/
 const CanvasOverlay = () => {
@@ -19,7 +22,7 @@ const CanvasOverlay = () => {
     // console.log('...useEffect / path:', path);
     const timer = setTimeout(() => {
       setMounted(false);
-    }, 1500);
+    }, page3DConfigs.canvasOverlayDelay);
     return () => clearTimeout(timer);
   }, [path]);
 
@@ -27,7 +30,11 @@ const CanvasOverlay = () => {
   return (
     <AnimatePresence>
       {mounted ? (
-        <div className="absolute w-screen h-screen bg-dark z-[9]" />
+        <motion.div
+          className="absolute w-screen h-screen bg-dark z-[9]"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
+        />
       ) : null}
     </AnimatePresence>
   );

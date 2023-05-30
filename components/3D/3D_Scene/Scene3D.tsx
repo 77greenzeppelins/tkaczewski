@@ -10,7 +10,7 @@ import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBa
 import DreiPerspectiveCamera from '../_Drei/camera/DreiPerspectiveCamera';
 import CameraControler from '../customeObjects/cameraControler/CameraControler';
 import PageHome from '../page_1_home/PageHome';
-import Page2D from '../page_1_home/Page2D';
+import Page2D from '../page_2_2D/Page2D';
 import PageContacts from '../page_9_contacts/PageContacts';
 /**Hooks*/
 // import useScrollPosition from '@/hooks/useScrollPosition';
@@ -20,9 +20,9 @@ import { colors, pagesLinks } from '@/data/basicData';
 /**-------------------------------**/
 const Scene3D = () => {
   /**References**/
-  const groupHome = useRef<THREE.Group>(null!);
-  const group2D = useRef<THREE.Group>(null!);
-  const groupContacts = useRef<THREE.Group>(null!);
+  // const groupHome = useRef<THREE.Group>(null!);
+  // const group2D = useRef<THREE.Group>(null!);
+  // const groupContacts = useRef<THREE.Group>(null!);
 
   /**Scroll Progress Detector; is used to fuel z-axis engine **/
   // const scrollYPosition = useScrollPosition();
@@ -31,7 +31,7 @@ const Scene3D = () => {
 
   /**Condition of visibility**/
   const path = usePathname();
-  const [currentPath, setCurrentPath] = useState('');
+  // const [currentPath, setCurrentPath] = useState('');
   const visibleOnHome = path === pagesLinks[0].href;
   const visibleOn2D = path === pagesLinks[1].href;
   const visibleOnContacts = path === pagesLinks[3].href;
@@ -97,19 +97,19 @@ const Scene3D = () => {
   // const delay = useRef(true);
   // const [delay, setDelay] = useState(false);
 
-  useEffect(() => {
-    // console.log('.... currentPath:', currentPath);
+  // useEffect(() => {
+  //   // console.log('.... currentPath:', currentPath);
 
-    const timer = setTimeout(() => {
-      setCurrentPath(path);
-      // console.log('....timer / currentPath:', currentPath);
-    }, 600);
+  //   const timer = setTimeout(() => {
+  //     setCurrentPath(path);
+  //     // console.log('....timer / currentPath:', currentPath);
+  //   }, 600);
 
-    // Re-enable rendering when the component unmounts
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [currentPath, path]);
+  //   // Re-enable rendering when the component unmounts
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [currentPath, path]);
 
   // console.log('.... currentPath:', currentPath);
   // console.log(
@@ -130,15 +130,15 @@ const Scene3D = () => {
       {/*-----Canvas Infrastructure--------------------------------*/}
       <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/*-----Canvas Content--------------------------------*/}
-      <group ref={groupHome} visible={pagesLinks[0].href === currentPath}>
-        <PageHome isTouch={isTouch} />
-      </group>
-      <group ref={group2D} visible={pagesLinks[1].href === currentPath}>
-        <Page2D />
-      </group>
-      <group ref={groupContacts} visible={pagesLinks[3].href === currentPath}>
-        <PageContacts />
-      </group>
+      {/* <group ref={groupHome} visible={pagesLinks[0].href === currentPath}> */}
+      <PageHome isTouch={isTouch} />
+      {/* </group> */}
+      {/* <group ref={group2D} visible={pagesLinks[1].href === currentPath}> */}
+      <Page2D />
+      {/* </group> */}
+      {/* <group ref={groupContacts} visible={pagesLinks[3].href === currentPath}> */}
+      <PageContacts />
+      {/* </group> */}
     </BasicMaterialProvider>
   );
 };
