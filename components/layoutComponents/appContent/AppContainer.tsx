@@ -12,7 +12,7 @@ const AppContainer = ({ children }: { children: React.ReactNode }) => {
         //  className="fixed top-0 left-0 right-0 bottom-0"
         className="fixed w-screen h-screen z-1"
       >
-        <CanvasOverlay />
+        {/* <CanvasOverlay /> */}
         <MainCanvas />
       </div>
       <div className="relative z-10">{children}</div>

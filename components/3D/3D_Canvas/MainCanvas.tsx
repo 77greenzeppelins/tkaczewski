@@ -29,7 +29,6 @@ const MainCanvas = () => {
     let eventSource = document.getElementById('appContainer') as HTMLDivElement;
     setEventsRoot(eventSource);
   }, []);
-
   /*
   this code section is for Perf settings
   */

@@ -14,21 +14,31 @@ const scaleImage = [1.4, 1.4, 1.4];
 
 /**-----------------------------------------*/
 const PageContacts = () => {
+  /**References**/
+  // const groupRef = useRef<THREE.Group>(null!);
   /**...**/
   const path = usePathname();
-  const [currentPath, setCurrentPath] = useState('');
+  const [isPath, setIsPath] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentPath(path);
+      setIsPath(path === pagesLinks[3].href);
     }, page3DConfigs.visibilityDelay);
+    // const groupRefReset = groupRef.current;
+
+    /**cleaner**/
     return () => {
+      // if (currentPath !== pagesLinks[0].href) {
+      //   groupRefReset.position.set(0, 0, 0);
+      // }
       clearTimeout(timer);
+      setIsPath(false);
     };
-  }, [currentPath, path]);
+  }, [path]);
 
   /**JSX**/
   return (
-    <group visible={pagesLinks[3].href === currentPath}>
+    <group visible={isPath}>
       {buttonsData.map(({ path, width, height, position }) => (
         <InstantContactButton3D
           key={path}

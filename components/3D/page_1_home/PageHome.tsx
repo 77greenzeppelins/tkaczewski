@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
 import Act1 from './acts/act_1/Act1';
@@ -18,21 +18,38 @@ interface Props {
 
 /**---------------------------------------**/
 const PageHome = ({ isTouch }: Props) => {
+  /**References**/
+  const groupRef = useRef<THREE.Group>(null!);
   /**...**/
   const path = usePathname();
-  const [currentPath, setCurrentPath] = useState('');
+  const [isPath, setIsPath] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentPath(path);
+      setIsPath(path === pagesLinks[0].href);
     }, page3DConfigs.visibilityDelay);
+
+    /**cleaner**/
     return () => {
       clearTimeout(timer);
+      setIsPath(false);
     };
-  }, [currentPath, path]);
+  }, [path]);
+
+  useEffect(() => {
+    const groupRefReset = groupRef.current;
+    return () => {
+      if (!setIsPath) {
+        groupRefReset.position.set(0, 0, 0);
+      }
+    };
+  }, [setIsPath]);
+
+  console.log('...isPath:', isPath);
 
   /**JSX**/
   return (
-    <group visible={pagesLinks[0].href === currentPath}>
+    <group ref={groupRef} visible={isPath}>
       <Act1
         groupProps={{
           position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),

@@ -18,22 +18,34 @@ const CanvasOverlay = () => {
   const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
+    // setMounted(true);
     // console.log('...useEffect / path:', path);
     const timer = setTimeout(() => {
       setMounted(false);
     }, page3DConfigs.canvasOverlayDelay);
-    return () => clearTimeout(timer);
+    return () => {
+      setMounted(true);
+      clearTimeout(timer);
+    };
   }, [path]);
+
+  // useEffect(() => {
+  //   setMounted(false);
+  //   return () => {
+  //     setMounted(true);
+  //   };
+  // }, [path]);
+
+  console.log('....mounted:', mounted);
 
   /**JSX**/
   return (
     <AnimatePresence>
       {mounted ? (
         <motion.div
-          className="absolute w-screen h-screen bg-dark z-[9]"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
+          className="absolute w-screen h-screen bg-corpo z-[9]"
+          // initial={{ opacity: 1 }}
+          // animate={{ opacity: 0, transition: { duration: 0.4, delay: 0.8 } }}
         />
       ) : null}
     </AnimatePresence>

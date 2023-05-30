@@ -39,8 +39,8 @@ const imagesData = {
 };
 
 const page3DConfigs = {
-  visibilityDelay: 0.6,
-  canvasOverlayDelay: 1500,
+  visibilityDelay: 1000,
+  canvasOverlayDelay: 1200,
   actsPositions: [
     [0, 0, 0],
     [0, 0, -4], //
