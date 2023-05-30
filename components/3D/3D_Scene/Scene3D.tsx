@@ -8,6 +8,7 @@ import { useFrame } from '@react-three/fiber';
 import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBasicMaterial';
 /**Components**/
 import DreiPerspectiveCamera from '../_Drei/camera/DreiPerspectiveCamera';
+import CameraControler from '../customeObjects/cameraControler/CameraControler';
 import PageHome from '../page_1_home/PageHome';
 import Page2D from '../page_1_home/Page2D';
 import PageContacts from '../page_9_contacts/PageContacts';
@@ -15,7 +16,6 @@ import PageContacts from '../page_9_contacts/PageContacts';
 // import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
 import { colors, pagesLinks } from '@/data/basicData';
-import CameraControler from '../customeObjects/cameraControler/CameraControler';
 
 /**-------------------------------**/
 const Scene3D = () => {
@@ -98,7 +98,7 @@ const Scene3D = () => {
       {/*used when scene content move: Camera taken from Drei; */}
       {/* <DreiPerspectiveCamera /> */}
       {/*used when camera move: default camera derived from useFrame()*/}
-      <CameraControler />
+      <CameraControler isOnHome={visibleOnHome} />
       {/*-----Canvas Infrastructure--------------------------------*/}
       <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/*-----Canvas Content--------------------------------*/}

@@ -42,9 +42,9 @@ const DreiPerspectiveCamera = () => {
           //   ref={cameraRef}
           makeDefault
           /*
-      settingd from canvase's default cam
-      camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
-      */
+          settings from canvase's default cam
+          camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
+          */
           position={[0, 0, 3]}
           near={0.01}
           far={50}
