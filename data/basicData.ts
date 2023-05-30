@@ -40,11 +40,10 @@ const imagesData = {
 
 const page3DConfigs = {
   visibilityDelay: 1000,
-  canvasOverlayDelay: 1200,
+  canvasOverlayDelay: 1000,
   actsPositions: [
     [0, 0, 0],
-    [0, 0, -4], //
-    // [0, -2, 0],
+    [0, 0, -4],
     [0, 0, -8],
     [0, 0, -12],
     [0, 0, -16],
