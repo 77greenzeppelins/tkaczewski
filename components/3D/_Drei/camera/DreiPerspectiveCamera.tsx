@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 /**Drei Staff*/
 import { PerspectiveCamera } from '@react-three/drei';
 /**Components**/
@@ -16,6 +16,7 @@ import { colors } from '@/data/basicData';
 
 /**-----------------------------------**/
 const DreiPerspectiveCamera = () => {
+  const cameraRef = useRef(null);
   /**Material from Provider**/
   const basicMaterial = useBasicMaterial();
   /**...*/
@@ -39,7 +40,7 @@ const DreiPerspectiveCamera = () => {
     <>
       {mounted && (
         <PerspectiveCamera
-          //   ref={cameraRef}
+          ref={cameraRef}
           makeDefault
           /*
           settings from canvase's default cam

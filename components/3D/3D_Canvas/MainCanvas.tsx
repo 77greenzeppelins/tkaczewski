@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff**/
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 /**Drei Staff*/
 // import { PerspectiveCamera } from '@react-three/drei/core/PerspectiveCamera';
 /**Components**/
@@ -34,6 +34,10 @@ const MainCanvas = () => {
   this code section is for Perf settings
   */
   const { width } = useWindowSize();
+
+  /*
+  30.05
+  */
 
   /**JSX**/
   return (

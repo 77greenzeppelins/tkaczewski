@@ -28,13 +28,13 @@ const imagesData = {
     path: assetsPaths.phone,
     width: 0.42,
     height: 0.592,
-    position: [0, 0.6, 0],
+    position: [10, 0.55, 0],
   },
   email: {
     path: assetsPaths.email,
     width: 0.42,
     height: 0.592,
-    position: [0, -0.6, 0],
+    position: [10, -0.55, 0],
   },
 };
 
@@ -90,6 +90,12 @@ const page3DConfigs = {
       rotation: [0, 0, 0],
     },
   ],
+  // contactsPageActsPositions: {
+  //   act1: [
+  //     [0, 0, 0],
+  //     [0, 0, 0],
+  //   ],
+  // },
 };
 
 export { colors, pagesLinks, assetsPaths, imagesData, page3DConfigs };

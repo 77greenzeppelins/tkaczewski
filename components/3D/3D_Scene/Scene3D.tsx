@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 /**THREE Staff* */
 import * as THREE from 'three';
 /**FramerMotion Staff*/
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 /**Provider*/
 import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBasicMaterial';
 /**Components**/
@@ -31,6 +31,7 @@ const Scene3D = () => {
 
   /**Condition of visibility**/
   const path = usePathname();
+  const [currentPath, setCurrentPath] = useState('');
   const visibleOnHome = path === pagesLinks[0].href;
   const visibleOn2D = path === pagesLinks[1].href;
   const visibleOnContacts = path === pagesLinks[3].href;
@@ -92,23 +93,50 @@ const Scene3D = () => {
   //   }
   // }, [path, visibleOnHome]);
 
+  /*...*/
+  // const delay = useRef(true);
+  // const [delay, setDelay] = useState(false);
+
+  useEffect(() => {
+    // console.log('.... currentPath:', currentPath);
+
+    const timer = setTimeout(() => {
+      setCurrentPath(path);
+      // console.log('....timer / currentPath:', currentPath);
+    }, 600);
+
+    // Re-enable rendering when the component unmounts
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentPath, path]);
+
+  // console.log('.... currentPath:', currentPath);
+  // console.log(
+  //   '....pagesLinks[3].href === currentPath:',
+  //   pagesLinks[3].href === currentPath
+  // );
+
   /**JSX**/
   return (
     <BasicMaterialProvider>
       {/*used when scene content move: Camera taken from Drei; */}
       {/* <DreiPerspectiveCamera /> */}
       {/*used when camera move: default camera derived from useFrame()*/}
-      <CameraControler isOnHome={visibleOnHome} />
+      <CameraControler
+        isOnHome={visibleOnHome}
+        isOnContacts={visibleOnContacts}
+      />
       {/*-----Canvas Infrastructure--------------------------------*/}
       <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/*-----Canvas Content--------------------------------*/}
-      <group ref={groupHome} visible={visibleOnHome}>
+      <group ref={groupHome} visible={pagesLinks[0].href === currentPath}>
         <PageHome isTouch={isTouch} />
       </group>
-      <group ref={group2D} visible={visibleOn2D}>
+      <group ref={group2D} visible={pagesLinks[1].href === currentPath}>
         <Page2D />
       </group>
-      <group ref={groupContacts} visible={visibleOnContacts}>
+      <group ref={groupContacts} visible={pagesLinks[3].href === currentPath}>
         <PageContacts />
       </group>
     </BasicMaterialProvider>

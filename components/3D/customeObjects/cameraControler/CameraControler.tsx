@@ -1,20 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 /**Components**/
 import ThreePlane from '../../basicShapes/plane/ThreePlane';
 interface Props {
   isOnHome: boolean;
+  isOnContacts: boolean;
 }
 
 /**----------------------------**/
-const CameraControler = ({ isOnHome }: Props) => {
+const CameraControler = ({ isOnHome, isOnContacts }: Props) => {
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
+
   /**Animations / Manipulations*/
   useFrame(state => {
+    /*
+    for HomePage
+    */
     if (isOnHome) {
       meshRef.current.position.set(
         0,
@@ -28,18 +33,14 @@ const CameraControler = ({ isOnHome }: Props) => {
         )
       );
     }
-
-    //____min version
+    //__
     const cameraPosition = new THREE.Vector3(
-      0,
+      isOnContacts ? 10 : 0,
       0,
       isOnHome ? 3 + meshRef.current.position.z : 3
     );
     state.camera.position.copy(cameraPosition);
   });
-
-  // const state = useThree();
-  // console.log('...state:', state);
 
   /**JSX**/
   return (
