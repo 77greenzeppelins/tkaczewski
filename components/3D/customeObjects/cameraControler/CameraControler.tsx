@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef } from 'react';
+import React, { useRef } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
@@ -6,21 +6,22 @@ import { useFrame } from '@react-three/fiber';
 /**Components**/
 import ThreePlane from '../../basicShapes/plane/ThreePlane';
 
-interface Props {
-  scrollProgress: MutableRefObject<number>;
-  meshProps: JSX.IntrinsicElements['mesh'];
-}
+// interface Props {
+//   scrollProgress: MutableRefObject<number>;
+//   meshProps: JSX.IntrinsicElements['mesh'];
+// }
 
 /**----------------------------**/
-const CameraControler = ({ scrollProgress, meshProps }: Props) => {
+const CameraControler = () => {
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
   /**Animations / Manipulations*/
   useFrame(state => {
     //__basic settings to move plane
-    meshRef.current.position.y = THREE.MathUtils.lerp(
-      meshRef.current.position.y,
-      scrollProgress.current * -30,
+    meshRef.current.position.z = THREE.MathUtils.lerp(
+      meshRef.current.position.z,
+      // scrollProgress.current * -30,
+      window.scrollY / -200,
       // 0.05
       0.1
     );
@@ -43,7 +44,11 @@ const CameraControler = ({ scrollProgress, meshProps }: Props) => {
     // state.camera.lookAt(cameraTarget);
 
     //____min version
-    const cameraPosition = new THREE.Vector3(0, meshRef.current.position.y, 3);
+    const cameraPosition = new THREE.Vector3(
+      0,
+      0,
+      3 + meshRef.current.position.z
+    );
     state.camera.position.copy(cameraPosition);
   });
   /**JSX**/
@@ -52,12 +57,12 @@ const CameraControler = ({ scrollProgress, meshProps }: Props) => {
       <mesh
         ref={meshRef}
         position={[0, 0, 0]}
-        //   scale={[0.5, 0.5, 0.5]}
+        scale={[0.5, 0.5, 0.5]}
         //  {...meshProps}
         visible={false}
       >
         <ThreePlane argsWidth={1} argsHeight={1} />
-        <meshBasicMaterial color="red" />
+        <meshBasicMaterial color="red" wireframe />
       </mesh>
     </group>
   );

@@ -11,7 +11,7 @@ const PageContact = () => {
       <div data-component="PageContact" className="w-full relative">
         <div className="sticky top-0 flex justify-center items-center h-[100vh] w-full -z-10">
           {' '}
-          <InstantContactButtons2D />
+          {/* <InstantContactButtons2D /> */}
         </div>
         <div className="flex justify-center items-center h-[100vh] w-full bg-dark z-10">
           <p className="select-none text-neutral-300 text-4xl">

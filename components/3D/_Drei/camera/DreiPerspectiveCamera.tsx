@@ -22,11 +22,12 @@ const DreiPerspectiveCamera = () => {
   const path = usePathname();
 
   /**....**/
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
     setMounted(false);
-    // console.log('...useEffect / path:', path);
+    console.log('...useEffect / path:', path);
+
     const timer = setTimeout(() => {
       setMounted(true);
     }, 1000);

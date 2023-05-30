@@ -15,6 +15,7 @@ import PageContacts from '../page_9_contacts/PageContacts';
 // import useScrollPosition from '@/hooks/useScrollPosition';
 /**BasicData*/
 import { colors, pagesLinks } from '@/data/basicData';
+import CameraControler from '../customeObjects/cameraControler/CameraControler';
 
 /**-------------------------------**/
 const Scene3D = () => {
@@ -49,15 +50,9 @@ const Scene3D = () => {
     //     0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
     //   );
     // }
-
-    // groupHome.current.position.z = THREE.MathUtils.lerp(
-    //   groupHome.current.position.z,
-    //   scrollYPosition.val / 200, //lover number gives larger speed
-    //   0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
-    // );
-
     /*
     (!) lets travel on z-axis
+    (!) remember to activate <DreiPerspectiveCamera /> or camera in <canvas>
     */
     //___ver1:
     // groupHome.current.position.z = THREE.MathUtils.lerp(
@@ -66,42 +61,46 @@ const Scene3D = () => {
     //   0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
     // );
     //___ver2:
-    groupHome.current.position.set(
-      0,
-      0,
-      THREE.MathUtils.lerp(
-        groupHome.current.position.z,
-        window.scrollY / 200, //lover number gives larger speed
-        0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
-      )
-    );
+    // groupHome.current.position.set(
+    //   0,
+    //   0,
+    //   THREE.MathUtils.lerp(
+    //     groupHome.current.position.z,
+    //     window.scrollY / 200, //lover number gives larger speed
+    //     0.08 // lover number gives more fluent move; over 0.1 is rather stiff...
+    //   )
+    // );
   });
 
-  /*Basic Test for touchScreens*/
+  /*
+  (!) Basic test for touchScreens
+  (!) Allows to render some objects only on notTouchable / large screen
+  */
   const [isTouch, setTouch] = useState(false);
   useEffect(() => {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setTouch(isTouch);
   }, []);
 
-  /**...**/
-  useEffect(() => {
-    if (!visibleOnHome) {
-      // groupHome.current.position.z = new THREE.Vector3(0, 0, 0);
-      groupHome.current.position.z = 0;
-    }
-  }, [path, visibleOnHome]);
+  /*
+  (!) used only when sceneContent is moved / groupHome in useFeame()
+  */
+  // useEffect(() => {
+  //   if (!visibleOnHome) {
+  //     // groupHome.current.position.z = new THREE.Vector3(0, 0, 0);
+  //     groupHome.current.position.z = 0;
+  //   }
+  // }, [path, visibleOnHome]);
 
   /**JSX**/
   return (
     <BasicMaterialProvider>
+      {/*used when scene content move: Camera taken from Drei; */}
+      {/* <DreiPerspectiveCamera /> */}
+      {/*used when camera move: default camera derived from useFrame()*/}
+      <CameraControler />
       {/*-----Canvas Infrastructure--------------------------------*/}
-      <DreiPerspectiveCamera />
       <fog attach="fog" args={['#01030d', 3, 4.3]} />
-      {/* <color attach="background" args={[colors.dark]} /> */}
-      {/* <OrbitControls makeDefault enableZoom={false} /> */}
-      {/* <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
       {/*-----Canvas Content--------------------------------*/}
       <group ref={groupHome} visible={visibleOnHome}>
         <PageHome isTouch={isTouch} />
@@ -117,3 +116,14 @@ const Scene3D = () => {
 };
 
 export default Scene3D;
+
+{
+  /* <color attach="background" args={[colors.dark]} /> */
+}
+{
+  /* <OrbitControls makeDefault enableZoom={false} /> */
+}
+{
+  /* <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */
+}
