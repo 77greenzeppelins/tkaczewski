@@ -15,7 +15,7 @@ const assetsPaths = {
   frame: '/assets/3D/glb/frame_4_draco.glb',
   //___textures
   venus: '/assets/images/art/botticelli_venus_.webp',
-  school: '/assets/images/art/botticelli_venus_.webp',
+  school: '/assets/images/art/raphael_800_1047.webp',
   phone: '../assets/images/contacts/instantContact_phone.webp',
   email: '../assets/images/contacts/instantContact_email.webp',
   //___fonts
@@ -23,7 +23,8 @@ const assetsPaths = {
 };
 const imagesData = {
   botticelliVenus: { path: assetsPaths.venus, width: 0.445, height: 0.8 },
-  raphaelSchool: { path: assetsPaths.school, width: 0.445, height: 0.8 },
+  raphaelSchool: { path: assetsPaths.school, width: 0.8, height: 1.047 },
+
   phone: {
     path: assetsPaths.phone,
     width: 0.42,

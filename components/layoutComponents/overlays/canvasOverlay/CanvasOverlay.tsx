@@ -36,7 +36,7 @@ const CanvasOverlay = () => {
   //   };
   // }, [path]);
 
-  console.log('....mounted:', mounted);
+  // console.log('....mounted:', mounted);
 
   /**JSX**/
   return (
