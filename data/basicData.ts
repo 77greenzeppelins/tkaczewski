@@ -115,6 +115,13 @@ const page3DConfigs = {
   },
 };
 
+const springConfigs = {
+  heavyAndSlow: { mass: 10, tension: 70, friction: 30, precision: 0.0001 },
+  molasses: { mass: 1, tension: 280, friction: 120 },
+  default: { mass: 1, tension: 170, friction: 26 },
+  type1: { mass: 5, tension: 400, friction: 50, precision: 0.0001 },
+};
+
 export {
   colors,
   pagesLinks,
@@ -125,4 +132,6 @@ export {
   pages3DPositions,
   //___used in <CameraControler> and ...
   cameraSettings,
+  //___
+  springConfigs,
 };

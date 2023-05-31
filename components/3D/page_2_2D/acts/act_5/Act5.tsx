@@ -1,12 +1,11 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 /**GlobalContext  Staff**/
 import { useGlobalContext } from '@/context/globalContext';
 /**Components**/
 import BasicFrame from '../../../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../../../customeObjects/imageCanvas/ImageCanvas';
-/**Hooks**/
-import useWindowSize from '@/hooks/useWindowSize';
 /**THREE staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
@@ -15,9 +14,10 @@ import { useFrame } from '@react-three/fiber';
 // import { useTransition, config } from '@react-spring/web';
 // import { animated } from '@react-spring/three';
 
-import { useSpring, animated, config } from '@react-spring/three';
+import { useSpring, animated } from '@react-spring/three';
 /**BasicData*/
-import { imagesData } from '@/data/basicData';
+import { imagesData, springConfigs } from '@/data/basicData';
+
 /**HardCoded Staff*/
 const minWidthForAnimation = 769;
 // const outOfScene = 0.35;
@@ -31,35 +31,22 @@ interface Props {
 const Act5 = ({ groupProps }: Props) => {
   /**References**/
   // const groupRef = useRef<THREE.Group>(null!);
-  const [active, setActive] = useState(false);
 
   /**GlobalContext  Section**/
-  const { askAI } = useGlobalContext();
+  const { askAI, setAskAI } = useGlobalContext();
+
   /*
 -----------
   */
 
-  const { scale, rotation, position } = useSpring({
+  const { position } = useSpring({
     position: askAI ? 0 : -1.5,
-    scale: askAI ? 0.8 : 1,
-    rotation: askAI ? Math.PI : 0,
-    // config: config.wobbly,
-    config: {
-      mass: 5,
-      tension: 400,
-      friction: 50,
-      precision: 0.0001,
-      // delay: 1000,
-    },
-    delay: 2000,
+    // scale: askAI ? 0.8 : 1,
+    // rotation: askAI ? Math.PI : 0,
+    config: springConfigs.heavyAndSlow,
+    delay: 1000,
   });
-
-  // const { spring } = useSpring({
-  //   spring: active,
-  //   // config: { mass: 5, tension: 400, friction: 50, precision: 0.0001 },
-  //   config: config.wobbly,
-  // });
-
+  //___?
   // const scale = spring.to([0, 1], [1, 5]);
   // const rotation = spring.to([0, 1], [0, Math.PI]);
 
@@ -78,13 +65,17 @@ const Act5 = ({ groupProps }: Props) => {
   //   );
   // });
 
+  /**Set FALSE section**/
+  const path = usePathname();
+  useEffect(() => {
+    setAskAI(false);
+  }, [setAskAI, path]);
+
   /**JSX**/
   return (
     <group
       dispose={null}
       // ref={groupRef}
-      // scale={scale}
-      // onClick={() => setActive(!active)}
     >
       <animated.group
         {...groupProps}
@@ -93,7 +84,6 @@ const Act5 = ({ groupProps }: Props) => {
         // scale-y={scale}
         position-z={position}
         // rotation-z={rotation}
-        // onClick={() => setActive(!active)}
       >
         <BasicFrame meshProps={{ scale: [1, 1, 1] }} />
         <ImageCanvas
@@ -108,3 +98,6 @@ const Act5 = ({ groupProps }: Props) => {
 };
 
 export default Act5;
+function usePathName() {
+  throw new Error('Function not implemented.');
+}

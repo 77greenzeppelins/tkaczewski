@@ -10,9 +10,6 @@ import { useBasicMaterial } from '../../_Three/materials/basicMaterial/ThreeBasi
 import { usePathname } from 'next/navigation';
 /**FramerMotion Staff*/
 // import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion-3d';
-/*Basic Data*/
-import { colors } from '@/data/basicData';
 
 /**-----------------------------------**/
 const DreiPerspectiveCamera = () => {

@@ -10,7 +10,7 @@ const AskAI = () => {
   /**GlobalContext  Section**/
   const { askAI, setAskAI } = useGlobalContext();
 
-  console.log('...AskAI / askAI:', askAI);
+  // console.log('...AskAI / askAI:', askAI);
   /**JSX**/
   return (
     <div className="fc  w-full h-full">
