@@ -28,13 +28,13 @@ const ButtonWithChild = ({ children, onClickHandler }: Props) => {
 
   /**JSX**/
   return (
-    <div className="w-6 h-6">
+    <div className="fc border border-corpo px-4 py-2 rounded-sm">
       <button
         disabled={isDisabled}
         aria-label={'przycisk'}
         // aria-expanded={snap.isCatalogOpened ? 'true' : 'false'}
         onClick={event => onClick(event)}
-        className=" fc origin-center w-6 focus:outline-none disable pointer-events-auto focus-visible:ring focus-visible:ring-offset-2 ring-offset-dark focus-visible:ring-corpo"
+        className=" fc origin-center focus:outline-none disable pointer-events-auto focus-visible:ring focus-visible:ring-offset-2 ring-offset-dark focus-visible:ring-corpo"
         // animate={{
         //   rotateY: snap.isCatalogOpened ? 180 : 0,
         //   transition: { duration: 0.6, delay: 0.1, ease: 'easeOut' },

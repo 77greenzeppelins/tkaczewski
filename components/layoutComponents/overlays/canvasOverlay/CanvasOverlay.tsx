@@ -43,7 +43,7 @@ const CanvasOverlay = () => {
     <AnimatePresence>
       {mounted ? (
         <motion.div
-          className="absolute w-screen h-screen bg-dark z-[9]"
+          className="absolute w-screen h-screen bg-dark z-[9] pointer-events-none"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.4 } }}

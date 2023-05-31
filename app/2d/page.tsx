@@ -15,10 +15,10 @@ export default function Page2D() {
         </div>
         <div className="flex justify-center items-center  h-[100vh] w-full bg-dark" />
 
-        <div className="flex justify-center items-center  h-[100vh] w-full bg-dark">
+        <div className="flex justify-center items-center  h-[100vh] w-full bg-dark"></div>
+        <div className="flex justify-center items-center h-[100vh] w-full">
           <AskAI />
         </div>
-        <div className="flex justify-center items-center h-[100vh] w-full" />
       </div>
     </PageWrapper>
   );

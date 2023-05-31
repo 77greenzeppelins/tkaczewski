@@ -21,22 +21,6 @@ const CameraControler = () => {
   const path = usePathname();
   // const [currentPath, setCurrentPath] = useState('');
   const visibleOnHome = path === pagesLinks[0].href;
-  // const visible2D = path === pagesLinks[1].href;
-  // const visibleCV = path === pagesLinks[2].href;
-  // const visibleOnContacts = path === pagesLinks[3].href;
-
-  // const setXPosition = (path: string) => {
-  //   switch (path) {
-  //     case pagesLinks[0].href:
-  //       return pages3DPositions.pageHome.x;
-  //     case pagesLinks[1].href:
-  //       return pages3DPositions.page2D.x;
-  //     case pagesLinks[2].href:
-  //       return pages3DPositions.pageCV.x;
-  //     case pagesLinks[3].href:
-  //       return pages3DPositions.pageContacts.x;
-  //   }
-  // };
 
   /**Animations / Manipulations*/
   useFrame(state => {
@@ -58,12 +42,12 @@ const CameraControler = () => {
     }
     //__
     const cameraPosition = new THREE.Vector3(
-      //___x
+      //___camera position-x
       // visibleOnContacts ? 10 : 0,
       setXPosition(path),
-      //___y
+      //___camera position-y
       0,
-      //___z
+      //___camera position-z
       visibleOnHome
         ? cameraSettings.x + meshRef.current.position.z
         : cameraSettings.x

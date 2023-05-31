@@ -1,19 +1,21 @@
 'use client';
 import React, { useRef, useState } from 'react';
+/**GlobalContext  Staff**/
+import { useGlobalContext } from '@/context/globalContext';
 /**Components**/
 import BasicFrame from '../../../customeObjects/frame/BasicFrame';
 import ImageCanvas from '../../../customeObjects/imageCanvas/ImageCanvas';
-import Triangles from '../../../customeObjects/tiangles/Triangles';
 /**Hooks**/
 import useWindowSize from '@/hooks/useWindowSize';
 /**THREE staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
 import { useFrame } from '@react-three/fiber';
-/**Drei Staff*/
-// import { Float, meshBounds } from '@react-three/drei';
-/**FramerMotion Staff*/
-import { motion } from 'framer-motion-3d';
+/**Spring Staff*/
+// import { useTransition, config } from '@react-spring/web';
+// import { animated } from '@react-spring/three';
+
+import { useSpring, animated, config } from '@react-spring/three';
 /**BasicData*/
 import { imagesData } from '@/data/basicData';
 /**HardCoded Staff*/
@@ -28,90 +30,71 @@ interface Props {
 /**-----------------**/
 const Act5 = ({ groupProps }: Props) => {
   /**References**/
-  const groupRef = useRef<THREE.Group>(null!);
+  // const groupRef = useRef<THREE.Group>(null!);
+  const [active, setActive] = useState(false);
 
+  /**GlobalContext  Section**/
+  const { askAI } = useGlobalContext();
   /*
-  staff for "hover" animation; includes condition that excludes screens lower then 769
+-----------
   */
-  const [isHovered, setIsHovered] = useState(false);
-  const { width } = useWindowSize();
-  const animationCondition = isHovered && width >= minWidthForAnimation;
+
+  const { scale, rotation, position } = useSpring({
+    position: askAI ? 0 : -1.5,
+    scale: askAI ? 0.8 : 1,
+    rotation: askAI ? Math.PI : 0,
+    // config: config.wobbly,
+    config: {
+      mass: 5,
+      tension: 400,
+      friction: 50,
+      precision: 0.0001,
+      // delay: 1000,
+    },
+    delay: 2000,
+  });
+
+  // const { spring } = useSpring({
+  //   spring: active,
+  //   // config: { mass: 5, tension: 400, friction: 50, precision: 0.0001 },
+  //   config: config.wobbly,
+  // });
+
+  // const scale = spring.to([0, 1], [1, 5]);
+  // const rotation = spring.to([0, 1], [0, Math.PI]);
 
   /**useFrame Section**/
-  useFrame(state => {
-    // console.log('state.mouse.x: ', state.mouse.x);
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(
-      groupRef.current.rotation.y,
-      (state.mouse.x * Math.PI) / 4,
-      0.05
-    );
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(
-      groupRef.current.rotation.x,
-      (state.mouse.y * Math.PI) / -8,
-      0.05
-    );
-  });
+  // useFrame(state => {
+  //   // console.log('state.mouse.x: ', state.mouse.x);
+  //   groupRef.current.rotation.y = THREE.MathUtils.lerp(
+  //     groupRef.current.rotation.y,
+  //     (state.mouse.x * Math.PI) / 4,
+  //     0.05
+  //   );
+  //   groupRef.current.rotation.x = THREE.MathUtils.lerp(
+  //     groupRef.current.rotation.x,
+  //     (state.mouse.y * Math.PI) / -8,
+  //     0.05
+  //   );
+  // });
 
   /**JSX**/
   return (
-    <motion.group
+    <group
       dispose={null}
-      // onPointerEnter={() => {
-      //   console.log('...onPointerEnter');
-      //   setIsHovered(true);
-      //   // document.body.style.cursor = 'pointer';
-      // }}
-      // onPointerLeave={() => {
-      //   console.log('...onPointerLeave');
-      //   setIsHovered(false);
-      //   // document.body.style.cursor = 'default';
-      // }}
-      // onHoverStart={e => {
-      //   console.log('...onHoverStart');
-      //   setIsHovered(true);
-      // }}
-      // onHoverEnd={e => setIsHovered(true)}
-      initial={false}
-      // animate={[isLiked ? 'liked' : 'unliked', isHover ? 'hover' : 'unhover']}
-      animate={animationCondition ? 'hover' : 'unhover'}
-      // animate={isHovered ? 'liked' : 'unliked'}
-      variants={{
-        hover: {
-          rotateZ: Math.PI * 2,
-          // rotateY: Math.PI,
-          // scale: 1.3,
-          transition: {
-            rotateZ: {
-              duration: 5,
-              delay: 1,
-              ease: 'linear',
-              repeat: Infinity,
-            },
-            // rotateY: { duration: 5, ease: 'linear' },
-          },
-        },
-        unhover: {
-          rotateZ: 0,
-          // rotateY: -Math.PI,
-          // scale: 1.3,
-          transition: {
-            rotateZ: { duration: 5, ease: 'anticipate' },
-            // rotateY: { duration: 5, ease: 'linear' },
-          },
-        },
-      }}
-      onClick={event => {
-        event.stopPropagation();
-        console.log('..............');
-      }}
+      // ref={groupRef}
+      // scale={scale}
+      // onClick={() => setActive(!active)}
     >
-      <group {...groupProps} ref={groupRef}>
-        {/* <Float
-          speed={2} // Animation speed, defaults to 1
-          rotationIntensity={isTouch ? 0.4 : 0.25} // XYZ rotation intensity, defaults to 1
-          floatIntensity={isTouch ? 0.2 : 0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-          floatingRange={isTouch ? [-0.075, 0.075] : [-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-        > */}
+      <animated.group
+        {...groupProps}
+        // scale={scale}
+        // scale-x={scale}
+        // scale-y={scale}
+        position-z={position}
+        // rotation-z={rotation}
+        // onClick={() => setActive(!active)}
+      >
         <BasicFrame meshProps={{ scale: [1, 1, 1] }} />
         <ImageCanvas
           meshProps={{ scale: [0.57, 0.59, 1] }}
@@ -119,58 +102,9 @@ const Act5 = ({ groupProps }: Props) => {
           argsHeight={imagesData.raphaelSchool.height * 2}
           image={imagesData.raphaelSchool.path}
         />
-        {/* </Float> */}
-
-        {/* {!isTouch ? (
-          <Triangles
-            meshProps={{ position: [-1, 0, 0], scale: [0.2, 0.2, 0.2] }}
-            matcapMaterial={true}
-          />
-        ) : null} */}
-      </group>
-    </motion.group>
+      </animated.group>
+    </group>
   );
 };
 
 export default Act5;
-
-{
-  /* <PivotControls
-          anchor={[0, 0, 0]}
-          depthTest={false}
-          lineWidth={2}
-          //   scale={100}
-          //   fixed={true}
-        >
-          <Box position={[-1.2, 0, 0]} />
-        </PivotControls> */
-}
-
-{
-  /* {path === pagesLinks[0].href ? (
-          <Float
-            speed={2} // Animation speed, defaults to 1
-            rotationIntensity={1} // XYZ rotation intensity, defaults to 1
-            floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-            floatingRange={[0, 0.3]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-          >
-            <BasicFrame
-              groupProps={{ position: [0, 0, 0] }}
-              variantsSwitcher={1}
-            />
-          </Float>
-        ) : null} */
-}
-
-{
-  /* {path === pagesLinks[1].href ? (
-          <BasicFrame
-            groupProps={{ position: [0, 0, 0] }}
-            variantsSwitcher={0}
-          />
-        ) : null} */
-}
-
-{
-  /* <BasicFrame groupProps={{ position: [0, 0, 0] }} variantsSwitcher={0} /> */
-}
