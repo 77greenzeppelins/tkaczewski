@@ -2,7 +2,7 @@ import React from 'react';
 /**Components**/
 import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
 import CanvasOverlay from '../overlays/canvasOverlay/CanvasOverlay';
-import PseudoProvider from '../pseudoProvider/PesudoProwider';
+import { GlobalContextProvider } from '@/context/globalContext';
 
 /**---------------------------------------------------------------------**/
 const AppContainer = ({ children }: { children: React.ReactNode }) => {
@@ -17,13 +17,13 @@ const AppContainer = ({ children }: { children: React.ReactNode }) => {
       {/*
       just a test; prototype of context...
       */}
-      <PseudoProvider
+      <GlobalContextProvider
         CanvasOverlay={CanvasOverlay}
         MainCanvas={MainCanvas}
         // MainCanvas={() => <MainCanvas />}
       >
         {children}
-      </PseudoProvider>
+      </GlobalContextProvider>
     </main>
   );
 };

@@ -11,7 +11,10 @@ import { page3DConfigs, pagesLinks } from '@/data/basicData';
 const Page2D = () => {
   /**References**/
   // const groupRef = useRef<THREE.Group>(null!);
-  /**...**/
+
+  /*
+  (!) the code below concerns the matter of "3dObjects visibility" and is used in every 3D-pseudoPage => property "visible" must receive boolean value with delay of 1 second => that is why setTimeout() is used to change initial false value to true value;
+  */
   const path = usePathname();
   const [isPath, setIsPath] = useState(false);
 
@@ -19,13 +22,9 @@ const Page2D = () => {
     const timer = setTimeout(() => {
       setIsPath(path === pagesLinks[1].href);
     }, page3DConfigs.visibilityDelay);
-    // const groupRefReset = groupRef.current;
 
     /**cleaner**/
     return () => {
-      // if (currentPath !== pagesLinks[0].href) {
-      //   groupRefReset.position.set(0, 0, 0);
-      // }
       clearTimeout(timer);
       setIsPath(false);
     };
@@ -36,7 +35,7 @@ const Page2D = () => {
     <group visible={isPath}>
       <Act5
         groupProps={{
-          position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
+          position: new THREE.Vector3(...page3DConfigs.page2D.act5.position),
         }}
       />
     </group>

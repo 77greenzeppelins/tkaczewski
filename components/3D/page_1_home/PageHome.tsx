@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
@@ -12,15 +13,15 @@ import * as THREE from 'three';
 import { page3DConfigs, pagesLinks } from '@/data/basicData';
 
 /**TS**/
-interface Props {
-  isTouch: boolean;
-}
 
 /**---------------------------------------**/
-const PageHome = ({ isTouch }: Props) => {
+const PageHome = () => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
-  /**...**/
+
+  /*
+  (!) the code below concerns the matter of "3dObjects visibility" and is used in every 3D-pseudoPage => property "visible" must receive boolean value with delay of 1 second => that is why setTimeout() is used to change initial false value to true value;
+  */
   const path = usePathname();
   const [isPath, setIsPath] = useState(false);
 
@@ -45,8 +46,6 @@ const PageHome = ({ isTouch }: Props) => {
     };
   }, [setIsPath]);
 
-  console.log('...isPath:', isPath);
-
   /**JSX**/
   return (
     <group ref={groupRef} visible={isPath}>
@@ -54,7 +53,6 @@ const PageHome = ({ isTouch }: Props) => {
         groupProps={{
           position: new THREE.Vector3(...page3DConfigs.actsPositions[0]),
         }}
-        isTouch={isTouch}
       />
       <Act2
         groupProps={{

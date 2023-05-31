@@ -5,22 +5,45 @@ import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 /**Components**/
 import ThreePlane from '../../basicShapes/plane/ThreePlane';
-interface Props {
-  isOnHome: boolean;
-  isOnContacts: boolean;
-}
+/**Hooks*/
+import { usePathname } from 'next/navigation';
+/**Utils*/
+import { setXPosition } from './utils/utils';
+/**Basic Data*/
+import { pagesLinks, cameraSettings } from '@/data/basicData';
 
 /**----------------------------**/
-const CameraControler = ({ isOnHome, isOnContacts }: Props) => {
+const CameraControler = () => {
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
+
+  /**Condition of visibility**/
+  const path = usePathname();
+  // const [currentPath, setCurrentPath] = useState('');
+  const visibleOnHome = path === pagesLinks[0].href;
+  // const visible2D = path === pagesLinks[1].href;
+  // const visibleCV = path === pagesLinks[2].href;
+  // const visibleOnContacts = path === pagesLinks[3].href;
+
+  // const setXPosition = (path: string) => {
+  //   switch (path) {
+  //     case pagesLinks[0].href:
+  //       return pages3DPositions.pageHome.x;
+  //     case pagesLinks[1].href:
+  //       return pages3DPositions.page2D.x;
+  //     case pagesLinks[2].href:
+  //       return pages3DPositions.pageCV.x;
+  //     case pagesLinks[3].href:
+  //       return pages3DPositions.pageContacts.x;
+  //   }
+  // };
 
   /**Animations / Manipulations*/
   useFrame(state => {
     /*
-    for HomePage
+    for HomePage; z-axis settings
     */
-    if (isOnHome) {
+    if (visibleOnHome) {
       meshRef.current.position.set(
         0,
         0,
@@ -35,9 +58,15 @@ const CameraControler = ({ isOnHome, isOnContacts }: Props) => {
     }
     //__
     const cameraPosition = new THREE.Vector3(
-      isOnContacts ? 10 : 0,
+      //___x
+      // visibleOnContacts ? 10 : 0,
+      setXPosition(path),
+      //___y
       0,
-      isOnHome ? 3 + meshRef.current.position.z : 3
+      //___z
+      visibleOnHome
+        ? cameraSettings.x + meshRef.current.position.z
+        : cameraSettings.x
     );
     state.camera.position.copy(cameraPosition);
   });

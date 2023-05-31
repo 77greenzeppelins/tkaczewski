@@ -21,6 +21,20 @@ const assetsPaths = {
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };
+//___
+const cameraSettings = {
+  x: 3,
+};
+
+//___used in <CameraControler>
+const pages3DPositions = {
+  pageHome: { x: 0 },
+  page2D: { x: 10 },
+  pageCV: { x: 20 },
+  pageContacts: { x: 30 },
+};
+
+//___used in component with images
 const imagesData = {
   botticelliVenus: { path: assetsPaths.venus, width: 0.445, height: 0.8 },
   raphaelSchool: { path: assetsPaths.school, width: 0.8, height: 1.047 },
@@ -29,19 +43,22 @@ const imagesData = {
     path: assetsPaths.phone,
     width: 0.42,
     height: 0.592,
-    position: [10, 0.55, 0],
+    position: [pages3DPositions.pageContacts.x, 0.55, 0],
   },
   email: {
     path: assetsPaths.email,
     width: 0.42,
     height: 0.592,
-    position: [10, -0.55, 0],
+    position: [pages3DPositions.pageContacts.x, -0.55, 0],
   },
 };
 
 const page3DConfigs = {
+  //___general settings
   visibilityDelay: 1000,
   canvasOverlayDelay: 1000,
+
+  //___for pageHome
   actsPositions: [
     [0, 0, 0],
     [0, 0, -4],
@@ -92,12 +109,20 @@ const page3DConfigs = {
       rotation: [0, 0, 0],
     },
   ],
-  // contactsPageActsPositions: {
-  //   act1: [
-  //     [0, 0, 0],
-  //     [0, 0, 0],
-  //   ],
-  // },
+  //___for page2D
+  page2D: {
+    act5: { position: [pages3DPositions.page2D.x, 0, 0] },
+  },
 };
 
-export { colors, pagesLinks, assetsPaths, imagesData, page3DConfigs };
+export {
+  colors,
+  pagesLinks,
+  assetsPaths,
+  imagesData,
+  page3DConfigs,
+  //___used in <CameraControler>
+  pages3DPositions,
+  //___used in <CameraControler> and ...
+  cameraSettings,
+};

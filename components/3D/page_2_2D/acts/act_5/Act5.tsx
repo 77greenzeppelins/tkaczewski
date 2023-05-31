@@ -76,17 +76,6 @@ const Act5 = ({ groupProps }: Props) => {
       animate={animationCondition ? 'hover' : 'unhover'}
       // animate={isHovered ? 'liked' : 'unliked'}
       variants={{
-        // unliked: {
-        //   x: [0, 0],
-        //   y: [0, 0],
-        //   scale: 0.9,
-        // },
-        // liked: {
-        //   x: 4,
-        //   y: [0, -1.5, 2],
-        //   scale: 0.9,
-        //   transition: { duration: 0.5 },
-        // },
         hover: {
           rotateZ: Math.PI * 2,
           // rotateY: Math.PI,
