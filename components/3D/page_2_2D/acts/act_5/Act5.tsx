@@ -42,7 +42,7 @@ const Act5 = () => {
   /**JSX**/
   return (
     <animated.group
-      scale={width < 460 ? [0.6, 0.6, 0.6] : [1, 1, 1]}
+      scale={width < 460 ? [0.8, 0.8, 0.8] : [1, 1, 1]}
       dispose={null}
       // rotation-x={rotationX}
       // position-z={positionZ}
