@@ -32,12 +32,11 @@ const Page2D = () => {
 
   /**JSX**/
   return (
-    <group visible={isPath}>
-      <Act5
-        groupProps={{
-          position: new THREE.Vector3(...page3DConfigs.page2D.act5.position),
-        }}
-      />
+    <group
+      visible={isPath}
+      position={new THREE.Vector3(...page3DConfigs.page2D.pagePosition)}
+    >
+      <Act5 />
     </group>
   );
 };

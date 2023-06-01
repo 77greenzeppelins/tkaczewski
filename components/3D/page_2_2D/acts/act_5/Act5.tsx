@@ -1,38 +1,20 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 /**GlobalContext  Staff**/
 import { useGlobalContext } from '@/context/globalContext';
 /**Components**/
-import BasicFrame from '../../../customeObjects/frame/BasicFrame';
-import ImageCanvas from '../../../customeObjects/imageCanvas/ImageCanvas';
-/**THREE staff*/
-import * as THREE from 'three';
-/**R3F Staff*/
-import { useFrame } from '@react-three/fiber';
+import RaphaelPainting from './raphaelPainting/RaphaelPainting';
 /**Spring Staff*/
-// import { useTransition, config } from '@react-spring/web';
-// import { animated } from '@react-spring/three';
-
 import { useSpring, animated } from '@react-spring/three';
 /**BasicData*/
-import { imagesData, springConfigs } from '@/data/basicData';
-import MouseMoveGesture from '@/utils/gestures/mouseMoveGesture/mouseMoveGesture';
+import { springConfigs } from '@/data/basicData';
 
 /**HardCoded Staff*/
 // const minWidthForAnimation = 769;
 // const outOfScene = 0.35;
-
-/**TS**/
-interface Props {
-  groupProps: JSX.IntrinsicElements['group'];
-  // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
-}
 /**-----------------**/
-const Act5 = ({ groupProps }: Props) => {
-  /**References**/
-  // const groupRef = useRef<THREE.Group>(null!);
-
+const Act5 = () => {
   /**GlobalContext  Section**/
   const { askAI, setAskAI } = useGlobalContext();
 
@@ -40,21 +22,11 @@ const Act5 = ({ groupProps }: Props) => {
   ___1. this spring animates initial move, when painting enters the scene...
   */
   const { positionZ, rotationX, positionY } = useSpring({
-    positionZ: askAI ? 0 : -1.7,
+    positionZ: askAI ? -0.1 : -1.7,
     positionY: askAI ? -0.2 : 0.5,
     rotationX: askAI ? Math.PI * -0.2 : 0,
     config: springConfigs.heavyAndSlow,
     delay: 1000,
-  });
-
-  /*
-  Gesture Section
-  this animation effects group for <AnsverYes> & <AnswerNo> to imitate some mouse move
-  */
-  const [x, y] = MouseMoveGesture({
-    enabled: true,
-    tileFactorX: 0.15,
-    tileFactorY: 0.15,
   });
 
   /**Set FALSE section**/
@@ -70,23 +42,11 @@ const Act5 = ({ groupProps }: Props) => {
       rotation-x={rotationX}
       position-z={positionZ}
       position-y={positionY}
-
       // ref={groupRef}
     >
-      <animated.group {...groupProps} rotation-x={x} rotation-y={y}>
-        <BasicFrame meshProps={{ scale: [1, 1.5, 1] }} />
-        <ImageCanvas
-          meshProps={{ scale: [0.57, 0.59, 1] }}
-          argsWidth={imagesData.raphaelSchool.width * 2}
-          argsHeight={imagesData.raphaelSchool.height * 2}
-          image={imagesData.raphaelSchool.path}
-        />
-      </animated.group>
+      <RaphaelPainting />
     </animated.group>
   );
 };
 
 export default Act5;
-function usePathName() {
-  throw new Error('Function not implemented.');
-}

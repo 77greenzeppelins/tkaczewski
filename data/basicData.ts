@@ -26,7 +26,10 @@ const cameraSettings = {
   x: 3,
 };
 
-//___used in <CameraControler>
+/*
+___1. used in <CameraControler>, Page2D.tsx,
+___2. concept: each 3D-pseudoPage has unique x-axis value to avoid any overlapping of events (for instance click event)
+*/
 const pages3DPositions = {
   pageHome: { x: 0 },
   page2D: { x: 10 },
@@ -59,6 +62,11 @@ const page3DConfigs = {
   canvasOverlayDelay: 1000,
 
   //___for pageHome
+
+  pageHome: {
+    pagePosition: [pages3DPositions.pageHome.x, 0, 0],
+  },
+
   actsPositions: [
     [0, 0, 0],
     [0, 0, -4],
@@ -111,7 +119,8 @@ const page3DConfigs = {
   ],
   //___for page2D
   page2D: {
-    act5: { position: [pages3DPositions.page2D.x, 0, 0] },
+    pagePosition: [pages3DPositions.page2D.x, 0, 0],
+    // act5: { position: [pages3DPositions.page2D.x, 0, 0] },
   },
 };
 
