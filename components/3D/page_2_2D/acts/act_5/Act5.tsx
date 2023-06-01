@@ -10,6 +10,7 @@ import RaphaelPainting from './raphaelPainting/RaphaelPainting';
 import { useSpring, animated } from '@react-spring/three';
 /**BasicData*/
 import { springConfigs } from '@/data/basicData';
+import useWindowSize from '@/hooks/useWindowSize';
 
 /**HardCoded Staff*/
 // const minWidthForAnimation = 769;
@@ -18,7 +19,9 @@ import { springConfigs } from '@/data/basicData';
 const Act5 = () => {
   /**GlobalContext  Section**/
   const { askAI, setAskAI } = useGlobalContext();
-
+  /**Responsivenes**/
+  const { width } = useWindowSize();
+  // const respScale = width > 460 ?
   /*
   ___1. this spring animates initial move, when painting enters the scene...
   */
@@ -39,6 +42,7 @@ const Act5 = () => {
   /**JSX**/
   return (
     <animated.group
+      scale={width < 460 ? [0.6, 0.6, 0.6] : [1, 1, 1]}
       dispose={null}
       // rotation-x={rotationX}
       // position-z={positionZ}
