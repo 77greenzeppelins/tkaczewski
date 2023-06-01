@@ -20,7 +20,7 @@ import { imagesData, springConfigs } from '@/data/basicData';
 import MouseMoveGesture from '@/utils/gestures/mouseMoveGesture/mouseMoveGesture';
 
 /**HardCoded Staff*/
-const minWidthForAnimation = 769;
+// const minWidthForAnimation = 769;
 // const outOfScene = 0.35;
 
 /**TS**/
@@ -37,33 +37,15 @@ const Act5 = ({ groupProps }: Props) => {
   const { askAI, setAskAI } = useGlobalContext();
 
   /*
------------
+  ___1. this spring animates initial move, when painting enters the scene...
   */
-
-  const { positionZ, rotationX } = useSpring({
+  const { positionZ, rotationX, positionY } = useSpring({
     positionZ: askAI ? 0 : -1.7,
+    positionY: askAI ? -0.2 : 0.5,
     rotationX: askAI ? Math.PI * -0.2 : 0,
     config: springConfigs.heavyAndSlow,
     delay: 1000,
   });
-  //___?
-  // const scale = spring.to([0, 1], [1, 5]);
-  // const rotation = spring.to([0, 1], [0, Math.PI]);
-
-  /**useFrame Section**/
-  // useFrame(state => {
-  //   // console.log('state.mouse.x: ', state.mouse.x);
-  //   groupRef.current.rotation.y = THREE.MathUtils.lerp(
-  //     groupRef.current.rotation.y,
-  //     (state.mouse.x * Math.PI) / 4,
-  //     0.05
-  //   );
-  //   groupRef.current.rotation.x = THREE.MathUtils.lerp(
-  //     groupRef.current.rotation.x,
-  //     (state.mouse.y * Math.PI) / -8,
-  //     0.05
-  //   );
-  // });
 
   /*
   Gesture Section
@@ -87,11 +69,12 @@ const Act5 = ({ groupProps }: Props) => {
       dispose={null}
       rotation-x={rotationX}
       position-z={positionZ}
+      position-y={positionY}
 
       // ref={groupRef}
     >
       <animated.group {...groupProps} rotation-x={x} rotation-y={y}>
-        <BasicFrame meshProps={{ scale: [1, 1, 1] }} />
+        <BasicFrame meshProps={{ scale: [1, 1.5, 1] }} />
         <ImageCanvas
           meshProps={{ scale: [0.57, 0.59, 1] }}
           argsWidth={imagesData.raphaelSchool.width * 2}

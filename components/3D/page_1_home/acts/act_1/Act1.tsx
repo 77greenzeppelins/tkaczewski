@@ -80,7 +80,7 @@ const Act1 = ({ groupProps }: Props) => {
       // }}
     >
       <group {...groupProps} ref={groupRef}>
-        <BasicFrame meshProps={{ scale: [0.86, 1, 1.13] }} />
+        <BasicFrame meshProps={{ scale: [0.86, 1.5, 1.13] }} />
         <ImageCanvas
           meshProps={{ scale: [0.9, 0.85, 0.85] }}
           argsWidth={imagesData.botticelliVenus.width * 2}
