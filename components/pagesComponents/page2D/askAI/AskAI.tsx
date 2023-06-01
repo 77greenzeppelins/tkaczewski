@@ -14,12 +14,14 @@ const AskAI = () => {
   /**JSX**/
   return (
     <div className="fc  w-full h-full">
-      <div className="flex items-center flex-col w-[90%] h-[90%] border border-corpo pt-10">
-        <ButtonWithChild onClickHandler={setAskAI}>
-          <p className="text-light text-1xl min-w-[60px]">
-            {askAI ? 'TRUE' : 'FALSE'}
-          </p>
-        </ButtonWithChild>
+      <div className="flex flex-col justify-center w-[90%] h-[90%] border-l border-corpo pl-10">
+        <p className="text-light text-3xl ">Any doubts?</p>
+        <div className="flex gap-2 pl-1">
+          <p className="text-light text-3xl ">Ask</p>
+          <ButtonWithChild onClickHandler={setAskAI}>
+            <p className="text-corpo text-3xl ">AI</p>
+          </ButtonWithChild>
+        </div>
       </div>
     </div>
   );

@@ -28,7 +28,9 @@ const ButtonWithChild = ({ children, onClickHandler }: Props) => {
 
   /**JSX**/
   return (
-    <div className="fc border border-corpo px-4 py-2 rounded-sm">
+    <div
+    //  className="fc border border-corpo px-4 py-2 rounded-sm"
+    >
       <button
         disabled={isDisabled}
         aria-label={'przycisk'}

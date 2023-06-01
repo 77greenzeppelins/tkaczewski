@@ -44,12 +44,13 @@ const Act5 = () => {
     <animated.group
       scale={width < 460 ? [0.8, 0.8, 0.8] : [1, 1, 1]}
       dispose={null}
-      // rotation-x={rotationX}
-      // position-z={positionZ}
-      // position-y={positionY}
-      rotation-x={Math.PI * -0.15}
-      position-z={-0.1}
-      position-y={-0.3}
+      rotation-x={rotationX}
+      position-z={positionZ}
+      position-y={positionY}
+      //___if you wan to test component
+      // rotation-x={Math.PI * -0.15}
+      // position-z={-0.1}
+      // position-y={-0.3}
       // ref={groupRef}
     >
       <PhilosophersAnswers />

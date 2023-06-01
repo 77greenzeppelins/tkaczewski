@@ -49,12 +49,12 @@ const MainCanvas = () => {
       camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
     >
       <Scene3D />
-      <Perf
+      {/* <Perf
         position="bottom-right"
         showGraph={width > 800 ? true : false}
         // deepAnalyze={true}
         minimal={width > 800 ? false : true}
-      />
+      /> */}
     </Canvas>
   );
 };
