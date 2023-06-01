@@ -17,6 +17,7 @@ import { useFrame } from '@react-three/fiber';
 import { useSpring, animated } from '@react-spring/three';
 /**BasicData*/
 import { imagesData, springConfigs } from '@/data/basicData';
+import MouseMoveGesture from '@/utils/gestures/mouseMoveGesture/mouseMoveGesture';
 
 /**HardCoded Staff*/
 const minWidthForAnimation = 769;
@@ -39,10 +40,9 @@ const Act5 = ({ groupProps }: Props) => {
 -----------
   */
 
-  const { position } = useSpring({
-    position: askAI ? 0 : -1.5,
-    // scale: askAI ? 0.8 : 1,
-    // rotation: askAI ? Math.PI : 0,
+  const { positionZ, rotationX } = useSpring({
+    positionZ: askAI ? 0 : -1.7,
+    rotationX: askAI ? Math.PI * -0.2 : 0,
     config: springConfigs.heavyAndSlow,
     delay: 1000,
   });
@@ -65,6 +65,16 @@ const Act5 = ({ groupProps }: Props) => {
   //   );
   // });
 
+  /*
+  Gesture Section
+  this animation effects group for <AnsverYes> & <AnswerNo> to imitate some mouse move
+  */
+  const [x, y] = MouseMoveGesture({
+    enabled: true,
+    tileFactorX: 0.15,
+    tileFactorY: 0.15,
+  });
+
   /**Set FALSE section**/
   const path = usePathname();
   useEffect(() => {
@@ -73,18 +83,14 @@ const Act5 = ({ groupProps }: Props) => {
 
   /**JSX**/
   return (
-    <group
+    <animated.group
       dispose={null}
+      rotation-x={rotationX}
+      position-z={positionZ}
+
       // ref={groupRef}
     >
-      <animated.group
-        {...groupProps}
-        // scale={scale}
-        // scale-x={scale}
-        // scale-y={scale}
-        position-z={position}
-        // rotation-z={rotation}
-      >
+      <animated.group {...groupProps} rotation-x={x} rotation-y={y}>
         <BasicFrame meshProps={{ scale: [1, 1, 1] }} />
         <ImageCanvas
           meshProps={{ scale: [0.57, 0.59, 1] }}
@@ -93,7 +99,7 @@ const Act5 = ({ groupProps }: Props) => {
           image={imagesData.raphaelSchool.path}
         />
       </animated.group>
-    </group>
+    </animated.group>
   );
 };
 
