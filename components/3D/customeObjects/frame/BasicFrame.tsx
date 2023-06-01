@@ -6,7 +6,7 @@ import React from 'react';
 /**THREE Staff**/
 import * as THREE from 'three';
 /**Drei Staff**/
-import { Merged, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 /**Comoponents**/
 import FrameMatcapTexture from '../../_Drei/textures/frameMatcapTextures/FrameMatcapTexture';
 /**BasicData**/

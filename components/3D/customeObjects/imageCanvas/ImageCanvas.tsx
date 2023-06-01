@@ -1,6 +1,5 @@
 import React from 'react';
 import * as THREE from 'three';
-// import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import ThreePlane from '../../basicShapes/plane/ThreePlane';
 

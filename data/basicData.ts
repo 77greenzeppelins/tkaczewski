@@ -10,9 +10,15 @@ const pagesLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+/*
+___(!) I've decided to keep all path in one place in case any changes...
+___1. glb section is useful whenever useGLTF(somePath) is used; 
+*/
 const assetsPaths = {
   //___glb
   frame: '/assets/3D/glb/frame_4_draco.glb',
+  dialogCloud: '/assets/3D/glb/dialogCloud_draco.glb',
+
   //___textures
   venus: '/assets/images/art/botticelli_venus_.webp',
   school: '/assets/images/art/raphael_800_1047.webp',
@@ -120,6 +126,34 @@ const page3DConfigs = {
   //___for page2D
   page2D: {
     pagePosition: [pages3DPositions.page2D.x, 0, 0],
+    answers: {
+      platoCloud: {
+        scale: [0.6, 0.6, 0.6],
+        position: [-0.32, 0.8, 0.35],
+        rotation: [Math.PI * 0.7, 0, 0],
+      },
+      platoText: {
+        text: 'Oscar is awesome',
+        scale: [0.25, 0.25, 1],
+        position: [-0.32, 1, 0.45],
+        rotation: [Math.PI * 0.1, 0, 0],
+        fontSize: 0.5,
+        lineHeight: 1,
+      },
+      aristotlesCloud: {
+        scale: [0.6, 0.6, 0.6],
+        position: [0.32, 0.8, 0.35],
+        rotation: [Math.PI * 0.7, 0, Math.PI],
+      },
+      aristotlesText: {
+        text: 'You are 100% right',
+        scale: [0.225, 0.225, 1],
+        position: [0.32, 1, 0.45],
+        rotation: [Math.PI * 0.2, 0, 0],
+        fontSize: 0.5,
+        lineHeight: 1,
+      },
+    },
     // act5: { position: [pages3DPositions.page2D.x, 0, 0] },
   },
 };

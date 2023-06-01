@@ -19,11 +19,13 @@ interface Props {
   //___
   hasMatcap?: boolean;
   //___
+  scale?: THREE.Vector3;
   position?: THREE.Vector3;
   rotation?: THREE.Euler;
   //___
   text: string;
   fontSize?: number;
+  lineHeight?: number;
   anchorX?: number | 'center' | 'left' | 'right';
   anchorY?:
     | number
@@ -45,11 +47,13 @@ interface Props {
 const DreiText = ({
   hasMatcap,
   //___
+  scale,
   position,
   rotation,
   //___
   text,
   fontSize,
+  lineHeight,
   anchorX,
   anchorY,
   maxWidth,
@@ -62,7 +66,7 @@ const DreiText = ({
   strokeWidth,
 }: Props) => {
   /**Material from Provider**/
-  const basicMaterial = useBasicMaterial();
+  // const basicMaterial = useBasicMaterial();
   // const material = hasMatcap ? (
   //   <FrameMatcapTexture textureIndex={'1'} />
   // ) : (
@@ -82,10 +86,12 @@ const DreiText = ({
       // material={material}
       font={assetsPaths.font}
       //___
+      scale={scale}
       position={position}
       rotation={rotation}
       //___
       fontSize={fontSize || fontSizeSetter}
+      lineHeight={lineHeight}
       anchorX={anchorX}
       anchorY={anchorY}
       maxWidth={maxWidth || state.size.width > 1000 ? 2 : 1}
