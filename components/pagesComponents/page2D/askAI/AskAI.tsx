@@ -4,7 +4,7 @@ import React from 'react';
 import { useGlobalContext } from '@/context/globalContext';
 /**Components**/
 import DoubtsSection from './doubtsSection/DoubtsSection';
-// import ThanksAISection from './ThanksAISection/ThanksAISection';
+import ThanksAISection from './ThanksAISection/ThanksAISection';
 import ButtonSwitcher from '@/components/multipagesComponents/_basicComponents/buttons/buttonSwitcher/ButtonSwitcher';
 /**Spring Section*/
 import {
@@ -17,11 +17,16 @@ import {
 
 /**BasicData*/
 import { springConfigs } from '@/data/basicData';
+import CloseXIcon from '@/components/svg/CloseXIcon';
+import useWindowSize from '@/hooks/useWindowSize';
 
 /**------------------------**/
 const AskAI = () => {
   /**GlobalContext  Section**/
   const { askAI, setAskAI } = useGlobalContext();
+  /**...**/
+  const { width } = useWindowSize();
+  const condition = width >= 1024;
 
   const animation1Ref = useSpringRef();
   const spring1 = useSpring({
@@ -38,16 +43,33 @@ const AskAI = () => {
     from: { y: '-200%', opacity: '0' },
     to: {
       y: askAI ? '0' : '-200%',
+      // x: askAI ? '0' : '-200%',
       opacity: askAI ? '1' : '0',
     },
   });
+
+  const animationMobileRef = useSpringRef();
+  const springMobile = useSpring({
+    ref: animationMobileRef,
+    config: springConfigs.heavyAndSlow,
+    from: { x: '-200%', opacity: '0' },
+    to: {
+      x: askAI ? '0' : '-200%',
+      opacity: askAI ? '1' : '0',
+    },
+  });
+
+  const finalRef = condition ? animation2Ref : animationMobileRef;
+
+  console.log('condition:', condition);
+  console.log('finalRef:', finalRef);
 
   /*
   ___1. valu '1000' is a timeframe; can be ommited 
   ___2. value [number, number] is a number array of timesteps
   ___3. how it works? timesteps * timeframe; in my case it is a 1200 ms delay between both animations; 
   */
-  useChain([animation1Ref, animation2Ref], [1, 1], 1200);
+  useChain([animation1Ref, finalRef], [1, 1], 1200);
 
   /**JSX**/
   return (
@@ -60,25 +82,25 @@ const AskAI = () => {
         >
           <DoubtsSection />
         </animated.div>
-        <div className="absolute flex justify-end items-end bottom-0 left-0 pl-10">
+        <div className="absolute flex justify-end items-end bottom-0 left-0 pl-10 overflow-hidden pr-4">
           <animated.div
             style={spring2}
             className={` hidden lg:block ${
               askAI ? 'pointer-events-auto' : 'pointer-events-none'
             }`}
           >
-            <ButtonSwitcher onClickHandler={setAskAI}>
-              <p className="text-light text-1xl ">
-                Thank <span className="text-corpo">AI</span> for your answer...
-              </p>
-            </ButtonSwitcher>
+            <ThanksAISection />
           </animated.div>
           <animated.div
-            style={spring2}
-            className={`lg:hidden bg-corpo w-[28px] h-[28px] ${
+            style={springMobile}
+            className={`lg:hidden fc bg-corpo w-[28px] h-[28px] ${
               askAI ? 'pointer-events-auto' : 'pointer-events-none'
             }`}
-          ></animated.div>
+          >
+            <ButtonSwitcher onClickHandler={setAskAI}>
+              <CloseXIcon />
+            </ButtonSwitcher>
+          </animated.div>
         </div>
       </div>
     </div>
