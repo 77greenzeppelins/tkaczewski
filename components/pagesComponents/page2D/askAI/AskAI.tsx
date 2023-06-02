@@ -73,11 +73,12 @@ const AskAI = () => {
               </p>
             </ButtonSwitcher>
           </animated.div>
-          <div
-            className={` lg:hidden bg-corpo w-[28px] h-[28px] ${
+          <animated.div
+            style={spring2}
+            className={`lg:hidden bg-corpo w-[28px] h-[28px] ${
               askAI ? 'pointer-events-auto' : 'pointer-events-none'
             }`}
-          ></div>
+          ></animated.div>
         </div>
       </div>
     </div>
