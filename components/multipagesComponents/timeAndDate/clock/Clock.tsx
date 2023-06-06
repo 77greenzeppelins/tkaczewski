@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 /**TS**/
 interface Props {
@@ -15,25 +15,34 @@ const Clock = ({
   textStyleSeconds,
 }: Props) => {
   /**State Section**/
-  const [currentTime, setCurrentTime] = useState(['', '']);
+  const [currentTime, setCurrentTime] = useState(['00:00', '00']);
+  /*
+  ___1. Use useRef to store the interval ID, instead of a local variable inside the effect. This will allow you to access the interval ID inside the cleanup function.
+  */
+  // const intervalIdRef = useRef<ReturnType<typeof setInterval> | string>('');
+  const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
+  /*
+  __2. Use useCallback to wrap the updateTime function, so that it doesn't get recreated every time the component renders. This can improve performance and prevent unnecessary re-renders.
+  */
+  const updateTime = useCallback(() => {
+    const time = new Date().toLocaleTimeString('en', {
+      timeZone: timeZone,
+      hourCycle: 'h24',
+    });
+    let timePart2 = time.split(':')[2];
+    let timePart1 = time.slice(0, 6);
+    setCurrentTime([timePart1, timePart2]);
+  }, [timeZone]);
 
   /**Settings Section**/
   useEffect(() => {
-    //__handler
-    const updateTime = () => {
-      let time = new Date().toLocaleTimeString('en', {
-        timeZone: timeZone,
-        hourCycle: 'h24', // delats PM / AM
-      });
-      let timePart2 = time.split(':')[2];
-      let timePart1 = time.slice(0, 6);
-      setCurrentTime([timePart1, timePart2]);
-    };
-    //__update time every 1 sec
-    const timeController = setInterval(updateTime, 1000);
+    //__call it to avoid 1 sec gap in displaying
+    updateTime();
+    intervalIdRef.current = setInterval(updateTime, 1000);
     //__cleaner;
-    return () => clearInterval(timeController);
-  }, [timeZone]);
+    // return () => clearInterval(intervalIdRef.current);
+    return () => clearTimeout(intervalIdRef.current as NodeJS.Timeout);
+  }, [updateTime]);
 
   /**JSX**/
   return (

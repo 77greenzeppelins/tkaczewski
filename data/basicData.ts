@@ -161,8 +161,8 @@ const page3DConfigs = {
 
 //___
 const animationsDelays = {
-  introOverlayDurance: 2500,
-  manuDelay: 2900,
+  introOverlayDurance: 2400,
+  manuDelay: 2600,
 };
 
 const springConfigs = {

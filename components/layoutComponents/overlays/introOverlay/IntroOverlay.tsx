@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 /**GlobalContext  Staff**/
 import { useGlobalContext } from '@/context/globalContext';
 /**Components**/
@@ -13,18 +13,19 @@ import { animationsDelays } from '@/data/basicData';
 const IntroOverlay = () => {
   /**GlobalContext  Section**/
   const { isIntroOverlay, setIsIntroOverlay } = useGlobalContext();
+  /**reference for setTimeout() ID**/
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  /*
+  ---1. this lifeCycleHook allows to set component existence to a specific duration (circa 2.6 sec)
+  */
   useEffect(() => {
-    // Disable scrolling on mount
-    // document.body.style.overflow = 'hidden';
-    //___
-    const timer = setTimeout(() => {
-      // document.body.style.overflow = 'auto';
+    //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
+    timerRef.current = setTimeout(() => {
       setIsIntroOverlay(false);
     }, animationsDelays.introOverlayDurance);
     return () => {
-      clearTimeout(timer);
-      // document.body.style.overflow = 'auto';
+      clearTimeout(timerRef.current as NodeJS.Timeout);
     };
   }, [setIsIntroOverlay]);
 
