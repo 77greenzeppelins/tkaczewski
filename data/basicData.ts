@@ -10,6 +10,16 @@ const pagesLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+const contactData = {
+  mail: 'tkaczewski.oskar@gmail.com',
+  mobile: '728-617-507',
+};
+
+const linksToInstantContactData = {
+  mail: `mailto:${contactData.mail}`, //___to delate
+  mobile: `tel:${contactData.mobile}`,
+};
+
 /*
 ___(!) I've decided to keep all path in one place in case any changes...
 ___1. glb section is useful whenever useGLTF(somePath) is used; 
@@ -185,4 +195,7 @@ export {
   //___spring settings
   springConfigs,
   animationsDelays,
+  //___
+  contactData,
+  linksToInstantContactData,
 };

@@ -2,22 +2,19 @@ import React from 'react';
 /**Components**/
 import PageWrapper from '@/components/multipagesComponents/pageWrapper/PageWrapper';
 import InstantContactButtons2D from '@/components/pagesComponents/pageContacts/instantContactButtons/InstantContactButtons2D';
+import ContactsDataSection from '@/components/pagesComponents/pageContacts/contactsData/ContactsDataSection';
 
 /**------------------------**/
 const PageContact = () => {
   /**JSX**/
   return (
     <PageWrapper>
-      <div data-component="PageContact" className="w-full relative">
-        <div className="sticky top-0 flex justify-center items-center h-[100vh] w-full -z-10">
-          {' '}
-          {/* <InstantContactButtons2D /> */}
-        </div>
-        <div className="flex justify-center items-center h-[100vh] w-full bg-dark z-10">
-          <p className="select-none text-neutral-300 text-4xl">
-            contact / 2 / 100vh
-          </p>
-        </div>
+      <div data-component="PageContact" className="relative w-full">
+        <InstantContactButtons2D />
+        <ContactsDataSection />
+        <div className="h-[100vh] " />
+        {/* <ContactsDataSection />
+        <div className="h-[100vh] bg-corpo" /> */}
       </div>
     </PageWrapper>
   );

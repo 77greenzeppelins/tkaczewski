@@ -1,7 +1,9 @@
 'use client'; //required by "motion" component
 import React from 'react';
 /**FramerMotion Staff*/
-import { motion } from 'framer-motion';
+import { animated, useTransition } from '@react-spring/web';
+/**FramerMotion Staff*/
+// import { motion } from 'framer-motion';
 
 /**TS**/
 interface Props {
@@ -10,17 +12,28 @@ interface Props {
 
 /**--------------------------------------------**/
 const PageWrapper = ({ children }: Props) => {
+  /**Spring Section*/
+  const transitions = useTransition(children, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
+
   /**JSX**/
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 0.6 } }}
-      exit={{ opacity: 0 }}
-      className="w-full h-full"
-    >
-      {children}
-    </motion.div>
-  );
+  return transitions((style, page) => (
+    <animated.div style={style}>{children}</animated.div>
+  ));
+
+  // return (
+  //   <motion.div
+  //     initial={{ opacity: 0 }}
+  //     animate={{ opacity: 1, transition: { duration: 0.6 } }}
+  //     exit={{ opacity: 0 }}
+  //     className="w-full h-full"
+  //   >
+  //     {children}
+  //   </motion.div>
+  // );
 };
 
 export default PageWrapper;
