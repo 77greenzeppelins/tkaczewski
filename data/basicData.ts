@@ -27,6 +27,7 @@ const assetsPaths = {
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };
+
 //___
 const cameraSettings = {
   x: 3,
@@ -158,6 +159,12 @@ const page3DConfigs = {
   },
 };
 
+//___
+const animationsDelays = {
+  introOverlayDurance: 2500,
+  manuDelay: 2900,
+};
+
 const springConfigs = {
   heavyAndSlow: { mass: 10, tension: 70, friction: 30, precision: 0.0001 },
   molasses: { mass: 1, tension: 280, friction: 120 },
@@ -175,6 +182,7 @@ export {
   pages3DPositions,
   //___used in <CameraControler> and ...
   cameraSettings,
-  //___
+  //___spring settings
   springConfigs,
+  animationsDelays,
 };

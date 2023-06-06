@@ -23,6 +23,7 @@ module.exports = {
         dark: 'var(--color-dark)',
         darkTint: 'var(--color-darkTint)',
         light: 'var(--color-light)',
+        lightDark: 'var(--color-lightDark)',
         corpo: 'var(--color-corpo)',
       },
       backgroundImage: {

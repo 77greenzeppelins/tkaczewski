@@ -1,8 +1,10 @@
 import React from 'react';
+/**GlobalState Staff*/
+import { GlobalContextProvider } from '@/context/globalContext';
 /**Components**/
 import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
 import CanvasOverlay from '../overlays/canvasOverlay/CanvasOverlay';
-import { GlobalContextProvider } from '@/context/globalContext';
+import IntroOverlay from '../overlays/introOverlay/IntroOverlay';
 
 /**---------------------------------------------------------------------**/
 const AppContainer = ({ children }: { children: React.ReactNode }) => {
@@ -18,9 +20,11 @@ const AppContainer = ({ children }: { children: React.ReactNode }) => {
       just a test; prototype of context...
       */}
       <GlobalContextProvider
+        IntroOverlay={IntroOverlay}
         CanvasOverlay={CanvasOverlay}
         MainCanvas={MainCanvas}
         // MainCanvas={() => <MainCanvas />}
+        // IntroOverlay={IntroOverlay}
       >
         {children}
       </GlobalContextProvider>

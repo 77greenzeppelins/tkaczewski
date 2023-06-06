@@ -5,7 +5,7 @@ import React from 'react';
 import PageWrapper from '@/components/multipagesComponents/pageWrapper/PageWrapper';
 import AskAI from '@/components/pagesComponents/page2D/askAI/AskAI';
 import InView from '@/components/pagesComponents/page2D/inView/InView';
-import AnimatedTextHolder from '@/components/pagesComponents/page2D/inView/animatedText/AnimatedTextHolder';
+// import AnimatedTextHolder from '@/components/pagesComponents/page2D/inView/animatedText/AnimatedTextHolder';
 import InViewContainer from '@/components/multipagesComponents/_containers/inViewContainer/InViewContainer';
 
 export default function Page2D() {

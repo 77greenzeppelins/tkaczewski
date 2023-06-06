@@ -23,6 +23,7 @@ body,
     --color-dark: #01030d;
     --color-darkTint: #1a1c25;
     --color-light: #f1f5f9;
+    --color-lightDark: #c0c4c7;
     --color-corpo: #38bdf8;
   }
 }
@@ -46,6 +47,32 @@ body,
   }
   .wrapper-1 {
     @apply px-[2%] md:px-[60px] xl:px-[80px] xxl:px-[100px];
+  }
+
+  /*Text Styles*/
+  .word-spacing-01 {
+    word-spacing: 0.01rem;
+  }
+  .word-spacing-0125 {
+    word-spacing: 0.125rem;
+  }
+  .word-spacing-025 {
+    word-spacing: 0.25rem;
+  }
+  .p-label {
+    @apply text-[0.625rem] lg:text-[0.75rem] xxxl:text-[0.825rem] tracking-[0.125rem] uppercase word-spacing-0125 lg:word-spacing-025;
+  }
+  .p-v-small {
+    @apply text-[0.5rem] xxl:text-[0.625rem] xxxl:text-[0.75rem] tracking-[1px] lg:tracking-[0.125rem] word-spacing-01 lg:word-spacing-0125;
+  }
+  .p-small {
+    @apply text-[0.625rem] xxl:text-[0.75rem] xxxl:text-[0.825rem] tracking-[1px] lg:tracking-[0.125rem] word-spacing-01 lg:word-spacing-0125;
+  }
+  .p-regular {
+    @apply text-[0.75rem]  lg:text-[1rem] tracking-[2px] leading-tight;
+  }
+  .p-medium {
+    @apply text-[1.25rem] xs:text-[1.5rem] md:text-[1.75rem] xxl:text-[2.25rem] tracking-[2px] leading-tight;
   }
 
   /*Scrollbar style*/
