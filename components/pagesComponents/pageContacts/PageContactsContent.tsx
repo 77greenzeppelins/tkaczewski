@@ -16,7 +16,7 @@ const PageContactsContent = () => {
   const VIEWPORTS_NUMB = 2;
 
   /**Hook Section*/
-  const [squareRef, { height, width }] = useElementSize();
+  const [squareRef, { height }] = useElementSize();
   /*
   ___1. api for <InstantContactButtons> opacity
   */
@@ -31,12 +31,13 @@ const PageContactsContent = () => {
   /** */
   useScroll(
     ({
-      xy: [_, y],
-      direction: [dirX, dirY], //dirY => scroll down = progress = 1; otherwise -1
+      xy: [x, y],
+      direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
     }: {
       xy: number[];
       direction: number[];
     }) => {
+      //__if scroll down && scrolled more then half ot the element scrollHeight property
       const cond1 = dirY === 1 && y >= height / VIEWPORTS_NUMB;
       const cond2 = dirY === -1 && y < height / VIEWPORTS_NUMB / VIEWPORTS_NUMB;
       //___
