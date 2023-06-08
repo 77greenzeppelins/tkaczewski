@@ -21,7 +21,9 @@ const PageWrapper = ({ children }: Props) => {
 
   /**JSX**/
   return transitions((style, page) => (
-    <animated.div style={style}>{children}</animated.div>
+    <animated.div data-component="PageWrapper" style={style}>
+      {children}
+    </animated.div>
   ));
 
   // return (

@@ -52,7 +52,7 @@ const InstantContactButtons2D = (
   });
 
   return (
-    <div className="relative w-full h-full z-1">
+    <div className="w-full h-full z-1">
       <div className="flex justify-center h-[50%] w-full pt-[10vh]">
         <div
           // className="pointer-events-auto"

@@ -50,22 +50,19 @@ const ContactsDataSection = ({ transform }: Props) => {
   return (
     <animated.div
       ref={ref}
-      className="absolute inset-0 w-full h-[100vh] wrapper-1 z-10"
+      className="absolute inset-0 w-full h-[100vh] wrapper-1 "
       style={{
         transform,
       }}
       // style={{ transform: `translateX(${x}px)` }}
     >
-      <animated.div
-        // style={styles}
-        className=" flex flex-col items-start justify-center w-full h-full "
-      >
+      <div className="flex flex-col items-start justify-center w-full h-full">
         {/* <p className="text-4xl select-none text-neutral-300">
           contact / 2 / 100vh
         </p> */}
         <DirectPhone labelStyle={'p-medium text-corpo'} />
         <DirectEmail labelStyle={'p-medium text-corpo'} />
-      </animated.div>
+      </div>
     </animated.div>
   );
 };

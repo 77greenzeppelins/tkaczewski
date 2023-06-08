@@ -50,15 +50,26 @@ const PageContactsContent = () => {
     },
     {
       enabled: true,
-      target: typeof window !== 'undefined' ? window : undefined,
+      //   target: typeof window !== 'undefined' ? window : undefined,
+      target: window,
     }
   );
 
   /**JSX**/
   return (
-    <div data-container="PageContactsContent" ref={squareRef}>
+    <div
+      data-container="PageContactsContent"
+      ref={squareRef}
+      className="relative"
+    >
       <StickyContainer opacity={opacity} transform={transform} />
       <div className="h-[100vh] " />
+      {/* <div className="h-screen fc">
+        <p className="text-5xl text-light">1</p>
+      </div>
+      <div className="h-screen bg-corpo fc">
+        <p className="text-5xl text-light">2</p>
+      </div> */}
     </div>
   );
 };
