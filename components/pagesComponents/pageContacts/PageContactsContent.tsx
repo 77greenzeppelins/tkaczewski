@@ -48,6 +48,7 @@ const PageContactsContent = () => {
       });
     },
     {
+      enabled: true,
       target: window,
     }
   );
