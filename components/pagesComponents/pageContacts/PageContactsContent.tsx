@@ -50,8 +50,8 @@ const PageContactsContent = () => {
     },
     {
       enabled: true,
-      //   target: typeof window !== 'undefined' ? window : undefined,
-      target: window,
+      target: typeof window !== 'undefined' ? window : undefined,
+      //   target: window,
     }
   );
 
