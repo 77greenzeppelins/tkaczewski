@@ -17,9 +17,9 @@ const PageContactsContent = () => {
 
   /**Hook Section*/
   const [squareRef, { height, width }] = useElementSize();
-  //   console.log('height:', height);
-  /**...**/
-  //   const [comp1Styles, comp1Api] = useSpring(() => ({ opacity: 0 }));
+  /*
+  ___1. api for <InstantContactButtons> opacity
+  */
   const [{ opacity }, comp1Api] = useSpring(() => ({
     opacity: 0,
   }));
@@ -73,6 +73,7 @@ const PageContactsContent = () => {
   /**JSX**/
   return (
     <div
+      data-container="PageContactsContent"
       ref={squareRef}
       //   ref={ref}
     >
@@ -82,6 +83,13 @@ const PageContactsContent = () => {
         scale={scale}
         transform={transform}
       />
+      {/* <div className="fc h-[100vh] ">
+        {' '}
+        <button
+          onClick={() => console.log('...........')}
+          className="w-[100px] h-[100px] bg-corpo rounded-md pointer-events-auto"
+        />
+      </div> */}
       <div className="h-[100vh] " />
     </div>
   );

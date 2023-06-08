@@ -36,6 +36,10 @@ const InView = () => {
         <p className="text-3xl text-dark">Per aspera ad astra</p>
         <p className="text-5xl text-dark">Per aspera ad astra</p>
         <p className="text-3xl text-dark">Per aspera ad astra</p>
+        <button
+          onClick={() => console.log('...........')}
+          className="w-[100px] h-[100px] bg-dark rounded-md pointer-events-auto"
+        />
       </animated.div>
     </div>
   );

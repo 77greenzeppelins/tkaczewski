@@ -19,7 +19,7 @@ const StickyContainer = ({ opacity, x, scale, transform }: Props) => {
   return (
     <div
       data-component="StickyContainer"
-      className="sticky top-0 flex justify-center items-center h-[100vh] w-full -z-10"
+      className="sticky top-0 flex justify-center items-center h-[100vh] w-full z-1"
     >
       <InstantContactButtons2D opacity={opacity} />
       <ContactsDataSection

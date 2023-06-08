@@ -3,20 +3,26 @@ import React from 'react';
 // import { EnvelopeIcon } from '@heroicons/react/24/solid';
 /**Basic Data**/
 import { contactData, linksToInstantContactData } from '@/data/basicData';
-// import { linksToInstantContactData } from '../../../../data/_data';
 
 interface Props {
   aStyle?: string;
   iconStyle?: string;
   labelStyle?: string;
+  hasLabel?: boolean;
 }
 
 /**--------------------------------------------------------------------------------**/
-const DirectEmail = ({ aStyle, iconStyle, labelStyle }: Props) => {
+const DirectEmail = ({
+  aStyle,
+  iconStyle,
+  labelStyle,
+  hasLabel = true,
+}: Props) => {
   return (
     <a href={linksToInstantContactData.mail} className={aStyle}>
-      {/* <EnvelopeIcon className={iconStyle} /> */}
-      <p className={labelStyle}>{`email: ${contactData.mail}`}</p>
+      {hasLabel ? (
+        <p className={labelStyle}>{`email: ${contactData.mail}`}</p>
+      ) : null}
     </a>
   );
 };

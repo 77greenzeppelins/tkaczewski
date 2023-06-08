@@ -10,6 +10,8 @@ import {
   animated,
   SpringValue,
 } from '@react-spring/web';
+import DirectPhone from '@/components/multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
+import DirectEmail from '@/components/multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
 
 interface Props {
   // scrollDrivenStyles: { opacity: SpringValue<number> };
@@ -53,15 +55,22 @@ const InstantContactButtons2D = (
     <div className="relative w-full h-full z-1">
       <div className="flex justify-center h-[50%] w-full pt-[10vh]">
         <div
-          // className="opacity-50 bg-corpo"
+          // className="pointer-events-auto"
           style={{ width: height * 0.25, height: height * 0.3 }}
-        ></div>
+        >
+          <DirectPhone aStyle={'block w-full h-full'} hasLabel={false} />
+        </div>
       </div>
+
       <div className="flex justify-center h-[50%] w-full pt-[10vh]">
         <div
-          // className="opacity-50 bg-corpo"
+          onClick={() => {
+            console.log('...mail');
+          }}
           style={{ width: height * 0.25, height: height * 0.3 }}
-        ></div>
+        >
+          <DirectEmail aStyle={'block w-full h-full'} hasLabel={false} />
+        </div>
       </div>
       <animated.div
         // style={scrollDrivenStyles}
