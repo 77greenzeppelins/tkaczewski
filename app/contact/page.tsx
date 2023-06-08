@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 /**Components**/
 import PageWrapper from '@/components/multipagesComponents/pageWrapper/PageWrapper';

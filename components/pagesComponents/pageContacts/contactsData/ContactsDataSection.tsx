@@ -10,14 +10,11 @@ import DirectEmail from '@/components/multipagesComponents/_basicComponents/link
 //   dir: number | null;
 // }
 interface Props {
-  x: SpringValue<number>;
-  opacity: SpringValue<number>;
-  scale: SpringValue<number>;
   transform: SpringValue<string>;
 }
 
 /**--------------------------------**/
-const ContactsDataSection = ({ x, opacity, scale, transform }: Props) => {
+const ContactsDataSection = ({ transform }: Props) => {
   /**Spring Section**/
   const [ref, inView] = useInView({
     /*
@@ -55,11 +52,6 @@ const ContactsDataSection = ({ x, opacity, scale, transform }: Props) => {
       ref={ref}
       className="absolute inset-0 w-full h-[100vh] wrapper-1 z-10"
       style={{
-        // opacity: opacity,
-        // transform: `translateX(0%, ${x}%)`,
-        // transform: 'translateX(50%)',
-        // x,
-        // scale,
         transform,
       }}
       // style={{ transform: `translateX(${x}px)` }}

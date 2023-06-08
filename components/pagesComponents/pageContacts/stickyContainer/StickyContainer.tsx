@@ -9,25 +9,19 @@ import ContactsDataSection from '../contactsData/ContactsDataSection';
 interface Props {
   // scrollDrivenStyles: { opacity: SpringValue<number> };
   opacity: SpringValue<number>;
-  x: SpringValue<number>;
-  scale: SpringValue<number>;
+
   transform: SpringValue<string>;
 }
 
 /**-------------------------------**/
-const StickyContainer = ({ opacity, x, scale, transform }: Props) => {
+const StickyContainer = ({ opacity, transform }: Props) => {
   return (
     <div
       data-component="StickyContainer"
       className="sticky top-0 flex justify-center items-center h-[100vh] w-full z-1"
     >
       <InstantContactButtons2D opacity={opacity} />
-      <ContactsDataSection
-        x={x}
-        opacity={opacity}
-        scale={scale}
-        transform={transform}
-      />
+      <ContactsDataSection transform={transform} />
     </div>
   );
 };

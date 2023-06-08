@@ -23,9 +23,7 @@ const PageContactsContent = () => {
   const [{ opacity }, comp1Api] = useSpring(() => ({
     opacity: 0,
   }));
-  const [{ x, transform, scale }, comp2Api] = useSpring(() => ({
-    x: width,
-    scale: 0,
+  const [{ transform }, comp2Api] = useSpring(() => ({
     transform: 'translateX(100%)',
     config: { mass: 5, friction: 120, tension: 120 },
   }));
@@ -39,30 +37,14 @@ const PageContactsContent = () => {
       xy: number[];
       direction: number[];
     }) => {
-      //   console.log('scroll offset', y);
-      //   console.log('opacity', y / (height / VIEWPORTS_NUMB));
-      //   console.log('dirY', dirY);
-      let x;
-      let s;
       const cond1 = dirY === 1 && y >= height / VIEWPORTS_NUMB;
       const cond2 = dirY === -1 && y < height / VIEWPORTS_NUMB / VIEWPORTS_NUMB;
-      //   if (cond1) {
-      //     x = 0;
-      //     s = 1;
-      //   }
-      //   if (cond2) {
-      //     x = width;
-      //     s = 0;
-      //   }
       //___
       comp1Api.start({
         opacity: y / (height / VIEWPORTS_NUMB),
       });
       comp2Api.start({
-        x: x,
-        scale: s,
-        transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`, //error
-        // transform: `translateX(${100}%)`,
+        transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
       });
     },
     {
@@ -72,24 +54,8 @@ const PageContactsContent = () => {
 
   /**JSX**/
   return (
-    <div
-      data-container="PageContactsContent"
-      ref={squareRef}
-      //   ref={ref}
-    >
-      <StickyContainer
-        opacity={opacity}
-        x={x}
-        scale={scale}
-        transform={transform}
-      />
-      {/* <div className="fc h-[100vh] ">
-        {' '}
-        <button
-          onClick={() => console.log('...........')}
-          className="w-[100px] h-[100px] bg-corpo rounded-md pointer-events-auto"
-        />
-      </div> */}
+    <div data-container="PageContactsContent" ref={squareRef}>
+      <StickyContainer opacity={opacity} transform={transform} />
       <div className="h-[100vh] " />
     </div>
   );
