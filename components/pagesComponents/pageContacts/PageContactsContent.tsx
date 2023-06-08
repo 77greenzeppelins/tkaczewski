@@ -49,7 +49,7 @@ const PageContactsContent = () => {
     },
     {
       enabled: true,
-      target: window,
+      target: typeof window !== 'undefined' ? window : undefined,
     }
   );
 
