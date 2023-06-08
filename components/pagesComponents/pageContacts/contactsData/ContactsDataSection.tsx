@@ -1,12 +1,23 @@
 'use client';
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 /**Spring Staff**/
-import { useInView, useSpring, animated } from '@react-spring/web';
+import { useInView, useSpring, animated, SpringValue } from '@react-spring/web';
 import DirectPhone from '@/components/multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
 import DirectEmail from '@/components/multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
 
+// interface Props {
+//   direction: MutableRefObject<number | null>;
+//   dir: number | null;
+// }
+interface Props {
+  x: SpringValue<number>;
+  opacity: SpringValue<number>;
+  scale: SpringValue<number>;
+  transform: SpringValue<string>;
+}
+
 /**--------------------------------**/
-const ContactsDataSection = () => {
+const ContactsDataSection = ({ x, opacity, scale, transform }: Props) => {
   /**Spring Section**/
   const [ref, inView] = useInView({
     /*
@@ -24,8 +35,8 @@ const ContactsDataSection = () => {
     // amount: 1,
 
     //___
-    rootMargin: '-20% 0px -20% 0px',
-    amount: 0.4,
+    rootMargin: '-5% 0px -20% 0px',
+    amount: 0.5,
   });
 
   const styles = useSpring({
@@ -40,10 +51,22 @@ const ContactsDataSection = () => {
   });
 
   return (
-    <div ref={ref} className="w-full h-[100vh] wrapper-1">
+    <animated.div
+      ref={ref}
+      className="absolute inset-0 w-full h-[100vh] wrapper-1 z-10"
+      style={{
+        // opacity: opacity,
+        // transform: `translateX(0%, ${x}%)`,
+        // transform: 'translateX(50%)',
+        // x,
+        // scale,
+        transform,
+      }}
+      // style={{ transform: `translateX(${x}px)` }}
+    >
       <animated.div
-        style={styles}
-        className="z-10 flex flex-col items-start justify-center w-full h-full backdrop-blur-md"
+        // style={styles}
+        className=" flex flex-col items-start justify-center w-full h-full "
       >
         {/* <p className="text-4xl select-none text-neutral-300">
           contact / 2 / 100vh
@@ -51,7 +74,7 @@ const ContactsDataSection = () => {
         <DirectPhone labelStyle={'p-medium text-corpo'} />
         <DirectEmail labelStyle={'p-medium text-corpo'} />
       </animated.div>
-    </div>
+    </animated.div>
   );
 };
 

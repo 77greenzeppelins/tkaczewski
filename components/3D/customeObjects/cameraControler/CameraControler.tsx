@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
