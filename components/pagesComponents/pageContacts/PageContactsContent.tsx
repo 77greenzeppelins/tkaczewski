@@ -51,7 +51,6 @@ const PageContactsContent = () => {
     {
       enabled: true,
       target: typeof window !== 'undefined' ? window : undefined,
-      //   target: window,
     }
   );
 
