@@ -59,7 +59,7 @@ const PageContactsContent = () => {
     <div
       data-container="PageContactsContent"
       ref={squareRef}
-      className="relative"
+      className="relative touch-none"
     >
       <StickyContainer opacity={opacity} transform={transform} />
       <div className="h-[100vh] " />
