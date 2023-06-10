@@ -4,7 +4,6 @@ import React, { useRef } from 'react';
 import StickyContainer from './stickyContainer/StickyContainer';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
-import useMeasure from 'react-use-measure';
 /**Spring Staff**/
 import { useSpring } from '@react-spring/web';
 /**Gesture Staff**/
@@ -25,7 +24,7 @@ const PageContactsContent = () => {
   }));
   const [{ transform }, comp2Api] = useSpring(() => ({
     transform: 'translateX(100%)',
-    config: { mass: 5, friction: 120, tension: 120 },
+    // config: { mass: 5, friction: 120, tension: 120 },
   }));
 
   /** */
@@ -46,6 +45,7 @@ const PageContactsContent = () => {
       });
       comp2Api.start({
         transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
+        config: { mass: 5, friction: 120, tension: 120 },
       });
     },
     {

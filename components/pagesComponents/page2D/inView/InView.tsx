@@ -33,9 +33,9 @@ const InView = () => {
   return (
     <div className="w-full h-[50vh] flex flex-col justify-evenly  bg-corpo px-[10%] overflow-hidden">
       <animated.div ref={ref} style={springs} className="flex flex-col ">
-        <p className="text-3xl text-dark">Per aspera ad astra</p>
-        <p className="text-5xl text-dark">Per aspera ad astra</p>
-        <p className="text-3xl text-dark">Per aspera ad astra</p>
+        <p className="text-3xl text-dark">Per InView ad astra</p>
+        <p className="text-5xl text-dark">Per InView ad astra</p>
+        <p className="text-3xl text-dark">Per InView ad astra</p>
         <button
           onClick={() => console.log('...........')}
           className="w-[100px] h-[100px] bg-dark rounded-md pointer-events-auto"

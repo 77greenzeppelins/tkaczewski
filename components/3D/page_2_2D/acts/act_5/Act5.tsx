@@ -9,7 +9,7 @@ import RaphaelPainting from './raphaelPainting/RaphaelPainting';
 /**Spring Staff*/
 import { useSpring, animated } from '@react-spring/three';
 /**BasicData*/
-import { springConfigs } from '@/data/basicData';
+import { basicConfigs, springConfigs, page3DConfigs } from '@/data/basicData';
 import useWindowSize from '@/hooks/useWindowSize';
 
 /**HardCoded Staff*/
@@ -21,16 +21,19 @@ const Act5 = () => {
   const { askAI, setAskAI } = useGlobalContext();
   /**Responsivenes**/
   const { width } = useWindowSize();
-  // const respScale = width > 460 ?
+  const RESP_SCALE = width >= basicConfigs.respTreshold;
+  /**spread Data*/
+  const { springPositionsZ, springPositionsY, springRotationX, springDelay } =
+    page3DConfigs.page2D.act5Config;
   /*
   ___1. this spring animates initial move, when painting enters the scene...
   */
   const { positionZ, rotationX, positionY } = useSpring({
-    positionZ: askAI ? -0.1 : -1.7,
-    positionY: askAI ? -0.3 : 0.5,
-    rotationX: askAI ? Math.PI * -0.15 : 0,
+    positionZ: askAI ? springPositionsZ[1] : springPositionsZ[0],
+    positionY: askAI ? springPositionsY[1] : springPositionsY[0],
+    rotationX: askAI ? springRotationX[1] : springRotationX[0],
     config: springConfigs.heavyAndSlow,
-    delay: 1000,
+    delay: springDelay,
   });
 
   /**Set FALSE section**/
@@ -42,7 +45,7 @@ const Act5 = () => {
   /**JSX**/
   return (
     <animated.group
-      scale={width < 460 ? [0.8, 0.8, 0.8] : [1, 1, 1]}
+      scale={RESP_SCALE ? [1, 1, 1] : [0.75, 0.75, 0.75]}
       dispose={null}
       rotation-x={rotationX}
       position-z={positionZ}
@@ -53,7 +56,7 @@ const Act5 = () => {
       // position-y={-0.3}
       // ref={groupRef}
     >
-      <PhilosophersAnswers />
+      <PhilosophersAnswers enable={askAI} />
       <RaphaelPainting />
     </animated.group>
   );

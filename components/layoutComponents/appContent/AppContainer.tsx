@@ -3,7 +3,7 @@ import React from 'react';
 import { GlobalContextProvider } from '@/context/globalContext';
 /**Components**/
 import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
-import CanvasOverlay from '../overlays/canvasOverlay/CanvasOverlay';
+import CanvasOverlay from '../overlays/canvasOverlay/CanvasOverlay2';
 import IntroOverlay from '../overlays/introOverlay/IntroOverlay';
 
 /**---------------------------------------------------------------------**/

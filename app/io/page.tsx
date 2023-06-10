@@ -1,16 +1,16 @@
 import React from 'react';
 /**Components**/
 import PageWrapper from '@/components/multipagesComponents/pageWrapper/PageWrapper';
-import PageCvContent from '@/components/pagesComponents/CV/PageCvContent';
+import PageIOContent from '@/components/pagesComponents/pageIO/PageIOContent';
 
 /**----------------**/
-const PageCv = () => {
+const PageIO = () => {
   /**JSX**/
   return (
     <PageWrapper>
-      <PageCvContent />
+      <PageIOContent />
     </PageWrapper>
   );
 };
 
-export default PageCv;
+export default PageIO;

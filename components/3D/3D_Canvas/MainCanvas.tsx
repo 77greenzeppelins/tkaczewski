@@ -46,15 +46,17 @@ const MainCanvas = () => {
       gl={{
         toneMapping: THREE.ACESFilmicToneMapping,
       }}
-      camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
+      //___initial camera position; should be set even if <CameraControler> is used
+      // camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
+      camera={{ position: [0, 0, 1], fov: 45, near: 0.1, far: 30 }}
     >
       <Scene3D />
-      {/* <Perf
+      <Perf
         position="bottom-right"
         showGraph={width > 800 ? true : false}
         // deepAnalyze={true}
         minimal={width > 800 ? false : true}
-      /> */}
+      />
     </Canvas>
   );
 };

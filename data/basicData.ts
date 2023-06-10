@@ -8,6 +8,7 @@ const pagesLinks = [
   { href: '/2d', label: '2D' },
   { href: '/cv', label: 'CV' },
   { href: '/contact', label: 'Contact' },
+  { href: '/io', label: 'IO' },
 ];
 
 const contactData = {
@@ -37,10 +38,18 @@ const assetsPaths = {
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };
+/*
+__1. let's assume there is a responsiveness treshold set to 768px
+__2. condition should look like this: "x >= 768" as it corresponds to tailwind "md" setting
+__3. ternay : respTreshold ? desktopSettings : mobilesettings
+*/
+const basicConfigs = {
+  respTreshold: 768,
+};
 
 //___
 const cameraSettings = {
-  x: 3,
+  x: 1, //?????
 };
 
 /*
@@ -54,17 +63,22 @@ const pages3DPositions = {
   pageContacts: { x: 30 },
 };
 
-//___used in component with images
+/*
+(!) used in component with images
+*/
 const imagesData = {
+  //__pageHome
   botticelliVenus: { path: assetsPaths.venus, width: 0.445, height: 0.8 },
+  //__page2D
   raphaelSchool: { path: assetsPaths.school, width: 0.8, height: 1.047 },
-
+  //__pageContacts
   phone: {
     path: assetsPaths.phone,
     width: 0.42,
     height: 0.592,
     position: [pages3DPositions.pageContacts.x, 0.55, 0],
   },
+  //__pageContacts
   email: {
     path: assetsPaths.email,
     width: 0.42,
@@ -73,13 +87,15 @@ const imagesData = {
   },
 };
 
+/*
+(!) bunch of settings used in 3D world;
+*/
 const page3DConfigs = {
   //___general settings
   visibilityDelay: 1000,
   canvasOverlayDelay: 1000,
 
   //___for pageHome
-
   pageHome: {
     pagePosition: [pages3DPositions.pageHome.x, 0, 0],
   },
@@ -137,6 +153,23 @@ const page3DConfigs = {
   //___for page2D
   page2D: {
     pagePosition: [pages3DPositions.page2D.x, 0, 0],
+    // section1: { position: [1, 1, 1] },
+
+    //__Act_1
+    act1Config: {
+      // springPositionsZ: [-4.25, -2], //from | to
+      // springPositionsY: [-1.5, -0.3], //from | to
+      // springRotationX: [0, Math.PI * -0.2], //from | to
+      // springDelay: 1000,
+    },
+
+    //__Act_5
+    act5Config: {
+      springPositionsZ: [-4.25, -2], //from | to
+      springPositionsY: [-1.5, -0.3], //from | to
+      springRotationX: [0, Math.PI * -0.2], //from | to
+      springDelay: 1000,
+    },
     answers: {
       platoCloud: {
         scale: [0.6, 0.6, 0.6],
@@ -175,6 +208,9 @@ const animationsDelays = {
   manuDelay: 2600,
 };
 
+/*
+__1. some general spring settings => for "config" property
+*/
 const springConfigs = {
   heavyAndSlow: { mass: 10, tension: 70, friction: 30, precision: 0.0001 },
   molasses: { mass: 1, tension: 280, friction: 120 },
@@ -183,6 +219,9 @@ const springConfigs = {
 };
 
 export {
+  //___
+  basicConfigs,
+  //___
   colors,
   pagesLinks,
   assetsPaths,

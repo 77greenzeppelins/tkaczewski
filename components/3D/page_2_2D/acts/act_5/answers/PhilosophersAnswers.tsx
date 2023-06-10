@@ -11,13 +11,17 @@ import MouseMoveGesture from '@/utils/gestures/mouseMoveGesture/mouseMoveGesture
 import { page3DConfigs } from '@/data/basicData';
 import DreiText from '@/components/3D/_Drei/text/DreiText';
 
-const PhilosophersAnswers = () => {
+/**TS**/
+interface Props {
+  enable: boolean;
+}
+const PhilosophersAnswers = ({ enable = true }: Props) => {
   /*
   Gesture Section
   this animation effects group for <AnsverYes> & <AnswerNo> to imitate some mouse move
   */
   const [x, y] = MouseMoveGesture({
-    enabled: true,
+    enabled: enable,
     tileFactorX: 0.15,
     tileFactorY: 0.15,
   });

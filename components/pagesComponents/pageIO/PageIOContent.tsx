@@ -3,7 +3,7 @@ import { animated } from '@react-spring/web';
 import { useRef } from 'react';
 
 /**------------------------**/
-function PageCvContent() {
+function PageIOContent() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   /**JSX**/
@@ -19,4 +19,4 @@ function PageCvContent() {
   );
 }
 
-export default PageCvContent;
+export default PageIOContent;

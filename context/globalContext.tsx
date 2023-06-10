@@ -9,17 +9,17 @@ import {
   SetStateAction,
 } from 'react';
 
-type DataType = {
-  fakeType: boolean;
-};
+// type DataType = {
+//   fakeType: boolean;
+// };
 
 interface ContextProps {
   isIntroOverlay: boolean;
   setIsIntroOverlay: Dispatch<SetStateAction<boolean>>;
   askAI: boolean;
   setAskAI: Dispatch<SetStateAction<boolean>>;
-  property1: DataType[];
-  setProperty1: Dispatch<SetStateAction<DataType[]>>;
+  // property1: DataType[];
+  // setProperty1: Dispatch<SetStateAction<DataType[]>>;
 }
 
 interface ProviderProps {
@@ -38,8 +38,8 @@ const GlobalContext = createContext<ContextProps>({
   setIsIntroOverlay: (prev): boolean => !prev,
   askAI: false,
   setAskAI: (prev): boolean => !prev,
-  property1: [],
-  setProperty1: (): DataType[] => [],
+  // property1: [],
+  // setProperty1: (): DataType[] => [],
 });
 
 /*
@@ -56,7 +56,7 @@ export const GlobalContextProvider = ({
 }: ProviderProps) => {
   const [isIntroOverlay, setIsIntroOverlay] = useState(true);
   const [askAI, setAskAI] = useState(false);
-  const [property1, setProperty1] = useState<[] | DataType[]>([]);
+  // const [property1, setProperty1] = useState<[] | DataType[]>([]);
   return (
     <GlobalContext.Provider
       value={{
@@ -64,8 +64,8 @@ export const GlobalContextProvider = ({
         setIsIntroOverlay,
         askAI,
         setAskAI,
-        property1,
-        setProperty1,
+        // property1,
+        // setProperty1,
       }}
     >
       <>

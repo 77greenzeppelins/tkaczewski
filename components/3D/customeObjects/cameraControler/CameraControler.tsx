@@ -25,7 +25,7 @@ const CameraControler = () => {
   /**Animations / Manipulations*/
   useFrame(state => {
     /*
-    for HomePage; z-axis settings
+    __1. settings solely for HomePage; only z-axis is animated
     */
     if (visibleOnHome) {
       meshRef.current.position.set(
@@ -40,7 +40,10 @@ const CameraControler = () => {
         )
       );
     }
-    //__
+    /*
+    __1. general settings for all Pages;
+    __2. concept: each page should be deploy in "separate" sector on x-xais
+    */
     const cameraPosition = new THREE.Vector3(
       //___camera position-x
       // visibleOnContacts ? 10 : 0,

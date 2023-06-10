@@ -13,4 +13,14 @@ const timeZones = [
   { city: 'Beijing', zone: 'Asia/Shanghai' },
 ];
 
-export { introOverlayTexts, introOverlayTextsStyles, timeZones };
+const page2DTexts = {
+  section1: {
+    part1: [
+      "Hi, I'm Oskar",
+      'front-end developer',
+      'probably the best alternative for all AI tools you know',
+    ],
+  },
+};
+
+export { introOverlayTexts, introOverlayTextsStyles, timeZones, page2DTexts };

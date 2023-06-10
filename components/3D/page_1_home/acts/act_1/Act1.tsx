@@ -37,12 +37,12 @@ const Act1 = ({ groupProps }: Props) => {
     // console.log('state.mouse.x: ', state.mouse.x);
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      (state.mouse.x * Math.PI) / 4,
+      (state.mouse.x * Math.PI) / 8,
       0.05
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,
-      (state.mouse.y * Math.PI) / -8,
+      (state.mouse.y * Math.PI) / -18,
       0.05
     );
   });
@@ -80,9 +80,13 @@ const Act1 = ({ groupProps }: Props) => {
       // }}
     >
       <group {...groupProps} ref={groupRef}>
-        <BasicFrame meshProps={{ scale: [0.86, 1.5, 1.13] }} />
+        <BasicFrame
+          //  meshProps={{ scale: [0.86, 1.5, 1.13] }}
+          meshProps={{ scale: [0.86 * 0.45, 1.5 * 0.45, 1.13 * 0.45] }}
+        />
         <ImageCanvas
-          meshProps={{ scale: [0.9, 0.85, 0.85] }}
+          // meshProps={{ scale: [0.9, 0.85, 0.85] }}
+          meshProps={{ scale: [0.9 * 0.45, 0.85 * 0.45, 0.85 * 0.45] }}
           argsWidth={imagesData.botticelliVenus.width * 2}
           argsHeight={imagesData.botticelliVenus.height * 2}
           image={imagesData.botticelliVenus.path}

@@ -1,3 +1,4 @@
+'use client';
 import React, { ReactElement, useRef, cloneElement } from 'react';
 import { animated, useInView, useSpring } from '@react-spring/web';
 
@@ -40,7 +41,7 @@ const InViewContainer = () => {
     (!) it's probably better to set referenc to this <div> then to <animated.div> as I noticed some bugs / text vibration when fer was in animated container  
     */
       ref={ref}
-      className="w-full flex flex-col justify-evenly border-b border-corpo  px-[10%] overflow-hidden "
+      className="w-full flex flex-col justify-evenly border-b border-t border-corpo  px-[10%] overflow-hidden "
     >
       <animated.div
         // ref={ref}
