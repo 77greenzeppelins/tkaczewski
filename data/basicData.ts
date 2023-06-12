@@ -47,9 +47,14 @@ const basicConfigs = {
   respTreshold: 768,
 };
 
-//___
+/*
+__1. it turned out that camera settings take part in some calculations in various places in code / in various components;
+__2. are used in <CameraControler> , <PlaneShader>
+*/
 const cameraSettings = {
-  x: 1, //?????
+  x: 1,
+  z: 1,
+  fov: 45,
 };
 
 /*

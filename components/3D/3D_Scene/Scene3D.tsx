@@ -1,4 +1,5 @@
 /**Provider**/
+import DreiPerspectiveCamera from '../_Drei/camera/DreiPerspectiveCamera';
 import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBasicMaterial';
 /**Components**/
 import CameraControler from '../customeObjects/cameraControler/CameraControler';
@@ -12,6 +13,7 @@ const Scene3D = () => {
   return (
     <BasicMaterialProvider>
       {/*-----Canvas Engine--------------------------------*/}
+      <DreiPerspectiveCamera />
       <CameraControler />
       {/*-----Canvas Infrastructure--------------------------------*/}
       <fog attach="fog" args={['#01030d', 3, 4.3]} />

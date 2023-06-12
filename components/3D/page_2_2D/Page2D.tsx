@@ -2,6 +2,7 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 /**Components**/
 import Act1 from './acts/act_1/Act1';
+import Act2 from './acts/act_2/Act2';
 import Act5 from './acts/act_5/Act5';
 /**THREE Staff**/
 import * as THREE from 'three';
@@ -37,8 +38,8 @@ const Page2D = () => {
       visible={isPath}
       position={new THREE.Vector3(...page3DConfigs.page2D.pagePosition)}
     >
-      <Act1 />
-      <Act5 />
+      <Act2 />
+      {/* <Act5 /> */}
     </group>
   );
 };

@@ -14,6 +14,9 @@ import { useSpring, animated } from '@react-spring/three';
 import useWindowSize from '@/hooks/useWindowSize';
 import { useFrame, useThree } from '@react-three/fiber';
 import PointsBasic from '@/components/3D/basicShapes/points/pointsBasic/PointsBasic';
+import PointsBuffered from '@/components/3D/basicShapes/points/pointsBuffered/PointsBuffered';
+import PointsShader from '@/components/3D/basicShapes/points/pointsShader/PointsShader';
+import PlaneShader from '@/components/3D/shaders/plane/3DObj/PlaneShader';
 
 /**HardCoded Staff*/
 // const minWidthForAnimation = 769;
@@ -35,10 +38,9 @@ const Act1 = () => {
   const state = useThree();
   // console.log('state:', state);
   useFrame((state, delta) => {
-    groupRef.current.rotation.x += delta * 0.01;
-    groupRef.current.rotation.y += delta * 0.05;
-    groupRef.current.rotation.z += delta * -0.02;
-
+    // groupRef.current.rotation.x += delta * 0.01;
+    // groupRef.current.rotation.y += delta * 0.05;
+    // groupRef.current.rotation.z += delta * -0.02;
     // groupRef.current.position.x = width >= 1024 ? 0.75 : 0;
     // console.log('state.mouse.x: ', state.mouse.x);
     // groupRef.current.rotation.y = THREE.MathUtils.lerp(
@@ -80,16 +82,25 @@ const Act1 = () => {
       }
       dispose={null}
       // rotation-x={0}
-      rotation-y={width >= 1024 ? Math.PI * -0.1 : 0}
+      // rotation-y={width >= 1024 ? Math.PI * -0.1 : 0}
       // position-x={width >= 1024 ? 0.75 : 0}
-      position-y={width >= 1024 ? 0 : -0.45}
+      // position-y={width >= 1024 ? 0 : -0.45}
+      position-z={0.6}
       //___if you wan to test component
       // rotation-x={Math.PI * -0.15}
       // position-z={-0.1}
       // position-y={-0.3}
       // ref={groupRef}
     >
-      <PointsBasic pointSize={0.0025} />
+      {/* <PointsBasic pointSize={0.0025} /> */}
+
+      {/* <PointsBuffered
+        verticesNumber={2000}
+        shape={'sphere'}
+        pointSize={0.001}
+      /> */}
+      {/* <PointsShader verticesNumber={2000} shape={'sphere'} pointSize={0.001} /> */}
+      <PlaneShader />
     </animated.group>
   );
 };

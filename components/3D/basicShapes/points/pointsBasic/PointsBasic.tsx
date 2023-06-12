@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 /**R3F Staff**/
 import { useFrame } from '@react-three/fiber';
 /**TS*/

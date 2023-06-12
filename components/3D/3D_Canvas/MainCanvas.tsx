@@ -48,7 +48,7 @@ const MainCanvas = () => {
       }}
       //___initial camera position; should be set even if <CameraControler> is used
       // camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
-      camera={{ position: [0, 0, 1], fov: 45, near: 0.1, far: 30 }}
+      // camera={{ position: [0, 0, 1], fov: 45, near: 0.1, far: 30 }}
     >
       <Scene3D />
       <Perf

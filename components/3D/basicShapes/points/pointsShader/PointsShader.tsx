@@ -3,7 +3,10 @@ import React, { useEffect, useMemo, useRef } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F staff*/
-import { BufferAttribute, PointsMaterial } from 'three';
+// import { BufferAttribute, PointsMaterial } from 'three';
+/**Shaders**/
+import vertexShader from '@/components/3D/shaders/points/vertexShader';
+import fragmentShader from '@/components/3D/shaders/points/fragmentShader';
 
 /**TS**/
 interface Props {
@@ -11,7 +14,7 @@ interface Props {
   shape: 'box' | 'sphere';
   pointSize: number;
 }
-const PointsBuffered = ({ verticesNumber, shape, pointSize }: Props) => {
+const PointsShader = ({ verticesNumber, shape, pointSize }: Props) => {
   /**References**/
   const pointsRef = useRef<THREE.Points>(null!);
   //   const pointsRef = useRef(null!);
@@ -56,23 +59,37 @@ const PointsBuffered = ({ verticesNumber, shape, pointSize }: Props) => {
     return positions;
   }, [verticesNumber, shape]);
 
-  useFrame(({ clock }) => {
-    /*
-    __1. this is a problematic approach
-    */
-    // for (let i = 0; i < verticesNumber; i++) {
-    //   //   const valueGap = i * 3;
-    //   //   pointsRef.current.geometry.attributes.position.array[valueGap] +=
-    //   //     Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   //   pointsRef.current.geometry.attributes.position.array[valueGap] +=
-    //   //     Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   // pointsRef.current.geometry.attributes.position.array[valueGap + 1] +=
-    //   //   Math.cos(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   // pointsRef.current.geometry.attributes.position.array[valueGap + 2] +=
-    //   //   Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    // }
-    // pointsRef.current.geometry.attributes.position.needsUpdate = true;
+  /*
+  Section Animate / Manipulate / make shaders
+  */
+  const uniforms = useMemo(
+    () => ({
+      uTime: {
+        value: 0.0,
+      },
+      //__any other attributes here
+    }),
+    []
+  );
+
+  useFrame(state => {
+    // (pointsRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value =
+    //   state.clock.elapsedTime;
+    shaderMaterialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
   });
+
+  useEffect(() => {
+    console.log(
+      'pointsRef',
+      //__this is a type casting
+      (pointsRef.current.material as THREE.ShaderMaterial).uniforms
+    );
+    console.log(
+      'shaderMaterialRef',
+      //__this is a type casting
+      shaderMaterialRef.current.uniforms
+    );
+  }, []);
 
   /**JSX**/
   return (
@@ -88,14 +105,15 @@ const PointsBuffered = ({ verticesNumber, shape, pointSize }: Props) => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial
-        size={pointSize}
-        color="#5786F5"
-        sizeAttenuation
+      <shaderMaterial
+        ref={shaderMaterialRef}
         depthWrite={false}
+        fragmentShader={fragmentShader}
+        vertexShader={vertexShader}
+        uniforms={uniforms}
       />
     </points>
   );
 };
 
-export default PointsBuffered;
+export default PointsShader;

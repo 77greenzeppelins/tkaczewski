@@ -11,7 +11,9 @@ interface MaterialProviderProps {
   children: React.ReactNode;
 }
 
-// const BasicMaterialContext= React.createContext()
+/*
+__1. create context
+*/
 const BasicMaterialContext = React.createContext<IMaterialContext | undefined>(
   undefined
 );
@@ -39,5 +41,3 @@ export const useBasicMaterial = (): MeshBasicMaterial => {
   }
   return context.material;
 };
-
-// export default ThreeBasicMaterial
