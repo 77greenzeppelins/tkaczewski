@@ -55,8 +55,8 @@ const Act2 = () => {
     // dispose={null}
     // position-z={0.6}
     >
-      {/* <PointsShader verticesNumber={2000} shape={'sphere'} pointSize={0.001} /> */}
-      <PlaneShader />
+      <PointsShader verticesNumber={2000} shape={'sphere'} pointSize={0.001} />
+      {/* <PlaneShader /> */}
       {/* <MovingPlane /> */}
     </animated.group>
   );

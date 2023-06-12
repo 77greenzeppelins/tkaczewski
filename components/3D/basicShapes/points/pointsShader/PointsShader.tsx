@@ -5,16 +5,25 @@ import * as THREE from 'three';
 /**R3F staff*/
 // import { BufferAttribute, PointsMaterial } from 'three';
 /**Shaders**/
-import vertexShader from '@/components/3D/shaders/points/vertexShader';
-import fragmentShader from '@/components/3D/shaders/points/fragmentShader';
+import vertexShader from './vertexShader';
+import fragmentShader from './fragmentShader';
+// import someFake100 from './someFake100';
+// import vertexShader from '@/components/3D/shaders/planes/movingPlane/vertexShader';
+// import fragmentShader from '@/components/3D/shaders/planes/movingPlane/fragmentShader';
 
 /**TS**/
 interface Props {
   verticesNumber: number;
   shape: 'box' | 'sphere';
   pointSize: number;
+  radius?: number;
 }
-const PointsShader = ({ verticesNumber, shape, pointSize }: Props) => {
+const PointsShader = ({
+  verticesNumber,
+  radius = 1,
+  shape,
+  pointSize,
+}: Props) => {
   /**References**/
   const pointsRef = useRef<THREE.Points>(null!);
   //   const pointsRef = useRef(null!);
@@ -42,8 +51,8 @@ const PointsShader = ({ verticesNumber, shape, pointSize }: Props) => {
 
     if (shape === 'sphere') {
       for (let i = 0; i < verticesNumber; i++) {
-        const distance = 1;
-
+        // const distance = 1;
+        const distance = Math.sqrt(Math.random()) * radius;
         const theta = THREE.MathUtils.randFloatSpread(360);
         const phi = THREE.MathUtils.randFloatSpread(360);
 
@@ -54,42 +63,50 @@ const PointsShader = ({ verticesNumber, shape, pointSize }: Props) => {
         positions.set([x, y, z], i * 3);
       }
     }
-
     //__return section
     return positions;
-  }, [verticesNumber, shape]);
+  }, [verticesNumber, shape, radius]);
 
   /*
   Section Animate / Manipulate / make shaders
   */
   const uniforms = useMemo(
     () => ({
-      uTime: {
+      u_time: {
         value: 0.0,
       },
-      //__any other attributes here
+      u_radius: {
+        value: radius,
+      },
+      u_colorA: { value: new THREE.Color('#FFE486') },
+      u_colorB: { value: new THREE.Color('#FEB3D9') },
     }),
-    []
+    [radius]
   );
 
   useFrame(state => {
-    // (pointsRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value =
-    //   state.clock.elapsedTime;
-    shaderMaterialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
+    const { clock } = state;
+    shaderMaterialRef.current.uniforms.u_time.value = clock.getElapsedTime();
   });
 
-  useEffect(() => {
-    console.log(
-      'pointsRef',
-      //__this is a type casting
-      (pointsRef.current.material as THREE.ShaderMaterial).uniforms
-    );
-    console.log(
-      'shaderMaterialRef',
-      //__this is a type casting
-      shaderMaterialRef.current.uniforms
-    );
-  }, []);
+  //   useFrame(state => {
+  //     // (pointsRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value =
+  //     //   state.clock.elapsedTime;
+  //     shaderMaterialRef.current.uniforms.u_time.value = state.clock.elapsedTime;
+  //   });
+
+  //   useEffect(() => {
+  //     console.log(
+  //       'pointsRef',
+  //       //__this is a type casting
+  //       (pointsRef.current.material as THREE.ShaderMaterial).uniforms
+  //     );
+  //     console.log(
+  //       'shaderMaterialRef',
+  //       //__this is a type casting
+  //       shaderMaterialRef.current.uniforms
+  //     );
+  //   }, []);
 
   /**JSX**/
   return (

@@ -39,7 +39,7 @@ const Page2D = () => {
       position={new THREE.Vector3(...page3DConfigs.page2D.pagePosition)}
     >
       <Act2 />
-      {/* <Act5 /> */}
+      <Act5 />
     </group>
   );
 };

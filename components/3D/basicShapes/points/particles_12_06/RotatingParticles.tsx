@@ -1,9 +1,8 @@
-import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useMemo, useRef } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
-/**R3F staff*/
-import { BufferAttribute, PointsMaterial } from 'three';
+/**R3F Staff**/
+import { useFrame } from '@react-three/fiber';
 
 /**TS**/
 interface Props {
@@ -11,7 +10,8 @@ interface Props {
   shape: 'box' | 'sphere';
   pointSize: number;
 }
-const PointsBuffered = ({ verticesNumber, shape, pointSize }: Props) => {
+
+const RotatingParticles = ({ verticesNumber, shape, pointSize }: Props) => {
   /**References**/
   const pointsRef = useRef<THREE.Points>(null!);
   //   const pointsRef = useRef(null!);
@@ -56,24 +56,23 @@ const PointsBuffered = ({ verticesNumber, shape, pointSize }: Props) => {
     return positions;
   }, [verticesNumber, shape]);
 
-  useFrame(({ clock }) => {
-    /*
-    __1. this is a problematic approach
-    __2. firs of all, generates some TS problems
-    __3. secondly, isn't performant at all!
-    */
-    // for (let i = 0; i < verticesNumber; i++) {
-    //   //   const valueGap = i * 3;
-    //   //   pointsRef.current.geometry.attributes.position.array[valueGap] +=
-    //   //     Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   //   pointsRef.current.geometry.attributes.position.array[valueGap] +=
-    //   //     Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   // pointsRef.current.geometry.attributes.position.array[valueGap + 1] +=
-    //   //   Math.cos(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   // pointsRef.current.geomet: y.attributes.position.array[valueGap + 2] +=
-    //   //   Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    // }
-    // pointsRef.current.geometry.attributes.position.needsUpdate = true;
+  /*
+  Section Animate / Manipulate / make shaders
+  */
+  const uniforms = useMemo(
+    () => ({
+      u_time: {
+        value: 0.0,
+      },
+      u_colorA: { value: new THREE.Color('#FFE486') },
+      u_colorB: { value: new THREE.Color('#FEB3D9') },
+    }),
+    []
+  );
+
+  useFrame(state => {
+    const { clock } = state;
+    shaderMaterialRef.current.uniforms.u_time.value = clock.getElapsedTime();
   });
 
   /**JSX**/
@@ -90,14 +89,15 @@ const PointsBuffered = ({ verticesNumber, shape, pointSize }: Props) => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial
-        size={pointSize}
-        color="#5786F5"
-        sizeAttenuation
+      <shaderMaterial
+        ref={shaderMaterialRef}
         depthWrite={false}
+        // fragmentShader={fragmentShader}
+        // vertexShader={vertexShader}
+        uniforms={uniforms}
       />
     </points>
   );
 };
 
-export default PointsBuffered;
+export default RotatingParticles;

@@ -1,14 +1,12 @@
-import React, { useRef } from 'react';
-/**R3F Staff**/
-import { useFrame } from '@react-three/fiber';
+import React from 'react';
+
 /**TS*/
 interface Props {
   pointSize: number;
 }
 /**--------------------------**/
 const PointsBasic = ({ pointSize }: Props) => {
-  /**References**/
-  const points = useRef();
+  /**JSX**/
   return (
     <points>
       <sphereGeometry args={[1, 48, 48]} />
