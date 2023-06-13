@@ -15,15 +15,9 @@ import fragmentShader from './fragmentShader';
 interface Props {
   verticesNumber: number;
   shape: 'box' | 'sphere';
-  pointSize: number;
   radius?: number;
 }
-const PointsShader = ({
-  verticesNumber,
-  radius = 1,
-  shape,
-  pointSize,
-}: Props) => {
+const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
   /**References**/
   const pointsRef = useRef<THREE.Points>(null!);
   //   const pointsRef = useRef(null!);
@@ -123,6 +117,7 @@ const PointsShader = ({
         />
       </bufferGeometry>
       <shaderMaterial
+        blending={THREE.AdditiveBlending}
         ref={shaderMaterialRef}
         depthWrite={false}
         fragmentShader={fragmentShader}

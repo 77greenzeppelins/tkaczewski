@@ -55,6 +55,7 @@ const Act5 = () => {
       // position-z={-0.1}
       // position-y={-0.3}
       // ref={groupRef}
+      // visible={askAI}
     >
       <PhilosophersAnswers enable={askAI} />
       <RaphaelPainting />

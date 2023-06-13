@@ -171,7 +171,7 @@ const page3DConfigs = {
     //__Act_5
     act5Config: {
       springPositionsZ: [-4.25, -2], //from | to
-      springPositionsY: [-1.5, -0.3], //from | to
+      springPositionsY: [-2.5, -0.3], //from | to
       springRotationX: [0, Math.PI * -0.2], //from | to
       springDelay: 1000,
     },
