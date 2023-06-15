@@ -45,6 +45,10 @@ const MainCanvas = () => {
       eventPrefix="client"
       gl={{
         toneMapping: THREE.ACESFilmicToneMapping,
+        //___Yuri has it...
+        //physicallyCorrectedLights: true /???
+        // outputEncoding: THREE.sRGBEncoding /depricated
+        //setClearColor(0xeeeeee,1) /???
       }}
       //___initial camera position; should be set even if <CameraControler> is used
       // camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}

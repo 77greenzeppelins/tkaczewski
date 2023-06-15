@@ -39,7 +39,7 @@ const DustyBackground = ({ itemsNumber, mouse }: Props) => {
   //       //__push content to array
   //       particlesConfig.push({ time, factor, speed, x, y, z });
   //     }
-  //     //__returbn array
+  //     //__return array
   //     return particlesConfig;
   //   }, [itemsNumber]);
 
@@ -73,8 +73,8 @@ const DustyBackground = ({ itemsNumber, mouse }: Props) => {
       const a = Math.cos(t) + Math.sin(t * 1) / 10;
       const b = Math.sin(t) + Math.cos(t * 2) / 10;
       const s = Math.cos(t);
-      //   particle.mx += (mouse.current[0] - particle.mx) * 0.01;
-      //   particle.my += (mouse.current[1] * -1 - particle.my) * 0.01;
+      particle.mx += (mouse.current[0] - particle.mx) * 0.01;
+      particle.my += (mouse.current[1] * -1 - particle.my) * 0.01;
       // Update the dummy object
       dummy.position.set(
         (particle.mx / 10) * a +
@@ -91,7 +91,7 @@ const DustyBackground = ({ itemsNumber, mouse }: Props) => {
           (Math.sin(t * 3) * factor) / 10
       );
       dummy.scale.set(s, s, s);
-      //   dummy.rotation.set(s * 5, s * 5, s * 5);
+      dummy.rotation.set(s * 5, s * 5, s * 5);
       dummy.updateMatrix();
       // And apply the matrix to the instanced item
       meshRef.current.setMatrixAt(i, dummy.matrix);
@@ -100,7 +100,7 @@ const DustyBackground = ({ itemsNumber, mouse }: Props) => {
   });
 
   // Create a material for the mesh
-  const phongMaterial = new MeshPhongMaterial({ color: '#050505' });
+  //   const phongMaterial = new MeshPhongMaterial({ color: '#050505' });
 
   /**JSX**/
   return (
@@ -116,10 +116,13 @@ const DustyBackground = ({ itemsNumber, mouse }: Props) => {
         ref={meshRef}
         // args={[dodecaHedron(0.2, 0), phongMaterial, itemsNumber]}
         args={[undefined, undefined, itemsNumber]}
+        //___
+        scale={[0.025, 0.025, 0.025]}
+        position-z={-0.6}
       >
         <dodecahedronGeometry args={[0.2, 0]} />
-        {/* <meshPhongMaterial color="#1e0ed3" /> */}
-        <meshBasicMaterial color="#1e0ed3" />
+        <meshPhongMaterial color="#1e0ed3" />
+        {/* <meshBasicMaterial color="#1e0ed3" /> */}
       </instancedMesh>
     </>
   );

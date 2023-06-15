@@ -1,19 +1,20 @@
 import { useFrame, useThree } from '@react-three/fiber';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 /**THREE Staff*/
 import * as THREE from 'three';
+import {
+  GPUComputationRenderer,
+  Variable,
+} from 'three/examples/jsm/misc/GPUComputationRenderer';
 /**R3F staff*/
 // import { BufferAttribute, PointsMaterial } from 'three';
 /**Shaders**/
 import vertexShader from './vertexShader';
 import fragmentShader from './fragmentShader';
-// import someFake100 from './someFake100';
-// import vertexShader from '@/components/3D/shaders/planes/movingPlane/vertexShader';
-// import fragmentShader from '@/components/3D/shaders/planes/movingPlane/fragmentShader';
 import fragmentSimulation from './fragmentSimulation';
-//___
-import { GPUComputationRenderer } from 'three/examples/jsm/misc/GPUComputationRenderer';
+
 const WIDTH = 32;
+const verticesNumber = WIDTH * WIDTH;
 const dtNumber = WIDTH * WIDTH * 4; //each DataTexture entity requires 4 numbers / "parameters"
 
 /**TS**/
@@ -22,83 +23,24 @@ interface Props {
   shape: 'box' | 'sphere';
   radius?: number;
 }
-const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
+
+/**-----------------------**/
+const PointsFBO = () => {
   /**References**/
   const pointsRef = useRef<THREE.Points>(null!);
   const shaderMaterialRef = useRef<THREE.ShaderMaterial>(null!);
   const gpuRenderer = useRef<GPUComputationRenderer>(null!);
   const dataTexture = useRef<THREE.DataTexture>(null!);
+  const positionsVariables = useRef<Variable>(null!);
 
-  /*
-  Section Layout
-  */
-  //___attributes array
-  const particlesPosition = useMemo(() => {
-    //___all x,y,z values for each vertex
-    const positions = new Float32Array(verticesNumber * 3);
-    //___
-    if (shape === 'box') {
-      for (let i = 0; i < verticesNumber; i++) {
-        //__Generate random values for x, y, and z on every loop
-        let x = (Math.random() - 0.5) * 2;
-        let y = (Math.random() - 0.5) * 2;
-        let z = (Math.random() - 0.5) * 2;
-        //__We add the 3 values to the attribute array for every loop
-        positions.set([x, y, z], i * 3);
-      }
-    }
+  //___
+  const { gl, size } = useThree();
+  //   console.log('state:', state.size);
 
-    if (shape === 'sphere') {
-      for (let i = 0; i < verticesNumber; i++) {
-        // const distance = 1;
-        const distance = Math.sqrt(Math.random()) * radius;
-        const theta = THREE.MathUtils.randFloatSpread(360);
-        const phi = THREE.MathUtils.randFloatSpread(360);
+  //___GPUComputationRenderer
+  //   const gpuComputeRef = useRef<GPUComputationRenderer>(null!);
+  //   const positionTextureRef = useRef<THREE.DataTexture>(null!);
 
-        let x = distance * Math.sin(theta) * Math.cos(phi);
-        let y = distance * Math.sin(theta) * Math.sin(phi);
-        let z = distance * Math.cos(theta);
-
-        positions.set([x, y, z], i * 3);
-      }
-    }
-    //__return section
-    return positions;
-  }, [verticesNumber, shape, radius]);
-
-  // const dtNewPositions = useMemo(() => {
-  //   //__TextureData doesn have "image" property
-  //   //   let arr = texture.image.data;
-  //   let dtNewPositions = new Float32Array(dtNumber);
-  //   for (let i = 0; i < dtNumber; i = i + 4) {
-  //     let x = Math.random();
-  //     let y = Math.random();
-  //     let z = Math.random();
-  //     let w = 1;
-  //     // dtNewPositions[i] = x;
-  //     // dtNewPositions[i + 1] = y;
-  //     // dtNewPositions[i + 2] = z;
-  //     // dtNewPositions[i + 3] = 1;
-  //     // dtNewPositions.set([x, y, z, w], i * 4);
-  //   }
-  //   return dtNewPositions;
-  // }, []);
-  // const makeDtPositions = useCallback((arr: Float32Array) => {
-  //   let dtNewPositions = arr;
-  //   for (let i = 0; i < dtNewPositions.length; i = i + 4) {
-  //     let x = Math.random();
-  //     let y = Math.random();
-  //     let z = Math.random();
-  //     dtNewPositions[i] = x;
-  //     dtNewPositions[i + 1] = y;
-  //     dtNewPositions[i + 2] = z;
-  //     dtNewPositions[i + 3] = 1;
-  //   }
-  //   return dtNewPositions;
-  // }, []);
-
-  // console.log('dtNewPositions:', dtNewPositions);
-  // console.log('dataTexture.current:', dataTexture.current);
   /*
   Section Animate / Manipulate / make shaders
   */
@@ -107,19 +49,47 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
       u_time: {
         value: 0.0,
       },
-      u_radius: {
-        value: radius,
+      u_positionTexture: { value: null },
+      u_resolution_width: {
+        value: size.width,
+      },
+      u_resolution_height: {
+        value: size.height,
       },
       u_colorA: { value: new THREE.Color('#FFE486') },
       u_colorB: { value: new THREE.Color('#FEB3D9') },
     }),
-    [radius]
+    [size.height, size.width]
   );
 
-  const state = useThree();
+  /*
+  Section Layout
+  */
+  //___attributes array
+  const [particlesPosition, references] = useMemo(() => {
+    //___all x,y,z values for each vertex
+    const positions = new Float32Array(verticesNumber * 3);
+    //__Yiri: why references? because we need to reference every particle in my shader; it work as alternative for uv (remeber that particles don't have uv)
+    const references = new Float32Array(verticesNumber * 2);
+
+    for (let i = 0; i < verticesNumber; i++) {
+      let x = Math.random() - 0.5;
+      let y = Math.random() - 0.5;
+      let z = Math.random() - 0.5;
+
+      let refX = (i % WIDTH) / WIDTH;
+      let refY = ~~(i / WIDTH) / WIDTH;
+
+      positions.set([x, y, z], i * 3);
+      references.set([refX, refY], i * 2);
+    }
+
+    //__return section
+    return [positions, references];
+  }, []);
 
   useEffect(() => {
-    gpuRenderer.current = new GPUComputationRenderer(WIDTH, WIDTH, state.gl);
+    gpuRenderer.current = new GPUComputationRenderer(WIDTH, WIDTH, gl);
 
     //__let's create DataTexture and fill its "positions" => dataTexture.current.source.data
     dataTexture.current = gpuRenderer.current.createTexture();
@@ -136,29 +106,32 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
 
     // dataTexture.current.source.data = dtNewPositions;
     //__Yuri: "this is the way to be based on the previous state of the shader [...] this is why it is called <framer buffer output technique> because shaders every single time outputs its state"
-    const positionsVariables = gpuRenderer.current.addVariable(
+    positionsVariables.current = gpuRenderer.current.addVariable(
       'texturePosition',
       fragmentSimulation,
       dataTexture.current
     );
     //__
-    positionsVariables.material.uniforms['time'] = { value: 0 };
+    positionsVariables.current.material.uniforms['time'] = { value: 0 };
     //__ some "settings" for texture itself; they are necessary to work...
-    positionsVariables.wrapS = THREE.RepeatWrapping;
-    positionsVariables.wrapT = THREE.RepeatWrapping;
+    positionsVariables.current.wrapS = THREE.RepeatWrapping;
+    positionsVariables.current.wrapT = THREE.RepeatWrapping;
 
     //__Yuri comments: "we dont need dependencies"
 
     //__wtf...
-    // console.log(
-    //   'positionsVariables.material.uniforms:',
-    //   positionsVariables.material.uniforms
-    // );
-    console.log('dataTexture.current:', dataTexture.current);
+    console.log('positionsVariables.current:', positionsVariables.current);
+    // console.log('dataTexture.current:', dataTexture.current);
     // console.log(
     //   'gpuRenderer.current.variables[0].initialValueTexture:',
     //   gpuRenderer.current.variables[0].initialValueTexture.source
     // );
+    // if (positionsVariables.current !== null) {
+    //   console.log(
+    //     'gpuRenderer.current.getCurrentRenderTarget(positionsVariables.current):',
+    //     gpuRenderer.current.getCurrentRenderTarget(positionsVariables.current)
+    //   );
+    // }
 
     //__end of initialization
     gpuRenderer.current.init();
@@ -169,19 +142,23 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
     if (error !== null) {
       console.error(error);
     }
-  }, [state.gl]);
-
-  // console.log('gpuRenderer.current:', gpuRenderer.current);
+  }, [gl]);
 
   useFrame(state => {
     const { clock } = state;
     // shaderMaterialRef.current.uniforms.u_time.value = clock.getElapsedTime();
     uniforms.u_time.value = clock.elapsedTime;
+
+    //___?????????
+    gpuRenderer.current.compute();
+
+    // uniforms.u_positionTexture.value = gpuRenderer.current.getCurrentRenderTarget(positionsVariables.current).texture
   });
 
   /**JSX**/
   return (
-    <points ref={pointsRef}>
+    <points ref={pointsRef} scale={[0.5, 0.5, 0.5]} position={[0, 0, -1]}>
+      {/* <planeGeometry args={[1, 1, 10, 10]} /> */}
       <bufferGeometry>
         <bufferAttribute
           //__attach is how we specify the name of our attribute
@@ -192,20 +169,46 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
           //___itemSize represents the number of values from our attributes array associated with one item/vertex
           itemSize={3}
         />
+        <bufferAttribute
+          //__attach is how we specify the name of our attribute
+          attach="attributes-reference"
+          //__ count is the total number of vertex our geometry will have. In our case, it is the number of particles we will end up rendering
+          count={references.length / 2}
+          array={references}
+          //___itemSize represents the number of values from our attributes array associated with one item/vertex
+          itemSize={2}
+        />
       </bufferGeometry>
+
       <shaderMaterial
-        blending={THREE.AdditiveBlending}
-        ref={shaderMaterialRef}
-        depthWrite={false}
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}
         uniforms={uniforms}
+        // blending={THREE.AdditiveBlending}
+        // ref={shaderMaterialRef}
+        // depthWrite={false}
+        // wireframe={true}
+        //__from Yuri
+        //side={THREE.DoubleSide}
+        //extensions: {derivatives:"#extension GL_OES_standard_derivatives : enable"}
       />
+
+      {/* <pointsMaterial
+        size={0.01}
+        color="#5786F5"
+        sizeAttenuation
+        depthWrite={false}
+      /> */}
     </points>
   );
 };
 
-export default PointsShader;
+export default PointsFBO;
+
+//   useFrame(state => {
+//     const { clock } = state;
+//     shaderMaterialRef.current.uniforms.u_time.value = clock.getElapsedTime();
+//   });
 
 //   useFrame(state => {
 //     // (pointsRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value =

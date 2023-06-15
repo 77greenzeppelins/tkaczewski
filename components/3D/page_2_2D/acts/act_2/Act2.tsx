@@ -9,12 +9,18 @@ import { useSpring, animated } from '@react-spring/three';
 // import { springConfigs } from '@/data/basicData';
 import useWindowSize from '@/hooks/useWindowSize';
 import { useFrame, useThree } from '@react-three/fiber';
+
+/**Components**/
+import MovingPlane from '@/components/3D/shaders/planes/movingPlane/MovingPlane';
+import PlaneShader from '@/components/3D/shaders/plane/3DObj/PlaneShader';
 import PointsBasic from '@/components/3D/basicShapes/points/pointsBasic/PointsBasic';
 import PointsBuffered from '@/components/3D/basicShapes/points/pointsBuffered/PointsBuffered';
 import PointsShader from '@/components/3D/basicShapes/points/pointsShader/PointsShader';
-import PlaneShader from '@/components/3D/shaders/plane/3DObj/PlaneShader';
-import MovingPlane from '@/components/3D/shaders/planes/movingPlane/MovingPlane';
 import DustyBackground from '@/components/3D/customeObjects/particleSystems/instancedMeshConcept/dustyBackground/DustyBackground';
+import BackgroundPlane from '@/components/3D/shaders/planes/backgroundPlane/BackgroundPlane';
+import { Circle } from '@react-three/drei';
+import PointsFBO from '@/components/3D/customeObjects/particleSystems/pointsFBO/PointsFBO';
+import PointsFBO3 from '@/components/3D/customeObjects/particleSystems/pointsFBO/PointsFBO3';
 
 /**HardCoded Staff*/
 // const minWidthForAnimation = 769;
@@ -22,7 +28,7 @@ import DustyBackground from '@/components/3D/customeObjects/particleSystems/inst
 /**-----------------**/
 const Act2 = () => {
   /**References**/
-  // const groupRef = useRef<THREE.Group>(null!);
+  const groupRef = useRef<THREE.Group>(null!);
 
   /** */
   const SCALE_FACTOR = 0.2;
@@ -35,11 +41,25 @@ const Act2 = () => {
   /*
   ...
   */
-  const { viewport, size } = useThree();
+  const { viewport } = useThree();
   const viewportWidth = viewport.width;
   const viewportHeight = viewport.height;
   const aspect = viewportWidth / viewportHeight;
 
+  /**useFrame Section**/
+  useFrame(state => {
+    // console.log('state.mouse.x: ', state.mouse.x);
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(
+      groupRef.current.rotation.y,
+      (state.mouse.x * Math.PI) / 8,
+      0.05
+    );
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(
+      groupRef.current.rotation.x,
+      (state.mouse.y * Math.PI) / -30,
+      0.05
+    );
+  });
   /*
   ...
   */
@@ -47,23 +67,24 @@ const Act2 = () => {
 
   /**JSX**/
   return (
-    <animated.group
-      // scale={
-      //   width < 460
-      //     ? [0.8 * SCALE_FACTOR, 0.8 * SCALE_FACTOR, 0.8 * SCALE_FACTOR]
-      //     : [1 * SCALE_FACTOR, 1 * SCALE_FACTOR, 1 * SCALE_FACTOR]
-      // }
-      // dispose={null}
-      scale={[0.025, 0.025, 0.025]}
-      position-z={-0.6}
-    >
-      <DustyBackground itemsNumber={1000} mouse={mouse} />
-
+    <animated.group ref={groupRef}>
+      <PointsFBO />
       {/* <PointsShader verticesNumber={2000} shape={'sphere'} radius={0.5} /> */}
-      {/* <PlaneShader /> */}
-      {/* <MovingPlane /> */}
+      {/* <PointsFBO3 verticesNumber={2000} shape={'sphere'} radius={0.5} /> */}
     </animated.group>
   );
 };
 
 export default Act2;
+
+// <Circle />
+
+// <BackgroundPlane />
+
+// <DustyBackground itemsNumber={500} mouse={mouse} />
+
+// <PointsShader verticesNumber={2000} shape={'sphere'} radius={0.5} />
+
+// <PlaneShader />
+
+// <MovingPlane />

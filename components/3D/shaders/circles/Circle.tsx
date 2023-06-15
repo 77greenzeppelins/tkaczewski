@@ -1,19 +1,17 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 /**Components**/
-import ThreePlane from '@/components/3D/basicShapes/plane/ThreePlane';
+/**THREE Staff*/
+import * as THREE from 'three';
 /**R3F Staff**/
 import { useFrame, useThree } from '@react-three/fiber';
 /**Shader staff**/
-// import fragmentShader from '../fragmentShader';
-// import vertexShader from '../vertexShader';
+import fragmentShader from './fragmentShader';
+import vertexShader from './vertexShader';
 /** */
 import { cameraSettings } from '@/data/basicData';
-import * as THREE from 'three';
-import fragmentShader from '../../planes/movingPlane/fragmentShader';
-import vertexShader from '../../planes/movingPlane/vertexShader';
 
 /**---------------------------**/
-const PlaneShader = () => {
+const Circle = () => {
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
   const shaderMaterialRef = useRef<THREE.ShaderMaterial>(null!);
@@ -21,8 +19,8 @@ const PlaneShader = () => {
   __1. staff necessary to calculate plane so that it covers the viewport
   */
   //__basic data
-  const zPosition = 0.5;
-  const scaleFactor = 0.7;
+  const zPosition = -1.5;
+  const scaleFactor = 0.01;
   //__staff from R3F state
   const { viewport } = useThree();
   const width = viewport.width;
@@ -44,15 +42,17 @@ const PlaneShader = () => {
       u_time: {
         value: 0.0,
       },
-      u_colorA: { value: new THREE.Color('#FFE486') },
-      u_colorB: { value: new THREE.Color('#FEB3D9') },
+      u_colorA: { value: new THREE.Color('#0b07ee') },
+      u_colorB: { value: new THREE.Color('#058df5') },
     }),
     []
   );
 
   useFrame(state => {
-    (meshRef.current.material as THREE.ShaderMaterial).uniforms.u_time.value =
-      state.clock.elapsedTime;
+    (
+      meshRef.current.material as THREE.ShaderMaterial
+    ).uniforms.u_time.value = 0;
+    // state.clock.elapsedTime;
     // shaderMaterialRef.current.uniforms.u_time.value = state.clock.elapsedTime;
   });
 
@@ -69,27 +69,17 @@ const PlaneShader = () => {
   return (
     <mesh
       ref={meshRef}
-      position={[0, 0, -0.5]}
+      position={[0, 0, zPosition]}
       //   rotation={[0, 0, 0]}
-      //   scale={0.02}
-      rotation={[-Math.PI * 0.33, 0, 0]}
-      //   scale={[scale * scaleFactor, scale * scaleFactor, scale * scaleFactor]}
+      rotation={[0, 0, 0]}
+      scale={[scale * scaleFactor, scale * scaleFactor, scale * scaleFactor]}
     >
-      <ThreePlane
-        // argsWidth={width * scale * 1.2}
-        // argsHeight={height * scale * 1.2}
-        argsWidth={1 * aspect}
-        argsHeight={1}
-        widthSegments={32}
-        heightSegments={32}
-      />
-      {/* <boxGeometry args={[1, 1, 1]} /> */}
-      {/* <meshBasicMaterial wireframe /> */}
+      <sphereGeometry args={[0.1, 30, 30]} />
       <shaderMaterial
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}
         uniforms={uniforms}
-        wireframe={true}
+        // wireframe={true}
         // ref={shaderMaterialRef}
         // depthWrite={false}
       />
@@ -97,7 +87,7 @@ const PlaneShader = () => {
   );
 };
 
-export default PlaneShader;
+export default Circle;
 
 /**Drei Staff**/
 // import { Plane } from '@react-three/drei';

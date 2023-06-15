@@ -1,19 +1,20 @@
 const fragmentShader = `
-// varying vec2 v_Uv;
-// vec3 u_colorA = vec3(0.912,0.191,0.652);
-// vec3 u_colorB = vec3(1.000,0.777,0.052);
+
 //___
-varying float v_zPosition;
-varying vec3 u_colorA;
-varying vec3 u_colorB;
+// varying float v_zPosition;
+//__uniforms
+uniform vec3 u_colorA;
+uniform vec3 u_colorB;
+//__varyings
+varying vec2 v_Uv;
 
 
 void main() {
-  //__
-  // vec3 color = u_colorB;
-  vec3 color = vec3(0.5);
-
-  //__1.  "Normalizing" with an arbitrary value 
+  //___
+  // vec3 color = u_colorA;
+  //___
+  vec3 color = mix(colorA, colorB, v_Uv.x);
+  //___"Normalizing" with an arbitrary value  
   // vec2 normalizedPixel = gl_FragCoord.xy/600.0;
   // vec3 color = mix(colorA, colorB, normalizedPixel.x);
 

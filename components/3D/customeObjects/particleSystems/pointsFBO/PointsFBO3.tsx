@@ -22,7 +22,7 @@ interface Props {
   shape: 'box' | 'sphere';
   radius?: number;
 }
-const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
+const PointsFBO3 = ({ verticesNumber, radius = 1, shape }: Props) => {
   /**References**/
   const pointsRef = useRef<THREE.Points>(null!);
   const shaderMaterialRef = useRef<THREE.ShaderMaterial>(null!);
@@ -47,7 +47,6 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
         positions.set([x, y, z], i * 3);
       }
     }
-
     if (shape === 'sphere') {
       for (let i = 0; i < verticesNumber; i++) {
         // const distance = 1;
@@ -66,39 +65,11 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
     return positions;
   }, [verticesNumber, shape, radius]);
 
-  // const dtNewPositions = useMemo(() => {
-  //   //__TextureData doesn have "image" property
-  //   //   let arr = texture.image.data;
-  //   let dtNewPositions = new Float32Array(dtNumber);
-  //   for (let i = 0; i < dtNumber; i = i + 4) {
-  //     let x = Math.random();
-  //     let y = Math.random();
-  //     let z = Math.random();
-  //     let w = 1;
-  //     // dtNewPositions[i] = x;
-  //     // dtNewPositions[i + 1] = y;
-  //     // dtNewPositions[i + 2] = z;
-  //     // dtNewPositions[i + 3] = 1;
-  //     // dtNewPositions.set([x, y, z, w], i * 4);
-  //   }
-  //   return dtNewPositions;
-  // }, []);
-  // const makeDtPositions = useCallback((arr: Float32Array) => {
-  //   let dtNewPositions = arr;
-  //   for (let i = 0; i < dtNewPositions.length; i = i + 4) {
-  //     let x = Math.random();
-  //     let y = Math.random();
-  //     let z = Math.random();
-  //     dtNewPositions[i] = x;
-  //     dtNewPositions[i + 1] = y;
-  //     dtNewPositions[i + 2] = z;
-  //     dtNewPositions[i + 3] = 1;
-  //   }
-  //   return dtNewPositions;
-  // }, []);
-
   // console.log('dtNewPositions:', dtNewPositions);
   // console.log('dataTexture.current:', dataTexture.current);
+
+  //___
+  const { gl, size } = useThree();
   /*
   Section Animate / Manipulate / make shaders
   */
@@ -110,10 +81,17 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
       u_radius: {
         value: radius,
       },
+      u_positionTexture: { value: null },
+      u_resolution_width: {
+        value: size.width,
+      },
+      u_resolution_height: {
+        value: size.height,
+      },
       u_colorA: { value: new THREE.Color('#FFE486') },
       u_colorB: { value: new THREE.Color('#FEB3D9') },
     }),
-    [radius]
+    [radius, size.height, size.width]
   );
 
   const state = useThree();
@@ -205,7 +183,38 @@ const PointsShader = ({ verticesNumber, radius = 1, shape }: Props) => {
   );
 };
 
-export default PointsShader;
+export default PointsFBO3;
+
+// const dtNewPositions = useMemo(() => {
+//   //__TextureData doesn have "image" property
+//   //   let arr = texture.image.data;
+//   let dtNewPositions = new Float32Array(dtNumber);
+//   for (let i = 0; i < dtNumber; i = i + 4) {
+//     let x = Math.random();
+//     let y = Math.random();
+//     let z = Math.random();
+//     let w = 1;
+//     // dtNewPositions[i] = x;
+//     // dtNewPositions[i + 1] = y;
+//     // dtNewPositions[i + 2] = z;
+//     // dtNewPositions[i + 3] = 1;
+//     // dtNewPositions.set([x, y, z, w], i * 4);
+//   }
+//   return dtNewPositions;
+// }, []);
+// const makeDtPositions = useCallback((arr: Float32Array) => {
+//   let dtNewPositions = arr;
+//   for (let i = 0; i < dtNewPositions.length; i = i + 4) {
+//     let x = Math.random();
+//     let y = Math.random();
+//     let z = Math.random();
+//     dtNewPositions[i] = x;
+//     dtNewPositions[i + 1] = y;
+//     dtNewPositions[i + 2] = z;
+//     dtNewPositions[i + 3] = 1;
+//   }
+//   return dtNewPositions;
+// }, []);
 
 //   useFrame(state => {
 //     // (pointsRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value =

@@ -56,26 +56,6 @@ const PointsBuffered = ({ verticesNumber, shape, pointSize }: Props) => {
     return positions;
   }, [verticesNumber, shape]);
 
-  useFrame(({ clock }) => {
-    /*
-    __1. this is a problematic approach
-    __2. firs of all, generates some TS problems
-    __3. secondly, isn't performant at all!
-    */
-    // for (let i = 0; i < verticesNumber; i++) {
-    //   //   const valueGap = i * 3;
-    //   //   pointsRef.current.geometry.attributes.position.array[valueGap] +=
-    //   //     Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   //   pointsRef.current.geometry.attributes.position.array[valueGap] +=
-    //   //     Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   // pointsRef.current.geometry.attributes.position.array[valueGap + 1] +=
-    //   //   Math.cos(clock.elapsedTime + Math.random() * 10) * 0.01;
-    //   // pointsRef.current.geomet: y.attributes.position.array[valueGap + 2] +=
-    //   //   Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
-    // }
-    // pointsRef.current.geometry.attributes.position.needsUpdate = true;
-  });
-
   /**JSX**/
   return (
     <points ref={pointsRef}>
