@@ -56,17 +56,19 @@ const InstantContactButtons2D = (
       <div className="flex justify-center h-[50%] w-full pt-[10vh]">
         <div
           // className="pointer-events-auto"
+          className="bg-corpo opacity-25"
           style={{ width: height * 0.25, height: height * 0.3 }}
         >
           <DirectPhone aStyle={'block w-full h-full'} hasLabel={false} />
         </div>
       </div>
 
-      <div className="flex justify-center h-[50%] w-full pt-[10vh]">
+      <div className="flex justify-center h-[50%] w-full pt-[10vh] ">
         <div
-          onClick={() => {
-            console.log('...mail');
-          }}
+          // onClick={() => {
+          //   console.log('...mail');
+          // }}
+          className="bg-corpo opacity-25"
           style={{ width: height * 0.25, height: height * 0.3 }}
         >
           <DirectEmail aStyle={'block w-full h-full'} hasLabel={false} />

@@ -9,8 +9,9 @@ import { imagesData, pagesPath, page3DConfigs } from '@/data/basicData';
 
 /**HardCoded Staff*/
 const buttonsData = [imagesData.phone, imagesData.email];
-const scale = [0.65, 0.65, 0.65];
-const scaleImage = [1.4, 1.4, 1.4];
+const scaleFactor = 0.275;
+const scale = [0.65 * scaleFactor, 0.65 * scaleFactor, 0.65 * scaleFactor];
+const scaleImage = [1.4 * scaleFactor, 1.4 * scaleFactor, 1.4 * scaleFactor];
 
 /**-----------------------------------------*/
 const PageContacts = () => {

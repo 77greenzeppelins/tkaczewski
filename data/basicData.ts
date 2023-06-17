@@ -90,14 +90,14 @@ const imagesData = {
     path: assetsPaths.phone,
     width: 0.42,
     height: 0.592,
-    position: [pages3DPositions.pageContacts.x, 0.55, 0],
+    position: [pages3DPositions.pageContacts.x, 0.19, 0],
   },
   //__pageContacts
   email: {
     path: assetsPaths.email,
     width: 0.42,
     height: 0.592,
-    position: [pages3DPositions.pageContacts.x, -0.55, 0],
+    position: [pages3DPositions.pageContacts.x, -0.19, 0],
   },
 };
 
