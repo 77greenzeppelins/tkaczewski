@@ -75,6 +75,9 @@ body,
   .p-medium {
     @apply text-[1.25rem] xs:text-[1.5rem] md:text-[1.75rem] xxl:text-[2.25rem] tracking-[2px] leading-tight;
   }
+  .p-v-large {
+    @apply text-[4.25rem] xs:text-[4.5rem] md:text-[4.75rem] xxl:text-[6.25rem] tracking-[2px] leading-tight;
+  }
 
   /*Scrollbar style*/
   .scroll-bar-style {

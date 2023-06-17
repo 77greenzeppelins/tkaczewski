@@ -49,7 +49,7 @@ const PointsFBO = () => {
       u_time: {
         value: 0.0,
       },
-      u_positionTexture: { value: null },
+      u_positionTexture: { value: 0.0 },
       u_resolution_width: {
         value: size.width,
       },
@@ -112,7 +112,7 @@ const PointsFBO = () => {
       dataTexture.current
     );
     //__
-    positionsVariables.current.material.uniforms['time'] = { value: 0 };
+    positionsVariables.current.material.uniforms['u_time'] = { value: 0 };
     //__ some "settings" for texture itself; they are necessary to work...
     positionsVariables.current.wrapS = THREE.RepeatWrapping;
     positionsVariables.current.wrapT = THREE.RepeatWrapping;
@@ -152,7 +152,10 @@ const PointsFBO = () => {
     //___?????????
     gpuRenderer.current.compute();
 
-    // uniforms.u_positionTexture.value = gpuRenderer.current.getCurrentRenderTarget(positionsVariables.current).texture
+    // uniforms.u_positionTexture.value =
+    //   gpuRenderer.current.getCurrentRenderTarget(
+    //     positionsVariables.current
+    //   ).texture;
   });
 
   /**JSX**/

@@ -19,6 +19,10 @@ module.exports = {
       xxxl: '1792px',
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        serif: ['var(--font-garamond)'],
+      },
       colors: {
         dark: 'var(--color-dark)',
         darkTint: 'var(--color-darkTint)',

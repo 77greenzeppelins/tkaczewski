@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
 /**Utils*/
 import { setXPosition } from './utils/utils';
 /**Basic Data*/
-import { pagesLinks, cameraSettings } from '@/data/basicData';
+import { pagesPath, cameraSettings } from '@/data/basicData';
 
 /**----------------------------**/
 const CameraControler = () => {
@@ -20,7 +20,7 @@ const CameraControler = () => {
   /**Condition of visibility**/
   const path = usePathname();
   // const [currentPath, setCurrentPath] = useState('');
-  const visibleOnHome = path === pagesLinks[0].href;
+  const visibleOnHome = path === pagesPath.homePath;
 
   /**Animations / Manipulations*/
   useFrame(state => {
@@ -42,18 +42,18 @@ const CameraControler = () => {
     }
     /*
     __1. general settings for all Pages;
-    __2. concept: each page should be deploy in "separate" sector on x-xais
+    __2. concept: each page should be deploy in "separate" sector on x-axis;
+    __3. when user changes path camera jumps to new x-axis position; 
     */
     const cameraPosition = new THREE.Vector3(
-      //___camera position-x
-      // visibleOnContacts ? 10 : 0,
+      //___camera position-x => just jump when path got changed
       setXPosition(path),
-      //___camera position-y
+      //___camera position-y => just stat at the same level
       0,
-      //___camera position-z
+      //___camera position-z => just follow the mesh...
       visibleOnHome
-        ? cameraSettings.x + meshRef.current.position.z
-        : cameraSettings.x
+        ? cameraSettings.z + meshRef.current.position.z
+        : cameraSettings.z
     );
     state.camera.position.copy(cameraPosition);
   });

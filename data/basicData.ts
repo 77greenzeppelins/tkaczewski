@@ -3,12 +3,22 @@ const colors = {
   light: '#f1f5f9',
   corpo: '#38bdf8',
 };
+/*
+__1. shape of mainLinks's path is strictly related with each "3D-page"
+*/
+const pagesPath = {
+  homePath: '/',
+  cvPath: '/cv',
+  contactcPath: '/contact',
+  exp2d: '/2d',
+};
+
 const pagesLinks = [
-  { href: '/', label: '3D' },
-  { href: '/2d', label: '2D' },
-  { href: '/cv', label: 'CV' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/io', label: 'IO' },
+  { href: pagesPath.homePath, label: '3D' },
+  // { href: '/2d', label: '2D' },
+  { href: pagesPath.cvPath, label: 'CV' },
+  { href: pagesPath.contactcPath, label: 'Contact' },
+  // { href: '/io', label: 'IO' },
 ];
 
 const contactData = {
@@ -52,7 +62,6 @@ __1. it turned out that camera settings take part in some calculations in variou
 __2. are used in <CameraControler> , <PlaneShader>
 */
 const cameraSettings = {
-  x: 1,
   z: 1,
   fov: 45,
 };
@@ -203,7 +212,17 @@ const page3DConfigs = {
         lineHeight: 1,
       },
     },
-    // act5: { position: [pages3DPositions.page2D.x, 0, 0] },
+
+    // section1: { position: [1, 1, 1] },
+  },
+  pageCV: {
+    pagePosition: [pages3DPositions.pageCV.x, 0, 0],
+    act5Config: {
+      springPositionsZ: [-4.25, -2], //from | to
+      springPositionsY: [-2.5, -0.3], //from | to
+      springRotationX: [0, Math.PI * -0.2], //from | to
+      springDelay: 1000,
+    },
   },
 };
 
@@ -225,10 +244,12 @@ const springConfigs = {
 
 export {
   //___
+  pagesPath,
+  pagesLinks,
+  //___
   basicConfigs,
   //___
   colors,
-  pagesLinks,
   assetsPaths,
   imagesData,
   page3DConfigs,

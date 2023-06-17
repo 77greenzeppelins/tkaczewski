@@ -5,6 +5,7 @@ import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBa
 import CameraControler from '../customeObjects/cameraControler/CameraControler';
 import PageHome from '../page_1_home/PageHome';
 import Page2D from '../page_2_2D/Page2D';
+import PageCV from '../page_3_cv/PageCV';
 import PageContacts from '../page_9_contacts/PageContacts';
 
 /**-------------------------------**/
@@ -20,6 +21,7 @@ const Scene3D = () => {
       {/*-----Canvas Content--------------------------------*/}
       <PageHome />
       <Page2D />
+      <PageCV />
       <PageContacts />
     </BasicMaterialProvider>
   );

@@ -5,7 +5,7 @@ import * as THREE from 'three';
 /**Components**/
 import InstantContactButton3D from './instantContactButtons/InstantContactButton3D';
 /**BasicData*/
-import { imagesData, pagesLinks, page3DConfigs } from '@/data/basicData';
+import { imagesData, pagesPath, page3DConfigs } from '@/data/basicData';
 
 /**HardCoded Staff*/
 const buttonsData = [imagesData.phone, imagesData.email];
@@ -22,7 +22,7 @@ const PageContacts = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsPath(path === pagesLinks[3].href);
+      setIsPath(path === pagesPath.contactcPath);
     }, page3DConfigs.visibilityDelay);
 
     /**cleaner**/

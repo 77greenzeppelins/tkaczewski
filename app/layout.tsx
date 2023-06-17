@@ -4,11 +4,10 @@ import React from 'react';
 /**Components**/
 import Header from '@/components/layoutComponents/header/Header';
 import AppContainer from '@/components/layoutComponents/appContent/AppContainer';
+/**CSS Staff**/
 import '@/styles/globals.css';
 /**Font Staff*/
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import { inter, garamond } from './fonts/fonts';
 
 /**<Head> staff*/
 export const metadata = {
@@ -24,8 +23,13 @@ export default function RootLayout({
 }) {
   /**JSX**/
   return (
-    <html lang="en" className={inter.className}>
-      <body className="relative">
+    <html
+      lang="en"
+      // className={inter.className}
+      className={`${inter.variable} ${garamond.variable}`}
+      // className={`${garamond.className}`}
+    >
+      <body className="relative font-sans">
         <Header />
         <AppContainer>{children}</AppContainer>
         {/* <MainCanvas /> */}

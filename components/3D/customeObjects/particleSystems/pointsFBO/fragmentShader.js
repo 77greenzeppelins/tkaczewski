@@ -19,7 +19,7 @@ void main() {
 
   vec2 resolution = vec2(u_resolution_width,u_resolution_height);
   //___
-   vec2 uv = gl_FragCoord.xy / resolution.xy;
+  vec2 uv = gl_FragCoord.xy / resolution.xy;
 
   gl_FragColor = vec4(uv, 1., 1.);
   // gl_FragColor = vec4(v_uv, 0., 1.);
