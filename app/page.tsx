@@ -12,14 +12,15 @@ export default function Home() {
       <div className="w-full h-full pointer-events-auto">
         <div className="flex gap-x-10 justify-start items-center h-[400vh]">
           {' '}
-          <p className="select-none text-slate-200">Home</p>
+          {/* <p className="select-none text-slate-200">Home</p>
           <p className="select-none text-sky-400">Home</p>
           <p className="text-blue-500 select-none">Home</p>
-          <p className="text-blue-600 select-none">Home</p>
+          <p className="text-blue-600 select-none">Home</p> */}
         </div>
 
         <div className="flex justify-center items-center h-[100vh] w-full" />
-        <div className="flex justify-center items-center h-[150vh] w-full bg-dark" />
+        <div className="flex justify-center items-center h-[100vh] w-full" />
+        <div className="flex justify-center items-center h-[50vh] w-full bg-corpo" />
       </div>
     </PageWrapper>
   );
