@@ -117,6 +117,11 @@ const page3DConfigs = {
     pagePosition: [pages3DPositions.pageHome.x, 0, 0],
   },
 
+  familyText: [
+    { text: "it's", position: [-0.07, 0.25, 0.05] },
+    { text: 'me', position: [-0.07, 0.18, 0.025] },
+  ],
+
   actsPositions: [
     [0, 0, 0],
     [0, 0, -4],
@@ -126,7 +131,7 @@ const page3DConfigs = {
   ],
   text1: [
     { text: 'Thank you for', position: [0, 0.2, 0] },
-    { text: 'visiting me!', position: [0, -0.2, -0.5] },
+    { text: 'visiting this page', position: [0, -0.2, -0.5] },
   ],
   text2: [
     { text: "I'm", position: [0, 0.25, 0], rotation: [0, 0, 0] },

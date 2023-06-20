@@ -12,7 +12,8 @@ import { useFrame } from '@react-three/fiber';
 /**FramerMotion Staff*/
 // import { motion } from 'framer-motion-3d';
 /**BasicData*/
-import { imagesData } from '@/data/basicData';
+import { imagesData, page3DConfigs } from '@/data/basicData';
+import { DreiText } from '@/components';
 /**HardCoded Staff*/
 
 /**TS**/
@@ -49,7 +50,56 @@ const Act1 = ({ groupProps }: Props) => {
 
   /**JSX**/
   return (
-    <group
+    <group dispose={null}>
+      <group {...groupProps} ref={groupRef}>
+        {page3DConfigs.familyText.map(({ text, position }, index) => (
+          <DreiText
+            key={index}
+            hasMatcap={true}
+            text={text}
+            position={new THREE.Vector3(...position)}
+            scale={new THREE.Vector3(0.5, 0.5, 0.5)}
+            // color="white"
+            textAlign="center"
+            // maxWidth={state.size.width > 1000 ? 2 : 1}
+            anchorX="center"
+          />
+        ))}
+
+        <BasicFrame
+          //  meshProps={{ scale: [0.86, 1.5, 1.13] }}
+          meshProps={{ scale: [0.86 * 0.45, 1.5 * 0.45, 1.13 * 0.45] }}
+        />
+        <ImageCanvas
+          // meshProps={{ scale: [0.9, 0.85, 0.85] }}
+          // meshProps={{ scale: [0.9 * 0.45, 0.85 * 0.45, 0.85 * 0.45] }}
+          meshProps={{ scale: [0.9 * 0.455, 0.85 * 0.455, 0.85 * 0.455] }}
+          argsWidth={imagesData.family.width * 2}
+          argsHeight={imagesData.family.height * 2}
+          image={imagesData.family.path}
+        />
+      </group>
+      {/* {page3DConfigs.familyText.map(({ text, position }, index) => (
+        <DreiText
+          key={index}
+          hasMatcap={true}
+          text={text}
+          position={new THREE.Vector3(...position)}
+          scale={new THREE.Vector3(0.5, 0.5, 0.5)}
+          // color="white"
+          textAlign="center"
+          // maxWidth={state.size.width > 1000 ? 2 : 1}
+          anchorX="center"
+        />
+      ))} */}
+    </group>
+  );
+};
+
+export default Act1;
+
+/*
+<group
       dispose={null}
       // initial={false}
       // animate={[isLiked ? 'liked' : 'unliked', isHover ? 'hover' : 'unhover']}
@@ -79,26 +129,7 @@ const Act1 = ({ groupProps }: Props) => {
       //   console.log('..............');
       // }}
     >
-      <group {...groupProps} ref={groupRef}>
-        <BasicFrame
-          //  meshProps={{ scale: [0.86, 1.5, 1.13] }}
-          meshProps={{ scale: [0.86 * 0.45, 1.5 * 0.45, 1.13 * 0.45] }}
-        />
-        <ImageCanvas
-          // meshProps={{ scale: [0.9, 0.85, 0.85] }}
-          // meshProps={{ scale: [0.9 * 0.45, 0.85 * 0.45, 0.85 * 0.45] }}
-          meshProps={{ scale: [0.9 * 0.455, 0.85 * 0.455, 0.85 * 0.455] }}
-          argsWidth={imagesData.family.width * 2}
-          argsHeight={imagesData.family.height * 2}
-          image={imagesData.family.path}
-        />
-      </group>
-    </group>
-  );
-};
-
-export default Act1;
-
+*/
 {
   /* <Float
           speed={2} // Animation speed, defaults to 1
