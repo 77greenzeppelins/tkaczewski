@@ -13,6 +13,8 @@ import PageCV from './3D/page_3_cv/PageCV';
 import PageContacts from './3D/page_9_contacts/PageContacts';
 //___
 import DreiText from './3D/_Drei/text/DreiText';
+import BasicFrame from './3D/customeObjects/frame/BasicFrame';
+import ImageCanvas from './3D/customeObjects/imageCanvas/ImageCanvas';
 
 export {
   //
@@ -23,4 +25,6 @@ export {
   PageContacts,
   //___
   DreiText,
+  BasicFrame,
+  ImageCanvas,
 };

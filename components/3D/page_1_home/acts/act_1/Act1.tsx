@@ -1,8 +1,7 @@
 'use client';
 import React, { useRef, useState } from 'react';
 /**Components**/
-import BasicFrame from '../../../customeObjects/frame/BasicFrame';
-import ImageCanvas from '../../../customeObjects/imageCanvas/ImageCanvas';
+import { DreiText, BasicFrame, ImageCanvas } from '@/components';
 /**Hooks**/
 import useWindowSize from '@/hooks/useWindowSize';
 /**THREE staff*/
@@ -13,7 +12,7 @@ import { useFrame } from '@react-three/fiber';
 // import { motion } from 'framer-motion-3d';
 /**BasicData*/
 import { imagesData, page3DConfigs } from '@/data/basicData';
-import { DreiText } from '@/components';
+
 /**HardCoded Staff*/
 
 /**TS**/
@@ -60,7 +59,7 @@ const Act1 = ({ groupProps }: Props) => {
             hasMatcap={true}
             text={text}
             position={new THREE.Vector3(...position)}
-            scale={new THREE.Vector3(0.5, 0.5, 0.5)}
+            scale={new THREE.Vector3(0.4, 0.4, 0.4)}
             // color="white"
             textAlign="center"
             // maxWidth={state.size.width > 1000 ? 2 : 1}

@@ -45,7 +45,7 @@ const assetsPaths = {
   school: '/assets/images/art/raphael_800_1047.webp',
   phone: '../assets/images/contacts/instantContact_phone.webp',
   email: '../assets/images/contacts/instantContact_email.webp',
-  family: '../assets/images/various/family_2.webp',
+  family: '../assets/images/various/family_3.webp',
 
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
@@ -118,8 +118,8 @@ const page3DConfigs = {
   },
 
   familyText: [
-    { text: "it's", position: [-0.07, 0.25, 0.05] },
-    { text: 'me', position: [-0.07, 0.18, 0.025] },
+    { text: "it's", position: [-0.09, 0.26, 0.05] },
+    { text: 'me', position: [-0.09, 0.19, 0.025] },
   ],
 
   actsPositions: [
@@ -131,8 +131,8 @@ const page3DConfigs = {
   ],
   text1: [
     { text: 'Thank you ', position: [0, 0.35, 0] },
-    { text: 'for visiting', position: [0, 0, -0.2] },
-    { text: 'my page', position: [0, -0.25, -0.4] },
+    { text: 'for visiting', position: [0, 0, -0.3] },
+    { text: 'my page', position: [0, -0.3, -0.3] },
   ],
   text2: [
     { text: "I'm", position: [0, 0.25, 0], rotation: [0, 0, 0] },
@@ -165,11 +165,23 @@ const page3DConfigs = {
       rotation: [0, -0.5, 0],
     },
   ],
-  text4: [
-    { text: 'taking', position: [0, 0.15, 0], rotation: [0, 0, 0] },
+  //___act_a5
+  text4: { text: 'taking', position: [0, 0.15, 0], rotation: [0, 0, 0] },
+  //___act5_b
+  text4b: [
     {
-      text: 'off',
-      position: [0, -0.15, -0.6],
+      text: 'o',
+      position: [-0.15, -0.45, -0.6],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'f',
+      position: [0, -0.45, -0.6],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'f',
+      position: [0.15, -0.45, -0.6],
       rotation: [0, 0, 0],
     },
   ],
