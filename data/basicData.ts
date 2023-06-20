@@ -122,12 +122,15 @@ const page3DConfigs = {
     { text: 'me', position: [-0.09, 0.19, 0.025] },
   ],
 
+  //__used in 3D <HomePage> to set groupProps.position to each "act"
   actsPositions: [
     [0, 0, 0],
     [0, 0, -4],
     [0, 0, -8],
     [0, 0, -12],
     [0, 0, -16],
+    [0, 0, -20],
+    [0, 0, -24],
   ],
   text1: [
     { text: 'Thank you ', position: [0, 0.35, 0] },
@@ -166,7 +169,7 @@ const page3DConfigs = {
     },
   ],
   //___act_a5
-  text4: { text: 'taking', position: [0, 0.15, 0], rotation: [0, 0, 0] },
+  text4: { text: 'taking', position: [0, 0, 0], rotation: [0, 0, 0] },
   //___act5_b
   text4b: [
     {
@@ -185,6 +188,53 @@ const page3DConfigs = {
       rotation: [0, 0, 0],
     },
   ],
+  //___act6_
+  text5: [
+    {
+      text: 'in',
+      position: [0, 0.22, -0.6],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'the',
+      position: [0, 0, -0.3],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'internet',
+      position: [0, -0.15, 0],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: '?',
+      position: [0, -0.37, -0.3],
+      rotation: [0, 0, 0],
+    },
+  ],
+  //___act7
+  text6: [
+    {
+      text: 'if so',
+      position: [0, 0.3, 0],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'just',
+      position: [0, 0, -0.3],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'let me know !',
+      position: [0, -0.38, -1],
+      rotation: [0, 0, 0],
+    },
+    // {
+    //   text: '?',
+    //   position: [0, -0.37, -0.3],
+    //   rotation: [0, 0, 0],
+    // },
+  ],
+
   //___for page2D
   page2D: {
     pagePosition: [pages3DPositions.page2D.x, 0, 0],

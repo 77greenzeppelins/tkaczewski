@@ -43,8 +43,6 @@ const Act1 = ({ groupProps }: Props) => {
       (state.mouse.y * Math.PI) / -18,
       0.05
     );
-
-    // groupRef.current.rotation.z += delta * 0.5;
   });
 
   /**JSX**/

@@ -20,6 +20,8 @@ export default function Home() {
 
         <div className="flex justify-center items-center h-[100vh] w-full" />
         <div className="flex justify-center items-center h-[100vh] w-full" />
+        <div className="flex justify-center items-center h-[100vh] w-full" />
+
         <div className="flex justify-center items-center h-[50vh] w-full bg-corpo" />
       </div>
     </PageWrapper>
