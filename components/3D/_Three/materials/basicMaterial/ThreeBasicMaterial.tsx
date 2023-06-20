@@ -18,6 +18,9 @@ const BasicMaterialContext = React.createContext<IMaterialContext | undefined>(
   undefined
 );
 
+/*
+(!) use it in RootComponent => <Scene3D>
+*/
 export const BasicMaterialProvider = ({
   color,
   children,
@@ -34,6 +37,9 @@ export const BasicMaterialProvider = ({
   );
 };
 
+/*
+(!) use it in LeafComponent
+*/
 export const useBasicMaterial = (): MeshBasicMaterial => {
   const context = React.useContext(BasicMaterialContext);
   if (!context) {

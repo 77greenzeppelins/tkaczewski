@@ -1,13 +1,13 @@
 /**Provider**/
-import DreiPerspectiveCamera from '../_Drei/camera/DreiPerspectiveCamera';
 import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBasicMaterial';
 /**Components**/
-import CameraControler from '../customeObjects/cameraControler/CameraControler';
-import PageHome from '../page_1_home/PageHome';
-import Page2D from '../page_2_2D/Page2D';
-import PageCV from '../page_3_cv/PageCV';
-import PageContacts from '../page_9_contacts/PageContacts';
-
+import {
+  PageHome,
+  PageCV,
+  PageContacts,
+  CameraControler,
+  DreiPerspectiveCamera,
+} from '@/components';
 /**-------------------------------**/
 const Scene3D = () => {
   /**JSX**/
@@ -20,7 +20,6 @@ const Scene3D = () => {
       <fog attach="fog" args={['#01030d', 3, 4.3]} />
       {/*-----Canvas Content--------------------------------*/}
       <PageHome />
-      <Page2D />
       <PageCV />
       <PageContacts />
     </BasicMaterialProvider>

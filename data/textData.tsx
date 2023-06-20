@@ -27,14 +27,14 @@ const cvSections = [
   {
     header: 'personal statement',
     body: [
-      'A passionate and enthusiastic self-taught front-end developer with over 3 years of commercial experience in developing web application, able to perform various aspects of web page development and deployment. That includes creating QQQ within Business Intelligence toolkit. Competent in analyzing and manipulating….',
+      'A passionate and enthusiastic self-made front-end developer with over 3 years of commercial experience in developing web applications, able to perform various aspects of front-end development and deployment. That includes creating full web solutions respecting the newest achievements from UI and UX fields. Competent in analyzing business requirements and implementing appropriate technical tools. ',
     ],
   },
   {
     header: 'aducation',
     body: [
       {
-        col1: '2000 - 2005',
+        col1: '1999 - 2005',
         col2: [
           'Philosophy',
           'Wroclaw University',
@@ -47,17 +47,16 @@ const cvSections = [
         col2: [
           'Advertising Studies',
           'School of Economics',
-          'Dzierżoniów, Poland',
+          'Dzierzoniow, Poland',
           'Final Grade: Very Good (A)',
         ],
       },
       {
         col1: '1991 - 1995',
         col2: [
-          'Biologiczno-chemiczny',
           'The Second General High School',
-          'Dzierżoniów, Poland',
-          'Final Grade: Very Good (A)',
+          'Dzierzoniow, Poland',
+          'Final Grade: Good (B)',
         ],
       },
     ],
@@ -95,18 +94,17 @@ const cvSections = [
     body: [
       {
         col1: 'Programing Languages',
-        col2: ['Java script / type script', 'glsl'],
+        col2: ['JavaScript / TypeScript', 'GLSL'],
       },
       {
         col1: 'Web Development',
         col2: [
           'HTML',
-          'CSS',
+          'CSS / Tailwind CSS',
           'react',
+          'Framer Motion',
           'three-fiber “eco system” (react-three/fiber,  react-three/drei,  react-spring, use-gesture)',
           'three.js',
-          'tailwind',
-          'framer-motion',
         ],
       },
     ],
@@ -116,13 +114,16 @@ const cvSections = [
     body: [
       {
         col1: '2020 - current',
-        col2: ['Freelancing; graphic and web development services'],
+        col2: [
+          'Freelancing - graphic and web development services',
+          'Searching new business partners.  Maintaining business operational and technical aspects of provided solutions',
+        ],
       },
       {
         col1: '2006 - 2019',
         col2: [
           'Sales representative / Regional Director ',
-          'Roles and Responsibilities: Create sale on three voivodeships (Opolskie Voivodeship, Silesia, Lesser Poland), win new clients',
+          'Create sales network for the market of luxury goods on three voivodeships (Opolskie Voivodeship, Silesia, Lesser Poland). Win new clients, maintaining business relationships',
         ],
       },
       {
@@ -148,15 +149,10 @@ const cvSections = [
   {
     header: 'interest and activities',
     body: [
-      'Art & design history; Digital Art; Programming; Swimming; Cross training workout; Finding out how my 8 years old daughter perceive the world (probably the most interesting and challenging)',
+      'Art & design history; Digital Art; Programming; Swimming; Cross training workout; Finding out how my 8-years-old daughter perceive the world (probably the most interesting and challenging)',
     ],
   },
 ];
-
-// passion: {
-//   header: 'interest and activities',
-//   text: '',
-// },
 
 export {
   introOverlayTexts,

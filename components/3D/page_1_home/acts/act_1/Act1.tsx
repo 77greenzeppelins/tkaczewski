@@ -86,10 +86,11 @@ const Act1 = ({ groupProps }: Props) => {
         />
         <ImageCanvas
           // meshProps={{ scale: [0.9, 0.85, 0.85] }}
-          meshProps={{ scale: [0.9 * 0.45, 0.85 * 0.45, 0.85 * 0.45] }}
-          argsWidth={imagesData.botticelliVenus.width * 2}
-          argsHeight={imagesData.botticelliVenus.height * 2}
-          image={imagesData.botticelliVenus.path}
+          // meshProps={{ scale: [0.9 * 0.45, 0.85 * 0.45, 0.85 * 0.45] }}
+          meshProps={{ scale: [0.9 * 0.455, 0.85 * 0.455, 0.85 * 0.455] }}
+          argsWidth={imagesData.family.width * 2}
+          argsHeight={imagesData.family.height * 2}
+          image={imagesData.family.path}
         />
       </group>
     </group>

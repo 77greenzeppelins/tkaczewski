@@ -45,6 +45,8 @@ const assetsPaths = {
   school: '/assets/images/art/raphael_800_1047.webp',
   phone: '../assets/images/contacts/instantContact_phone.webp',
   email: '../assets/images/contacts/instantContact_email.webp',
+  family: '../assets/images/various/family_2.webp',
+
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };
@@ -83,6 +85,7 @@ const pages3DPositions = {
 const imagesData = {
   //__pageHome
   botticelliVenus: { path: assetsPaths.venus, width: 0.445, height: 0.8 },
+  family: { path: assetsPaths.family, width: 0.446, height: 0.8 },
   //__page2D
   raphaelSchool: { path: assetsPaths.school, width: 0.8, height: 1.047 },
   //__pageContacts
