@@ -36,7 +36,7 @@ const Act5 = ({ groupProps }: Props) => {
       />
       <group
         ref={groupRef}
-        rotation={new THREE.Euler(0, 0, 0)}
+        // rotation={new THREE.Euler(0, 0, 0)}
         position={new THREE.Vector3(0, 0.1, 0)}
       >
         {page3DConfigs.text4b.map(({ text, position }, index) => {

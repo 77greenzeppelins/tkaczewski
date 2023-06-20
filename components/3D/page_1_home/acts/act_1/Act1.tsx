@@ -31,7 +31,7 @@ const Act1 = ({ groupProps }: Props) => {
   /*
   1__useFrame Section
   */
-  useFrame(state => {
+  useFrame((state, delta) => {
     // console.log('state.mouse.x: ', state.mouse.x);
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
@@ -43,6 +43,8 @@ const Act1 = ({ groupProps }: Props) => {
       (state.mouse.y * Math.PI) / -18,
       0.05
     );
+
+    // groupRef.current.rotation.z += delta * 0.5;
   });
 
   /**JSX**/
@@ -80,19 +82,6 @@ const Act1 = ({ groupProps }: Props) => {
           image={imagesData.family.path}
         />
       </group>
-      {/* {page3DConfigs.familyText.map(({ text, position }, index) => (
-        <DreiText
-          key={index}
-          hasMatcap={true}
-          text={text}
-          position={new THREE.Vector3(...position)}
-          scale={new THREE.Vector3(0.5, 0.5, 0.5)}
-          // color="white"
-          textAlign="center"
-          // maxWidth={state.size.width > 1000 ? 2 : 1}
-          anchorX="center"
-        />
-      ))} */}
     </group>
   );
 };
