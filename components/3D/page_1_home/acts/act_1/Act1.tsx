@@ -25,15 +25,13 @@ interface Props {
 const Act1 = ({ groupProps }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
-
+  /** */
+  const { width } = useWindowSize();
+  const respCondition = width > 460;
+  const respScale = respCondition ? [1, 1, 1] : [0.75, 0.75, 0.75];
   /*
-  staff for "hover" animation; includes condition that excludes screens lower then 769
+  1__useFrame Section
   */
-  // const [isHovered, setIsHovered] = useState(false);
-  // const { width } = useWindowSize();
-  // const animationCondition = isHovered && width >= minWidthForAnimation;
-
-  /**useFrame Section**/
   useFrame(state => {
     // console.log('state.mouse.x: ', state.mouse.x);
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
@@ -51,7 +49,11 @@ const Act1 = ({ groupProps }: Props) => {
   /**JSX**/
   return (
     <group dispose={null}>
-      <group {...groupProps} ref={groupRef}>
+      <group
+        {...groupProps}
+        ref={groupRef}
+        scale={new THREE.Vector3(...respScale)}
+      >
         {page3DConfigs.familyText.map(({ text, position }, index) => (
           <DreiText
             key={index}

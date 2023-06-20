@@ -130,8 +130,9 @@ const page3DConfigs = {
     [0, 0, -16],
   ],
   text1: [
-    { text: 'Thank you for', position: [0, 0.2, 0] },
-    { text: 'visiting this page', position: [0, -0.2, -0.5] },
+    { text: 'Thank you ', position: [0, 0.35, 0] },
+    { text: 'for visiting', position: [0, 0, -0.2] },
+    { text: 'my page', position: [0, -0.25, -0.4] },
   ],
   text2: [
     { text: "I'm", position: [0, 0.25, 0], rotation: [0, 0, 0] },
