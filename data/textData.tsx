@@ -27,7 +27,7 @@ const cvSections = [
   {
     header: 'personal statement',
     body: [
-      'A passionate and enthusiastic self-made front-end developer with over 3 years of commercial experience in developing web applications, able to perform various aspects of front-end development and deployment. That includes creating full web solutions respecting the newest achievements from UI and UX fields. Competent in analyzing business requirements and implementing appropriate technical tools. ',
+      'A passionate and enthusiastic self-made front-end developer with over 3 years of commercial experience developing web applications. Well-versed in various aspects of front-end development and deployment, including creating full web solutions that incorporate the latest UI and UX trends. Competent in analyzing business requirements and selecting the appropriate technical tools to implement them.',
     ],
   },
   {
@@ -39,7 +39,7 @@ const cvSections = [
           'Philosophy',
           'Wroclaw University',
           'Wroclaw, Poland',
-          'Final Grade: Very Good (A)',
+          // 'Final Grade: Very Good (A)',
         ],
       },
       {
@@ -48,7 +48,7 @@ const cvSections = [
           'Advertising Studies',
           'School of Economics',
           'Dzierzoniow, Poland',
-          'Final Grade: Very Good (A)',
+          // 'Final Grade: Very Good (A)',
         ],
       },
       {
@@ -56,7 +56,7 @@ const cvSections = [
         col2: [
           'The Second General High School',
           'Dzierzoniow, Poland',
-          'Final Grade: Good (B)',
+          // 'Final Grade: Good (B)',
         ],
       },
     ],
@@ -74,21 +74,21 @@ const cvSections = [
       },
     ],
   },
-  {
-    header: 'achievements and awards',
-    body: [
-      {
-        col1: '2000 - 2005',
-        col2: [
-          'Scholarship for students with an outstanding result at Wroclaw University.',
-        ],
-      },
-      {
-        col1: '0000 - 0000',
-        col2: ['Set up and run successfully own Business'],
-      },
-    ],
-  },
+  // {
+  //   header: 'achievements and awards',
+  //   body: [
+  //     {
+  //       col1: '2000 - 2005',
+  //       col2: [
+  //         'Scholarship for students with an outstanding result at Wroclaw University.',
+  //       ],
+  //     },
+  //     {
+  //       col1: '0000 - 0000',
+  //       col2: ['Set up and run successfully own Business'],
+  //     },
+  //   ],
+  // },
   {
     header: 'computer skills',
     body: [
@@ -116,21 +116,30 @@ const cvSections = [
         col1: '2020 - current',
         col2: [
           'Freelancing - graphic and web development services',
+          'Roles and Responsibilities:',
           'Searching new business partners.  Maintaining business operational and technical aspects of provided solutions',
+          'Creating design that matches customer’s requirements',
+          'Developing interfaces with respect to responsive design, cross-browser compatibility and accessibility',
+          'Performance optimization',
+          'Post-deployment services; Implementing new features or improvements suggested by customers and their clients;',
         ],
       },
       {
         col1: '2006 - 2019',
         col2: [
           'Sales representative / Regional Director ',
-          'Create sales network for the market of luxury goods on three voivodeships (Opolskie Voivodeship, Silesia, Lesser Poland). Win new clients, maintaining business relationships',
+          'Roles and Responsibilities:',
+          'Create sales network for the market of luxury goods on three voivodeships (Opolskie Voivodeship, Silesia, Lesser Poland);',
+          'Gaining new customers;',
+          'Maintaining business relationships;',
         ],
       },
       {
         col1: '2001 - 2002',
         col2: [
           'Trainee Teacher at Secondary School No.10 Wroclaw, Poland',
-          'Roles and Responsibilities:Responsible for teaching history of philosophy',
+          'Roles and Responsibilities:',
+          'Teaching history of philosophy',
         ],
       },
     ],
@@ -158,6 +167,6 @@ export {
   introOverlayTexts,
   introOverlayTextsStyles,
   timeZones,
-  page2DTexts,
+  // page2DTexts,
   cvSections,
 };

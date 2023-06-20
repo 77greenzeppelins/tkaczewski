@@ -214,7 +214,7 @@ const page3DConfigs = {
   //___act7
   text6: [
     {
-      text: 'if so',
+      text: 'if so,',
       position: [0, 0.3, 0],
       rotation: [0, 0, 0],
     },
