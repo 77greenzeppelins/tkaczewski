@@ -81,9 +81,10 @@ const PageHome = () => {
         }}
       />
       <Act8
-        groupProps={{
-          position: new THREE.Vector3(...page3DConfigs.actsPositions[7]),
-        }}
+        // groupProps={{
+        //   position: new THREE.Vector3(...page3DConfigs.actsPositions[7]),
+        // }}
+        positionZ={page3DConfigs.actsPositions[7][2]}
       />
     </group>
   );

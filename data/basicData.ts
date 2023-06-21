@@ -30,7 +30,6 @@ const linksToInstantContactData = {
   mail: `mailto:${contactData.mail}`, //___to delate
   mobile: `tel:${contactData.mobile}`,
 };
-
 /*
 ___(!) I've decided to keep all path in one place in case any changes...
 ___1. glb section is useful whenever useGLTF(somePath) is used; 
@@ -57,8 +56,10 @@ __3. ternay : respTreshold ? desktopSettings : mobilesettings
 */
 const basicConfigs = {
   respTreshold: 768,
+  pageHome: {
+    viewports: 7, //scrollable container in <PageHomeContent> is: 600vh + 100vh
+  },
 };
-
 /*
 __1. it turned out that camera settings take part in some calculations in various places in code / in various components;
 __2. are used in <CameraControler> , <PlaneShader>

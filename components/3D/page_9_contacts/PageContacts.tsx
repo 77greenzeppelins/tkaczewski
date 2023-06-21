@@ -1,8 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-/**THREE Staff**/
-
 /**Components**/
 import { InstantContactPanel } from '@/components';
 /**BasicData*/

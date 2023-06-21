@@ -1,7 +1,10 @@
 /*
 __________2D
 */
+//__direct contact Staff
 import InstantContactButtons2D from './multipagesComponents/instantContactButtons/InstantContactButtons2D';
+import DirectEmail from './multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
+import DirectPhone from './multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
 /*
 __________3D
 */
@@ -31,6 +34,8 @@ import Act8 from './3D/page_1_home/acts/act_8/Act8';
 export {
   //___
   InstantContactButtons2D,
+  DirectEmail,
+  DirectPhone,
   //
   CameraControler,
   DreiPerspectiveCamera,
