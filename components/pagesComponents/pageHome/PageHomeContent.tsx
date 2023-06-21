@@ -11,8 +11,8 @@ const PageHomeContent = () => {
   //   console.log('window.scrollY:', window.scrollY);
   // }, []);
 
-  const scrollYPosition = useScrollPosition();
-  console.log('scrollYPosition.val:', scrollYPosition.val);
+  // const scrollYPosition = useScrollPosition();
+  // console.log('scrollYPosition.val:', scrollYPosition.val);
   // if (typeof window !== 'undefined') {
   //   console.log('window.innerHeight:', window.innerHeight);
   // }
