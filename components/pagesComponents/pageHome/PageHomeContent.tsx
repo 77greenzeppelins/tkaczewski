@@ -14,7 +14,9 @@ const PageHomeContent = () => {
   const scrollYPosition = useScrollPosition();
 
   console.log('scrollYPosition.val:', scrollYPosition.val);
-  console.log('window.innerHeight:', window.innerHeight);
+  if (typeof window !== 'undefined') {
+    console.log('window.innerHeight:', window.innerHeight);
+  }
 
   /**JSX**/
   return (
