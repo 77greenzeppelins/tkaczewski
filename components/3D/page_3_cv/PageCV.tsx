@@ -1,3 +1,4 @@
+'use client';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 /**Components**/
@@ -6,7 +7,6 @@ import Act5 from './acts/act_5/Act5';
 import * as THREE from 'three';
 /**Basic Data**/
 import { page3DConfigs, pagesPath } from '@/data/basicData';
-import { Box, Sphere } from '@react-three/drei/core';
 import { useThree } from '@react-three/fiber';
 
 /**-------------------**/
