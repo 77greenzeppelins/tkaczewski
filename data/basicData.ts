@@ -246,16 +246,16 @@ const page3DConfigs = {
 
   //___for page2D
   page2D: {
-    // pagePosition: [pages3DPositions.page2D.x, 0, 0],
-    // section1: { position: [1, 1, 1] },
+    pagePosition: [pages3DPositions.page2D.x, 0, 0],
+    section1: { position: [1, 1, 1] },
 
-    //__Act_5
-    // act5Config: {
-    //   springPositionsZ: [-4.25, -2], //from | to
-    //   springPositionsY: [-2.5, -0.3], //from | to
-    //   springRotationX: [0, Math.PI * -0.2], //from | to
-    //   springDelay: 1000,
-    // },
+    // __Act_5
+    act5Config: {
+      springPositionsZ: [-4.25, -2], //from | to
+      springPositionsY: [-2.5, -0.3], //from | to
+      springRotationX: [0, Math.PI * -0.2], //from | to
+      springDelay: 1000,
+    },
     answers: {
       platoCloud: {
         scale: [0.6, 0.6, 0.6],
