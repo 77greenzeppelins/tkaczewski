@@ -1,8 +1,5 @@
 'use client';
-
 import React from 'react';
-//pages3DPositions.page2D.x
-import { page2DTexts } from '@/data/textData';
 
 const HeroSection = () => {
   return (
