@@ -93,22 +93,31 @@ const imagesData = {
     path: assetsPaths.phone,
     width: 0.42,
     height: 0.592,
-    position: [pages3DPositions.pageContacts.x, 0.19, 0],
   },
   //__pageContacts
   email: {
     path: assetsPaths.email,
     width: 0.42,
     height: 0.592,
-    position: [pages3DPositions.pageContacts.x, -0.19, 0],
   },
+};
+/*
+settings for <InstantContactPenel> | <InstantContactButton>
+*/
+const contactButtonConfig = {
+  scaleFrame: [0.178, 0.178, 0.178],
+  scaleImage: [0.385, 0.385, 0.385],
+  // topButtonPos: [pages3DPositions.pageContacts.x, 0.19, 0],
+  // bottomButtonPos: [pages3DPositions.pageContacts.x, -0.19, 0],
+  topButtonPos: [0, 0.19, 0],
+  bottomButtonPos: [0, -0.19, 0],
 };
 
 /*
-(!) bunch of settings used in 3D world;
+(!) bunch of settings used in respective pages in 3D world;
 */
 const page3DConfigs = {
-  //___general settings
+  //___general confige to set "pseudo-opacity-animations" during routing;
   visibilityDelay: 1000,
   canvasOverlayDelay: 1000,
 
@@ -122,7 +131,7 @@ const page3DConfigs = {
     { text: 'me', position: [-0.09, 0.19, 0.025] },
   ],
 
-  //__used in 3D <HomePage> to set groupProps.position to each "act"
+  //__used in 3D <HomePage> to set groupProps.position to each "act"; order is important as it is used via index
   actsPositions: [
     [0, 0, 0],
     [0, 0, -4],
@@ -131,12 +140,15 @@ const page3DConfigs = {
     [0, 0, -16],
     [0, 0, -20],
     [0, 0, -24],
+    [0, 0, -27.59],
   ],
+  //__text for Act_2
   text1: [
     { text: 'Thank you ', position: [0, 0.35, 0] },
     { text: 'for visiting', position: [0, 0, -0.3] },
     { text: 'my page', position: [0, -0.3, -0.3] },
   ],
+  //__text for Act_3
   text2: [
     { text: "I'm", position: [0, 0.25, 0], rotation: [0, 0, 0] },
     {
@@ -150,6 +162,7 @@ const page3DConfigs = {
       rotation: [0, -0.5, 0],
     },
   ],
+  //__text for Act_4
   text3: [
     { text: 'Have you', position: [0, 0.5, 0], rotation: [0, -0.5, 0] },
     {
@@ -168,9 +181,9 @@ const page3DConfigs = {
       rotation: [0, -0.5, 0],
     },
   ],
-  //___act_a5
+  //__text for Act_5a
   text4: { text: 'taking', position: [0, 0, 0], rotation: [0, 0, 0] },
-  //___act5_b
+  //__text for Act_5b
   text4b: [
     {
       text: 'o',
@@ -188,7 +201,7 @@ const page3DConfigs = {
       rotation: [0, 0, 0],
     },
   ],
-  //___act6_
+  //__text for Act_6
   text5: [
     {
       text: 'in',
@@ -211,7 +224,7 @@ const page3DConfigs = {
       rotation: [0, 0, 0],
     },
   ],
-  //___act7
+  //__text for Act_7
   text6: [
     {
       text: 'if so,',
@@ -228,33 +241,21 @@ const page3DConfigs = {
       position: [0, -0.38, -1],
       rotation: [0, 0, 0],
     },
-    // {
-    //   text: '?',
-    //   position: [0, -0.37, -0.3],
-    //   rotation: [0, 0, 0],
-    // },
   ],
+  //__for Act_8 => contact panel
 
   //___for page2D
   page2D: {
-    pagePosition: [pages3DPositions.page2D.x, 0, 0],
+    // pagePosition: [pages3DPositions.page2D.x, 0, 0],
     // section1: { position: [1, 1, 1] },
 
-    //__Act_1
-    act1Config: {
-      // springPositionsZ: [-4.25, -2], //from | to
-      // springPositionsY: [-1.5, -0.3], //from | to
-      // springRotationX: [0, Math.PI * -0.2], //from | to
-      // springDelay: 1000,
-    },
-
     //__Act_5
-    act5Config: {
-      springPositionsZ: [-4.25, -2], //from | to
-      springPositionsY: [-2.5, -0.3], //from | to
-      springRotationX: [0, Math.PI * -0.2], //from | to
-      springDelay: 1000,
-    },
+    // act5Config: {
+    //   springPositionsZ: [-4.25, -2], //from | to
+    //   springPositionsY: [-2.5, -0.3], //from | to
+    //   springRotationX: [0, Math.PI * -0.2], //from | to
+    //   springDelay: 1000,
+    // },
     answers: {
       platoCloud: {
         scale: [0.6, 0.6, 0.6],
@@ -334,4 +335,6 @@ export {
   //___
   contactData,
   linksToInstantContactData,
+  //___
+  contactButtonConfig,
 };

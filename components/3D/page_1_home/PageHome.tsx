@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 /**Components**/
-import { Act1, Act2, Act3, Act4, Act5, Act6, Act7 } from '@/components';
+import { Act1, Act2, Act3, Act4, Act5, Act6, Act7, Act8 } from '@/components';
 /**THREE Staff**/
 import * as THREE from 'three';
 /**BasicData**/
@@ -78,6 +78,11 @@ const PageHome = () => {
       <Act7
         groupProps={{
           position: new THREE.Vector3(...page3DConfigs.actsPositions[6]),
+        }}
+      />
+      <Act8
+        groupProps={{
+          position: new THREE.Vector3(...page3DConfigs.actsPositions[7]),
         }}
       />
     </group>

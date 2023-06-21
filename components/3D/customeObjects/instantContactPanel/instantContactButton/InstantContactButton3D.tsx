@@ -1,11 +1,8 @@
 import React from 'react';
 /**Components**/
-import BasicFrame from '@/components/3D/customeObjects/frame/BasicFrame';
-import ImageCanvas from '@/components/3D/customeObjects/imageCanvas/ImageCanvas';
+import { BasicFrame, ImageCanvas } from '@/components';
 /**Drei Staff**/
-import { Float, Html } from '@react-three/drei';
-/**BasicData**/
-import { imagesData } from '@/data/basicData';
+import { Float } from '@react-three/drei';
 
 /**TS**/
 interface Props {
@@ -29,10 +26,7 @@ const InstantContactButton3D = ({
 }: Props) => {
   /**JSX**/
   return (
-    <group
-      {...groupProps}
-      //  ref={groupRef}
-    >
+    <group {...groupProps}>
       <Float
         speed={1.5} // Animation speed, defaults to 1
         rotationIntensity={0.99} // XYZ rotation intensity, defaults to 1
@@ -46,12 +40,6 @@ const InstantContactButton3D = ({
           argsHeight={height}
           image={path}
         />
-        {/* <Html transform position={[0, 0, 0]}>
-          <div
-            onClick={() => console.log('.......')}
-            className=" bg-corpo w-[10px] h-[35px]"
-          ></div>
-        </Html> */}
       </Float>
     </group>
   );

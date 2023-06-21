@@ -19,7 +19,6 @@ const InfoSection = ({ headerText, bodyText }: Props) => {
   // const isStringArray = (propsToCheck: any): propsToCheck is string[] => {
   //   return Array.isArray(propsToCheck) && typeof propsToCheck[0] === 'string';
   // };
-
   const isStringArray = (
     propsToCheck: any
   ): propsToCheck is {

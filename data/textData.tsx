@@ -13,15 +13,15 @@ const timeZones = [
   { city: 'Beijing', zone: 'Asia/Shanghai' },
 ];
 
-const page2DTexts = {
-  section1: {
-    part1: [
-      "Hi, I'm Oskar",
-      'front-end developer',
-      'probably the best alternative for all AI tools you know',
-    ],
-  },
-};
+// const page2DTexts = {
+//   section1: {
+//     part1: [
+//       "Hi, I'm Oskar",
+//       'front-end developer',
+//       'probably the best alternative for all AI tools you know',
+//     ],
+//   },
+// };
 
 const cvSections = [
   {
@@ -101,9 +101,9 @@ const cvSections = [
         col2: [
           'HTML',
           'CSS / Tailwind CSS',
-          'react',
+          'React',
           'Framer Motion',
-          'three-fiber “eco system” (react-three/fiber,  react-three/drei,  react-spring, use-gesture)',
+          'react-three-fiber “eco system” (react-three/fiber,  react-three/drei,  react-spring, use-gesture)',
           'three.js',
         ],
       },
