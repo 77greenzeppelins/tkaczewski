@@ -1,7 +1,7 @@
 /*
 __________2D
 */
-
+import InstantContactButtons2D from './multipagesComponents/instantContactButtons/InstantContactButtons2D';
 /*
 __________3D
 */
@@ -25,9 +25,12 @@ import Act5 from './3D/page_1_home/acts/act_5/Act5';
 import Act6 from './3D/page_1_home/acts/act_6/Act6';
 import Act7 from './3D/page_1_home/acts/act_7/Act7';
 import Act8 from './3D/page_1_home/acts/act_8/Act8';
+
 //__
 
 export {
+  //___
+  InstantContactButtons2D,
   //
   CameraControler,
   DreiPerspectiveCamera,
