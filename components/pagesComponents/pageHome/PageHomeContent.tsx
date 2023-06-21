@@ -6,16 +6,16 @@ import useMeasure from 'react-use-measure';
 /**Components*/
 import { InstantContactButtons2D } from '@/components';
 import { useSpring, animated } from '@react-spring/web';
-import { springConfigs } from '@/data/basicData';
-
+import { basicConfigs, springConfigs } from '@/data/basicData';
 /**----------------------------------------**/
 const PageHomeContent = () => {
   /*
-  ___2. this animation is triggered
+   ___1. mountingCondition takes its valu from: progress of scrolling === responsive viewport height minus responsive viewport height divided by hardCoded 7;
   */
   const scrollYPosition = useScrollPosition();
   const [ref, { height }] = useMeasure({ scroll: true });
-  const muntingCondition = scrollYPosition.val === height - window.innerHeight;
+  const muntingCondition =
+    scrollYPosition.val === height - height / basicConfigs.pageHome.viewports;
   // console.log('window.innerHeight:', window.innerHeight);
 
   // if (muntingCondition) {
