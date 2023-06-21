@@ -31,7 +31,16 @@ const PageContacts = () => {
   /**JSX**/
   return (
     <group visible={isPath} position-x={pages3DPositions.pageContacts.x}>
-      <InstantContactPanel />
+      <InstantContactPanel
+        topButtonPos={
+          page3DConfigs.pageContacts.contactButtonConfig.topButtonPos
+        }
+        bottomButtonPos={
+          page3DConfigs.pageContacts.contactButtonConfig.bottomButtonPos
+        }
+        scaleFrame={page3DConfigs.pageContacts.contactButtonConfig.scaleFrame}
+        scaleImage={page3DConfigs.pageContacts.contactButtonConfig.scaleImage}
+      />
     </group>
   );
 };

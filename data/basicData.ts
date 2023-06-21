@@ -124,6 +124,14 @@ const page3DConfigs = {
   //___for pageHome
   pageHome: {
     pagePosition: [pages3DPositions.pageHome.x, 0, 0],
+    act8_data: {
+      contactButtonConfig: {
+        scaleFrame: [0.3, 0.3, 0.3],
+        scaleImage: [0.63, 0.63, 0.63],
+        topButtonPos: [0, 0.32, 0],
+        bottomButtonPos: [0, -0.32, 0],
+      },
+    },
   },
 
   familyText: [
@@ -140,7 +148,7 @@ const page3DConfigs = {
     [0, 0, -16],
     [0, 0, -20],
     [0, 0, -24],
-    [0, 0, -27.59],
+    [0, 0, -28],
   ],
   //__text for Act_2
   text1: [
@@ -244,7 +252,7 @@ const page3DConfigs = {
   ],
   //__for Act_8 => contact panel
 
-  //___for page2D
+  //_____for page2D
   page2D: {
     pagePosition: [pages3DPositions.page2D.x, 0, 0],
     section1: { position: [1, 1, 1] },
@@ -287,6 +295,8 @@ const page3DConfigs = {
 
     // section1: { position: [1, 1, 1] },
   },
+
+  //_____for pageCV
   pageCV: {
     pagePosition: [pages3DPositions.pageCV.x, 0, 0],
     act5Config: {
@@ -294,6 +304,15 @@ const page3DConfigs = {
       springPositionsY: [-2.5, -0.3], //from | to
       springRotationX: [0, Math.PI * -0.2], //from | to
       springDelay: 1000,
+    },
+  },
+  //_____for pageContacts
+  pageContacts: {
+    contactButtonConfig: {
+      scaleFrame: [0.178, 0.178, 0.178],
+      scaleImage: [0.385, 0.385, 0.385],
+      topButtonPos: [0, 0.19, 0],
+      bottomButtonPos: [0, -0.19, 0],
     },
   },
 };

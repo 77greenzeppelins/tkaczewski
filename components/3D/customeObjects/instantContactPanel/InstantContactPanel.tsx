@@ -4,10 +4,22 @@ import * as THREE from 'three';
 /**Components**/
 import { InstantContactButton3D } from '@/components';
 /**BasicData*/
-import { imagesData, contactButtonConfig } from '@/data/basicData';
+import { imagesData } from '@/data/basicData';
+
+interface Props {
+  topButtonPos: number[];
+  bottomButtonPos: number[];
+  scaleFrame: number[];
+  scaleImage: number[];
+}
 
 /**--------------------------------------*/
-const InstantContactPanel = () => {
+const InstantContactPanel = ({
+  topButtonPos,
+  bottomButtonPos,
+  scaleFrame,
+  scaleImage,
+}: Props) => {
   /*
   ___1.set of imageData to specify path, width, height + 
   */
@@ -22,14 +34,14 @@ const InstantContactPanel = () => {
           groupProps={{
             position:
               i === 0
-                ? new THREE.Vector3(...contactButtonConfig.topButtonPos)
-                : new THREE.Vector3(...contactButtonConfig.bottomButtonPos),
+                ? new THREE.Vector3(...topButtonPos)
+                : new THREE.Vector3(...bottomButtonPos),
           }}
           frameMeshProps={{
-            scale: new THREE.Vector3(...contactButtonConfig.scaleFrame),
+            scale: new THREE.Vector3(...scaleFrame),
           }}
           imageMeshProps={{
-            scale: new THREE.Vector3(...contactButtonConfig.scaleImage),
+            scale: new THREE.Vector3(...scaleImage),
           }}
           path={path}
           width={width}
