@@ -30,7 +30,6 @@ const ContactsDataSection = ({ transform }: Props) => {
     ___2. We set how much of observed element shoud be in observableArea to make it fully observable
     */
     // amount: 1,
-
     //___
     rootMargin: '-5% 0px -20% 0px',
     amount: 0.5,
@@ -38,7 +37,7 @@ const ContactsDataSection = ({ transform }: Props) => {
 
   const styles = useSpring({
     opacity: inView ? 1 : 0,
-    duration: inView ? 2 : 0,
+    duration: inView ? 2 : 2,
     // scale: inView ? 1 : 0.9,
     // config: {
     //   tension: 300,
@@ -47,12 +46,17 @@ const ContactsDataSection = ({ transform }: Props) => {
     // },
   });
 
+  console.log('inViev', inView);
+  /**JSX**/
   return (
     <animated.div
       ref={ref}
-      className="absolute inset-0 w-full h-[100vh] wrapper-1 "
+      className={`absolute inset-0 w-full h-[100vh] wrapper-1
+      `}
+      // ${inView ? 'translate-x-0' : 'translate-x-[105%]'}
       style={{
         transform,
+        // ...styles,
       }}
       // style={{ transform: `translateX(${x}px)` }}
     >

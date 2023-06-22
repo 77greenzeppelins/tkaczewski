@@ -9,7 +9,6 @@ import { DirectPhone, DirectEmail } from '@/components'; //'@/components'
 interface Props {
   phoneContainerStyle?: string;
   emailContainerStyle?: string;
-
   buttonWidth?: number;
   buttonHeight?: number;
 }
@@ -17,8 +16,8 @@ interface Props {
 const InstantContactButtons2D = ({
   phoneContainerStyle,
   emailContainerStyle,
-  buttonWidth = 0.25,
-  buttonHeight = 0.3,
+  buttonWidth = 0.2,
+  buttonHeight = 0.28,
 }: Props) => {
   /*
   ___1. 3DObjects in canvas reacts (resizes) on viewPort height; this hook is required as these "buttons" have to follow 3DObjects size 
@@ -45,7 +44,7 @@ const InstantContactButtons2D = ({
 
       <div
         className={`flex justify-center h-[50%] w-full ${
-          emailContainerStyle ? emailContainerStyle : 'pt-[10vh]'
+          emailContainerStyle ? emailContainerStyle : 'pt-[12vh]'
         } `}
       >
         <div
