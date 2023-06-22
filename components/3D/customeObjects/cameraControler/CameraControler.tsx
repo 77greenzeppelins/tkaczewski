@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGlobalContext } from '@/context/globalContext';
 /**Global Context**/
 /**THREE Staff*/
@@ -45,9 +45,9 @@ const CameraControler = () => {
           // scrollProgress.current * -30,
           // true ? window.scrollY / -200 : 0,
           // window.scrollY / -200,
-          // window.scrollY / (window.innerHeight * -0.22),
-          window.scrollY /
-            ((scrollableHeight / basicConfigs.pageHome.viewports) * -0.22),
+          Math.trunc(window.scrollY) / (window.innerHeight * -0.22),
+          // window.scrollY /
+          //   ((scrollableHeight / basicConfigs.pageHome.viewports) * -0.22),
           // 0.05
           0.1
         )
@@ -69,7 +69,22 @@ const CameraControler = () => {
         : cameraSettings.z
     );
     state.camera.position.copy(cameraPosition);
+
+    // console.log(
+    //   'CameraControler / Math.trunc(window.scrollY):',
+    //   Math.trunc(window.scrollY)
+    // );
   });
+
+  //___wtf...
+  // useEffect(() => {
+  //   typeof window === 'undefined'
+  //     ? 0
+  //     : console.log('window.scrollY:', window.scrollY);
+  // }, []);
+  // typeof window === 'undefined'
+  //   ? 0
+  //   : console.log('window.scrollY:', window.scrollY);
 
   /**JSX**/
   return (

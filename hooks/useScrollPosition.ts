@@ -18,6 +18,7 @@ const useScrollPosition = (): ScrollYPosition => {
     const onScroll = () => {
       const { scrollY } = window;
       // console.log('...yOffset', pageYOffset, '...scrollY', scrollY);
+      // setScrollY({ val: Math.trunc(scrollY) });
       setScrollY({ val: scrollY });
     };
     //___event listener
