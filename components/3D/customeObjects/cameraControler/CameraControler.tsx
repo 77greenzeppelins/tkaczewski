@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
-import { useGlobalContext } from '@/context/globalContext';
+import React, { useRef } from 'react';
 /**Global Context**/
 /**THREE Staff*/
 import * as THREE from 'three';
@@ -13,22 +12,15 @@ import { usePathname } from 'next/navigation';
 /**Utils*/
 import { setXPosition } from './utils/utils';
 /**Basic Data*/
-import { pagesPath, cameraSettings, basicConfigs } from '@/data/basicData';
+import { pagesPath, cameraSettings } from '@/data/basicData';
 
 /**----------------------------**/
 const CameraControler = () => {
-  /*
-  ___1. "scrollableHeight" is a height of scrollableContainer in pageHome
-  */
-  const { scrollableHeight } = useGlobalContext();
-  // console.log('CameraControler / scrollableHeight', scrollableHeight);
-
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
 
   /**Condition of visibility**/
   const path = usePathname();
-  // const [currentPath, setCurrentPath] = useState('');
   const visibleOnHome = path === pagesPath.homePath;
 
   /**Animations / Manipulations*/
@@ -46,9 +38,6 @@ const CameraControler = () => {
           // true ? window.scrollY / -200 : 0,
           // window.scrollY / -200,
           window.scrollY / (state.size.height * -0.22),
-          // window.scrollY /
-          //   ((scrollableHeight / basicConfigs.pageHome.viewports) * -0.22),
-          // 0.05
           0.1
         )
       );
@@ -69,22 +58,7 @@ const CameraControler = () => {
         : cameraSettings.z
     );
     state.camera.position.copy(cameraPosition);
-
-    // console.log(
-    //   'CameraControler / Math.trunc(window.scrollY):',
-    //   Math.trunc(window.scrollY)
-    // );
   });
-
-  //___wtf...
-  // useEffect(() => {
-  //   typeof window === 'undefined'
-  //     ? 0
-  //     : console.log('window.scrollY:', window.scrollY);
-  // }, []);
-  // typeof window === 'undefined'
-  //   ? 0
-  //   : console.log('window.scrollY:', window.scrollY);
 
   /**JSX**/
   return (

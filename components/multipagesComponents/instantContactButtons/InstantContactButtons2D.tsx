@@ -34,7 +34,7 @@ const InstantContactButtons2D = ({
         } `}
       >
         <div
-          className="bg-corpo opacity-25"
+          // className="bg-corpo opacity-25"
           style={{ width: height * buttonWidth, height: height * buttonHeight }}
         >
           <DirectPhone aStyle={'block w-full h-full'} hasLabel={false} />
@@ -47,7 +47,7 @@ const InstantContactButtons2D = ({
         } `}
       >
         <div
-          className="bg-corpo opacity-25"
+          // className="bg-corpo opacity-25"
           style={{ width: height * buttonWidth, height: height * buttonHeight }}
         >
           <DirectEmail aStyle={'block w-full h-full'} hasLabel={false} />

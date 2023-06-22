@@ -46,7 +46,7 @@ const ContactsDataSection = ({ transform }: Props) => {
     // },
   });
 
-  console.log('inViev', inView);
+  // console.log('inViev', inView);
   /**JSX**/
   return (
     <animated.div

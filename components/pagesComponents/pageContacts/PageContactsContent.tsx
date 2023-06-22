@@ -35,9 +35,10 @@ const PageContactsContent = () => {
       xy: number[];
       direction: number[];
     }) => {
+      // console.log('dirY:', dirY);
       //__if scroll down && scrolled more then half ot the element scrollHeight property
       const cond1 =
-        dirY === 1 && y >= height / basicConfigs.pageContact.viewports;
+        dirY === 1 && y >= height / basicConfigs.pageContact.viewports - 5;
       const cond2 =
         dirY === -1 &&
         y <

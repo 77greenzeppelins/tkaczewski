@@ -27,11 +27,6 @@ const PageHomeContent = () => {
     setScrollableHeight(height);
   }, [height, setScrollableHeight]);
 
-  // if (muntingCondition) {
-  //   console.log('...show!');
-  // } else {
-  //   console.log('...hide!');
-  // }
   const startRange =
     scrollableHeight -
     scrollableHeight / basicConfigs.pageHome.viewports -
@@ -47,12 +42,12 @@ const PageHomeContent = () => {
   return (
     <div ref={ref} data-container="PageHomeContent">
       <div ref={containerRef} className="relative">
-        <div className="fixed top-[100px] left-0 bg-corpo">
+        {/* <div className="fixed top-[100px] left-0 bg-corpo">
           {scrollableHeight}
         </div>
         <div className="fixed top-[140px] left-0 bg-corpo">
           {muntingCondition.toString()}
-        </div>
+        </div> */}
         <div className=" h-[600vh]" />
         <div className="flex justify-center items-center h-[100vh] w-full">
           <div
