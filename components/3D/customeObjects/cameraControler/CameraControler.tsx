@@ -45,7 +45,7 @@ const CameraControler = () => {
           // scrollProgress.current * -30,
           // true ? window.scrollY / -200 : 0,
           // window.scrollY / -200,
-          Math.trunc(window.scrollY) / (window.innerHeight * -0.22),
+          window.scrollY / (state.size.height * -0.22),
           // window.scrollY /
           //   ((scrollableHeight / basicConfigs.pageHome.viewports) * -0.22),
           // 0.05
