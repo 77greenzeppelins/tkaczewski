@@ -36,7 +36,8 @@ const CameraControler = () => {
           meshRef.current.position.z,
           // scrollProgress.current * -30,
           // true ? window.scrollY / -200 : 0,
-          window.scrollY / (window.innerHeight * -0.22),
+          window.scrollY / -200,
+          // window.scrollY / (window.innerHeight * -0.22),
           // 0.05
           0.1
         )
