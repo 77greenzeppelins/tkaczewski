@@ -1,5 +1,7 @@
 'use client';
 import React, { useRef } from 'react';
+import { useGlobalContext } from '@/context/globalContext';
+/**Global Context**/
 /**THREE Staff*/
 import * as THREE from 'three';
 /**R3F Staff*/
@@ -15,6 +17,12 @@ import { pagesPath, cameraSettings } from '@/data/basicData';
 
 /**----------------------------**/
 const CameraControler = () => {
+  /*
+  ___1. "scrollableHeight" is a height of scrollableContainer in pageHome
+  */
+  const { scrollableHeight } = useGlobalContext();
+  console.log('CameraControler / scrollableHeight', scrollableHeight);
+
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
 

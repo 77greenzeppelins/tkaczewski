@@ -2,10 +2,13 @@
 import React, { useEffect } from 'react';
 /**GlobalContext  Staff**/
 import { useGlobalContext } from '@/context/globalContext';
+/**Hooks**/
+import useWindowSize from '@/hooks/useWindowSize';
 /**Components**/
 import DoubtsSection from './doubtsSection/DoubtsSection';
 import ThanksAISection from './ThanksAISection/ThanksAISection';
 import ButtonSwitcher from '@/components/multipagesComponents/_basicComponents/buttons/buttonSwitcher/ButtonSwitcher';
+import CloseXIcon from '@/components/svg/CloseXIcon';
 /**Spring Section*/
 import {
   useSpring,
@@ -16,8 +19,6 @@ import {
 } from '@react-spring/web';
 /**BasicData*/
 import { springConfigs } from '@/data/basicData';
-import CloseXIcon from '@/components/svg/CloseXIcon';
-import useWindowSize from '@/hooks/useWindowSize';
 
 /**------------------------**/
 const AskAI = () => {

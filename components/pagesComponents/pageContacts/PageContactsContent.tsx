@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React from 'react';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
 /**Hook**/
