@@ -1,15 +1,14 @@
 import React from 'react';
 /**Components*/
-import InstantContactButtons2D from '../instantContactButtons/InstantContactButtons2D';
-/**Spring Staff*/
-import { SpringValue } from '@react-spring/web';
+import { InstantContactButtons2D } from '@/components';
 import ContactsDataSection from '../contactsData/ContactsDataSection';
+/**Spring Staff*/
+import { SpringValue, animated } from '@react-spring/web';
 
 /**TS**/
 interface Props {
   // scrollDrivenStyles: { opacity: SpringValue<number> };
   opacity: SpringValue<number>;
-
   transform: SpringValue<string>;
 }
 
@@ -22,17 +21,20 @@ const StickyContainer = ({ opacity, transform }: Props) => {
       //___  flex justify-center items-center   -z-10
     >
       <div className="relative w-full h-full">
-        {/* <InstantContactButtons2D opacity={opacity} />
-      <ContactsDataSection transform={transform} /> */}
-        <InstantContactButtons2D opacity={opacity} />
-        <ContactsDataSection transform={transform} />
+        <div className="relative w-full h-full">
+          <InstantContactButtons2D
+            phoneContainerStyle={'pt-[11.5vh]'}
+            emailContainerStyle={'pt-[9vh]'}
+            buttonWidth={0.22}
+            buttonHeight={0.3}
+          />
+          <animated.div
+            style={{ opacity: opacity }}
+            className="absolute inset-0 bg-dark pointer-events-none"
+          />
+        </div>
 
-        {/* <div className="h-screen fc">
-        <p className="text-5xl text-light">1</p>
-      </div>
-      <div className="h-screen bg-corpo fc">
-        <p className="text-5xl text-light">2</p>
-      </div> */}
+        <ContactsDataSection transform={transform} />
       </div>
     </div>
   );

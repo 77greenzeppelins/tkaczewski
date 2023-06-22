@@ -8,12 +8,11 @@ import useElementSize from '@/hooks/useElementSize';
 import { useSpring } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
+/**Basic Data*/
+import { basicConfigs } from '@/data/basicData';
 
 /**----------------------------------------**/
 const PageContactsContent = () => {
-  /**Basic Data**/
-  const VIEWPORTS_NUMB = 2;
-
   /**Hook Section*/
   const [squareRef, { height }] = useElementSize();
   /*
@@ -37,11 +36,17 @@ const PageContactsContent = () => {
       direction: number[];
     }) => {
       //__if scroll down && scrolled more then half ot the element scrollHeight property
-      const cond1 = dirY === 1 && y >= height / VIEWPORTS_NUMB;
-      const cond2 = dirY === -1 && y < height / VIEWPORTS_NUMB / VIEWPORTS_NUMB;
+      const cond1 =
+        dirY === 1 && y >= height / basicConfigs.pageContact.viewports;
+      const cond2 =
+        dirY === -1 &&
+        y <
+          height /
+            basicConfigs.pageContact.viewports /
+            basicConfigs.pageContact.viewports;
       //___
       comp1Api.start({
-        opacity: y / (height / VIEWPORTS_NUMB),
+        opacity: y / (height / basicConfigs.pageContact.viewports),
       });
       comp2Api.start({
         transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
@@ -62,13 +67,7 @@ const PageContactsContent = () => {
       className="relative"
     >
       <StickyContainer opacity={opacity} transform={transform} />
-      <div className="h-[100vh] " />
-      {/* <div className="h-screen fc">
-        <p className="text-5xl text-light">1</p>
-      </div>
-      <div className="h-screen bg-corpo fc">
-        <p className="text-5xl text-light">2</p>
-      </div> */}
+      <div className="h-[100vh]" />
     </div>
   );
 };

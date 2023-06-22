@@ -59,6 +59,9 @@ const basicConfigs = {
   pageHome: {
     viewports: 7, //scrollable container in <PageHomeContent> is: 600vh + 100vh
   },
+  pageContact: {
+    viewports: 2,
+  },
 };
 /*
 __1. it turned out that camera settings take part in some calculations in various places in code / in various components;

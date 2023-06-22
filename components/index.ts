@@ -5,6 +5,7 @@ __________2D
 import InstantContactButtons2D from './multipagesComponents/instantContactButtons/InstantContactButtons2D';
 import DirectEmail from './multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
 import DirectPhone from './multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
+import ContactsDataSection from './pagesComponents/pageContacts/contactsData/ContactsDataSection';
 /*
 __________3D
 */
@@ -19,6 +20,7 @@ import BasicFrame from './3D/customeObjects/frame/BasicFrame';
 import ImageCanvas from './3D/customeObjects/imageCanvas/ImageCanvas';
 import InstantContactButton3D from './3D/customeObjects/instantContactPanel/instantContactButton/InstantContactButton3D';
 import InstantContactPanel from './3D/customeObjects/instantContactPanel/InstantContactPanel';
+
 //___HomePage
 import Act1 from './3D/page_1_home/acts/act_1/Act1';
 import Act2 from './3D/page_1_home/acts/act_2/Act2';
@@ -36,6 +38,7 @@ export {
   InstantContactButtons2D,
   DirectEmail,
   DirectPhone,
+  ContactsDataSection,
   //
   CameraControler,
   DreiPerspectiveCamera,

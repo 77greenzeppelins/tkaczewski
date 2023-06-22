@@ -6,8 +6,12 @@ interface ScrollYPosition {
 
 const useScrollPosition = (): ScrollYPosition => {
   //___
+  //___typeof window !== 'undefined' ? window : undefined
 
   const [scrollYPosition, setScrollY] = useState({ val: 0 });
+  // const [scrollYPosition, setScrollY] = useState({
+  //   val: typeof window !== 'undefined' ? window.scrollY : 0,
+  // });
 
   useEffect(() => {
     //___handler
