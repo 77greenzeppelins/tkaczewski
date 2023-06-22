@@ -13,7 +13,7 @@ import { usePathname } from 'next/navigation';
 /**Utils*/
 import { setXPosition } from './utils/utils';
 /**Basic Data*/
-import { pagesPath, cameraSettings } from '@/data/basicData';
+import { pagesPath, cameraSettings, basicConfigs } from '@/data/basicData';
 
 /**----------------------------**/
 const CameraControler = () => {
@@ -21,7 +21,7 @@ const CameraControler = () => {
   ___1. "scrollableHeight" is a height of scrollableContainer in pageHome
   */
   const { scrollableHeight } = useGlobalContext();
-  console.log('CameraControler / scrollableHeight', scrollableHeight);
+  // console.log('CameraControler / scrollableHeight', scrollableHeight);
 
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -44,8 +44,10 @@ const CameraControler = () => {
           meshRef.current.position.z,
           // scrollProgress.current * -30,
           // true ? window.scrollY / -200 : 0,
-          window.scrollY / -200,
+          // window.scrollY / -200,
           // window.scrollY / (window.innerHeight * -0.22),
+          window.scrollY /
+            ((scrollableHeight / basicConfigs.pageHome.viewports) * -0.22),
           // 0.05
           0.1
         )
