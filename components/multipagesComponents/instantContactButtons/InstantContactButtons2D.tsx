@@ -34,10 +34,14 @@ const InstantContactButtons2D = ({
         } `}
       >
         <div
+          className="no-sparkling"
           // className="bg-corpo opacity-25"
           style={{ width: height * buttonWidth, height: height * buttonHeight }}
         >
-          <DirectPhone aStyle={'block w-full h-full'} hasLabel={false} />
+          <DirectPhone
+            aStyle={'block w-full h-full no-sparkling'}
+            hasLabel={false}
+          />
         </div>
       </div>
 
