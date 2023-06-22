@@ -54,7 +54,10 @@ const InstantContactButtons2D = ({
           // className="bg-corpo opacity-25"
           style={{ width: height * buttonWidth, height: height * buttonHeight }}
         >
-          <DirectEmail aStyle={'block w-full h-full'} hasLabel={false} />
+          <DirectEmail
+            aStyle={'block w-full h-full no-sparkling'}
+            hasLabel={false}
+          />
         </div>
       </div>
     </div>
