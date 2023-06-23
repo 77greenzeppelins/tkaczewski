@@ -66,7 +66,10 @@ const ContactsDataSection = ({ transform, stateSetter }: Props) => {
           <div key={label} className=" overflow-hidden">
             <animated.div
               //  style={{ opacity: opacity }}
-              style={springs}
+              // style={springs}
+              className={`${
+                inView ? 'opacity-100' : 'opacity-0'
+              } transition-all duration-1000 delay-1000`}
             >
               <p className="p-v-large text-corpo select-none">{label}</p>
               <Component labelStyle={'p-medium text-corpo'} />
