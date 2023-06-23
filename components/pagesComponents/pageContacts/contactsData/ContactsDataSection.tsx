@@ -29,7 +29,7 @@ const ContactsDataSection = ({ transform }: Props) => {
     // amount: 1,
     //___
     rootMargin: '0% 0% 0% 0%',
-    amount: 0.99,
+    amount: 0.8,
   });
 
   const springs = useSpring({
