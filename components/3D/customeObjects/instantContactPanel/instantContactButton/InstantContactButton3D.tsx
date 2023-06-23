@@ -12,6 +12,10 @@ interface Props {
   path: string;
   width: number;
   height: number;
+  floatSpeed?: number;
+  floatRotation?: number;
+  floatIntens?: number;
+  floatRange?: number;
   // geometryProps?: JSX.IntrinsicElements['sphereGeometry'];
 }
 
@@ -23,14 +27,18 @@ const InstantContactButton3D = ({
   path,
   width,
   height,
+  floatSpeed,
+  floatRotation,
+  floatIntens,
+  floatRange,
 }: Props) => {
   /**JSX**/
   return (
     <group {...groupProps}>
       <Float
-        speed={1.5} // Animation speed, defaults to 1
-        rotationIntensity={0.99} // XYZ rotation intensity, defaults to 1
-        floatIntensity={0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+        speed={floatSpeed || 1.5} // Animation speed, defaults to 1
+        rotationIntensity={floatRotation || 0.99} // XYZ rotation intensity, defaults to 1
+        floatIntensity={floatIntens || 0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
         floatingRange={[-0.1, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
       >
         <BasicFrame meshProps={frameMeshProps} />

@@ -46,6 +46,7 @@ const InstantContactPanel = ({
           path={path}
           width={width}
           height={height}
+          floatSpeed={i === 0 ? 1.5 : 2.25}
         />
       ))}
     </>
