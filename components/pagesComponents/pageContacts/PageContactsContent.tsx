@@ -10,6 +10,7 @@ import { useSpring, easings } from '@react-spring/web';
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
 import { basicConfigs } from '@/data/basicData';
+import { ContactsDataSection } from '@/components';
 
 /**----------------------------------------**/
 const PageContactsContent = () => {
@@ -56,7 +57,7 @@ const PageContactsContent = () => {
       comp2Api.start({
         transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
         // config: { mass: 5, friction: 120, tension: 120 },
-        config: { duration: 2, easing: easings.easeInBounce }, //doesn't work
+        config: { duration: 0, easing: easings.easeOutSine }, // value in ms
       });
     },
     //__________ ... section
@@ -74,7 +75,10 @@ const PageContactsContent = () => {
       className="relative"
     >
       <StickyContainer opacity={opacity} transform={transform} />
-      <div className="h-[100vh]" />
+
+      <ContactsDataSection transform={transform} />
+
+      {/* <div className="relative h-[100vh] bg-yellow-600 z-10" /> */}
     </div>
   );
 };

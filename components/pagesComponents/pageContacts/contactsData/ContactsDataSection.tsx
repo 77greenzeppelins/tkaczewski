@@ -7,11 +7,11 @@ import { DirectPhone, DirectEmail } from '@/components';
 /**TS**/
 interface Props {
   transform: SpringValue<string>;
-  stateSetter: Dispatch<SetStateAction<boolean>>;
+  // stateSetter: Dispatch<SetStateAction<boolean>>;
 }
 
 /**--------------------------------**/
-const ContactsDataSection = ({ transform, stateSetter }: Props) => {
+const ContactsDataSection = ({ transform }: Props) => {
   /**Spring Section**/
   const [ref, inView] = useInView({
     /*
@@ -28,7 +28,7 @@ const ContactsDataSection = ({ transform, stateSetter }: Props) => {
     */
     // amount: 1,
     //___
-    rootMargin: '0% 10% 0% 10%',
+    rootMargin: '20% 40% 20% 40%',
     amount: 0.99,
   });
 
@@ -38,9 +38,9 @@ const ContactsDataSection = ({ transform, stateSetter }: Props) => {
     config: { mass: 50, tension: 170, friction: 26, clamp: true },
   });
 
-  useEffect(() => {
-    stateSetter(inView);
-  }, [inView, stateSetter]);
+  // useEffect(() => {
+  //   stateSetter(inView);
+  // }, [inView, stateSetter]);
 
   /**Basic Data*/
   const buttonContent = [
@@ -52,14 +52,13 @@ const ContactsDataSection = ({ transform, stateSetter }: Props) => {
   return (
     <animated.div
       ref={ref}
-      className={`absolute inset-0 w-full h-[100vh] wrapper-1
-      `}
+      // className={`absolute inset-0 w-full h-[100vh] wrapper-1
+      // `}
       // ${inView ? 'translate-x-0' : 'translate-x-[105%]'}
-      style={{
-        transform,
-        // ...styles,
-      }}
+      // style={{ transform }}
       // style={{ transform: `translateX(${x}px)` }}
+      //___new
+      className="relative h-[100vh]"
     >
       <div className="flex flex-col gap-6 items-start justify-center w-full h-full overlay-hidden">
         {buttonContent.map(({ Component, label }, i) => (
@@ -68,8 +67,10 @@ const ContactsDataSection = ({ transform, stateSetter }: Props) => {
               //  style={{ opacity: opacity }}
               // style={springs}
               className={`${
-                inView ? 'opacity-100' : 'opacity-0'
-              } transition-all duration-1000 delay-1000`}
+                inView
+                  ? 'opacity-100 transition-all duration-1000 delay-1000'
+                  : 'opacity-0 duration-0.01 delay-0'
+              } `}
             >
               <p className="p-v-large text-corpo select-none">{label}</p>
               <Component labelStyle={'p-medium text-corpo'} />

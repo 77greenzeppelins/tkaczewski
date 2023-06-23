@@ -6,6 +6,7 @@ import InstantContactButtons2D from './multipagesComponents/instantContactButton
 import DirectEmail from './multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
 import DirectPhone from './multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
 import ContactsDataSection from './pagesComponents/pageContacts/contactsData/ContactsDataSection';
+import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
 /*
 __________3D
 */
@@ -39,7 +40,9 @@ export {
   DirectEmail,
   DirectPhone,
   ContactsDataSection,
-  //
+  //___pageContacts
+  StickyContainer,
+  //_______________________________3D
   CameraControler,
   DreiPerspectiveCamera,
   PageHome,

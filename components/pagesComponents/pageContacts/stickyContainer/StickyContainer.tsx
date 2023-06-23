@@ -14,13 +14,13 @@ interface Props {
 /**-------------------------------**/
 const StickyContainer = ({ opacity, transform }: Props) => {
   /****/
-  const [inView, setInView] = useState(false);
+  // const [inView, setInView] = useState(false);
 
   /**JSX**/
   return (
     <div
       data-component="StickyContainer"
-      className="sticky h-screen top-0 bottom-0 inset-x-0 overflow-hidden"
+      className="sticky h-screen top-0 bottom-0 inset-x-0 overflow-hidden -z-0"
       //___  flex justify-center items-center   -z-10
     >
       <div className="relative w-full h-full">
@@ -40,11 +40,11 @@ const StickyContainer = ({ opacity, transform }: Props) => {
           />
         </div>
 
-        <ContactsDataSection transform={transform} stateSetter={setInView} />
+        {/* <ContactsDataSection transform={transform} stateSetter={setInView} /> */}
 
-        <div className="fixed top-[100px] left-0 bg-corpo">
+        {/* <div className="fixed top-[100px] left-0 bg-corpo">
           {inView.toString()}
-        </div>
+        </div> */}
       </div>
     </div>
   );

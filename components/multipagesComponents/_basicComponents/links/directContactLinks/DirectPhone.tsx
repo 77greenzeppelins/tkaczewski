@@ -23,19 +23,19 @@ const DirectPhone = ({
   return (
     <a
       href={linksToInstantContactData.mobile}
-      // className={aStyle}
-      className={labelStyle}
+      className={aStyle}
+      // className={labelStyle}
       aria-label="Make a phone to Oskar!"
     >
-      {hasLabel
+      {/* {hasLabel
         ? `${isOneLine ? 'telefon:' : ''} +48 ${contactData.mobile}`
-        : null}
+        : null} */}
 
-      {/* {hasLabel ? (
+      {hasLabel ? (
         <p className={labelStyle}>{`${isOneLine ? 'telefon:' : ''} +48 ${
           contactData.mobile
         }`}</p>
-      ) : null} */}
+      ) : null}
     </a>
   );
 };
