@@ -28,7 +28,7 @@ const ContactsDataSection = ({ transform }: Props) => {
     */
     // amount: 1,
     //___
-    rootMargin: '20% 40% 20% 40%',
+    rootMargin: '0% 0% 0% 0%',
     amount: 0.99,
   });
 
