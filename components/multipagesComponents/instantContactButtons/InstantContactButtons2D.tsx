@@ -3,8 +3,7 @@ import React from 'react';
 /**Hook**/
 import useWindowSize from '@/hooks/useWindowSize';
 /**Components**/
-import { DirectPhone, DirectEmail } from '@/components'; //'@/components'
-
+import { DirectPhone, DirectEmail } from '@/components';
 /**TS**/
 interface Props {
   phoneContainerStyle?: string;

@@ -1,7 +1,6 @@
 import React from 'react';
 /**Components*/
-import { InstantContactButtons2D } from '@/components';
-import ContactsDataSection from '../contactsData/ContactsDataSection';
+import { InstantContactButtons2D, ContactsDataSection } from '@/components';
 /**Spring Staff*/
 import { SpringValue, animated } from '@react-spring/web';
 

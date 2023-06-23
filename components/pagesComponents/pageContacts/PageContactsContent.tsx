@@ -5,7 +5,7 @@ import StickyContainer from './stickyContainer/StickyContainer';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
-import { useSpring } from '@react-spring/web';
+import { useSpring, easings } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
@@ -14,7 +14,8 @@ import { basicConfigs } from '@/data/basicData';
 /**----------------------------------------**/
 const PageContactsContent = () => {
   /**Hook Section*/
-  const [squareRef, { height }] = useElementSize();
+  const [squareRef, { height }] = useElementSize(); // innerHeight * 2
+  // console.log('PageContactsContent | height:', height);
   /*
   ___1. api for <InstantContactButtons> opacity
   */
@@ -28,6 +29,7 @@ const PageContactsContent = () => {
 
   /** */
   useScroll(
+    //__________gesture state section
     ({
       xy: [x, y],
       direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
@@ -36,24 +38,28 @@ const PageContactsContent = () => {
       direction: number[];
     }) => {
       // console.log('dirY:', dirY);
-      //__if scroll down && scrolled more then half ot the element scrollHeight property
+
+      //__________conditions section
+      /*
+      ___1. here we actually use "gesture state values" to set two boolean const that works as switcher when springValues are imperatively modified;
+      ___2. if scroll down && scrolled more then half of the element scrollHeight property our cond1 is true
+      */
       const cond1 =
         dirY === 1 && y >= height / basicConfigs.pageContact.viewports - 5;
       const cond2 =
-        dirY === -1 &&
-        y <
-          height /
-            basicConfigs.pageContact.viewports /
-            basicConfigs.pageContact.viewports;
-      //___
+        dirY === -1 && y < height / basicConfigs.pageContact.viewports; // /basicConfigs.pageContact.viewports;
+
+      //__________springValues Modification section
       comp1Api.start({
         opacity: y / (height / basicConfigs.pageContact.viewports),
       });
       comp2Api.start({
         transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
         config: { mass: 5, friction: 120, tension: 120 },
+        // config: { duration: 2, easing: easings.easeInBounce }, //doesn't work
       });
     },
+    //__________ ... section
     {
       enabled: true,
       target: typeof window !== 'undefined' ? window : undefined,

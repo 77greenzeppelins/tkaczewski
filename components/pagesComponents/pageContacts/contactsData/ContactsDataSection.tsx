@@ -1,14 +1,10 @@
 'use client';
-import React, { MutableRefObject } from 'react';
+import React from 'react';
 /**Spring Staff**/
 import { useInView, useSpring, animated, SpringValue } from '@react-spring/web';
-import DirectPhone from '@/components/multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
-import DirectEmail from '@/components/multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
+import { DirectPhone, DirectEmail } from '@/components';
 
-// interface Props {
-//   direction: MutableRefObject<number | null>;
-//   dir: number | null;
-// }
+/**TS**/
 interface Props {
   transform: SpringValue<string>;
 }

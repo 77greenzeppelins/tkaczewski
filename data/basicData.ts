@@ -246,12 +246,12 @@ const page3DConfigs = {
     },
     {
       text: 'just',
-      position: [0, 0, -0.3],
+      position: [0, 0.1, -2],
       rotation: [0, 0, 0],
     },
     {
       text: 'let me know !',
-      position: [0, -0.38, -1],
+      position: [0, -0.38, -2.5],
       rotation: [0, 0, 0],
     },
   ],
