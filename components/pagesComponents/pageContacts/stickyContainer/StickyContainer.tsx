@@ -21,12 +21,15 @@ const StickyContainer = ({ opacity, transform }: Props) => {
     >
       <div className="relative w-full h-full">
         <div className="relative w-full h-full">
-          {/* <InstantContactButtons2D
-            phoneContainerStyle={'pt-[11.5vh]'}
-            emailContainerStyle={'pt-[9vh]'}
-            buttonWidth={0.22}
-            buttonHeight={0.3}
-          /> */}
+          <InstantContactButtons2D
+            //___array order: [ top = phone , bottom = email ]
+            containerStyle={[
+              'absolute top-[11.5vh] ',
+              'absolute bottom-[11vh] ml-[180px]',
+            ]}
+            buttonsWidth={[0.3, 0.22]}
+            buttonsHeight={[0.4, 0.3]}
+          />
           <animated.div
             style={{ opacity: opacity }}
             className="absolute inset-0 bg-dark pointer-events-none"

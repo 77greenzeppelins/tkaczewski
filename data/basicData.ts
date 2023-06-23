@@ -131,13 +131,8 @@ const page3DConfigs = {
     pagePosition: [pages3DPositions.pageHome.x, 0, 0],
     act8_data: {
       contactButtonConfig: {
-        // scaleFrame: [0.3 , 0.3 , 0.3 ],
-        // scaleImage: [0.63 , 0.63 , 0.63 ],
-        // topButtonPos: [0, 0.32, 0],
-        // bottomButtonPos: [0, -0.32, 0],
-
-        scaleFrame: [0.3 * 1.5, 0.3 * 1.5, 0.3 * 1.5],
-        scaleImage: [0.63 * 1.5, 0.63 * 1.5, 0.63 * 1.5],
+        scaleFrame: [0.45, 0.45, 0.45],
+        scaleImage: [0.945, 0.945, 0.945],
         topButtonPos: [0, 0.25, 0],
         bottomButtonPos: [0.2, -0.45, -0.6],
       },
@@ -318,11 +313,17 @@ const page3DConfigs = {
   },
   //_____for pageContacts
   pageContacts: {
+    // contactButtonConfig: {
+    //   scaleFrame: [0.178, 0.178, 0.178],
+    //   scaleImage: [0.385, 0.385, 0.385],
+    //   topButtonPos: [0, 0.19, 0],
+    //   bottomButtonPos: [0, -0.19, 0],
+    // },
     contactButtonConfig: {
-      scaleFrame: [0.178, 0.178, 0.178],
-      scaleImage: [0.385, 0.385, 0.385],
-      topButtonPos: [0, 0.19, 0],
-      bottomButtonPos: [0, -0.19, 0],
+      scaleFrame: [0.45 * 0.6, 0.45 * 0.6, 0.45 * 0.6],
+      scaleImage: [0.945 * 0.6, 0.945 * 0.6, 0.945 * 0.6],
+      topButtonPos: [0, 0.165, -0.09],
+      bottomButtonPos: [0.1, -0.265, -0.4],
     },
   },
 };
