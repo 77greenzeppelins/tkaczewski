@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 /**Components*/
 import { InstantContactButtons2D, ContactsDataSection } from '@/components';
 /**Spring Staff*/
@@ -13,6 +13,10 @@ interface Props {
 
 /**-------------------------------**/
 const StickyContainer = ({ opacity, transform }: Props) => {
+  /****/
+  const [inView, setInView] = useState(false);
+
+  /**JSX**/
   return (
     <div
       data-component="StickyContainer"
@@ -36,7 +40,11 @@ const StickyContainer = ({ opacity, transform }: Props) => {
           />
         </div>
 
-        <ContactsDataSection transform={transform} />
+        <ContactsDataSection transform={transform} stateSetter={setInView} />
+
+        <div className="fixed top-[100px] left-0 bg-corpo">
+          {inView.toString()}
+        </div>
       </div>
     </div>
   );

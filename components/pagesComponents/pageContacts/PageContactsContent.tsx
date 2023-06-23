@@ -55,8 +55,8 @@ const PageContactsContent = () => {
       });
       comp2Api.start({
         transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
-        config: { mass: 5, friction: 120, tension: 120 },
-        // config: { duration: 2, easing: easings.easeInBounce }, //doesn't work
+        // config: { mass: 5, friction: 120, tension: 120 },
+        config: { duration: 2, easing: easings.easeInBounce }, //doesn't work
       });
     },
     //__________ ... section

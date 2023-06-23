@@ -9,6 +9,7 @@ interface Props {
   iconStyle?: string;
   labelStyle?: string;
   hasLabel?: boolean;
+  isOneLine?: boolean;
 }
 
 /**--------------------------------------------------------------------------------**/
@@ -17,11 +18,18 @@ const DirectPhone = ({
   iconStyle,
   labelStyle,
   hasLabel = true,
+  isOneLine = false,
 }: Props) => {
   return (
-    <a href={linksToInstantContactData.mobile} className={aStyle}>
+    <a
+      href={linksToInstantContactData.mobile}
+      className={aStyle}
+      aria-label="Make a phone to Oskar!"
+    >
       {hasLabel ? (
-        <p className={labelStyle}>{`telefon: +48 ${contactData.mobile}`}</p>
+        <p className={labelStyle}>{`${isOneLine ? 'telefon:' : ''} +48 ${
+          contactData.mobile
+        }`}</p>
       ) : null}
     </a>
   );

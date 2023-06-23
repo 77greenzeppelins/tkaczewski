@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 /**Spring Staff**/
 import { useInView, useSpring, animated, SpringValue } from '@react-spring/web';
 import { DirectPhone, DirectEmail } from '@/components';
@@ -7,10 +7,11 @@ import { DirectPhone, DirectEmail } from '@/components';
 /**TS**/
 interface Props {
   transform: SpringValue<string>;
+  stateSetter: Dispatch<SetStateAction<boolean>>;
 }
 
 /**--------------------------------**/
-const ContactsDataSection = ({ transform }: Props) => {
+const ContactsDataSection = ({ transform, stateSetter }: Props) => {
   /**Spring Section**/
   const [ref, inView] = useInView({
     /*
@@ -27,22 +28,26 @@ const ContactsDataSection = ({ transform }: Props) => {
     */
     // amount: 1,
     //___
-    rootMargin: '-5% 0px -20% 0px',
-    amount: 0.5,
+    rootMargin: '0% 10% 0% 10%',
+    amount: 0.99,
   });
 
-  const styles = useSpring({
+  const springs = useSpring({
     opacity: inView ? 1 : 0,
-    duration: inView ? 2 : 2,
-    // scale: inView ? 1 : 0.9,
-    // config: {
-    //   tension: 300,
-    // from: { opacity: 0 },
-    // to: { opacity: inView ? 1 : 0 },
-    // },
+    y: inView ? '0%' : '-55%',
+    config: { mass: 50, tension: 170, friction: 26, clamp: true },
   });
 
-  // console.log('inViev', inView);
+  useEffect(() => {
+    stateSetter(inView);
+  }, [inView, stateSetter]);
+
+  /**Basic Data*/
+  const buttonContent = [
+    { Component: DirectPhone, label: 'Phone' },
+    { Component: DirectEmail, label: 'Email' },
+  ];
+
   /**JSX**/
   return (
     <animated.div
@@ -56,12 +61,18 @@ const ContactsDataSection = ({ transform }: Props) => {
       }}
       // style={{ transform: `translateX(${x}px)` }}
     >
-      <div className="flex flex-col items-start justify-center w-full h-full">
-        {/* <p className="text-4xl select-none text-neutral-300">
-          contact / 2 / 100vh
-        </p> */}
-        <DirectPhone labelStyle={'p-medium text-corpo'} />
-        <DirectEmail labelStyle={'p-medium text-corpo'} />
+      <div className="flex flex-col gap-6 items-start justify-center w-full h-full overlay-hidden">
+        {buttonContent.map(({ Component, label }, i) => (
+          <div key={label} className=" overflow-hidden">
+            <animated.div
+              //  style={{ opacity: opacity }}
+              style={springs}
+            >
+              <p className="p-v-large text-corpo select-none">{label}</p>
+              <Component labelStyle={'p-medium text-corpo'} />
+            </animated.div>
+          </div>
+        ))}
       </div>
     </animated.div>
   );

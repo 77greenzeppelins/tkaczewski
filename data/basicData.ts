@@ -30,6 +30,7 @@ const linksToInstantContactData = {
   mail: `mailto:${contactData.mail}`, //___to delate
   mobile: `tel:${contactData.mobile}`,
 };
+
 /*
 ___(!) I've decided to keep all path in one place in case any changes...
 ___1. glb section is useful whenever useGLTF(somePath) is used; 

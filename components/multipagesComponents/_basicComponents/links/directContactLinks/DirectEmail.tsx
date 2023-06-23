@@ -9,6 +9,7 @@ interface Props {
   iconStyle?: string;
   labelStyle?: string;
   hasLabel?: boolean;
+  isOneLine?: boolean;
 }
 
 /**--------------------------------------------------------------------------------**/
@@ -17,11 +18,18 @@ const DirectEmail = ({
   iconStyle,
   labelStyle,
   hasLabel = true,
+  isOneLine = false,
 }: Props) => {
   return (
-    <a href={linksToInstantContactData.mail} className={aStyle}>
+    <a
+      href={linksToInstantContactData.mail}
+      className={aStyle}
+      aria-label="Send email to Oskar!"
+    >
       {hasLabel ? (
-        <p className={labelStyle}>{`email: ${contactData.mail}`}</p>
+        <p className={labelStyle}>{`${isOneLine ? 'email:' : ''} ${
+          contactData.mail
+        }`}</p>
       ) : null}
     </a>
   );
