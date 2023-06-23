@@ -49,7 +49,10 @@ const PageHomeContent = () => {
           {muntingCondition.toString()}
         </div> */}
         <div className=" h-[600vh]" />
-        <div className="flex justify-center items-center h-[100vh] w-full">
+        <div
+          className=" h-[100vh] w-full"
+          //___flex justify-center items-center
+        >
           <div
             className={`h-full  ${
               muntingCondition
@@ -59,10 +62,13 @@ const PageHomeContent = () => {
           >
             {' '}
             <InstantContactButtons2D
-              phoneContainerStyle={'pt-[13vh]'}
-              emailContainerStyle={'pt-[8vh]'}
-              buttonWidth={0.22}
-              buttonHeight={0.28}
+              //___array order: [ top = phone , bottom = email ]
+              containerStyle={[
+                'absolute top-[11.5vh] left-[40%]',
+                'absolute bottom-[11vh] right-[35%]',
+              ]}
+              buttonsWidth={[0.3, 0.22]}
+              buttonsHeight={[0.4, 0.3]}
             />
           </div>
         </div>
