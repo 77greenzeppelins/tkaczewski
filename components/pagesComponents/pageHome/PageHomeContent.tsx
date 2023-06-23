@@ -64,8 +64,8 @@ const PageHomeContent = () => {
             <InstantContactButtons2D
               //___array order: [ top = phone , bottom = email ]
               containerStyle={[
-                'absolute top-[11.5vh] left-[40%]',
-                'absolute bottom-[11vh] right-[35%]',
+                'absolute top-[11.5vh] ',
+                'absolute bottom-[11vh] ml-[180px]',
               ]}
               buttonsWidth={[0.3, 0.22]}
               buttonsHeight={[0.4, 0.3]}

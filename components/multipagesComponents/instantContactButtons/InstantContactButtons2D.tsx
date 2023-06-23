@@ -39,7 +39,7 @@ const InstantContactButtons2D = ({
   return (
     <div
       data-component="InstantContactButtons2D__container"
-      className="relative w-full h-full z-1 flex flex-col"
+      className="relative w-full h-full z-1 flex flex-col items-center"
     >
       {buttonContent.map(({ Component }, i) => (
         <div
