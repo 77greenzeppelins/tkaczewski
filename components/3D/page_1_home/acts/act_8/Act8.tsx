@@ -8,7 +8,6 @@ import { InstantContactPanel } from '@/components';
 import { useSpring, animated } from '@react-spring/three';
 /**Basic Data*/
 import { basicConfigs, page3DConfigs, springConfigs } from '@/data/basicData';
-import { useThree } from '@react-three/fiber';
 import { useGlobalContext } from '@/context/globalContext';
 
 /**TS**/

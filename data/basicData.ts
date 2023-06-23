@@ -131,10 +131,15 @@ const page3DConfigs = {
     pagePosition: [pages3DPositions.pageHome.x, 0, 0],
     act8_data: {
       contactButtonConfig: {
-        scaleFrame: [0.3, 0.3, 0.3],
-        scaleImage: [0.63, 0.63, 0.63],
-        topButtonPos: [0, 0.32, 0],
-        bottomButtonPos: [0, -0.32, 0],
+        // scaleFrame: [0.3 , 0.3 , 0.3 ],
+        // scaleImage: [0.63 , 0.63 , 0.63 ],
+        // topButtonPos: [0, 0.32, 0],
+        // bottomButtonPos: [0, -0.32, 0],
+
+        scaleFrame: [0.3 * 1.5, 0.3 * 1.5, 0.3 * 1.5],
+        scaleImage: [0.63 * 1.5, 0.63 * 1.5, 0.63 * 1.5],
+        topButtonPos: [0, 0.25, 0],
+        bottomButtonPos: [0.2, -0.45, -0.6],
       },
     },
   },
