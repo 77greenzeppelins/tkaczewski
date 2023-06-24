@@ -10,8 +10,8 @@ interface Props {
 const BodySpecial = ({ text }: Props) => {
   /**JSX**/
   return (
-    <p data-component="BodySpecial" className="py-4">
-      <span className="text-light p-regular">{text.part1}</span>{' '}
+    <div data-component="BodySpecial" className="py-4">
+      <span className="inline text-light p-regular">{text.part1}</span>
       <Link
         href={text.linkUrl}
         aria-label="Link do strony famatel.pl"
@@ -19,10 +19,10 @@ const BodySpecial = ({ text }: Props) => {
         className="inline p-regular text-light hover:text-corpo delay-100 duration-300 ease-linear"
       >
         {text.linkLabel}
-      </Link>{' '}
-      <br />
-      <span className="text-light p-regular">{text.part2}</span>
-    </p>
+      </Link>
+      {/* <br /> */}
+      <span className="inline text-light p-regular">{text.part2}</span>
+    </div>
   );
 };
 

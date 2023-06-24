@@ -3,10 +3,12 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <div className="flex justify-center w-full min-h-[35vh] wrapper-1 flex-col ">
+    <div className="flex justify-center w-full min-h-[40vh] wrapper-1 flex-col pt-[40px]">
       {' '}
       <div className="fc w-full">
-        <p className="p-v-large text-light font-serif">Oskar Tkaczewski</p>
+        <p className="p-v-large text-light text-center font-serif">
+          Oskar Tkaczewski
+        </p>
       </div>
       <div className="fc w-full">
         <p className="p-regular  text-corpo font-serif">CURRICULUM VITAE</p>

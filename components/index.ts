@@ -7,6 +7,8 @@ import DirectEmail from './multipagesComponents/_basicComponents/links/directCon
 import DirectPhone from './multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
 import ContactsDataSection from './pagesComponents/pageContacts/contactsData/ContactsDataSection';
 import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
+//___pageCV
+import AskAI from './pagesComponents/CV/askAI/AskAI';
 /*
 __________3D
 */
@@ -42,6 +44,8 @@ export {
   ContactsDataSection,
   //___pageContacts
   StickyContainer,
+  //___pageCV
+  AskAI,
   //_______________________________3D
   CameraControler,
   DreiPerspectiveCamera,

@@ -31,7 +31,7 @@ const cvSections = [
     ],
   },
   {
-    header: 'aducation',
+    header: 'education',
     body: [
       {
         col1: '1999 - 2005',
@@ -150,7 +150,7 @@ const cvSections = [
       part1:
         'If you want to measure my current web development skill visit last project of mine: ',
       part2:
-        ' Project based on: react 18.2, next 13.0, typescript, tailwind, framer-motion ',
+        '(project based on: react 18.2, next 13.0, typescript, tailwind, framer-motion)',
       linkLabel: ' famatel.pl ',
       linkUrl: 'https://famatel.pl ',
     },
@@ -158,7 +158,7 @@ const cvSections = [
   {
     header: 'interest and activities',
     body: [
-      'Art & design history; Digital Art; Programming; Swimming; Cross training workout; Finding out how my 8-years-old daughter perceive the world (probably the most interesting and challenging)',
+      'History of ideas; Art & Design; Programming; Swimming; Cross training workout; Finding out how my 8-years-old daughter perceive the world (probably the most interesting and challenging)',
     ],
   },
 ];

@@ -47,7 +47,7 @@ body,
     @apply select-none no-sparkling;
   }
   .wrapper-1 {
-    @apply px-[2%] md:px-[60px] xl:px-[80px] xxl:px-[100px];
+    @apply px-[6%] md:px-[80px] xl:px-[100px] xxl:px-[140px];
   }
 
   /*Text Styles*/
@@ -76,7 +76,7 @@ body,
     @apply text-[1.25rem] xs:text-[1.5rem] md:text-[1.75rem] xxl:text-[2.25rem] tracking-[2px] leading-tight;
   }
   .p-v-large {
-    @apply text-[4.25rem] xs:text-[4.5rem] md:text-[4.75rem] xxl:text-[6.25rem] tracking-[2px] leading-tight;
+    @apply text-[3.25rem] xs3xx:text-[4.25rem] xs:text-[4.5rem] md:text-[4.75rem] xxl:text-[6.25rem] tracking-[2px] leading-tight;
   }
 
   /*Scrollbar style*/

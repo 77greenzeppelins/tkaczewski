@@ -2,6 +2,7 @@ import React from 'react';
 /**Components**/
 import HeroSection from './heroSection/HeroSection';
 import AskAI from './askAI/AskAI';
+// import { AskAI } from '@/components'; // gives error???
 // import InView from './inView/InView';
 // import InViewContainer from '@/components/multipagesComponents/_containers/inViewContainer/InViewContainer';
 

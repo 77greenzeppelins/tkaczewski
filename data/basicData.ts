@@ -57,7 +57,7 @@ __3. ternay : respTreshold ? desktopSettings : mobilesettings
 */
 const basicConfigs = {
   respTreshold: 768,
-  errorMargin: 5,
+  errorMargin: 20,
   pageHome: {
     viewports: 7, //scrollable container in <PageHomeContent> is: 600vh + 100vh
   },
