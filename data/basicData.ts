@@ -57,7 +57,7 @@ __3. ternay : respTreshold ? desktopSettings : mobilesettings
 */
 const basicConfigs = {
   respTreshold: 768,
-  errorMargin: 50,
+  errorMargin: 10,
   pageHome: {
     viewports: 7, //scrollable container in <PageHomeContent> is: 600vh + 100vh
   },
@@ -131,6 +131,8 @@ const page3DConfigs = {
   pageHome: {
     pagePosition: [pages3DPositions.pageHome.x, 0, 0],
     act8_data: {
+      hiddenPositionZ: -3,
+      errorMargin: 100,
       contactButtonConfig: {
         scaleFrame: [0.45, 0.45, 0.45],
         scaleImage: [0.945, 0.945, 0.945],

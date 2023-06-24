@@ -39,25 +39,18 @@ const Act8 = ({ positionZ }: Props) => {
   const endRange =
     scrollableHeight -
     scrollableHeight / basicConfigs.pageHome.viewports +
-    basicConfigs.errorMargin;
+    page3DConfigs.pageHome.act8_data.errorMargin;
   const muntingCondition =
     scrollYPosition.val >= startRange && scrollYPosition.val <= endRange;
 
-  // const muntingCondition =
-  //   scrollYPosition.val ===
-  //   scrollableHeight - scrollableHeight / basicConfigs.pageHome.viewports;
-
   //___
   const { animPosZ } = useSpring({
-    animPosZ: muntingCondition ? positionZ : positionZ + -3,
+    animPosZ: muntingCondition
+      ? positionZ
+      : positionZ + page3DConfigs.pageHome.act8_data.hiddenPositionZ,
     config: springConfigs.heavyAndSlow,
   });
 
-  // if (muntingCondition) {
-  //   console.log('...show!');
-  // } else {
-  //   console.log('...hide!');
-  // }
   /**JSX**/
   return (
     <animated.group position-z={animPosZ}>
