@@ -23,23 +23,23 @@ const ScrollableContent = ({ transform }: Props) => {
     setClickNumber(prev => prev - 1);
   };
 
-  const [squareRef, { height }] = useElementSize();
-  const [ref, bounds] = useMeasure({ scroll: true });
-  useEffect(() => {
-    console.log('bounds.height', bounds.height);
-  }, [bounds.height]);
+  //   const [squareRef, { height }] = useElementSize();
+  //   const [ref, bounds] = useMeasure({ scroll: true });
+  //   useEffect(() => {
+  //     console.log('bounds.height', bounds.height);
+  //   }, [bounds.height]);
 
   /**JSX**/
   return (
     <animated.div
       style={{ transform }}
       //   ref={squareRef}
-      ref={ref}
+      //   ref={ref}
       data-component="ScrollableContent"
       className={`absolute inset-0 w-full wrapper-1 `}
     >
       <div className="fc h-screen w-full" />
-      {/* <div className="fc h-screen w-full">
+      <div className="fc h-screen w-full">
         <div className="fc flex-col gap-y-2 bg-yellow-600 h-[50%] w-[50%]">
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>
             CLICK + 1
@@ -52,7 +52,7 @@ const ScrollableContent = ({ transform }: Props) => {
           </button>
           <p>{clickNumber}</p>
         </div>
-      </div> */}
+      </div>
       <div className="fc h-screen w-full">
         <div className="fc flex-col gap-y-2 bg-green-600 h-[50%] w-[50%]">
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>

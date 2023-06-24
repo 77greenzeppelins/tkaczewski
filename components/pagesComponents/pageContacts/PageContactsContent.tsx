@@ -14,7 +14,7 @@ import { ContactsDataSection, ScrollableContainer } from '@/components';
 /*
 this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when whole viewport was scrolled; if less then 1 darkness comes earlier;
 */
-const speedupFactor = 0.5;
+const speedupFactor = 0.125;
 
 /**----------------------------------------**/
 const PageContactsContent = () => {
@@ -50,10 +50,10 @@ const PageContactsContent = () => {
       // console.log('y:', y);
       // console.log('window.innerHeight:', window.innerHeight);
       // console.log('height:', height);
-      console.log(
-        'y / height - window.innerHeight:',
-        (y / (height - window.innerHeight)) * -100
-      );
+      // console.log(
+      //   'y / height - window.innerHeight:',
+      //   (y / (height - window.innerHeight)) * -100
+      // );
 
       //__________conditions section
       /*
@@ -72,10 +72,11 @@ const PageContactsContent = () => {
       });
       comp2Api.start({
         // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
-        transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
+        // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
+        transform: `translateY(${(y / height) * -400}%)`,
 
         // config: { mass: 5, friction: 120, tension: 120 },
-        // config: { duration: 60, easing: easings.easeOutSine }, // value in ms
+        config: { duration: 400, easing: easings.easeOutQuint }, // value in ms
       });
     },
     //__________ ... section
@@ -85,9 +86,9 @@ const PageContactsContent = () => {
     }
   );
 
-  useEffect(() => {
-    console.log('height:', height);
-  }, [height]);
+  // useEffect(() => {
+  //   console.log('height:', height);
+  // }, [height]);
 
   /**JSX**/
   return (
