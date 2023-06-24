@@ -1,16 +1,20 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
-import { useSpring, easings } from '@react-spring/web';
+import { useSpring, easings, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
 import { basicConfigs } from '@/data/basicData';
-import { ContactsDataSection } from '@/components';
+import { ContactsDataSection, ScrollableContainer } from '@/components';
+/*
+this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when whole viewport was scrolled; if less then 1 darkness comes earlier;
+*/
+const speedupFactor = 0.5;
 
 /**----------------------------------------**/
 const PageContactsContent = () => {
@@ -24,13 +28,17 @@ const PageContactsContent = () => {
     opacity: 0,
   }));
   const [{ transform }, comp2Api] = useSpring(() => ({
-    transform: 'translateX(100%)',
+    transform: 'translateY(100%)',
+    // transform: 'translateX(100%)',
     // config: { mass: 5, friction: 120, tension: 120 },
   }));
 
   /** */
   useScroll(
-    //__________gesture state section
+    /*
+    ___1. her we utilize some gesture state offers by useGesture
+    ___2. value "y" => returns progress of scrolling; let's take such case: (a) scrollHeight property of scrollableContainer has value of 1654; (b) window.innerHeight is 827; (c) final value (at the end of scrolling) of y is 827;
+    */
     ({
       xy: [x, y],
       direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
@@ -39,6 +47,13 @@ const PageContactsContent = () => {
       direction: number[];
     }) => {
       // console.log('dirY:', dirY);
+      // console.log('y:', y);
+      // console.log('window.innerHeight:', window.innerHeight);
+      // console.log('height:', height);
+      console.log(
+        'y / height - window.innerHeight:',
+        (y / (height - window.innerHeight)) * -100
+      );
 
       //__________conditions section
       /*
@@ -52,12 +67,15 @@ const PageContactsContent = () => {
 
       //__________springValues Modification section
       comp1Api.start({
-        opacity: y / (height / basicConfigs.pageContact.viewports),
+        opacity:
+          y / ((height / basicConfigs.pageContact.viewports) * speedupFactor),
       });
       comp2Api.start({
-        transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
+        // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
+        transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
+
         // config: { mass: 5, friction: 120, tension: 120 },
-        config: { duration: 0, easing: easings.easeOutSine }, // value in ms
+        // config: { duration: 60, easing: easings.easeOutSine }, // value in ms
       });
     },
     //__________ ... section
@@ -66,6 +84,10 @@ const PageContactsContent = () => {
       target: typeof window !== 'undefined' ? window : undefined,
     }
   );
+
+  useEffect(() => {
+    console.log('height:', height);
+  }, [height]);
 
   /**JSX**/
   return (
@@ -76,7 +98,9 @@ const PageContactsContent = () => {
     >
       <StickyContainer opacity={opacity} transform={transform} />
 
-      <ContactsDataSection transform={transform} />
+      <ScrollableContainer />
+
+      {/* <ContactsDataSection transform={transform} /> */}
 
       {/* <div className="relative h-[100vh] bg-yellow-600 z-10" /> */}
     </div>

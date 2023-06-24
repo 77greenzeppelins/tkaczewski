@@ -9,6 +9,9 @@ import ContactsDataSection from './pagesComponents/pageContacts/contactsData/Con
 import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
 //___pageCV
 import AskAI from './pagesComponents/CV/askAI/AskAI';
+//___
+import ScrollableContainer from './pagesComponents/pageContacts/scrollableContainer/ScrollableContainer';
+import ScrollableContent from './pagesComponents/pageContacts/stickyContainer/scrollableContent/ScrollableContent';
 /*
 __________3D
 */
@@ -56,6 +59,9 @@ export {
   DreiText,
   BasicFrame,
   ImageCanvas,
+  //___
+  ScrollableContainer,
+  ScrollableContent,
   //___3D | PageHome
   Act1,
   Act2,

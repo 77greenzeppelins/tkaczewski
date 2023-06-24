@@ -58,7 +58,7 @@ const ContactsDataSection = ({ transform }: Props) => {
       // style={{ transform }}
       // style={{ transform: `translateX(${x}px)` }}
       //___new
-      className="relative h-[100vh]"
+      className="relative h-[100vh] wrapper-1"
     >
       <div className="flex flex-col gap-6 items-start justify-center w-full h-full overlay-hidden">
         {buttonContent.map(({ Component, label }, i) => (

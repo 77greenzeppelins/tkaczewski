@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 /**Components*/
-import { InstantContactButtons2D, ContactsDataSection } from '@/components';
+import {
+  InstantContactButtons2D,
+  ContactsDataSection,
+  ScrollableContent,
+} from '@/components';
 /**Spring Staff*/
 import { SpringValue, animated } from '@react-spring/web';
 
@@ -39,9 +43,8 @@ const StickyContainer = ({ opacity, transform }: Props) => {
             className="absolute inset-0 bg-dark pointer-events-none"
           />
         </div>
-
+        <ScrollableContent transform={transform} />
         {/* <ContactsDataSection transform={transform} stateSetter={setInView} /> */}
-
         {/* <div className="fixed top-[100px] left-0 bg-corpo">
           {inView.toString()}
         </div> */}
