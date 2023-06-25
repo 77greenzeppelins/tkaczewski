@@ -18,6 +18,48 @@ const speedupFactor = 0.125;
 
 /**----------------------------------------**/
 const PageContactsContent = () => {
+  // function hasInertiaScrolling() {
+  //   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  //   const isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
+  //   const isChrome =
+  //     !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+  //   return (isMac && !isChrome) || isIOS;
+  // }
+
+  // const momentumScrollListener = (event: WheelEvent) => {
+  //   event.preventDefault();
+  //   const deltaMode = event.deltaMode;
+  //   if (event.target) {
+  //     event.target.removeEventListener(event.type, momentumScrollListener);
+  //   }
+  //   if (deltaMode === 1) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
+  //   const supportsMomentumScrolling =
+  //     typeof window !== 'undefined' &&
+  //     'onwheel' in window &&
+  //     momentumScrollListener;
+
+  // const momentumScrollListener = (event: WheelEvent) => {
+  //   event.preventDefault();
+  //   const deltaMode = event.deltaMode;
+  //   if (event.target) {
+  //     event.target.removeEventListener(event.type, momentumScrollListener);
+  //   }
+  //   if (deltaMode === 1) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
+  // const supportsMomentumScrolling =
+  //   typeof window !== 'undefined' &&
+  //   'onwheel' in window &&
+  //   (momentumScrollListener as EventListenerOrEventListenerObject);
+
   /**Hook Section*/
   const [squareRef, { height }] = useElementSize(); // innerHeight * 2
   // console.log('PageContactsContent | height:', height);
