@@ -12,7 +12,7 @@ const PageContactsSSContainer = () => {
   let isMobile = headersList.get('sec-ch-ua-mobile')?.includes('1');
   console.log('userAgent:', typeof userAgent);
   /*
-  ___1.
+  ___1. The match() method will return either a truthy value (a match) or null (no match). Applying the double negation operator (!!) to the result will convert it into a boolean value. If there is a match, isMobileView will be true; otherwise, it will be false.
   */
   let isMobileView = !!userAgent!.match(
     /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i

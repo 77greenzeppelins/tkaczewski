@@ -1,7 +1,8 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
+import { ContactsDataSection, ScrollableContainer } from '@/components';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
@@ -10,7 +11,7 @@ import { useSpring, easings, config } from '@react-spring/web';
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
 import { basicConfigs } from '@/data/basicData';
-import { ContactsDataSection, ScrollableContainer } from '@/components';
+
 /*
 this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when whole viewport was scrolled; if less then 1 darkness comes earlier;
 */
@@ -21,10 +22,6 @@ interface Props {
 }
 /**----------------------------------------**/
 const PageContactsContent = ({ hintIsMobile }: Props) => {
-  /**--------------------------**/
-  const falseFlag = true;
-  /**--------------------------**/
-
   /**Hook Section*/
   const [squareRef, { height }] = useElementSize(); // innerHeight * 2
   // console.log('PageContactsContent | height:', height);
@@ -48,10 +45,10 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
     */
     ({
       xy: [x, y],
-      direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
-    }: {
+    }: // direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
+    {
       xy: number[];
-      direction: number[];
+      // direction: number[];
     }) => {
       // console.log('dirY:', dirY);
       // console.log('y:', y);
@@ -67,10 +64,10 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
       ___1. here we actually use "gesture state values" to set two boolean const that works as switcher when springValues are imperatively modified;
       ___2. if scroll down && scrolled more then half of the element scrollHeight property our cond1 is true
       */
-      const cond1 =
-        dirY === 1 && y >= height / basicConfigs.pageContact.viewports - 5;
-      const cond2 =
-        dirY === -1 && y < height / basicConfigs.pageContact.viewports; // /basicConfigs.pageContact.viewports;
+      // const cond1 =
+      //   dirY === 1 && y >= height / basicConfigs.pageContact.viewports - 5;
+      // const cond2 =
+      //   dirY === -1 && y < height / basicConfigs.pageContact.viewports; // /basicConfigs.pageContact.viewports;
 
       //__________springValues Modification section
       comp1Api.start({
@@ -80,7 +77,9 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
       comp2Api.start({
         // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
         // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
-        transform: `translateY(${(y / height) * -400}%)`,
+        transform: `translateY(${
+          (y / height) * -basicConfigs.pageContact.viewportsTotal
+        }%)`,
 
         // config: config.slow,
         // config: { mass: 5, friction: 120, tension: 120 },
@@ -96,10 +95,6 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
       target: typeof window !== 'undefined' ? window : undefined,
     }
   );
-
-  // useEffect(() => {
-  //   console.log('height:', height);
-  // }, [height]);
 
   /**JSX**/
   return (

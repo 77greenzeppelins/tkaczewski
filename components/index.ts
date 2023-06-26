@@ -5,6 +5,8 @@ __________2D
 import InstantContactButtons2D from './multipagesComponents/instantContactButtons/InstantContactButtons2D';
 import DirectEmail from './multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
 import DirectPhone from './multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
+import DirectContactsSection from './pagesComponents/pageContacts/pageContent/directContactSection/DirectContactSection';
+
 import ContactsDataSection from './pagesComponents/pageContacts/contactsData/ContactsDataSection';
 import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
 //___pageCV
@@ -44,7 +46,8 @@ export {
   InstantContactButtons2D,
   DirectEmail,
   DirectPhone,
-  ContactsDataSection,
+  DirectContactsSection,
+  ContactsDataSection, //? to delate
   //___pageContacts
   StickyContainer,
   //___pageCV

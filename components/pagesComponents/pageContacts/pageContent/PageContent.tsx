@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 /**Spring Staff*/
 import { SpringValue, animated } from '@react-spring/web';
+import { DirectContactsSection } from '@/components';
 
 /**TS**/
 interface Props {
@@ -45,7 +46,8 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
           hintIsMobile ? 'bg-dark' : ''
         }`}
       >
-        <div className="fc flex-col gap-y-2 bg-yellow-600 h-[50%] w-[50%]">
+        <DirectContactsSection />
+        {/* <div className="fc flex-col gap-y-2 bg-yellow-600 h-[50%] w-[50%]">
           <p>{hintIsMobile ? 'MOBILE' : 'DESKTOP'}</p>
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>
             CLICK + 1
@@ -57,14 +59,18 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
             CLICK - 1
           </button>
           <p>{clickNumber}</p>
-        </div>
+        </div> */}
       </div>
       <div
         className={`fc h-screen w-full wrapper-1 ${
           hintIsMobile ? 'bg-dark' : ''
         }`}
       >
-        <div className="fc flex-col gap-y-2 bg-green-600 h-[50%] w-[50%]">
+        <div className="flex flex-col gap-6 items-start justify-center w-full ">
+          <p className="p-v-large text-corpo select-none">Dzierżoniów</p>
+          <p className="p-medium text-corpo">Poland</p>
+        </div>
+        {/* <div className="fc flex-col gap-y-2 bg-green-600 h-[50%] w-[50%]">
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>
             CLICK + 1
           </button>
@@ -75,14 +81,20 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
             CLICK - 1
           </button>
           <p>{clickNumber}</p>
-        </div>
+        </div> */}
       </div>
       <div
         className={`fc h-screen w-full wrapper-1 ${
           hintIsMobile ? 'bg-dark' : ''
         }`}
       >
-        <div className="fc flex-col gap-y-2 bg-blue-600 h-[50%] w-[50%]">
+        <div className="flex flex-col gap-6 items-start justify-center w-full ">
+          <p className="p-medium text-corpo select-none">
+            Wanna see my GITHUB ?
+          </p>
+          <p className="p-medium text-corpo select-none">Just let me know...</p>
+        </div>
+        {/* <div className="fc flex-col gap-y-2 bg-blue-600 h-[50%] w-[50%]">
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>
             CLICK + 1
           </button>
@@ -93,7 +105,7 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
             CLICK - 1
           </button>
           <p>{clickNumber}</p>
-        </div>
+        </div> */}
       </div>
     </animated.div>
   );

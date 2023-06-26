@@ -63,6 +63,7 @@ const basicConfigs = {
   },
   pageContact: {
     viewports: 2,
+    viewportsTotal: 4 * 100,
   },
 };
 /*
