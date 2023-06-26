@@ -26,7 +26,7 @@ const StickyContainer = ({ opacity, transform, hintIsMobile }: Props) => {
       //___  flex justify-center items-center   -z-10
     >
       <div className="relative w-full h-full">
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full ">
           <InstantContactButtons2D
             //___array order: [ top = phone , bottom = email ]
             containerStyle={[
@@ -44,14 +44,21 @@ const StickyContainer = ({ opacity, transform, hintIsMobile }: Props) => {
         {hintIsMobile ? null : (
           <PageContent transform={transform} hintIsMobile={hintIsMobile} />
         )}
-        {/* <PageContent transform={transform} hintIsMobile={hintIsMobile} /> */}
-        {/* <ContactsDataSection transform={transform} stateSetter={setInView} /> */}
-        {/* <div className="fixed top-[100px] left-0 bg-corpo">
-          {inView.toString()}
-        </div> */}
       </div>
     </div>
   );
 };
 
 export default StickyContainer;
+
+{
+  /* <PageContent transform={transform} hintIsMobile={hintIsMobile} /> */
+}
+{
+  /* <ContactsDataSection transform={transform} stateSetter={setInView} /> */
+}
+{
+  /* <div className="fixed top-[100px] left-0 bg-corpo">
+          {inView.toString()}
+        </div> */
+}
