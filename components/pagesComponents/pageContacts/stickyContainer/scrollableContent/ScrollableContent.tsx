@@ -9,11 +9,12 @@ import { SpringValue, animated } from '@react-spring/web';
 /**TS**/
 interface Props {
   transform: SpringValue<string>;
+  hintIsMobile: boolean;
   // stateSetter: Dispatch<SetStateAction<boolean>>;
 }
 
 /**-------------------------------**/
-const ScrollableContent = ({ transform }: Props) => {
+const ScrollableContent = ({ transform, hintIsMobile }: Props) => {
   /**Some fake state**/
   const [clickNumber, setClickNumber] = useState(0);
 
@@ -44,6 +45,7 @@ const ScrollableContent = ({ transform }: Props) => {
       <div className="fc h-screen w-full" />
       <div className="fc h-screen w-full">
         <div className="fc flex-col gap-y-2 bg-yellow-600 h-[50%] w-[50%]">
+          <p>{hintIsMobile ? 'MOBILE' : 'DESKTOP'}</p>
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>
             CLICK + 1
           </button>

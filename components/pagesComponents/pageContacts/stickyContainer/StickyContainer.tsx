@@ -13,10 +13,11 @@ interface Props {
   // scrollDrivenStyles: { opacity: SpringValue<number> };
   opacity: SpringValue<number>;
   transform: SpringValue<string>;
+  hintIsMobile: boolean;
 }
 
 /**-------------------------------**/
-const StickyContainer = ({ opacity, transform }: Props) => {
+const StickyContainer = ({ opacity, transform, hintIsMobile }: Props) => {
   /****/
   // const [inView, setInView] = useState(false);
 
@@ -43,7 +44,7 @@ const StickyContainer = ({ opacity, transform }: Props) => {
             className="absolute inset-0 bg-dark pointer-events-none"
           />
         </div>
-        <ScrollableContent transform={transform} />
+        <ScrollableContent transform={transform} hintIsMobile={hintIsMobile} />
         {/* <ContactsDataSection transform={transform} stateSetter={setInView} /> */}
         {/* <div className="fixed top-[100px] left-0 bg-corpo">
           {inView.toString()}

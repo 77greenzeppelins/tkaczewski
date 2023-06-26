@@ -16,8 +16,11 @@ this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when
 */
 const speedupFactor = 0.125;
 
+interface Props {
+  hintIsMobile: boolean;
+}
 /**----------------------------------------**/
-const PageContactsContent = () => {
+const PageContactsContent = ({ hintIsMobile }: Props) => {
   /**--------------------------**/
   const falseFlag = true;
   /**--------------------------**/
@@ -79,9 +82,12 @@ const PageContactsContent = () => {
         // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
         transform: `translateY(${(y / height) * -400}%)`,
 
-        config: config.slow,
+        // config: config.slow,
         // config: { mass: 5, friction: 120, tension: 120 },
-        // config: { duration: falseFlag ? 400 : 0, easing: easings.easeOutQuint }, // value in ms
+        config: {
+          duration: hintIsMobile ? 0 : 400,
+          easing: easings.easeOutQuint,
+        }, // value in ms
       });
     },
     //__________ ... section
@@ -102,7 +108,11 @@ const PageContactsContent = () => {
       ref={squareRef}
       className="relative"
     >
-      <StickyContainer opacity={opacity} transform={transform} />
+      <StickyContainer
+        opacity={opacity}
+        transform={transform}
+        hintIsMobile={hintIsMobile}
+      />
 
       <ScrollableContainer />
 
