@@ -6,8 +6,10 @@ import InstantContactButtons2D from './multipagesComponents/instantContactButton
 import DirectEmail from './multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
 import DirectPhone from './multipagesComponents/_basicComponents/links/directContactLinks/DirectPhone';
 import DirectContactsSection from './pagesComponents/pageContacts/pageContent/directContactSection/DirectContactSection';
+import OtherContactsSection from './pagesComponents/pageContacts/pageContent/otherContactsSection/OtherContactsSection';
+import GitHubSection from './pagesComponents/pageContacts/pageContent/githubSection/GitHubSection';
 
-import ContactsDataSection from './pagesComponents/pageContacts/contactsData/ContactsDataSection';
+// import ContactsDataSection from './pagesComponents/pageContacts/contactsData/ContactsDataSection';
 import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
 //___pageCV
 import AskAI from './pagesComponents/CV/askAI/AskAI';
@@ -47,9 +49,11 @@ export {
   DirectEmail,
   DirectPhone,
   DirectContactsSection,
-  ContactsDataSection, //? to delate
+  // ContactsDataSection, //? to delate
   //___pageContacts
   StickyContainer,
+  OtherContactsSection,
+  GitHubSection,
   //___pageCV
   AskAI,
   //_______________________________3D

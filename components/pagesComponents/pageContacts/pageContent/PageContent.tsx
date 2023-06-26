@@ -2,7 +2,11 @@
 import React, { useEffect, useState } from 'react';
 /**Spring Staff*/
 import { SpringValue, animated } from '@react-spring/web';
-import { DirectContactsSection } from '@/components';
+import {
+  DirectContactsSection,
+  GitHubSection,
+  OtherContactsSection,
+} from '@/components';
 
 /**TS**/
 interface Props {
@@ -66,10 +70,11 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
           hintIsMobile ? 'bg-dark' : ''
         }`}
       >
-        <div className="flex flex-col gap-6 items-start justify-center w-full ">
+        <OtherContactsSection />
+        {/* <div className="flex flex-col gap-6 items-start justify-center w-full ">
           <p className="p-v-large text-corpo select-none">Dzierżoniów</p>
           <p className="p-medium text-corpo">Poland</p>
-        </div>
+        </div> */}
         {/* <div className="fc flex-col gap-y-2 bg-green-600 h-[50%] w-[50%]">
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>
             CLICK + 1
@@ -88,12 +93,13 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
           hintIsMobile ? 'bg-dark' : ''
         }`}
       >
-        <div className="flex flex-col gap-6 items-start justify-center w-full ">
+        <GitHubSection />
+        {/* <div className="flex flex-col gap-6 items-start justify-center w-full ">
           <p className="p-medium text-corpo select-none">
-            Wanna see my GITHUB ?
+            If you want to see my GitHub ?
           </p>
           <p className="p-medium text-corpo select-none">Just let me know...</p>
-        </div>
+        </div> */}
         {/* <div className="fc flex-col gap-y-2 bg-blue-600 h-[50%] w-[50%]">
           <button className="border border-dark px-2 py-3" onClick={onClickUp}>
             CLICK + 1
