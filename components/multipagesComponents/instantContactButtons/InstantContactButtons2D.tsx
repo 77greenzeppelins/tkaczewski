@@ -38,7 +38,7 @@ const InstantContactButtons2D = ({
         <div
           data-component={`InstantContactButton2D__${name}`}
           key={i}
-          className={` ${containerStyle[i]} `}
+          className={` ${containerStyle[i]} bg-corpo opacity-25`}
           //___bg-corpo opacity-25
           style={{
             width: height * buttonsWidth[i],
