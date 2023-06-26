@@ -29,7 +29,7 @@ const DirectContactsSection = () => {
     */
     // amount: 1,
     //___
-    rootMargin: '0% 0% 0% 0%',
+    rootMargin: '10% 0% 10% 0%',
     amount: 0.8,
   });
 
@@ -51,18 +51,18 @@ const DirectContactsSection = () => {
 
   /**JSX**/
   return (
-    <div ref={ref} className="relative wrapper-1">
+    <div ref={ref} className="relative w-full">
       <div className="flex flex-col gap-6 items-start justify-center w-full">
         {buttonContent.map(({ Component, label }, i) => (
           <div key={label} className=" overflow-hidden">
             <animated.div
-            //  style={{ opacity: opacity }}
-            // style={springs}
-            //   className={`${
-            //     inView
-            //       ? 'opacity-100 transition-all duration-1000 delay-1000'
-            //       : 'opacity-0 duration-0.01 delay-0'
-            //   } `}
+              //  style={{ opacity: opacity }}
+              // style={springs}
+              className={`${
+                inView
+                  ? 'opacity-100 transition-all duration-1000 delay-0'
+                  : 'opacity-0 duration-1000 delay-0'
+              } `}
             >
               <p className="p-v-large text-corpo select-none">{label}</p>
               <Component labelStyle={'p-medium text-corpo'} />
