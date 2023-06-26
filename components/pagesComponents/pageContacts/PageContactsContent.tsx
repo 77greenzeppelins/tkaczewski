@@ -2,7 +2,7 @@
 import React from 'react';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
-import { ContactsDataSection, ScrollableContainer } from '@/components';
+import { ScrollableContainer } from '@/components';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
