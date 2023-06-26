@@ -15,27 +15,19 @@ const IntroOverlay = () => {
   const { isIntroOverlay, setIsIntroOverlay } = useGlobalContext();
   /**reference for setTimeout() ID**/
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  /*
-  ___1. checking various browsers I've noticed that mobile Edge renders the app in very odd way;
-  ___2. I don't want my app to be displayed on this browser; to do this I check the userAgent string in the navigator object
-  ___3. This code checks if the navigator.userAgent string contains the string "Edge/" followed by a version number. This indicates that the Edge browser is being used. It also checks if the window.navigator.maxTouchPoints property is greater than 0, which indicates that the device has touch input, such as a touchscreen or a touchpad.
-  */
-  const isMobileEdge =
-    typeof window !== 'undefined' &&
-    /Edge\/\d+/.test(navigator.userAgent) &&
-    window.navigator.maxTouchPoints > 0;
+
   /*
   ---1. this lifeCycleHook allows to set component existence to a specific duration (circa 2.6 sec)
   */
   useEffect(() => {
     //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
     timerRef.current = setTimeout(() => {
-      isMobileEdge ? setIsIntroOverlay(true) : setIsIntroOverlay(false);
+      setIsIntroOverlay(false);
     }, animationsDelays.introOverlayDurance);
     return () => {
       clearTimeout(timerRef.current as NodeJS.Timeout);
     };
-  }, [setIsIntroOverlay, isMobileEdge]);
+  }, [setIsIntroOverlay]);
 
   /**Transition section**/
 
@@ -50,13 +42,7 @@ const IntroOverlay = () => {
     exitBeforeEnter: true,
   });
 
-  // useEffect(() => {
-  //   transRef.start();
-  // }, [isIntroOverlay, transRef]);
-  // console.log('...state:', state);
-
   /**JSX**/
-
   return transitions(
     (style, isIntroOverlay) =>
       isIntroOverlay && (
@@ -66,13 +52,7 @@ const IntroOverlay = () => {
           className="fixed w-screen h-screen bg-dark z-[100]"
           //___pointer-events-none
         >
-          {isMobileEdge ? (
-            <div className="w-full h-full fc">
-              <p className="text-corpo text-2xl">MOBILE EDGE BROWSER</p>
-            </div>
-          ) : (
-            <IntroOverlayContent />
-          )}
+          <IntroOverlayContent />
         </animated.div>
       )
   );
@@ -98,3 +78,22 @@ export default IntroOverlay;
 //     {isIntroOverlay ? 'mounted ' : 'unmounted'}
 //   </div>
 // );
+
+/*
+  ___1. checking various browsers I've noticed that mobile Edge renders the app in very odd way;
+  ___2. I don't want my app to be displayed on this browser; to do this I check the userAgent string in the navigator object
+  ___3. This code checks if the navigator.userAgent string contains the string "Edge/" followed by a version number. This indicates that the Edge browser is being used. It also checks if the window.navigator.maxTouchPoints property is greater than 0, which indicates that the device has touch input, such as a touchscreen or a touchpad.
+  */
+// const isMobileEdge =
+//   typeof window !== 'undefined' &&
+//   /Edge\/\d+/.test(navigator.userAgent) &&
+//   window.navigator.maxTouchPoints > 0;
+
+//  function isMobileEdge(userAgent: string): boolean {
+//   const parser = new UAParser(userAgent);
+//   const browserName = parser.getBrowser().name;
+//   const isEdge = browserName.toLowerCase() === 'edge';
+//   const isMobile = parser.getDevice().type === 'mobile';
+
+//   return isEdge && isMobile;
+// }

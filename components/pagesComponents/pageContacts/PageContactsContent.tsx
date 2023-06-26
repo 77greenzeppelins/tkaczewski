@@ -18,47 +18,9 @@ const speedupFactor = 0.125;
 
 /**----------------------------------------**/
 const PageContactsContent = () => {
-  // function hasInertiaScrolling() {
-  //   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-  //   const isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
-  //   const isChrome =
-  //     !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-  //   return (isMac && !isChrome) || isIOS;
-  // }
-
-  // const momentumScrollListener = (event: WheelEvent) => {
-  //   event.preventDefault();
-  //   const deltaMode = event.deltaMode;
-  //   if (event.target) {
-  //     event.target.removeEventListener(event.type, momentumScrollListener);
-  //   }
-  //   if (deltaMode === 1) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
-  //   const supportsMomentumScrolling =
-  //     typeof window !== 'undefined' &&
-  //     'onwheel' in window &&
-  //     momentumScrollListener;
-
-  // const momentumScrollListener = (event: WheelEvent) => {
-  //   event.preventDefault();
-  //   const deltaMode = event.deltaMode;
-  //   if (event.target) {
-  //     event.target.removeEventListener(event.type, momentumScrollListener);
-  //   }
-  //   if (deltaMode === 1) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
-  // const supportsMomentumScrolling =
-  //   typeof window !== 'undefined' &&
-  //   'onwheel' in window &&
-  //   (momentumScrollListener as EventListenerOrEventListenerObject);
+  /**--------------------------**/
+  const falseFlag = true;
+  /**--------------------------**/
 
   /**Hook Section*/
   const [squareRef, { height }] = useElementSize(); // innerHeight * 2
@@ -117,8 +79,9 @@ const PageContactsContent = () => {
         // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
         transform: `translateY(${(y / height) * -400}%)`,
 
+        config: config.slow,
         // config: { mass: 5, friction: 120, tension: 120 },
-        config: { duration: 400, easing: easings.easeOutQuint }, // value in ms
+        // config: { duration: falseFlag ? 400 : 0, easing: easings.easeOutQuint }, // value in ms
       });
     },
     //__________ ... section
@@ -180,3 +143,46 @@ export default PageContactsContent;
 //       immediate: false,
 //     },
 //   });
+
+//________________________________________________________momentum / inertia...
+// function hasInertiaScrolling() {
+//   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+//   const isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
+//   const isChrome =
+//     !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+//   return (isMac && !isChrome) || isIOS;
+// }
+
+// const momentumScrollListener = (event: WheelEvent) => {
+//   event.preventDefault();
+//   const deltaMode = event.deltaMode;
+//   if (event.target) {
+//     event.target.removeEventListener(event.type, momentumScrollListener);
+//   }
+//   if (deltaMode === 1) {
+//     return true;
+//   }
+//   return false;
+// };
+
+//   const supportsMomentumScrolling =
+//     typeof window !== 'undefined' &&
+//     'onwheel' in window &&
+//     momentumScrollListener;
+
+// const momentumScrollListener = (event: WheelEvent) => {
+//   event.preventDefault();
+//   const deltaMode = event.deltaMode;
+//   if (event.target) {
+//     event.target.removeEventListener(event.type, momentumScrollListener);
+//   }
+//   if (deltaMode === 1) {
+//     return true;
+//   }
+//   return false;
+// };
+
+// const supportsMomentumScrolling =
+//   typeof window !== 'undefined' &&
+//   'onwheel' in window &&
+//   (momentumScrollListener as EventListenerOrEventListenerObject);

@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 /**Hooks**/
 import useMeasure from 'react-use-measure';
@@ -28,6 +29,8 @@ const ScrollableContent = ({ transform }: Props) => {
   //   useEffect(() => {
   //     console.log('bounds.height', bounds.height);
   //   }, [bounds.height]);
+
+  // const finalStyles = true ? transform : null
 
   /**JSX**/
   return (
