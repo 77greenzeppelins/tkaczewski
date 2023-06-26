@@ -41,10 +41,10 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
       style={{ transform }}
       //   ref={squareRef}
       //   ref={ref}
-      data-component="ScrollableContent"
-      className="absolute inset-0 w-full "
+      data-component="PageContent"
+      className="absolute inset-0 w-full pointer-events-none"
     >
-      <div className="fc h-screen w-full" />
+      <div className="fc h-screen w-[1px]" />
       <div
         className={`fc h-screen w-full wrapper-1 ${
           hintIsMobile ? 'bg-dark' : ''

@@ -60,12 +60,14 @@ const DirectContactsSection = () => {
               // style={springs}
               className={`${
                 inView
-                  ? 'opacity-100 transition-all duration-1000 delay-0'
-                  : 'opacity-0 duration-1000 delay-0'
+                  ? 'opacity-100 transition-all duration-700'
+                  : 'opacity-0 duration-700'
               } `}
             >
               <p className="p-v-large text-corpo select-none">{label}</p>
-              <Component labelStyle={'p-medium text-corpo'} />
+              <Component
+                labelStyle={'p-medium text-corpo pointer-events-auto'}
+              />
             </animated.div>
           </div>
         ))}

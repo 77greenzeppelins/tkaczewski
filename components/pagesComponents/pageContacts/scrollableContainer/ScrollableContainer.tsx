@@ -7,9 +7,14 @@ interface Props {
 
 const ScrollableContainer = ({ hintIsMobile }: Props) => {
   return hintIsMobile ? (
-    <PageContent transform={undefined} hintIsMobile={hintIsMobile} />
+    <div data-container="ScrollableContainer-mobile">
+      <PageContent transform={undefined} hintIsMobile={hintIsMobile} />
+    </div>
   ) : (
-    <div className="relative w-[5px]">
+    <div
+      data-container="ScrollableContainer-desktop"
+      className="relative w-[5px]"
+    >
       <div className="h-screen bg-yellow-600" />
       <div className="h-screen bg-green-700" />
       <div className="h-screen bg-blue-600" />

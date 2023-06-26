@@ -57,8 +57,8 @@ const OtherContactsSection = () => {
               // style={springs}
               className={`${
                 inView
-                  ? 'opacity-100 transition-all duration-1000 delay-0'
-                  : 'opacity-0 duration-1000 delay-0'
+                  ? 'opacity-100 transition-all duration-700 delay-0'
+                  : 'opacity-0 duration-700 delay-0'
               } `}
             >
               <p className="p-v-large text-corpo select-none">{item}</p>
@@ -69,8 +69,8 @@ const OtherContactsSection = () => {
       <div
         className={`${
           inView
-            ? 'opacity-100 transition-all duration-1000 delay-0'
-            : 'opacity-0 duration-1000 delay-0'
+            ? 'opacity-100 transition-all duration-700 delay-0'
+            : 'opacity-0 duration-700 delay-0'
         } `}
       >
         <p className="p-medium text-corpo select-none">Poland</p>

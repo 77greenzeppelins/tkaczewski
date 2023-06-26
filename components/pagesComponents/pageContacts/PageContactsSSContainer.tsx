@@ -19,7 +19,7 @@ const PageContactsSSContainer = () => {
   );
   /**JSX**/
   return (
-    <div>
+    <div data-container="PageContactsSSContainer">
       <PageContactsContent hintIsMobile={isMobile || isMobileView} />
     </div>
   );
