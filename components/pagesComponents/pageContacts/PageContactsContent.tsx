@@ -31,8 +31,9 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
   const [{ opacity }, comp1Api] = useSpring(() => ({
     opacity: 0,
   }));
-  const [{ transform }, comp2Api] = useSpring(() => ({
+  const [{ transform, scale }, comp2Api] = useSpring(() => ({
     transform: 'translateY(100%)',
+    scale: 1,
     // transform: 'translateX(100%)',
     // config: { mass: 5, friction: 120, tension: 120 },
   }));
@@ -54,10 +55,10 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
       // console.log('y:', y);
       // console.log('window.innerHeight:', window.innerHeight);
       // console.log('height:', height);
-      // console.log(
-      //   'y / height - window.innerHeight:',
-      //   (y / (height - window.innerHeight)) * -100
-      // );
+      console.log(
+        'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
+        1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
+      );
 
       //__________conditions section
       /*
@@ -80,7 +81,18 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
         transform: `translateY(${
           (y / height) * -basicConfigs.pageContact.viewportsTotal
         }%)`,
-
+        /*
+        ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values; these negative values make object scale "positive" i.e. object growes! that is why I use ternary op. to end on 0 valu => I want <InstantContactButtons2D> container to disappears...
+        */
+        scale:
+          1 -
+            y /
+              ((height / basicConfigs.pageContact.viewports) * speedupFactor) >
+          0
+            ? 1 -
+              y /
+                ((height / basicConfigs.pageContact.viewports) * speedupFactor)
+            : 0,
         // config: config.slow,
         // config: { mass: 5, friction: 120, tension: 120 },
         config: {
@@ -105,6 +117,7 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
     >
       <StickyContainer
         opacity={opacity}
+        scale={scale}
         transform={transform}
         hintIsMobile={hintIsMobile}
       />

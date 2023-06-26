@@ -9,12 +9,19 @@ import { SpringValue, animated } from '@react-spring/web';
 interface Props {
   // scrollDrivenStyles: { opacity: SpringValue<number> };
   opacity: SpringValue<number>;
+  scale: SpringValue<number>;
+
   transform: SpringValue<string>;
   hintIsMobile: boolean;
 }
 
 /**-------------------------------**/
-const StickyContainer = ({ opacity, transform, hintIsMobile }: Props) => {
+const StickyContainer = ({
+  opacity,
+  scale,
+  transform,
+  hintIsMobile,
+}: Props) => {
   /****/
   // const [inView, setInView] = useState(false);
 
@@ -26,23 +33,32 @@ const StickyContainer = ({ opacity, transform, hintIsMobile }: Props) => {
       //___  flex justify-center items-center   -z-10
     >
       <div className="relative w-full h-full">
-        <div className="relative w-full h-full ">
-          <InstantContactButtons2D
-            //___array order: [ top = phone , bottom = email ]
-            containerStyle={[
-              'absolute top-[11.5vh] ',
-              'absolute bottom-[11vh] ml-[180px]',
-            ]}
-            buttonsWidth={[0.3, 0.22]}
-            buttonsHeight={[0.4, 0.3]}
-          />
+        <div className="relative w-full h-full">
+          <animated.div
+            className="relative w-full h-full"
+            style={{ scale: scale }}
+          >
+            <InstantContactButtons2D
+              //___array order: [ top = phone , bottom = email ]
+              containerStyle={[
+                'absolute top-[11.5vh] ',
+                'absolute bottom-[11vh] ml-[180px]',
+              ]}
+              buttonsWidth={[0.3, 0.22]}
+              buttonsHeight={[0.4, 0.3]}
+            />
+          </animated.div>
           <animated.div
             style={{ opacity: opacity }}
             className="absolute inset-0 bg-dark pointer-events-none"
           />
         </div>
         {hintIsMobile ? null : (
-          <PageContent transform={transform} hintIsMobile={hintIsMobile} />
+          <PageContent
+            transform={transform}
+            opacity={opacity}
+            hintIsMobile={hintIsMobile}
+          />
         )}
       </div>
     </div>

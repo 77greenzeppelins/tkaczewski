@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 /**Spring Staff*/
 import { SpringValue, animated } from '@react-spring/web';
 import {
@@ -11,22 +11,13 @@ import {
 /**TS**/
 interface Props {
   transform?: SpringValue<string>;
+  opacity?: SpringValue<number>;
   hintIsMobile: boolean;
   // stateSetter: Dispatch<SetStateAction<boolean>>;
 }
 
 /**-------------------------------**/
-const PageContent = ({ transform, hintIsMobile }: Props) => {
-  /**Some fake state**/
-  const [clickNumber, setClickNumber] = useState(0);
-
-  const onClickUp = () => {
-    setClickNumber(prev => prev + 1);
-  };
-  const onClickDown = () => {
-    setClickNumber(prev => prev - 1);
-  };
-
+const PageContent = ({ transform, hintIsMobile, opacity }: Props) => {
   //   const [squareRef, { height }] = useElementSize();
   //   const [ref, bounds] = useMeasure({ scroll: true });
   //   useEffect(() => {
@@ -46,24 +37,11 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
     >
       <div className="fc h-screen w-[1px]" />
       <div
-        className={`fc h-screen w-full wrapper-1 ${
+        className={`fc h-screen w-full wrapper-1 pointer-events-none ${
           hintIsMobile ? 'bg-dark' : ''
         }`}
       >
         <DirectContactsSection />
-        {/* <div className="fc flex-col gap-y-2 bg-yellow-600 h-[50%] w-[50%]">
-          <p>{hintIsMobile ? 'MOBILE' : 'DESKTOP'}</p>
-          <button className="border border-dark px-2 py-3" onClick={onClickUp}>
-            CLICK + 1
-          </button>
-          <button
-            className="border border-dark px-2 py-3"
-            onClick={onClickDown}
-          >
-            CLICK - 1
-          </button>
-          <p>{clickNumber}</p>
-        </div> */}
       </div>
       <div
         className={`fc h-screen w-full wrapper-1 ${
@@ -71,22 +49,6 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
         }`}
       >
         <OtherContactsSection />
-        {/* <div className="flex flex-col gap-6 items-start justify-center w-full ">
-          <p className="p-v-large text-corpo select-none">Dzierżoniów</p>
-          <p className="p-medium text-corpo">Poland</p>
-        </div> */}
-        {/* <div className="fc flex-col gap-y-2 bg-green-600 h-[50%] w-[50%]">
-          <button className="border border-dark px-2 py-3" onClick={onClickUp}>
-            CLICK + 1
-          </button>
-          <button
-            className="border border-dark px-2 py-3"
-            onClick={onClickDown}
-          >
-            CLICK - 1
-          </button>
-          <p>{clickNumber}</p>
-        </div> */}
       </div>
       <div
         className={`fc h-screen w-full wrapper-1 ${
