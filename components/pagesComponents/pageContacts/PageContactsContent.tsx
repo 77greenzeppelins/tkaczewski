@@ -114,7 +114,7 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
         hintIsMobile={hintIsMobile}
       />
 
-      <ScrollableContainer />
+      <ScrollableContainer hintIsMobile={hintIsMobile} />
 
       {/* <ContactsDataSection transform={transform} /> */}
 

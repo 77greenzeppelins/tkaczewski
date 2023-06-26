@@ -6,7 +6,7 @@ import { DirectPhone, DirectEmail } from '@/components';
 
 /**TS**/
 interface Props {
-  transform: SpringValue<string>;
+  transform?: SpringValue<string>;
   // stateSetter: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -58,9 +58,9 @@ const ContactsDataSection = ({ transform }: Props) => {
       // style={{ transform }}
       // style={{ transform: `translateX(${x}px)` }}
       //___new
-      className="relative h-[100vh] wrapper-1"
+      className="relative  wrapper-1"
     >
-      <div className="flex flex-col gap-6 items-start justify-center w-full h-full overlay-hidden">
+      <div className="flex flex-col gap-6 items-start justify-center w-full h-[100vh] overlay-hidden">
         {buttonContent.map(({ Component, label }, i) => (
           <div key={label} className=" overflow-hidden">
             <animated.div
@@ -77,6 +77,10 @@ const ContactsDataSection = ({ transform }: Props) => {
             </animated.div>
           </div>
         ))}
+      </div>
+      <div className="flex flex-col gap-6 items-start justify-center w-full h-[100vh] overlay-hidden">
+        <p className="p-v-large text-corpo select-none">Dzierżoniów</p>
+        <p className="p-medium text-corpo">Poland</p>
       </div>
     </animated.div>
   );
