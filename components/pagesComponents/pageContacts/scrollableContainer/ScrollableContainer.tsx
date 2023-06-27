@@ -23,9 +23,9 @@ const ScrollableContainer = ({ hintIsMobile }: Props) => {
       data-container="ScrollableContainer-desktop"
       className="relative w-[0px]"
     >
-      <div className="h-screen bg-yellow-600" />
-      <div className="h-screen bg-green-700" />
-      <div className="h-screen bg-blue-600" />
+      <div className="h-screen" />
+      <div className="h-screen" />
+      <div className="h-screen" />
     </div>
   );
 };

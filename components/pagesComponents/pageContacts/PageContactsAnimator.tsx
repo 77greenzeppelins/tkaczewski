@@ -74,7 +74,9 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
       //__________springValues Modification section
       comp1Api.start({
         opacity:
-          y / ((height / basicConfigs.pageContact.viewports) * speedupFactor),
+          y /
+          ((height / basicConfigs.pageContact.viewports) *
+            basicConfigs.pageContact.speedupFactor),
       });
       comp2Api.start({
         // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
@@ -95,12 +97,12 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
               y /
                 ((height / basicConfigs.pageContact.viewports) * speedupFactor)
             : 0,
-        // config: config.slow,
+        config: config.slow,
         // config: { mass: 5, friction: 120, tension: 120 },
-        config: {
-          duration: hintIsMobile ? 0 : 400,
-          easing: easings.easeOutQuint,
-        }, // value in ms
+        // config: {
+        //   duration: hintIsMobile ? 0 : 400,
+        //   easing: easings.easeOutQuint,
+        // }, // value in ms
       });
     },
     //__________ ... section

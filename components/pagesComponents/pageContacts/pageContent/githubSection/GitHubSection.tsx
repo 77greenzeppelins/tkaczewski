@@ -1,15 +1,12 @@
 'use client';
-import React from 'react'; //___ { Dispatch, SetStateAction, useEffect }
-/**Components**/
-import { DirectPhone, DirectEmail } from '@/components';
+import React from 'react';
 /**Spring Staff**/
-import { useInView, useSpring, animated, SpringValue } from '@react-spring/web';
-
-/**TS**/
-interface Props {
-  transform?: SpringValue<string>;
-  // stateSetter: Dispatch<SetStateAction<boolean>>;
-}
+import { useInView, animated } from '@react-spring/web';
+/**Basic Data**/
+import { basicConfigs } from '@/data/basicData';
+const {
+  pageContact: { rootMargin, amount, inViewStyle },
+} = basicConfigs;
 
 /**--------------------------------**/
 const GitHubSection = () => {
@@ -29,19 +26,9 @@ const GitHubSection = () => {
     */
     // amount: 1,
     //___
-    rootMargin: '10% 0% 10% 0%',
-    amount: 0.8,
+    rootMargin: rootMargin,
+    amount: amount,
   });
-
-  const springs = useSpring({
-    opacity: inView ? 1 : 0,
-    y: inView ? '0%' : '-55%',
-    config: { mass: 50, tension: 170, friction: 26, clamp: true },
-  });
-
-  // useEffect(() => {
-  //   stateSetter(inView);
-  // }, [inView, stateSetter]);
 
   /**Basic Data*/
   const dz = ['If you want to see my GitHub', 'Just let me know...'];
@@ -53,13 +40,7 @@ const GitHubSection = () => {
         {dz.map((item, i) => (
           <div key={item} className=" overflow-hidden">
             <animated.div
-              //  style={{ opacity: opacity }}
-              // style={springs}
-              className={`${
-                inView
-                  ? 'opacity-100 transition-all duration-1000 delay-0'
-                  : 'opacity-0 duration-1000 delay-0'
-              } `}
+              className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
               <p className="p-medium text-corpo select-none">{item}</p>
             </animated.div>

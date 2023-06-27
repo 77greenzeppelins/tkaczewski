@@ -3,13 +3,12 @@ import React from 'react'; //___ { Dispatch, SetStateAction, useEffect }
 /**Components**/
 import { DirectPhone, DirectEmail } from '@/components';
 /**Spring Staff**/
-import { useInView, useSpring, animated, SpringValue } from '@react-spring/web';
-
-/**TS**/
-interface Props {
-  transform?: SpringValue<string>;
-  // stateSetter: Dispatch<SetStateAction<boolean>>;
-}
+import { useInView, animated, SpringValue } from '@react-spring/web';
+/**Basic Data**/
+import { basicConfigs } from '@/data/basicData';
+const {
+  pageContact: { rootMargin, amount, inViewStyle },
+} = basicConfigs;
 
 /**--------------------------------**/
 const DirectContactsSection = () => {
@@ -29,15 +28,15 @@ const DirectContactsSection = () => {
     */
     // amount: 1,
     //___
-    rootMargin: '10% 0% 10% 0%',
-    amount: 0.8,
+    rootMargin: rootMargin,
+    amount: amount,
   });
 
-  const springs = useSpring({
-    opacity: inView ? 1 : 0,
-    y: inView ? '0%' : '-55%',
-    config: { mass: 50, tension: 170, friction: 26, clamp: true },
-  });
+  // const springs = useSpring({
+  //   opacity: inView ? 1 : 0,
+  //   y: inView ? '0%' : '-55%',
+  //   config: { mass: 50, tension: 170, friction: 26, clamp: true },
+  // });
 
   // useEffect(() => {
   //   stateSetter(inView);
@@ -58,11 +57,7 @@ const DirectContactsSection = () => {
             <animated.div
               //  style={{ opacity: opacity }}
               // style={springs}
-              className={`${
-                inView
-                  ? 'opacity-100 transition-all duration-700'
-                  : 'opacity-0 duration-700'
-              } `}
+              className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
               <p className="p-v-large text-corpo select-none">{label}</p>
               <Component

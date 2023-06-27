@@ -62,8 +62,15 @@ const basicConfigs = {
     viewports: 7, //scrollable container in <PageHomeContent> is: 600vh + 100vh
   },
   pageContact: {
+    speedupFactor: 0.25,
     viewports: 2,
     viewportsTotal: 4 * 100,
+    rootMargin: '10% 0% 10% 0%',
+    amount: 0.5,
+    inViewStyle: {
+      show: 'opacity-100 transition-all duration-500',
+      hide: 'opacity-0 transition duration-500',
+    },
   },
 };
 /*

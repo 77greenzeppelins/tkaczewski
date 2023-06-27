@@ -72,12 +72,12 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
         ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values;
         ___2. these negative values make object scale "positive" i.e. object extends (=augment)! that is why I use ternary op. to end scroll progress detection on value 0 => I want <InstantContactButtons2D> container to disappears === to "disable" buttons...
         */
-        // config: config.slow,
+        config: config.slow,
         // config: { mass: 5, friction: 120, tension: 120 },
-        config: {
-          duration: hintIsMobile ? 0 : 400,
-          easing: easings.easeOutQuint,
-        }, // value in ms
+        // config: {
+        //   duration: hintIsMobile ? 0 : 400,
+        //   easing: easings.easeOutQuint,
+        // }, // value in ms
       });
     },
     //__________ ... section

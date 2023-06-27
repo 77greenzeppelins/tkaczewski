@@ -1,15 +1,12 @@
 'use client';
-import React from 'react'; //___ { Dispatch, SetStateAction, useEffect }
-/**Components**/
-import { DirectPhone, DirectEmail } from '@/components';
+import React from 'react';
 /**Spring Staff**/
-import { useInView, useSpring, animated, SpringValue } from '@react-spring/web';
-
-/**TS**/
-interface Props {
-  transform?: SpringValue<string>;
-  // stateSetter: Dispatch<SetStateAction<boolean>>;
-}
+import { useInView, animated, SpringValue } from '@react-spring/web';
+/**Basic Data**/
+import { basicConfigs } from '@/data/basicData';
+const {
+  pageContact: { rootMargin, amount, inViewStyle },
+} = basicConfigs;
 
 /**--------------------------------**/
 const OtherContactsSection = () => {
@@ -29,14 +26,8 @@ const OtherContactsSection = () => {
     */
     // amount: 1,
     //___
-    rootMargin: '10% 0% 10% 0%',
-    amount: 0.8,
-  });
-
-  const springs = useSpring({
-    opacity: inView ? 1 : 0,
-    y: inView ? '0%' : '-55%',
-    config: { mass: 50, tension: 170, friction: 26, clamp: true },
+    rootMargin: rootMargin,
+    amount: amount,
   });
 
   // useEffect(() => {
@@ -55,24 +46,14 @@ const OtherContactsSection = () => {
             <animated.div
               //  style={{ opacity: opacity }}
               // style={springs}
-              className={`${
-                inView
-                  ? 'opacity-100 transition-all duration-700 delay-0'
-                  : 'opacity-0 duration-700 delay-0'
-              } `}
+              className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
               <p className="p-v-large text-corpo select-none">{item}</p>
             </animated.div>
           </div>
         ))}
       </div>
-      <div
-        className={`${
-          inView
-            ? 'opacity-100 transition-all duration-700 delay-0'
-            : 'opacity-0 duration-700 delay-0'
-        } `}
-      >
+      <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
         <p className="p-medium text-corpo select-none">Poland</p>
       </div>
     </div>
