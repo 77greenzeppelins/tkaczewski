@@ -21,12 +21,13 @@ interface Props {
   hintIsMobile: boolean;
 }
 /**----------------------------------------**/
-const PageContactsContent = ({ hintIsMobile }: Props) => {
+const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   /**Hook Section*/
   const [squareRef, { height }] = useElementSize(); // innerHeight * 2
   // console.log('PageContactsContent | height:', height);
   /*
-  ___1. api for <InstantContactButtons> opacity
+  ___1. spring imperative API for <StickyContainer>'s overlay opacity that hides <InstantContactButtons2D/>
+  ___2. this opacity goes from 0 to 1;
   */
   const [{ opacity }, comp1Api] = useSpring(() => ({
     opacity: 0,
@@ -127,4 +128,4 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
   );
 };
 
-export default PageContactsContent;
+export default PageContactsAnimator;

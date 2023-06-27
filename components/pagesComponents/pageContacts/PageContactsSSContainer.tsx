@@ -1,6 +1,6 @@
 import React from 'react';
 import { headers } from 'next/headers';
-import PageContactsContent from './PageContactsContent';
+import PageContactsAnimator from './PageContactsAnimator';
 
 const PageContactsSSContainer = () => {
   const headersList = headers();
@@ -20,7 +20,7 @@ const PageContactsSSContainer = () => {
   /**JSX**/
   return (
     <div data-container="PageContactsSSContainer">
-      <PageContactsContent hintIsMobile={isMobile || isMobileView} />
+      <PageContactsAnimator hintIsMobile={isMobile || isMobileView} />
     </div>
   );
 };
