@@ -55,10 +55,10 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
       // console.log('y:', y);
       // console.log('window.innerHeight:', window.innerHeight);
       // console.log('height:', height);
-      console.log(
-        'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
-        1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
-      );
+      // console.log(
+      //   'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
+      //   1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
+      // );
 
       //__________conditions section
       /*
@@ -82,7 +82,8 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
           (y / height) * -basicConfigs.pageContact.viewportsTotal
         }%)`,
         /*
-        ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values; these negative values make object scale "positive" i.e. object growes! that is why I use ternary op. to end on 0 valu => I want <InstantContactButtons2D> container to disappears...
+        ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values;
+        ___2. these negative values make object scale "positive" i.e. object extends (=augment)! that is why I use ternary op. to end scroll progress detection on value 0 => I want <InstantContactButtons2D> container to disappears === to "disable" buttons...
         */
         scale:
           1 -
@@ -121,86 +122,9 @@ const PageContactsContent = ({ hintIsMobile }: Props) => {
         transform={transform}
         hintIsMobile={hintIsMobile}
       />
-
       <ScrollableContainer hintIsMobile={hintIsMobile} />
-
-      {/* <ContactsDataSection transform={transform} /> */}
-
-      {/* <div className="relative h-[100vh] bg-yellow-600 z-10" /> */}
     </div>
   );
 };
 
 export default PageContactsContent;
-
-/**Spring Section**/
-//___create SpringAnimation and api for imperative approach
-//   const [comp1Styles, comp1Api] = useSpring(() => ({
-//     opacity: 0,
-//     config: config.stiff,
-//   }));
-//___trigger hook and get "scroll values"
-//   useScroll({
-//     // container: containerRef,
-//     onChange: ({ value: { scrollYProgress, scrollY } }) => {
-//       //___use imperative API and utilize "scroll values" (scrollYProgress, scrollY) for setting SpringValue (props like opacity etc.);
-//       comp1Api.start({
-//         /*
-//    __1. first part of the condition tells that initiall 300px of scrolling doesn't change anything;
-//    __2. secondt part of the condition tells that we want to speed up scrollProgress value = speed up the animation itself so that it ends befor user scrolls to the bottom; factor can change depending on "number of viewport" / how long is the page;
-//    */
-//         opacity: scrollY < 300 ? 0 : scrollYProgress * 4,
-//       });
-//       //___wtf...
-//       //   console.log('scrollYProgress', scrollYProgress);
-//       //   console.log('scrollY', scrollY);
-//       //   console.log(`${scrollYProgress * -100}%`);
-//     },
-//     //___??
-//     default: {
-//       immediate: false,
-//     },
-//   });
-
-//________________________________________________________momentum / inertia...
-// function hasInertiaScrolling() {
-//   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-//   const isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
-//   const isChrome =
-//     !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-//   return (isMac && !isChrome) || isIOS;
-// }
-
-// const momentumScrollListener = (event: WheelEvent) => {
-//   event.preventDefault();
-//   const deltaMode = event.deltaMode;
-//   if (event.target) {
-//     event.target.removeEventListener(event.type, momentumScrollListener);
-//   }
-//   if (deltaMode === 1) {
-//     return true;
-//   }
-//   return false;
-// };
-
-//   const supportsMomentumScrolling =
-//     typeof window !== 'undefined' &&
-//     'onwheel' in window &&
-//     momentumScrollListener;
-
-// const momentumScrollListener = (event: WheelEvent) => {
-//   event.preventDefault();
-//   const deltaMode = event.deltaMode;
-//   if (event.target) {
-//     event.target.removeEventListener(event.type, momentumScrollListener);
-//   }
-//   if (deltaMode === 1) {
-//     return true;
-//   }
-//   return false;
-// };
-
-// const supportsMomentumScrolling =
-//   typeof window !== 'undefined' &&
-//   'onwheel' in window &&
-//   (momentumScrollListener as EventListenerOrEventListenerObject);

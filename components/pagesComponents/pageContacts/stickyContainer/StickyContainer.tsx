@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 /**Components*/
 import { InstantContactButtons2D } from '@/components';
 import PageContent from '../pageContent/PageContent';
@@ -7,10 +7,8 @@ import { SpringValue, animated } from '@react-spring/web';
 
 /**TS**/
 interface Props {
-  // scrollDrivenStyles: { opacity: SpringValue<number> };
   opacity: SpringValue<number>;
   scale: SpringValue<number>;
-
   transform: SpringValue<string>;
   hintIsMobile: boolean;
 }
@@ -23,23 +21,29 @@ const StickyContainer = ({
   hintIsMobile,
 }: Props) => {
   /****/
-  // const [inView, setInView] = useState(false);
 
   /**JSX**/
   return (
     <div
       data-component="StickyContainer"
       className="sticky h-screen top-0 bottom-0 inset-x-0 overflow-hidden -z-0"
-      //___  flex justify-center items-center   -z-10
+      //___  flex justify-center items-center -z-10
     >
       <div className="relative w-full h-full">
         <div className="relative w-full h-full">
           <animated.div
             className="relative w-full h-full"
+            /*
+            ___1. why scale is modified? 
+            ___2. scale of this container reflects progress of scrolling (with custome factor, depending on effect we want to achieve);
+            ___3. scale must be reduced to zero to "disable" the buttons
+            */
             style={{ scale: scale }}
           >
             <InstantContactButtons2D
-              //___array order: [ top = phone , bottom = email ]
+              /*
+              ___1.order matters: [ top = phoneButton , bottom = emailButton ]
+              */
               containerStyle={[
                 'absolute top-[11.5vh] ',
                 'absolute bottom-[11vh] ml-[180px]',
@@ -48,17 +52,19 @@ const StickyContainer = ({
               buttonsHeight={[0.4, 0.3]}
             />
           </animated.div>
+
           <animated.div
+            /*
+            ___1. why such animated.div?
+            ___2. It works as overlay that covers "canvas" reflecting scroll progress;
+            ___3. its value comes from 0 to 1; 
+            */
             style={{ opacity: opacity }}
             className="absolute inset-0 bg-dark pointer-events-none"
           />
         </div>
         {hintIsMobile ? null : (
-          <PageContent
-            transform={transform}
-            opacity={opacity}
-            hintIsMobile={hintIsMobile}
-          />
+          <PageContent transform={transform} hintIsMobile={hintIsMobile} />
         )}
       </div>
     </div>

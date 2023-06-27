@@ -14,7 +14,7 @@ import InfoSection from './infoSection/InfoSection';
 const Page2DContent = () => {
   /**JSX**/
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full">
       <HeroSection />
       {cvSections.map(({ header, body }) => (
         <InfoSection key={header} headerText={header} bodyText={body} />
