@@ -14,7 +14,7 @@ interface Props {
 }
 
 /**----------------------------**/
-const InfoSection = ({ headerText, bodyText }: Props) => {
+const CvSection = ({ headerText, bodyText }: Props) => {
   //___ type guard
   // const isStringArray = (propsToCheck: any): propsToCheck is string[] => {
   //   return Array.isArray(propsToCheck) && typeof propsToCheck[0] === 'string';
@@ -48,4 +48,4 @@ const InfoSection = ({ headerText, bodyText }: Props) => {
   );
 };
 
-export default InfoSection;
+export default CvSection;

@@ -1,3 +1,4 @@
+// 'use client';
 /*
 __________2D
 */
@@ -8,11 +9,12 @@ import DirectPhone from './multipagesComponents/_basicComponents/links/directCon
 import DirectContactsSection from './pagesComponents/pageContacts/pageContent/directContactSection/DirectContactSection';
 import OtherContactsSection from './pagesComponents/pageContacts/pageContent/otherContactsSection/OtherContactsSection';
 import GitHubSection from './pagesComponents/pageContacts/pageContent/githubSection/GitHubSection';
-
-// import ContactsDataSection from './pagesComponents/pageContacts/contactsData/ContactsDataSection';
 import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
 //___pageCV
-import AskAI from './pagesComponents/CV/askAI/AskAI';
+import PageCvContent from './pagesComponents/pageCV/pageContent/PageCvContent';
+import HeroSectionPageCv from './pagesComponents/pageCV/pageContent/heroSection/HeroSectionPageCv';
+import CvSection from './pagesComponents/pageCV/pageContent/infoSection/CvSection';
+import AskAI from './pagesComponents/pageCV/pageContent/askAI/AskAI';
 //___pageContacts
 import ScrollableContainer from './pagesComponents/pageContacts/scrollableContainer/ScrollableContainer';
 import ScrollableContent from './pagesComponents/pageContacts/stickyContainer/scrollableContent/ScrollableContent';
@@ -49,12 +51,14 @@ export {
   DirectEmail,
   DirectPhone,
   DirectContactsSection,
-  // ContactsDataSection, //? to delate
   //___pageContacts
   StickyContainer,
   OtherContactsSection,
   GitHubSection,
   //___pageCV
+  PageCvContent,
+  HeroSectionPageCv,
+  CvSection,
   AskAI,
   //_______________________________3D
   CameraControler,
