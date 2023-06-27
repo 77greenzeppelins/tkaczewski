@@ -163,10 +163,4 @@ const cvSections = [
   },
 ];
 
-export {
-  introOverlayTexts,
-  introOverlayTextsStyles,
-  timeZones,
-  // page2DTexts,
-  cvSections,
-};
+export { introOverlayTexts, introOverlayTextsStyles, timeZones, cvSections };
