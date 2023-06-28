@@ -2,15 +2,16 @@
 import React from 'react';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
-import { ScrollableContainer } from '@/components';
+import { InstantContactButtons2D, ScrollableContainer } from '@/components';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
-import { useSpring, easings, config } from '@react-spring/web';
+import { useSpring, easings, config, animated } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
 import { basicConfigs } from '@/data/basicData';
+import PageContent from './pageContent/PageContent';
 
 /*
 this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when whole viewport was scrolled; if less then 1 darkness comes earlier;

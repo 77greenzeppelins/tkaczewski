@@ -32,7 +32,9 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
     */
       style={{ transform }}
       data-component="PageContent"
-      className="absolute inset-0 w-full pointer-events-none"
+      // className={`${
+      //   hintIsMobile ? '' : 'absolute inset-0 w-full pointer-events-none'
+      // }`}
     >
       <div className="fc h-screen w-[1px]" />
       {componentsArray.map(({ Component }, i) => (

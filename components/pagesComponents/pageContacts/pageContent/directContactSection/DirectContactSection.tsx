@@ -3,7 +3,7 @@ import React from 'react'; //___ { Dispatch, SetStateAction, useEffect }
 /**Components**/
 import { DirectPhone, DirectEmail } from '@/components';
 /**Spring Staff**/
-import { useInView, animated, SpringValue } from '@react-spring/web';
+import { useInView, animated } from '@react-spring/web';
 /**Basic Data**/
 import { basicConfigs } from '@/data/basicData';
 const {
@@ -50,7 +50,11 @@ const DirectContactsSection = () => {
 
   /**JSX**/
   return (
-    <div ref={ref} className="relative w-full">
+    <div
+      data-component="DirectContactsSection"
+      ref={ref}
+      className="relative w-full"
+    >
       <div className="flex flex-col gap-6 items-start justify-center w-full">
         {buttonContent.map(({ Component, label }, i) => (
           <div key={label} className=" overflow-hidden">
