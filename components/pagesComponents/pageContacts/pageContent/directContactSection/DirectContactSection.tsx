@@ -63,7 +63,9 @@ const DirectContactsSection = () => {
               // style={springs}
               className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
-              <p className="p-v-large text-corpo select-none">{label}</p>
+              <p className="p-u-large text-corpo select-none font-serif">
+                {label}
+              </p>
               <Component
                 labelStyle={'p-medium text-corpo pointer-events-auto'}
               />

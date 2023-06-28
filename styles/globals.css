@@ -73,10 +73,13 @@ body,
     @apply text-[0.75rem]  lg:text-[1rem] tracking-[2px] leading-tight;
   }
   .p-medium {
-    @apply text-[1.25rem] xs:text-[1.5rem] md:text-[1.75rem] xxl:text-[2.25rem] tracking-[2px] leading-tight;
+    @apply text-[1rem] xs3xx:text-[1.25rem] xs:text-[1.5rem] md:text-[1.75rem] xxl:text-[2.25rem] tracking-[2px] leading-tight;
   }
   .p-v-large {
     @apply text-[3.25rem] xs3xx:text-[4.25rem] xs:text-[4.5rem] md:text-[4.75rem] xxl:text-[6.25rem] tracking-[2px] leading-tight;
+  }
+  .p-u-large {
+    @apply text-[5rem] xs3xx:text-[6rem] xs:text-[7.5rem] md:text-[7.5rem] xxl:text-[7.5rem] tracking-[2px] leading-[1];
   }
 
   /*Scrollbar style*/

@@ -48,7 +48,9 @@ const OtherContactsSection = () => {
               // style={springs}
               className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
-              <p className="p-v-large text-corpo select-none">{item}</p>
+              <p className="p-u-large text-corpo select-none font-serif">
+                {item}
+              </p>
             </animated.div>
           </div>
         ))}
