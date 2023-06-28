@@ -2,21 +2,24 @@
 import React from 'react';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
-import { InstantContactButtons2D, ScrollableContainer } from '@/components';
+import { ScrollableContainer } from '@/components';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
-import { useSpring, easings, config, animated } from '@react-spring/web';
+import { useSpring, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
 import { basicConfigs } from '@/data/basicData';
-import PageContent from './pageContent/PageContent';
+
+const {
+  pageContact: { opacityFactor, scaleFactor },
+} = basicConfigs;
 
 /*
 this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when whole viewport was scrolled; if less then 1 darkness comes earlier;
 */
-const speedupFactor = 0.25;
+// const speedupFactor = 0.25;
 
 interface Props {
   hintIsMobile: boolean;
@@ -34,10 +37,8 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
     opacity: 0,
   }));
   const [{ transform, scale }, comp2Api] = useSpring(() => ({
-    transform: 'translateY(100%)',
+    transform: 'translateY(0%)',
     scale: 1,
-    // transform: 'translateX(100%)',
-    // config: { mass: 5, friction: 120, tension: 120 },
   }));
 
   /** */
@@ -54,9 +55,9 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
       // direction: number[];
     }) => {
       // console.log('dirY:', dirY);
-      console.log('y:', y);
+      // console.log('y:', y);
       // console.log('window.innerHeight:', window.innerHeight);
-      console.log('height:', height);
+      // console.log('height:', height);
       // console.log(
       //   'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
       //   1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
@@ -75,9 +76,7 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
       //__________springValues Modification section
       comp1Api.start({
         opacity:
-          y /
-          ((height / basicConfigs.pageContact.viewports) *
-            basicConfigs.pageContact.speedupFactor),
+          y / ((height / basicConfigs.pageContact.viewports) * opacityFactor),
       });
       comp2Api.start({
         // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
@@ -93,12 +92,10 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
         */
         scale:
           1 -
-            y /
-              ((height / basicConfigs.pageContact.viewports) * speedupFactor) >
+            y / ((height / basicConfigs.pageContact.viewports) * scaleFactor) >
           0
             ? 1 -
-              y /
-                ((height / basicConfigs.pageContact.viewports) * speedupFactor)
+              y / ((height / basicConfigs.pageContact.viewports) * scaleFactor)
             : 0,
         config: config.slow,
         // config: { mass: 5, friction: 120, tension: 120 },
