@@ -16,7 +16,7 @@ import PageContent from './pageContent/PageContent';
 /*
 this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when whole viewport was scrolled; if less then 1 darkness comes earlier;
 */
-const speedupFactor = 0.125;
+const speedupFactor = 0.25;
 
 interface Props {
   hintIsMobile: boolean;
@@ -54,9 +54,9 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
       // direction: number[];
     }) => {
       // console.log('dirY:', dirY);
-      // console.log('y:', y);
+      console.log('y:', y);
       // console.log('window.innerHeight:', window.innerHeight);
-      // console.log('height:', height);
+      console.log('height:', height);
       // console.log(
       //   'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
       //   1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
@@ -83,7 +83,9 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
         // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
         // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
         transform: `translateY(${
-          (y / height) * -basicConfigs.pageContact.viewportsTotal
+          (y / (height - window.innerHeight)) *
+          // -basicConfigs.pageContact.viewportsTotal
+          -100
         }%)`,
         /*
         ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values;

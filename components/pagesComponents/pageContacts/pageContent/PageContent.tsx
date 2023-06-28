@@ -40,9 +40,10 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
       {componentsArray.map(({ Component }, i) => (
         <div
           key={i}
-          className={`fc h-screen w-full wrapper-1 ${
-            hintIsMobile ? 'bg-dark' : ''
-          }`}
+          // className={`fc h-screen w-full wrapper-1 ${
+          //   hintIsMobile ? 'bg-gray-500' : 'bg-gray-800'
+          // }`}
+          className="fc h-screen w-full wrapper-1"
         >
           <Component />
         </div>
