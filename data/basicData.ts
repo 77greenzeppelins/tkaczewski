@@ -43,6 +43,7 @@ const assetsPaths = {
   phone: '../assets/images/contacts/instantContact_phone.webp',
   email: '../assets/images/contacts/instantContact_email.webp',
   family: '../assets/images/various/family_3.webp',
+
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };

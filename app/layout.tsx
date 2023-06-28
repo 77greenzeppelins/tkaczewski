@@ -11,8 +11,8 @@ import { inter, garamond } from './fonts/fonts';
 
 /**<Head> staff*/
 export const metadata = {
-  title: '77digits',
-  description: 'Provider of true take-offs in the Internet. ',
+  title: 'Tkaczewski-cv',
+  description: 'Provider of true take-offs in the Internet.',
 };
 
 /**---------------------------------**/
