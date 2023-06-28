@@ -10,15 +10,12 @@ const pagesPath = {
   homePath: '/',
   cvPath: '/cv',
   contactcPath: '/contact',
-  exp2d: '/2d',
 };
 
 const pagesLinks = [
   { href: pagesPath.homePath, label: '3D' },
-  // { href: '/2d', label: '2D' },
   { href: pagesPath.cvPath, label: 'CV' },
   { href: pagesPath.contactcPath, label: 'Contact' },
-  // { href: '/io', label: 'IO' },
 ];
 
 const contactData = {
@@ -46,7 +43,6 @@ const assetsPaths = {
   phone: '../assets/images/contacts/instantContact_phone.webp',
   email: '../assets/images/contacts/instantContact_email.webp',
   family: '../assets/images/various/family_3.webp',
-
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };
