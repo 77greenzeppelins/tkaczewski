@@ -1,13 +1,26 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+/**Global Context Staff**/
 /**Hooks**/
+import { useGlobalContext } from '@/context/globalContext';
 import useScrollPosition from '@/hooks/useScrollPosition';
 import useMeasure from 'react-use-measure';
 /**Components*/
 import { InstantContactButtons2D } from '@/components';
 
-import { basicConfigs, springConfigs } from '@/data/basicData';
-import { useGlobalContext } from '@/context/globalContext';
+import { basicConfigs } from '@/data/basicData';
+const {
+  pageHome: { viewports, startErrorMargin, endErrorMargin },
+} = basicConfigs;
+
+/*
+  pageHome: {
+    viewports: 7, //scrollable container in <PageHomeContent> is: 600vh + 100vh
+    startErrorMargin: 100,
+    endErrorMargin: 100,
+  },
+
+*/
 
 /**----------------------------------------**/
 const PageHomeContent = () => {
@@ -23,18 +36,15 @@ const PageHomeContent = () => {
   ___1. why do I need GlobalContext /setScrollableHeight ? because <CameraControler> requires data about height of scrollableContainer on pageHome 
   */
   const { scrollableHeight, setScrollableHeight } = useGlobalContext();
+
   useEffect(() => {
     setScrollableHeight(height);
   }, [height, setScrollableHeight]);
 
   const startRange =
-    scrollableHeight -
-    scrollableHeight / basicConfigs.pageHome.viewports -
-    basicConfigs.errorMargin;
+    scrollableHeight - scrollableHeight / viewports - startErrorMargin;
   const endRange =
-    scrollableHeight -
-    scrollableHeight / basicConfigs.pageHome.viewports +
-    basicConfigs.errorMargin;
+    scrollableHeight - scrollableHeight / viewports + endErrorMargin;
   const muntingCondition =
     scrollYPosition.val >= startRange && scrollYPosition.val <= endRange;
 

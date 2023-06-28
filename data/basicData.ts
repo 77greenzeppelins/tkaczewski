@@ -60,6 +60,8 @@ const basicConfigs = {
   errorMargin: 10,
   pageHome: {
     viewports: 7, //scrollable container in <PageHomeContent> is: 600vh + 100vh
+    startErrorMargin: 100,
+    endErrorMargin: 100,
   },
   pageContact: {
     opacityFactor: 1.125,

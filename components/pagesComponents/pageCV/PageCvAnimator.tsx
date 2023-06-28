@@ -1,11 +1,11 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 /**Hooks**/
-import useElementSize from '@/hooks/useElementSize';
+// import useElementSize from '@/hooks/useElementSize';
 /**Components**/
 import { PageCvContent, SmoothCvContainer } from '@/components';
 /**Spring Staff**/
-import { useSpring, easings, config } from '@react-spring/web';
+import { useSpring, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 
@@ -15,10 +15,10 @@ interface Props {
   hintIsMobile: boolean;
 }
 
-/**---------------------------**/
+/**---------------------------------------------------**/
 const PageCvAnimator = ({ hintIsMobile }: Props) => {
   /**Hook Section*/
-  const [squareRef, { height }] = useElementSize();
+  // const [squareRef, { height }] = useElementSize();
 
   const [{ transform }, comp2Api] = useSpring(() => ({
     // transform: 'translateY(0%)',
@@ -28,7 +28,7 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
   /** */
   useScroll(
     /*
-    ___1. her we utilize some gesture state offers by useGesture
+    ___1. here we utilize some gesture state offers by useGesture
     ___2. value "y" => returns progress of scrolling; let's take such case: (a) scrollHeight property of scrollableContainer has value of 1654; (b) window.innerHeight is 827; (c) final value (at the end of scrolling) of y is 827;
     */
     ({
@@ -39,7 +39,7 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
       // direction: number[];
     }) => {
       // console.log('dirY:', dirY);
-      console.log('y:', y);
+      // console.log('y:', y);
       // console.log('window.innerHeight:', window.innerHeight);
       // console.log(
       //   'y/(height - window.innerHeight):',
@@ -87,14 +87,14 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
     }
   );
 
-  useEffect(() => {
-    console.log('height:', height);
-  }, [height]);
+  // useEffect(() => {
+  //   console.log('height:', height);
+  // }, [height]);
 
   /**JSX**/
   return (
     <div
-      ref={squareRef}
+      // ref={squareRef}
       data-component="PageCvAnimator"
       className="relative w-full h-full"
       // className="w-full h-full pointer-events-none opacity-0"
@@ -108,32 +108,3 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
 };
 
 export default PageCvAnimator;
-
-{
-  /* <HeroSection />;
-{
-  cvSections.map(({ header, body }) => (
-    <InfoSection key={header} headerText={header} bodyText={body} />
-  ));
-}
-
-<div className="flex justify-center items-center h-[100vh] w-full">
-  <AskAI />
-</div>; */
-}
-
-{
-  /* <div className="flex flex-col gap-y-10 justify-between items-center w-full">
-        <InViewContainer />
-        <InViewContainer />
-        <InViewContainer />
-        <InViewContainer />
-      </div> */
-}
-{
-  /* <div className="flex flex-col gap-y-10 justify-center items-center w-full bg-dark">
-        <InView />
-        <InView />
-        <InView />
-      </div> */
-}
