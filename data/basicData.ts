@@ -83,6 +83,13 @@ const cameraSettings = {
 };
 
 /*
+__2. for customeObjects |  <CameraControler>
+*/
+const cameraControler = {
+  zAxisFactor: -0.22,
+};
+
+/*
 ___1. used in <CameraControler>, Page2D.tsx,
 ___2. concept: each 3D-pseudoPage has unique x-axis value to avoid any overlapping of events (for instance click event)
 */
@@ -370,6 +377,7 @@ export {
   pages3DPositions,
   //___used in <CameraControler> and ...
   cameraSettings,
+  cameraControler,
   //___spring settings
   springConfigs,
   animationsDelays,

@@ -11,7 +11,7 @@ import { inter, garamond } from './fonts/fonts';
 
 /**<Head> staff*/
 export const metadata = {
-  title: 'Tkaczewski-cv',
+  title: 'tkaczewski | unique experiance',
   description: 'Provider of true take-offs in the Internet.',
 };
 
@@ -27,15 +27,10 @@ export default function RootLayout({
       lang="en"
       // className={inter.className}
       className={`${inter.variable} ${garamond.variable}`}
-      // className={`${garamond.className}`}
     >
       <body className="relative font-sans">
         <Header />
         <AppContainer>{children}</AppContainer>
-        {/* <MainCanvas /> */}
-        {/* <AppContent>{children}</AppContent> */}
-        {/* <AppContentScrollControls>{children}</AppContentScrollControls> */}
-        {/* <TestComponent /> */}
       </body>
     </html>
   );
