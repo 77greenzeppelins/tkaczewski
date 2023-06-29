@@ -30,7 +30,6 @@ const CameraControler = () => {
   */
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const [currentPath, setCurrentPath] = useState(path);
-  const [fakeFlag, setFakeFlag] = useState(true);
 
   useEffect(() => {
     // console.log('...useEffect / path:', path);
@@ -96,7 +95,7 @@ const CameraControler = () => {
       //___camera position-y ==> just remain unmoved / stay at the same level
       0,
       //___camera position-z ==> just follow the mesh...
-      scrollableOnZ
+      scrollableOnZ && path === currentPath
         ? cameraSettings.z + meshRef.current.position.z
         : cameraSettings.z
       // scrollableOnZ
