@@ -151,7 +151,9 @@ const CameraControler = () => {
       comp2Api.start({
         positionZ: scrollYProgress,
         // config: config.molasses,
-        config: { mass: 5, friction: 120, tension: 120 },
+        config: scrollYProgress
+          ? { mass: 5, friction: 120, tension: 120 }
+          : config.slow,
         // config: {
         //   duration: 800,
         //   easing: easings.easeOutQuint,
