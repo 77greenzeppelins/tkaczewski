@@ -38,7 +38,7 @@ const CameraControler = () => {
     timerRef.current = setTimeout(() => {
       // console.log('...setTimeout / currentPath:', currentPath);
       setCurrentPath(path);
-    }, 400);
+    }, 2000);
     //__
     // setFakeFlag(path === currentPath ? true : false);
     //___cleaner
