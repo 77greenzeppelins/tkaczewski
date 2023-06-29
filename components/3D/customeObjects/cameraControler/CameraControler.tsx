@@ -151,7 +151,7 @@ const CameraControler = () => {
       comp2Api.start({
         positionZ: scrollYProgress,
         // config: config.molasses,
-        config: scrollYProgress
+        config: scrollableOnZ
           ? { mass: 5, friction: 120, tension: 120 }
           : config.slow,
         // config: {
