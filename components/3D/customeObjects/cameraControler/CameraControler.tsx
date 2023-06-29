@@ -15,7 +15,7 @@ import { setXPosition } from './utils/utils';
 import { pagesPath, cameraSettings, cameraControler } from '@/data/basicData';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
-import { config, useSpring, animated } from '@react-spring/three';
+import { config, useSpring, animated, easings } from '@react-spring/three';
 
 /**----------------------------**/
 const CameraControler = () => {
@@ -99,12 +99,12 @@ const CameraControler = () => {
 
       comp2Api.start({
         positionZ: y / (state.size.height * cameraControler.zAxisFactor),
-        config: config.molasses,
+        // config: config.molasses,
         // config: { mass: 5, friction: 120, tension: 120 },
-        // config: {
-        //   duration: hintIsMobile ? 0 : 400,
-        //   easing: easings.easeOutQuint,
-        // }, // value in ms
+        config: {
+          duration: 800,
+          easing: easings.easeOutQuint,
+        }, // value in ms
       });
     },
     //__________ ... section
