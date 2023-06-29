@@ -144,8 +144,9 @@ const CameraControler = () => {
       //   ? 0
       //   : y / (state.size.height * cameraControler.zAxisFactor);
 
-      const scrollYProgress =
-        y / (state.size.height * cameraControler.zAxisFactor);
+      const scrollYProgress = scrollableOnZ
+        ? y / (state.size.height * cameraControler.zAxisFactor)
+        : 0;
       //__________springValues Modification section
       comp2Api.start({
         positionZ: scrollYProgress,
@@ -163,10 +164,11 @@ const CameraControler = () => {
       ___1. when path changes log shows value "-0" 
       ___2. it means that useScroll() raacts to Next.js default behaviour "scroll-to-top"; 
       */
-      // console.log(
-      //   'y / (state.size.height * cameraControler.zAxisFactor):',
-      //   y / (state.size.height * cameraControler.zAxisFactor)
-      // );
+      console.log(
+        'y / (state.size.height * cameraControler.zAxisFactor):',
+        y / (state.size.height * cameraControler.zAxisFactor)
+      );
+      console.log('scrollYProgress:', scrollYProgress);
     },
     //__________ ... section
     {
