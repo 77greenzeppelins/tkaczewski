@@ -8,7 +8,7 @@ import { page3DConfigs } from '@/data/basicData';
 
 /*
 __1. whenever path changes this component appears for 1 sec.
-__2. main task os to cover <canvas> content; 
+__2. main task is to cover <canvas> content; 
 __3. as it animates; canvas content is presented with opacity effect
 
 ----------------------------
@@ -40,9 +40,9 @@ const CanvasOverlay = () => {
   const transitions = useTransition(mounted, {
     keys: mounted.toString(),
     from: { opacity: 1 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: { duration: 400 },
+    enter: { opacity: 1, config: { duration: 0 } },
+    leave: { opacity: 0, config: { duration: 400 } },
+    // config: { duration: 400 },
     exitBeforeEnter: true,
   });
 
