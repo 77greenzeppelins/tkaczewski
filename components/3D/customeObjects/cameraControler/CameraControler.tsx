@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 /**Global Context**/
 /**THREE Staff*/
 import * as THREE from 'three';
@@ -19,12 +19,29 @@ import { config, useSpring, animated, easings } from '@react-spring/three';
 
 /**----------------------------**/
 const CameraControler = () => {
-  /**References**/
-  const meshRef = useRef<THREE.Mesh>(null!);
-
   /**Condition of visibility**/
   const path = usePathname();
   const scrollableOnZ = path === pagesPath.homePath;
+
+  /*
+  ___1. this section is ment to controll path changes 
+  ___2. local state stores info about path, but changrs should by register with a sort of delay
+  ___3. this delay should allows to omit "scroll-to-top" behaviour
+  */
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [currentPath, setCurrentPath] = useState(path);
+  useEffect(() => {
+    //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
+    timerRef.current = setTimeout(() => {
+      setCurrentPath(path);
+    }, 800);
+    return () => {
+      clearTimeout(timerRef.current as NodeJS.Timeout);
+    };
+  }, [setCurrentPath, path]);
+
+  /**References**/
+  const meshRef = useRef<THREE.Mesh>(null!);
 
   /**Animations / Manipulations*/
   useFrame(state => {
@@ -70,7 +87,7 @@ const CameraControler = () => {
   //____________________________________
 
   const state = useThree();
-  console.log('state:', state.size.height);
+  // console.log('state:', state.size.height);
 
   const [{ positionZ }, comp2Api] = useSpring(() => ({
     // transform: 'translateY(0%)',
@@ -99,12 +116,12 @@ const CameraControler = () => {
 
       comp2Api.start({
         positionZ: y / (state.size.height * cameraControler.zAxisFactor),
-        // config: config.molasses,
+        config: config.molasses,
         // config: { mass: 5, friction: 120, tension: 120 },
-        config: {
-          duration: 800,
-          easing: easings.easeOutQuint,
-        }, // value in ms
+        // config: {
+        //   duration: 800,
+        //   easing: easings.easeOutQuint,
+        // }, // value in ms
       });
     },
     //__________ ... section
