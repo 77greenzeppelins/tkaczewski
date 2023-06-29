@@ -25,20 +25,39 @@ const CameraControler = () => {
 
   /*
   ___1. this section is ment to controll path changes 
-  ___2. local state stores info about path, but changrs should by register with a sort of delay
+  ___2. local state stores info about path, but changes should by register with a sort of delay
   ___3. this delay should allows to omit "scroll-to-top" behaviour
   */
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const [currentPath, setCurrentPath] = useState(path);
+  const [fakeFlag, setFakeFlag] = useState(true);
+
   useEffect(() => {
+    // console.log('...useEffect / path:', path);
     //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
     timerRef.current = setTimeout(() => {
+      // console.log('...setTimeout / currentPath:', currentPath);
       setCurrentPath(path);
-    }, 800);
+    }, 400);
+    //__
+    // setFakeFlag(path === currentPath ? true : false);
+    //___cleaner
     return () => {
       clearTimeout(timerRef.current as NodeJS.Timeout);
     };
   }, [setCurrentPath, path]);
+
+  //___wtf...
+  // console.log('...currentPath:', currentPath);
+  // console.log('...path:', path);
+  // console.log('path === currentPath', path === currentPath);
+
+  // console.log('fakeFlag', fakeFlag);
+  // const scrollableOnZ = currentPath === pagesPath.homePath;
+  // console.log(
+  //   'currentPath === pagesPath.homePath:',
+  //   currentPath === pagesPath.homePath
+  // );
 
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -80,6 +99,11 @@ const CameraControler = () => {
       scrollableOnZ
         ? cameraSettings.z + meshRef.current.position.z
         : cameraSettings.z
+      // scrollableOnZ
+      //   ? cameraSettings.z + meshRef.current.position.z
+      //   : path === currentPath
+      //   ? cameraSettings.z
+      //   : cameraSettings.z + meshRef.current.position.z
     );
     state.camera.position.copy(cameraPosition);
   });
@@ -106,16 +130,22 @@ const CameraControler = () => {
       xy: number[];
       // direction: number[];
     }) => {
-      // console.log('dirY:', dirY);
-      // console.log('y:', y);
-      // console.log(
-      //   'y / (state.size.height * cameraControler.zAxisFactor):',
-      //   y / (state.size.height * cameraControler.zAxisFactor)
-      // );
-      //__________springValues Modification section
+      /*
+      const scrollYProgress = scrollableOnZ ?
+        y / (state.size.height * cameraControler.zAxisFactor)
+        : path === currentPath ? cameraSettings.z : y / (state.size.height * cameraControler.zAxisFactor)
+      */
+      const scrollYProgress = scrollableOnZ
+        ? y / (state.size.height * cameraControler.zAxisFactor)
+        : path === currentPath
+        ? 0
+        : y / (state.size.height * cameraControler.zAxisFactor);
 
+      // const scrollYProgress =
+      //   y / (state.size.height * cameraControler.zAxisFactor);
+      //__________springValues Modification section
       comp2Api.start({
-        positionZ: y / (state.size.height * cameraControler.zAxisFactor),
+        positionZ: scrollYProgress,
         config: config.molasses,
         // config: { mass: 5, friction: 120, tension: 120 },
         // config: {
@@ -123,6 +153,13 @@ const CameraControler = () => {
         //   easing: easings.easeOutQuint,
         // }, // value in ms
       });
+      //___wtf...
+      // console.log('dirY:', dirY);
+      // console.log('y:', y);
+      // console.log(
+      //   'y / (state.size.height * cameraControler.zAxisFactor):',
+      //   y / (state.size.height * cameraControler.zAxisFactor)
+      // );
     },
     //__________ ... section
     {
@@ -140,7 +177,7 @@ const CameraControler = () => {
         ref={meshRef}
         position-x={0}
         position-y={0}
-        position-z={positionZ} ///positionZ
+        position-z={positionZ}
         // position={[0, 0, 0]}
         scale={[0.5, 0.5, 0.5]}
         //  {...meshProps}
