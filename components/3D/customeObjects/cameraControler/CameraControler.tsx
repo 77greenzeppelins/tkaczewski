@@ -150,10 +150,13 @@ const CameraControler = () => {
       //__________springValues Modification section
       comp2Api.start({
         positionZ: scrollYProgress,
-        // config: config.molasses,
+        /*
+         ___1. why config with ternary operator? case: on pageHome strong scroll ==> fast path change ==> fast return to pageHome ==> return to positionZ = 0 is still in progress what gives poor UX;
+        */
         config: scrollableOnZ
           ? { mass: 5, friction: 120, tension: 120 }
           : config.slow,
+        // config: config.molasses,
         // config: {
         //   duration: 800,
         //   easing: easings.easeOutQuint,
@@ -164,7 +167,7 @@ const CameraControler = () => {
       // console.log('y:', y);
       /*
       ___1. when path changes log shows value "-0" 
-      ___2. it means that useScroll() raacts to Next.js default behaviour "scroll-to-top"; 
+      ___2. it means that useScroll() reacts to Next.js default behaviour "scroll-to-top"; 
       */
       console.log(
         'y / (state.size.height * cameraControler.zAxisFactor):',
