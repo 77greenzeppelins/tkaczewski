@@ -28,23 +28,23 @@ const CameraControler = () => {
   ___2. local state stores info about path, but changes should by register with a sort of delay
   ___3. this delay should allows to omit "scroll-to-top" behaviour
   */
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const [currentPath, setCurrentPath] = useState(path);
+  // const timerRef = useRef<NodeJS.Timeout | null>(null);
+  // const [currentPath, setCurrentPath] = useState(path);
 
-  useEffect(() => {
-    // console.log('...useEffect / path:', path);
-    //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
-    timerRef.current = setTimeout(() => {
-      // console.log('...setTimeout / currentPath:', currentPath);
-      setCurrentPath(path);
-    }, 2000);
-    //__
-    // setFakeFlag(path === currentPath ? true : false);
-    //___cleaner
-    return () => {
-      clearTimeout(timerRef.current as NodeJS.Timeout);
-    };
-  }, [setCurrentPath, path]);
+  // useEffect(() => {
+  //   // console.log('...useEffect / path:', path);
+  //   //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
+  //   timerRef.current = setTimeout(() => {
+  //     // console.log('...setTimeout / currentPath:', currentPath);
+  //     setCurrentPath(path);
+  //   }, 2000);
+  //   //__
+  //   // setFakeFlag(path === currentPath ? true : false);
+  //   //___cleaner
+  //   return () => {
+  //     clearTimeout(timerRef.current as NodeJS.Timeout);
+  //   };
+  // }, [setCurrentPath, path]);
 
   //___wtf...
   // console.log('...currentPath:', currentPath);
@@ -95,9 +95,13 @@ const CameraControler = () => {
       //___camera position-y ==> just remain unmoved / stay at the same level
       0,
       //___camera position-z ==> just follow the mesh...
-      scrollableOnZ && path === currentPath
+      scrollableOnZ
         ? cameraSettings.z + meshRef.current.position.z
         : cameraSettings.z
+
+      // scrollableOnZ && path === currentPath
+      //   ? cameraSettings.z + meshRef.current.position.z
+      //   : cameraSettings.z
       // scrollableOnZ
       //   ? cameraSettings.z + meshRef.current.position.z
       //   : path === currentPath
@@ -134,19 +138,19 @@ const CameraControler = () => {
         y / (state.size.height * cameraControler.zAxisFactor)
         : path === currentPath ? cameraSettings.z : y / (state.size.height * cameraControler.zAxisFactor)
       */
-      const scrollYProgress = scrollableOnZ
-        ? y / (state.size.height * cameraControler.zAxisFactor)
-        : path === currentPath
-        ? 0
-        : y / (state.size.height * cameraControler.zAxisFactor);
+      // const scrollYProgress = scrollableOnZ
+      //   ? y / (state.size.height * cameraControler.zAxisFactor)
+      //   : path === currentPath
+      //   ? 0
+      //   : y / (state.size.height * cameraControler.zAxisFactor);
 
-      // const scrollYProgress =
-      //   y / (state.size.height * cameraControler.zAxisFactor);
+      const scrollYProgress =
+        y / (state.size.height * cameraControler.zAxisFactor);
       //__________springValues Modification section
       comp2Api.start({
         positionZ: scrollYProgress,
-        config: config.molasses,
-        // config: { mass: 5, friction: 120, tension: 120 },
+        // config: config.molasses,
+        config: { mass: 5, friction: 120, tension: 120 },
         // config: {
         //   duration: 800,
         //   easing: easings.easeOutQuint,
@@ -155,6 +159,10 @@ const CameraControler = () => {
       //___wtf...
       // console.log('dirY:', dirY);
       // console.log('y:', y);
+      /*
+      ___1. when path changes log shows value "-0" 
+      ___2. it means that useScroll() raacts to Next.js default behaviour "scroll-to-top"; 
+      */
       // console.log(
       //   'y / (state.size.height * cameraControler.zAxisFactor):',
       //   y / (state.size.height * cameraControler.zAxisFactor)
