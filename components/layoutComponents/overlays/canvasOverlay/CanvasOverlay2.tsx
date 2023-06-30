@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 /**Spring settings*/
 import { useTransition, animated } from '@react-spring/web';
 /**Basic Data**/
@@ -14,9 +14,10 @@ __3. as it animates; canvas content is presented with opacity effect
 ----------------------------
 */
 const CanvasOverlay = () => {
-  /**...*/
+  /**Patrh detector**/
   const path = usePathname();
-
+  /****/
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   /*
   __1: a piece of "logic" to control overlays life cycles;
   __2: 
@@ -24,7 +25,7 @@ const CanvasOverlay = () => {
   const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setMounted(false);
     }, page3DConfigs.canvasOverlayDelay);
     /*
@@ -33,7 +34,7 @@ const CanvasOverlay = () => {
     */
     return () => {
       setMounted(true);
-      clearTimeout(timer);
+      clearTimeout(timerRef.current as NodeJS.Timeout);
     };
   }, [path]);
 
@@ -51,9 +52,9 @@ const CanvasOverlay = () => {
     (style, isIntroOverlay) =>
       isIntroOverlay && (
         <animated.div
-          data-component="IntroOverlay"
+          data-component="CanvasOverlay"
           style={style}
-          className="absolute w-screen h-screen bg-dark z-[9] pointer-events-none"
+          className="absolute w-screen h-screen bg-green-600 z-[9] pointer-events-none"
         />
       )
   );
