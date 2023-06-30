@@ -202,10 +202,10 @@ const CameraControler = () => {
       ___1. when path changes log shows value "-0" 
       ___2. it means that useScroll() reacts to Next.js default behaviour "scroll-to-top"; 
       */
-      console.log(
-        'y / (state.size.height * cameraControler.zAxisFactor):',
-        y / (state.size.height * cameraControler.zAxisFactor)
-      );
+      // console.log(
+      //   'y / (state.size.height * cameraControler.zAxisFactor):',
+      //   y / (state.size.height * cameraControler.zAxisFactor)
+      // );
       // console.log('scrollYProgress:', scrollYProgress);
     },
     //__________ ... section

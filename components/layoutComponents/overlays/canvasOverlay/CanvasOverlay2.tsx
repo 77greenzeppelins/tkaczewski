@@ -56,7 +56,7 @@ const CanvasOverlay = () => {
         <animated.div
           data-component="CanvasOverlay"
           style={style}
-          className="absolute w-screen h-screen bg-green-600 z-[9] pointer-events-none"
+          className="absolute w-screen h-screen bg-dark z-[9] pointer-events-none"
         />
       )
   );
