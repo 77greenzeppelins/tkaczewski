@@ -1,7 +1,9 @@
 'use client';
-import { usePathname } from 'next/navigation';
+
 import React, { useEffect, useRef, useState } from 'react';
-/**Spring settings*/
+/**Hook Staff*/
+import { usePathname } from 'next/navigation';
+/**Spring Staff*/
 import { useTransition, animated } from '@react-spring/web';
 /**Basic Data**/
 import { page3DConfigs } from '@/data/basicData';

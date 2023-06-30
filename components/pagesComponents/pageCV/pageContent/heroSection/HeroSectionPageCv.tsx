@@ -3,15 +3,15 @@ import React from 'react';
 
 const HeroSectionPageCV = () => {
   return (
-    <div className="flex justify-center w-full min-h-[40vh] wrapper-1 flex-col pt-[40px]">
+    <div className="flex justify-center w-full min-h-[40vh] wrapper-1 flex-col pt-[40px] ">
       {' '}
-      <div className="fc w-full">
-        <p className="p-v-large text-light text-center font-serif">
+      <div className="w-full fc">
+        <p className="font-serif text-center p-v-large text-light">
           Oskar Tkaczewski
         </p>
       </div>
-      <div className="fc w-full">
-        <p className="p-regular  text-corpo font-serif">CURRICULUM VITAE</p>
+      <div className="w-full fc">
+        <p className="font-serif p-regular text-corpo">CURRICULUM VITAE</p>
       </div>
     </div>
   );

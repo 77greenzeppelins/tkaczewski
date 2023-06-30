@@ -22,6 +22,20 @@ const CameraControler = () => {
   /**Condition of visibility**/
   const path = usePathname();
   const scrollableOnZ = path === pagesPath.homePath;
+  const scrollableOnY = path === pagesPath.contactcPath;
+
+  //___
+  const progressOnZ = path === pagesPath.homePath;
+  const regressOnZ = path === pagesPath.contactcPath;
+
+  const comparePath = () => {
+    switch (path) {
+      case pagesPath.homePath:
+        return path === pagesPath.homePath;
+      case pagesPath.contactcPath:
+        return path === pagesPath.contactcPath;
+    }
+  };
 
   /*
   ___1. this section is ment to controll path changes 
@@ -95,9 +109,10 @@ const CameraControler = () => {
       //___camera position-y ==> just remain unmoved / stay at the same level
       0,
       //___camera position-z ==> just follow the mesh...
-      scrollableOnZ
-        ? cameraSettings.z + meshRef.current.position.z
-        : cameraSettings.z
+      // scrollableOnZ
+      //   ? cameraSettings.z + meshRef.current.position.z
+      //   : cameraSettings.z
+      cameraSettings.z + meshRef.current.position.z
 
       // scrollableOnZ && path === currentPath
       //   ? cameraSettings.z + meshRef.current.position.z
@@ -144,17 +159,21 @@ const CameraControler = () => {
       //   ? 0
       //   : y / (state.size.height * cameraControler.zAxisFactor);
 
-      const scrollYProgress = scrollableOnZ
+      const scrollYProgress = progressOnZ
+        ? y / (state.size.height * -cameraControler.zAxisFactor)
+        : regressOnZ
         ? y / (state.size.height * cameraControler.zAxisFactor)
         : 0;
+
       //__________springValues Modification section
       comp2Api.start({
         positionZ: scrollYProgress,
         /*
          ___1. why config with ternary operator? case: on pageHome strong scroll ==> fast path change ==> fast return to pageHome ==> return to positionZ = 0 is still in progress what gives poor UX;
         */
-        config: scrollableOnZ
-          ? { mass: 5, friction: 120, tension: 120 }
+        config: progressOnZ
+          ? // { mass: 5, friction: 120, tension: 120 }
+            config.molasses
           : config.slow,
         // config: config.molasses,
         // config: {
@@ -169,11 +188,11 @@ const CameraControler = () => {
       ___1. when path changes log shows value "-0" 
       ___2. it means that useScroll() reacts to Next.js default behaviour "scroll-to-top"; 
       */
-      console.log(
-        'y / (state.size.height * cameraControler.zAxisFactor):',
-        y / (state.size.height * cameraControler.zAxisFactor)
-      );
-      console.log('scrollYProgress:', scrollYProgress);
+      // console.log(
+      //   'y / (state.size.height * cameraControler.zAxisFactor):',
+      //   y / (state.size.height * cameraControler.zAxisFactor)
+      // );
+      // console.log('scrollYProgress:', scrollYProgress);
     },
     //__________ ... section
     {

@@ -14,9 +14,13 @@ interface Props {
 const PageWrapper = ({ children }: Props) => {
   /**Spring Section*/
   const transitions = useTransition(children, {
+    // from: { opacity: 0, config: { duration: 0 } },
+    // enter: { opacity: 1, config: { duration: 0 } },
+    // leave: { opacity: 0, config: { duration: 0 } },
     from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    enter: { opacity: 1, config: { duration: 1000 } },
+    leave: { opacity: 0, config: { duration: 1000 } },
+    exitBeforeEnter: true,
   });
 
   /**JSX**/

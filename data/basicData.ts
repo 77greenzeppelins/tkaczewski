@@ -79,6 +79,7 @@ __2. are used in <CameraControler> , <PlaneShader>
 */
 const cameraSettings = {
   z: 1,
+  y: 0,
   fov: 45,
 };
 
@@ -86,7 +87,7 @@ const cameraSettings = {
 __2. for customeObjects |  <CameraControler>
 */
 const cameraControler = {
-  zAxisFactor: -0.22,
+  zAxisFactor: 0.22,
 };
 
 /*
