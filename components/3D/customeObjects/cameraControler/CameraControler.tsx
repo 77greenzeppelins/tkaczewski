@@ -178,6 +178,7 @@ const CameraControler = () => {
           typeof window !== 'undefined' && window.scrollY === 0
             ? {
                 duration: 400,
+                easing: easings.easeOutQuint,
               }
             : { tension: 280, friction: 120, precision: 0.0001 },
         /*
