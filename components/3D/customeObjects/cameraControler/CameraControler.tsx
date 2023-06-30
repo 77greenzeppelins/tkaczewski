@@ -174,13 +174,14 @@ const CameraControler = () => {
         //   ? // { mass: 5, friction: 120, tension: 120 }
         //     { tension: 280, friction: 120, precision: 0.0001 }
         //   : config.slow,
-        config:
-          typeof window !== 'undefined' && window.scrollY === 0
-            ? {
-                duration: 400,
-                easing: easings.easeOutQuint,
-              }
-            : { tension: 280, friction: 120, precision: 0.0001 },
+        // config:
+        //   typeof window !== 'undefined' && window.scrollY === 0
+        //     ? {
+        //         duration: 400,
+        //         easing: easings.easeOutQuint,
+        //       }
+        //     : { tension: 280, friction: 120, precision: 0.0001 },
+        config: { tension: 280, friction: 120, precision: 0.0001 },
         /*
           config: typeof window !== 'undefined' && window.scrollY === 0 ?
           {
@@ -201,10 +202,10 @@ const CameraControler = () => {
       ___1. when path changes log shows value "-0" 
       ___2. it means that useScroll() reacts to Next.js default behaviour "scroll-to-top"; 
       */
-      // console.log(
-      //   'y / (state.size.height * cameraControler.zAxisFactor):',
-      //   y / (state.size.height * cameraControler.zAxisFactor)
-      // );
+      console.log(
+        'y / (state.size.height * cameraControler.zAxisFactor):',
+        y / (state.size.height * cameraControler.zAxisFactor)
+      );
       // console.log('scrollYProgress:', scrollYProgress);
     },
     //__________ ... section
