@@ -21,9 +21,8 @@ import { config, useSpring, animated, easings } from '@react-spring/three';
 const CameraControler = () => {
   /**Condition of visibility**/
   const path = usePathname();
-  const scrollableOnZ = path === pagesPath.homePath;
-  const scrollableOnY = path === pagesPath.contactcPath;
-
+  // const scrollableOnZ = path === pagesPath.homePath;
+  // const scrollableOnY = path === pagesPath.contactcPath;
   //___
   const progressOnZ = path === pagesPath.homePath;
   const regressOnZ = path === pagesPath.contactcPath;
@@ -171,10 +170,23 @@ const CameraControler = () => {
         /*
          ___1. why config with ternary operator? case: on pageHome strong scroll ==> fast path change ==> fast return to pageHome ==> return to positionZ = 0 is still in progress what gives poor UX;
         */
-        config: progressOnZ
-          ? // { mass: 5, friction: 120, tension: 120 }
-            config.molasses
-          : config.slow,
+        // config: progressOnZ
+        //   ? // { mass: 5, friction: 120, tension: 120 }
+        //     { tension: 280, friction: 120, precision: 0.0001 }
+        //   : config.slow,
+        config:
+          typeof window !== 'undefined' && window.scrollY === 0
+            ? {
+                duration: 400,
+              }
+            : { tension: 280, friction: 120, precision: 0.0001 },
+        /*
+          config: typeof window !== 'undefined' && window.scrollY === 0 ?
+          {
+         duration: 0
+       } :  { tension: 280, friction: 120, precision: 0.0001 }
+          */
+
         // config: config.molasses,
         // config: {
         //   duration: 800,
