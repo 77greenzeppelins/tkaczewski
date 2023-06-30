@@ -26,7 +26,7 @@ const HeaderLink: React.FC<Props> = ({ label, url }) => {
       aria-label={`Link do strony ${label}`}
       aria-current={isActive ? 'page' : undefined}
       scroll={false}
-      className="relative"
+      className="relative disable"
     >
       {url === path && (
         <motion.span
