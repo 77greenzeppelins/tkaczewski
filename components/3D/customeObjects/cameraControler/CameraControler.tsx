@@ -62,7 +62,7 @@ const CameraControler = () => {
   //___wtf...
   // console.log('...currentPath:', currentPath);
   // console.log('...path:', path);
-  console.log('...flag:', flag);
+  // console.log('...flag:', flag);
 
   // console.log('path === currentPath', path === currentPath);
 

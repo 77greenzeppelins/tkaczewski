@@ -12,6 +12,7 @@ import GitHubSection from './pagesComponents/pageContacts/pageContent/githubSect
 import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
 //___pageCV
 import PageCvContent from './pagesComponents/pageCV/pageContent/PageCvContent';
+import SmoothCvContainer from './pagesComponents/pageCV/smoothCvContainer/SmoothCvContainer';
 import HeroSectionPageCv from './pagesComponents/pageCV/pageContent/heroSection/HeroSectionPageCv';
 import CvSection from './pagesComponents/pageCV/pageContent/infoSection/CvSection';
 import AskAI from './pagesComponents/pageCV/pageContent/askAI/AskAI';
@@ -42,10 +43,9 @@ import Act5 from './3D/page_1_home/acts/act_5/Act5';
 import Act6 from './3D/page_1_home/acts/act_6/Act6';
 import Act7 from './3D/page_1_home/acts/act_7/Act7';
 import Act8 from './3D/page_1_home/acts/act_8/Act8';
-import SmoothCvContainer from './pagesComponents/pageCV/smoothCvContainer/SmoothCvContainer';
 
 /*
-__________SVG
+SVG
 */
 import GitHubIcon from './svg/GitHubIcon';
 
