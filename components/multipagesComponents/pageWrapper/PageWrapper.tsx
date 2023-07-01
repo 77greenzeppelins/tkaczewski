@@ -1,9 +1,7 @@
 'use client'; //required by "motion" component
 import React from 'react';
-/**FramerMotion Staff*/
+/**Spring Staff**/
 import { animated, useTransition } from '@react-spring/web';
-/**FramerMotion Staff*/
-// import { motion } from 'framer-motion';
 
 /**TS**/
 interface Props {

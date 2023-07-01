@@ -31,55 +31,6 @@ const DreiPerspectiveCamera = () => {
   const aspect = width / height;
   const distance = 0.5 / Math.tan((Math.PI * 0.5 * 45) / 180);
   const cameraPosition = [0, 0, distance];
-  /*
-  __1. explanation:
-  */
-
-  // const [isAtTop, setIsAtTop] = useState<boolean>(window.scrollY === 0);
-  // const prevScrollYRef = useRef<number>(window.scrollY);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     /*
-  //     ___1. isScrollingUp is a booleanFlag constantly updated by scrolling
-  //     */
-  //     const isScrollingUp = window.scrollY < prevScrollYRef.current;
-  //     setIsAtTop(window.scrollY === 0);
-
-  //     console.log('isScrollingUp:', isScrollingUp);
-  //     console.log('isAtTop:', isAtTop);
-
-  //     if (isScrollingUp) {
-  //       clearTimeout(timeoutId);
-  //       timeoutId = setTimeout(() => {
-  //         setIsAtTop(window.scrollY === 0);
-  //       }, 100);
-  //     }
-  //     prevScrollYRef.current = window.scrollY;
-  //   };
-
-  //   let timeoutId = setTimeout(() => {
-  //     setIsAtTop(false);
-  //   }, 100);
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, [isAtTop]);
-
-  // console.log('outside useEffect | isAtTop:', isAtTop);
-
-  // const transitions = useTransition(isAtTop, {
-  //   // keys: mounted.toString(),
-  //   from: { scaleX: 1, scaleY: 1, scaleZ: 1, config: { duration: 0 } },
-  //   enter: { scaleX: 1, scaleY: 1, scaleZ: 1, config: { duration: 0 } },
-  //   leave: { scaleX: 0, scaleY: 0, scaleZ: 0, config: { duration: 0 } },
-  //   // config: { duration: 400 },
-  //   // exitBeforeEnter: true,
-  // });
 
   /**JSX**/
   return (
@@ -91,7 +42,6 @@ const DreiPerspectiveCamera = () => {
           camera={{ position: [0, 0, 3], fov: 45, near: 0.1, far: 50 }}
           */
       // position={[0, 0, 1]}
-      // fov={45}
       near={0.01}
       far={50}
       position={new THREE.Vector3(...cameraPosition)}
@@ -133,3 +83,53 @@ const DreiPerspectiveCamera = () => {
 };
 
 export default DreiPerspectiveCamera;
+
+/*
+  __1. explanation:
+  */
+
+// const [isAtTop, setIsAtTop] = useState<boolean>(window.scrollY === 0);
+// const prevScrollYRef = useRef<number>(window.scrollY);
+
+// useEffect(() => {
+//   const handleScroll = () => {
+//     /*
+//     ___1. isScrollingUp is a booleanFlag constantly updated by scrolling
+//     */
+//     const isScrollingUp = window.scrollY < prevScrollYRef.current;
+//     setIsAtTop(window.scrollY === 0);
+
+//     console.log('isScrollingUp:', isScrollingUp);
+//     console.log('isAtTop:', isAtTop);
+
+//     if (isScrollingUp) {
+//       clearTimeout(timeoutId);
+//       timeoutId = setTimeout(() => {
+//         setIsAtTop(window.scrollY === 0);
+//       }, 100);
+//     }
+//     prevScrollYRef.current = window.scrollY;
+//   };
+
+//   let timeoutId = setTimeout(() => {
+//     setIsAtTop(false);
+//   }, 100);
+
+//   window.addEventListener('scroll', handleScroll);
+
+//   return () => {
+//     window.removeEventListener('scroll', handleScroll);
+//     clearTimeout(timeoutId);
+//   };
+// }, [isAtTop]);
+
+// console.log('outside useEffect | isAtTop:', isAtTop);
+
+// const transitions = useTransition(isAtTop, {
+//   // keys: mounted.toString(),
+//   from: { scaleX: 1, scaleY: 1, scaleZ: 1, config: { duration: 0 } },
+//   enter: { scaleX: 1, scaleY: 1, scaleZ: 1, config: { duration: 0 } },
+//   leave: { scaleX: 0, scaleY: 0, scaleZ: 0, config: { duration: 0 } },
+//   // config: { duration: 400 },
+//   // exitBeforeEnter: true,
+// });
