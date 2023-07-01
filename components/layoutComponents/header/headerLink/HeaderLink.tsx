@@ -27,14 +27,14 @@ const HeaderLink: React.FC<Props> = ({ label, url }) => {
       aria-current={isActive ? 'page' : undefined}
       scroll={false}
       // className="relative "
-      className={`relative text-light disable ${
+      className={`relative text-light disable h-[40px] fc  ${
         isActive ? 'hover:text-light' : 'hover:text-corpo'
       }  delay-100 duration-300 ease-linear`}
     >
       {url === path && (
         <motion.span
           // layoutId="underline" // don't cooperate with canvas....
-          className="absolute top-full block h-[1px] bg-corpo origin-center "
+          className="absolute bottom-[8px] block h-[1px] bg-corpo origin-center "
           initial={{ width: 0 }}
           animate={{ width: '100%' }}
           transition={{ duration: 0.6, delay: 0.2 }}

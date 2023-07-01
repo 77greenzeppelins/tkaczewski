@@ -34,10 +34,10 @@ const HeaderNav = () => {
 
   /**JSX**/
   return (
-    <animated.nav style={props} className="relative w-full h-full wrapper-1">
-      <ul className="flex items-center justify-end h-full gap-6 ">
+    <animated.nav style={props} className="relative w-full wrapper-1">
+      <ul className="flex items-center justify-end gap-8 ">
         {pagesLinks.map(link => (
-          <li key={link.href}>
+          <li key={link.href} className="fc h-[60px]">
             <HeaderLink label={link.label} url={link.href} />
           </li>
         ))}
