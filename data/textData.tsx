@@ -163,4 +163,14 @@ const cvSections = [
   },
 ];
 
-export { introOverlayTexts, introOverlayTextsStyles, timeZones, cvSections };
+const pageContactsText = {
+  gitHub: ['If you want to check my', 'Just let me know...'],
+};
+
+export {
+  introOverlayTexts,
+  introOverlayTextsStyles,
+  timeZones,
+  cvSections,
+  pageContactsText,
+};

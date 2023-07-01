@@ -1,13 +1,18 @@
 'use client';
 import React from 'react';
+/**Components**/
+import { GitHubIcon } from '@/components';
 /**Spring Staff**/
 import { useInView, animated } from '@react-spring/web';
 /**Basic Data**/
-import { basicConfigs } from '@/data/basicData';
+import { basicConfigs, colors } from '@/data/basicData';
+import { pageContactsText } from '@/data/textData';
 const {
   pageContact: { rootMargin, amount, inViewStyle },
 } = basicConfigs;
+const { gitHub } = pageContactsText;
 
+pageContactsText;
 /**--------------------------------**/
 const GitHubSection = () => {
   /**Spring Section**/
@@ -30,22 +35,29 @@ const GitHubSection = () => {
     amount: amount,
   });
 
-  /**Basic Data*/
-  const dz = ['If you want to see my GitHub', 'Just let me know...'];
-
   /**JSX**/
   return (
-    <div ref={ref} className="relative w-full">
-      <div className="flex flex-col gap-0 items-start justify-center w-full">
-        {dz.map((item, i) => (
-          <div key={item} className=" overflow-hidden">
+    <div ref={ref} className="relative flex justify-center w-full h-full ">
+      <div className="flex flex-col items-start justify-center w-full gap-0">
+        <animated.div
+          className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
+        >
+          <p className="select-none p-medium text-corpo">{gitHub[0]}</p>
+          <GitHubIcon
+            fill={colors.corpo}
+            containerStyle="color-light w-60 h-60"
+          />
+          <p className="select-none p-medium text-corpo">{gitHub[1]}</p>
+        </animated.div>
+        {/* {dz.map((item, i) => (
+          <div key={item} className="overflow-hidden ">
             <animated.div
               className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
-              <p className="p-medium text-corpo select-none">{item}</p>
+              <p className="select-none p-medium text-corpo">{item}</p>
             </animated.div>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );

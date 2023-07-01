@@ -36,14 +36,14 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
       //   hintIsMobile ? '' : 'absolute inset-0 w-full pointer-events-none'
       // }`}
     >
-      <div className="fc h-screen w-[1px]" />
+      <div className="h-screen w-[1px] " />
       {componentsArray.map(({ Component }, i) => (
         <div
           key={i}
           // className={`fc h-screen w-full wrapper-1 ${
           //   hintIsMobile ? 'bg-gray-500' : 'bg-gray-800'
           // }`}
-          className="fc h-screen w-full wrapper-1"
+          className="w-full h-screen wrapper-1"
         >
           <Component />
         </div>
@@ -60,20 +60,20 @@ export default PageContent;
 // style={{ transform: `translateX(${x}px)` }}
 
 {
-  /* <div className="flex flex-col gap-6 items-start justify-center w-full ">
-          <p className="p-medium text-corpo select-none">
+  /* <div className="flex flex-col items-start justify-center w-full gap-6 ">
+          <p className="select-none p-medium text-corpo">
             If you want to see my GitHub ?
           </p>
-          <p className="p-medium text-corpo select-none">Just let me know...</p>
+          <p className="select-none p-medium text-corpo">Just let me know...</p>
         </div> */
 }
 {
   /* <div className="fc flex-col gap-y-2 bg-blue-600 h-[50%] w-[50%]">
-          <button className="border border-dark px-2 py-3" onClick={onClickUp}>
+          <button className="px-2 py-3 border border-dark" onClick={onClickUp}>
             CLICK + 1
           </button>
           <button
-            className="border border-dark px-2 py-3"
+            className="px-2 py-3 border border-dark"
             onClick={onClickDown}
           >
             CLICK - 1

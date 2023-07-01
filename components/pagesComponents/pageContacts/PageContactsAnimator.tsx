@@ -62,7 +62,6 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
       //   'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
       //   1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
       // );
-
       //__________conditions section
       /*
       ___1. here we actually use "gesture state values" to set two boolean const that works as switcher when springValues are imperatively modified;

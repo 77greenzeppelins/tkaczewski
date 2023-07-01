@@ -44,6 +44,11 @@ import Act7 from './3D/page_1_home/acts/act_7/Act7';
 import Act8 from './3D/page_1_home/acts/act_8/Act8';
 import SmoothCvContainer from './pagesComponents/pageCV/smoothCvContainer/SmoothCvContainer';
 
+/*
+__________SVG
+*/
+import GitHubIcon from './svg/GitHubIcon';
+
 //__
 
 export {
@@ -87,4 +92,6 @@ export {
   //___
   InstantContactPanel,
   InstantContactButton3D,
+  //___SVG
+  GitHubIcon,
 };

@@ -12,7 +12,6 @@ const setXPosition = (path: string) => {
   switch (path) {
     case pagesPath.homePath:
       return pages3DPositions.pageHome.x;
-
     case pagesPath.cvPath:
       return pages3DPositions.pageCV.x;
     case pagesPath.contactcPath:
