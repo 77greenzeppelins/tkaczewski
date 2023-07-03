@@ -350,7 +350,8 @@ const page3DConfigs = {
 //___
 const animationsDelays = {
   introOverlayDurance: 2400,
-  manuDelay: 2600,
+  manuDelay: 2600, //___2600
+  pseudoFooterDelay: 3000, //___2600
 };
 
 /*

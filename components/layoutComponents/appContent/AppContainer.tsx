@@ -10,7 +10,11 @@ import IntroOverlay from '../overlays/introOverlay/IntroOverlay';
 const AppContainer = ({ children }: { children: React.ReactNode }) => {
   /**JSX**/
   return (
-    <main data-component="AppContainer" id="appContainer" className="relative">
+    <main
+      data-component="AppContainer"
+      id="appContainer"
+      className="relative z-[400]"
+    >
       {/* <div className="fixed w-screen h-screen z-1">
         <CanvasOverlay />
         <MainCanvas />

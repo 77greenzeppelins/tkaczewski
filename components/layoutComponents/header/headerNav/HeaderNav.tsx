@@ -28,21 +28,26 @@ const HeaderNav = () => {
   const props = useSpring({
     ref: springApi,
     from: { opacity: 0 },
-    to: { opacity: 1, config: { easings: easings.easeOutExpo } },
-    // config: { mass: 100 }, //large mass gives some effect of delay yet hard to specify preciselly;
+    to: {
+      opacity: 1,
+    },
+    config: { duration: 1000, easings: easings.easeOutExpo },
   });
 
   /**JSX**/
   return (
-    <animated.nav style={props} className="relative w-full wrapper-1">
+    <nav
+      // style={props}
+      className="relative w-full wrapper-1"
+    >
       <ul className="flex items-center justify-end gap-8 ">
         {pagesLinks.map(link => (
-          <li key={link.href} className="fc h-[60px]">
+          <animated.li style={props} key={link.href} className="fc h-[60px]">
             <HeaderLink label={link.label} url={link.href} />
-          </li>
+          </animated.li>
         ))}
       </ul>
-    </animated.nav>
+    </nav>
   );
 };
 

@@ -24,7 +24,6 @@ const useScrollPosition = (): ScrollYPosition => {
     };
     //___event listener
     window.addEventListener('scroll', onScroll); //, { passive: true }
-    //document.body.
     //___ event cleaner
     () => window.removeEventListener('scroll', onScroll);
   }, []);

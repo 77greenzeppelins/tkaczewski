@@ -2,6 +2,9 @@
 /*
 __________2D
 */
+//___
+import FlyingLine from './multipagesComponents/lines/flyingLine/FlyingLine';
+import ScrollPrompt from './layoutComponents/pseudoFooter/scrollPrompt/ScrollPrompt';
 //__direct contact Staff
 import InstantContactButtons2D from './multipagesComponents/instantContactButtons/InstantContactButtons2D';
 import DirectEmail from './multipagesComponents/_basicComponents/links/directContactLinks/DirectEmail';
@@ -52,6 +55,9 @@ import GitHubIcon from './svg/GitHubIcon';
 //__
 
 export {
+  //___
+  FlyingLine,
+  ScrollPrompt,
   //___
   InstantContactButtons2D,
   DirectEmail,
