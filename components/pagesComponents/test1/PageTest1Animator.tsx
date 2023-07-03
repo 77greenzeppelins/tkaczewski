@@ -51,7 +51,7 @@ const PageTest1Animator = ({ hintIsMobile }: Props) => {
       xy: number[];
       // direction: number[];
     }) => {
-      console.log('y:', y);
+      // console.log('y:', y);
       //__________springValues Modification section
       comp2Api.start({
         transform: `translateY(${-y}px)`,
@@ -74,7 +74,11 @@ const PageTest1Animator = ({ hintIsMobile }: Props) => {
       className="relative"
     >
       <div className="h-screen w-[5px] bg-amber-500" />
+      <div className="h-[25vh] w-full bg-gradient-to-b from-transparent via-dark to-dark" />
+      <div className="h-screen w-full bg-dark" />
+      <div className="h-[25vh] w-full bg-gradient-to-b from-dark to-transparent" />
       <div className="h-screen w-[5px] bg-lime-700" />
+
       <div className="h-screen w-[5px] bg-slate-700" />
 
       {/* <StickyContainer
