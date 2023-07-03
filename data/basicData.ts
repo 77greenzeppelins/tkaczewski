@@ -10,12 +10,14 @@ const pagesPath = {
   homePath: '/',
   cvPath: '/cv',
   contactcPath: '/contact',
+  test1Path: '/test1',
 };
 
 const pagesLinks = [
   { href: pagesPath.homePath, label: '3D' },
   { href: pagesPath.cvPath, label: 'CV' },
   { href: pagesPath.contactcPath, label: 'Contact' },
+  { href: pagesPath.test1Path, label: 'T-est' },
 ];
 
 const contactData = {
@@ -99,6 +101,7 @@ const pages3DPositions = {
   page2D: { x: 10 },
   pageCV: { x: 20 },
   pageContacts: { x: 30 },
+  pageTest1: { x: 40 },
 };
 
 /*
@@ -332,12 +335,15 @@ const page3DConfigs = {
   },
   //_____for pageContacts
   pageContacts: {
-    // contactButtonConfig: {
-    //   scaleFrame: [0.178, 0.178, 0.178],
-    //   scaleImage: [0.385, 0.385, 0.385],
-    //   topButtonPos: [0, 0.19, 0],
-    //   bottomButtonPos: [0, -0.19, 0],
-    // },
+    contactButtonConfig: {
+      scaleFrame: [0.45 * 0.6, 0.45 * 0.6, 0.45 * 0.6],
+      scaleImage: [0.945 * 0.6, 0.945 * 0.6, 0.945 * 0.6],
+      topButtonPos: [0, 0.165, -0.09],
+      bottomButtonPos: [0.1, -0.265, -0.4],
+    },
+  },
+
+  pageTest1: {
     contactButtonConfig: {
       scaleFrame: [0.45 * 0.6, 0.45 * 0.6, 0.45 * 0.6],
       scaleImage: [0.945 * 0.6, 0.945 * 0.6, 0.945 * 0.6],

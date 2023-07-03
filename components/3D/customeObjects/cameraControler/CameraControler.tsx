@@ -27,14 +27,14 @@ const CameraControler = () => {
   const progressOnZ = path === pagesPath.homePath;
   const regressOnZ = path === pagesPath.contactcPath;
 
-  const comparePath = () => {
-    switch (path) {
-      case pagesPath.homePath:
-        return path === pagesPath.homePath;
-      case pagesPath.contactcPath:
-        return path === pagesPath.contactcPath;
-    }
-  };
+  // const comparePath = () => {
+  //   switch (path) {
+  //     case pagesPath.homePath:
+  //       return path === pagesPath.homePath;
+  //     case pagesPath.contactcPath:
+  //       return path === pagesPath.contactcPath;
+  //   }
+  // };
 
   /*
   ___1. this section is ment to controll path changes 

@@ -30,6 +30,7 @@ import CameraControler from './3D/customeObjects/cameraControler/CameraControler
 import PageHome from './3D/page_1_home/PageHome';
 import PageCV from './3D/page_3_cv/PageCV';
 import PageContacts from './3D/page_9_contacts/PageContacts';
+import PageTest1 from './3D/page_0_test1/PageTest1';
 //___Custome components
 import DreiText from './3D/_Drei/text/DreiText';
 import BasicFrame from './3D/customeObjects/frame/BasicFrame';
@@ -79,6 +80,7 @@ export {
   PageHome,
   PageCV,
   PageContacts,
+  PageTest1,
   //___
   DreiText,
   BasicFrame,

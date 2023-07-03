@@ -7,6 +7,7 @@ import {
   PageContacts,
   CameraControler,
   DreiPerspectiveCamera,
+  PageTest1,
 } from '@/components';
 /**-------------------------------**/
 const Scene3D = () => {
@@ -22,6 +23,7 @@ const Scene3D = () => {
       <PageHome />
       <PageCV />
       <PageContacts />
+      <PageTest1 />
     </BasicMaterialProvider>
   );
 };
