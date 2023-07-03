@@ -17,11 +17,8 @@ interface Props {
 
 /**---------------------------------------------------**/
 const PageCvAnimator = ({ hintIsMobile }: Props) => {
-  /**Hook Section*/
-  // const [squareRef, { height }] = useElementSize();
-
+  /**Spring Section*/
   const [{ transform }, comp2Api] = useSpring(() => ({
-    // transform: 'translateY(0%)',
     transform: 'translateY(0px)',
   }));
 
@@ -38,46 +35,12 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
       xy: number[];
       // direction: number[];
     }) => {
-      // console.log('dirY:', dirY);
       // console.log('y:', y);
-      // console.log('window.innerHeight:', window.innerHeight);
-      // console.log(
-      //   'y/(height - window.innerHeight):',
-      //   (y / (height - window.innerHeight)) * 100
-      // );
-      // console.log(
-      //   'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
-      //   1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
-      // );
-
-      //__________conditions section
-      /*
-      ___1. here we actually use "gesture state values" to set two boolean const that works as switcher when springValues are imperatively modified;
-      ___2. if scroll down && scrolled more then half of the element scrollHeight property our cond1 is true
-      */
-      // const cond1 =
-      //   dirY === 1 && y >= height / basicConfigs.pageContact.viewports - 5;
-      // const cond2 =
-      //   dirY === -1 && y < height / basicConfigs.pageContact.viewports; // /basicConfigs.pageContact.viewports;
-
       //__________springValues Modification section
-
       comp2Api.start({
-        // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
-        // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
-        // transform: `translateY(${(y / (height - window.innerHeight)) * 100}%)`,
         transform: `translateY(${-y}px)`,
-
-        /*
-        ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values;
-        ___2. these negative values make object scale "positive" i.e. object extends (=augment)! that is why I use ternary op. to end scroll progress detection on value 0 => I want <InstantContactButtons2D> container to disappears === to "disable" buttons...
-        */
         config: config.slow,
-        // config: { mass: 5, friction: 120, tension: 120 },
-        // config: {
-        //   duration: hintIsMobile ? 0 : 400,
-        //   easing: easings.easeOutQuint,
-        // }, // value in ms
+        // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
       });
     },
     //__________ ... section
@@ -87,17 +50,12 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
     }
   );
 
-  // useEffect(() => {
-  //   console.log('height:', height);
-  // }, [height]);
-
   /**JSX**/
   return (
     <div
       // ref={squareRef}
       data-component="PageCvAnimator"
       className="relative w-full h-full"
-      // className="w-full h-full pointer-events-none opacity-0"
     >
       <div>
         <PageCvContent hintIsMobile={hintIsMobile} />
