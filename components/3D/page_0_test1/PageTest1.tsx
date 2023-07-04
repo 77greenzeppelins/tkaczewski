@@ -10,6 +10,9 @@ import { pagesPath, page3DConfigs, pages3DPositions } from '@/data/basicData';
 import { animated, config, useSpring } from '@react-spring/three';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
+import ThreePlane from '../basicShapes/plane/ThreePlane';
+import { MeshBasicMaterial } from 'three';
+import { useThree } from '@react-three/fiber';
 
 /**-----------------------------------------*/
 const PageTest1 = () => {
@@ -32,8 +35,9 @@ const PageTest1 = () => {
   }, [path]);
 
   /**Spring Section*/
-  const [{ posY }, comp2Api] = useSpring(() => ({
+  const [{ posY, posInstantContacts }, comp2Api] = useSpring(() => ({
     posY: 0,
+    posInstantContacts: 0,
   }));
 
   /** */
@@ -54,10 +58,32 @@ const PageTest1 = () => {
       //   'y * (window.innerHeight * 0.000001):',
       //   y * (window.innerHeight * 0.000001)
       // );
+      // console.log('y * 0.000000000001:', y * 0.00000000000000001);
+
+      const viewportHeightFraction = window.innerHeight * 0.85;
+      /*
+      normalizedScrollY ==> normalizes the scrollY value to the range of 0 to 1 based on the viewport height, ensuring that values above halfViewportHeight are clamped to halfViewportHeight.
+      */
+      const normalizedScrollY =
+        Math.max(0, Math.min(scrollY, viewportHeightFraction)) /
+        viewportHeightFraction;
+
+      /*
+      the normalized value is passed through the sin function, which maps the range from 0 to 1 to oscillate between -1 and 1. By multiplying it by 3, we stretch the resulting range to oscillate between -3 and 3.
+      */
+      const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
+      const clampedValue = Math.max(0, Math.min(mappedValue, 3));
+
+      console.log('normalizedScrollY:', normalizedScrollY);
+      console.log('mappedValue:', mappedValue);
 
       //__________springValues Modification section
       comp2Api.start({
-        posY: y * (window.innerHeight * 0.00000125),
+        // posY: y * (window.innerHeight * 0.00000125),
+        posY: y * 0.002,
+        // posInstantContacts: y * (window.innerHeight * 0.00000125),
+        posInstantContacts: -normalizedScrollY,
+
         config: config.slow,
         // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
       });
@@ -69,23 +95,60 @@ const PageTest1 = () => {
     }
   );
 
+  const state = useThree();
+  const {
+    viewport: { width, height, aspect, distance },
+  } = state;
+  const sideSize =
+    aspect >= 1 ? (height / distance) * 0.96 : (width / distance) * 0.96;
+
+  // console.log('state:', state);
+
+  /*
+  const scrollYToValue = (scrollY: number, viewportHeight: number): number => {
+  const halfViewportHeight = viewportHeight / 2;
+  const normalizedScrollY = Math.max(0, Math.min(scrollY, halfViewportHeight)) / halfViewportHeight;
+  const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
+  const clampedValue = Math.max(0, Math.min(mappedValue, 3));
+  return clampedValue;
+};
+  
+  */
   /**JSX**/
   return (
     <animated.group
       visible={isPath}
       position-x={pages3DPositions.pageTest1.x}
-      position-y={posY}
+      // position-y={posY}
     >
-      <InstantContactPanel
-        topButtonPos={
-          page3DConfigs.pageContacts.contactButtonConfig.topButtonPos
-        }
-        bottomButtonPos={
-          page3DConfigs.pageContacts.contactButtonConfig.bottomButtonPos
-        }
-        scaleFrame={page3DConfigs.pageContacts.contactButtonConfig.scaleFrame}
-        scaleImage={page3DConfigs.pageContacts.contactButtonConfig.scaleImage}
-      />
+      {/* <animated.mesh>
+        <ThreePlane
+          // argsWidth={0.04}
+          // argsHeight={0.04}
+          // argsWidth={(width / distance) * 0.98}
+          // argsHeight={(width / distance) * 0.98}
+          argsWidth={sideSize}
+          argsHeight={sideSize}
+          widthSegments={2}
+          heightSegments={2}
+        />
+        <meshBasicMaterial wireframe color={0xff0000} />
+      </animated.mesh> */}
+      <animated.group
+        //  position-y={posY}
+        position-z={posInstantContacts}
+      >
+        <InstantContactPanel
+          topButtonPos={
+            page3DConfigs.pageContacts.contactButtonConfig.topButtonPos
+          }
+          bottomButtonPos={
+            page3DConfigs.pageContacts.contactButtonConfig.bottomButtonPos
+          }
+          scaleFrame={page3DConfigs.pageContacts.contactButtonConfig.scaleFrame}
+          scaleImage={page3DConfigs.pageContacts.contactButtonConfig.scaleImage}
+        />
+      </animated.group>
     </animated.group>
   );
 };

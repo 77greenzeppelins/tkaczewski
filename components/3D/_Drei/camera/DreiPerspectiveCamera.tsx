@@ -30,7 +30,11 @@ const DreiPerspectiveCamera = () => {
   // const fov = 2 * Math.atan(height / (2 * cameraDistance)) * (180 / Math.PI);
   const aspect = width / height;
   const distance = 0.5 / Math.tan((Math.PI * 0.5 * 45) / 180);
-  const cameraPosition = [0, 0, distance];
+  // const cameraPosition = [0, 0, distance];
+  const cameraPosition = [0, 0, 1];
+
+  // console.log('cameraPosition:', cameraPosition);
+  // console.log('cameraRef.current:', cameraRef.current);
 
   /**JSX**/
   return (

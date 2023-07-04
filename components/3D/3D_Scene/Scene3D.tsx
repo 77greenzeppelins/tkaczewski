@@ -1,4 +1,5 @@
 /**Provider**/
+import { usePathname } from 'next/navigation';
 import { BasicMaterialProvider } from '../_Three/materials/basicMaterial/ThreeBasicMaterial';
 /**Components**/
 import {
@@ -11,6 +12,10 @@ import {
 } from '@/components';
 /**-------------------------------**/
 const Scene3D = () => {
+  /**Fog Modificator*/
+  const path = usePathname();
+  const nearFor = path === '/test1';
+  //___? ['#01030d', 1.5, 1.7] : ['#01030d', 3, 4.3];
   /**JSX**/
   return (
     <BasicMaterialProvider>
@@ -18,7 +23,11 @@ const Scene3D = () => {
       <DreiPerspectiveCamera />
       <CameraControler />
       {/*-----Canvas Infrastructure--------------------------------*/}
-      <fog attach="fog" args={['#01030d', 3, 4.3]} />
+      <fog
+        attach="fog"
+        args={['#01030d', nearFor ? 1.5 : 3, nearFor ? 1.8 : 4.3]}
+      />
+
       {/*-----Canvas Content--------------------------------*/}
       <PageHome />
       <PageCV />

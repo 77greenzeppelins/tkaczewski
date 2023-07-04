@@ -2,7 +2,7 @@
 import React from 'react';
 /**Components**/
 // import StickyContainer from './stickyContainer/StickyContainer';
-import { ScrollableContainer } from '@/components';
+import { DirectContactsSection, ScrollableContainer } from '@/components';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
@@ -74,9 +74,16 @@ const PageTest1Animator = ({ hintIsMobile }: Props) => {
       className="relative"
     >
       <div className="h-screen w-[5px] bg-amber-500" />
-      <div className="h-[25vh] w-full bg-gradient-to-b from-transparent via-dark to-dark" />
-      <div className="h-screen w-full bg-dark" />
-      <div className="h-[25vh] w-full bg-gradient-to-b from-dark to-transparent" />
+      {/* <div className="h-[20vh] w-full bg-gradient-to-b from-transparent to-dark" /> */}
+      <div className="h-screen w-full">
+        <div className="h-[20vh] w-full bg-gradient-to-b from-transparent to-dark" />
+        <div className="h-[60vh] w-full wrapper-1 bg-dark">
+          {' '}
+          <DirectContactsSection />
+        </div>
+        <div className="h-[20vh] w-full bg-gradient-to-b from-dark to-transparent" />
+      </div>
+      {/* <div className="h-[25vh] w-full bg-gradient-to-b from-dark to-transparent" /> */}
       <div className="h-screen w-[5px] bg-lime-700" />
 
       <div className="h-screen w-[5px] bg-slate-700" />
