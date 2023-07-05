@@ -1,6 +1,9 @@
 import React from 'react';
 import { headers } from 'next/headers';
-import PageTest1Animator from './PageTest1Animator';
+/**Components*/
+import PageContactAnimator from './PageContactsAnimator';
+/**BasicData*/
+import { scrollableContainerNames } from '@/data/basicData';
 
 const PageTest1SSContainer = () => {
   const headersList = headers();
@@ -19,8 +22,11 @@ const PageTest1SSContainer = () => {
   );
   /**JSX**/
   return (
-    <div id="PageTest1SSContainer" data-container="PageContactsSSContainer">
-      <PageTest1Animator hintIsMobile={isMobile || isMobileView} />
+    <div
+      // id={scrollableContainerNames.pageContacts}
+      data-container="PageContactsSSContainer"
+    >
+      <PageContactAnimator hintIsMobile={isMobile || isMobileView} />
     </div>
   );
 };

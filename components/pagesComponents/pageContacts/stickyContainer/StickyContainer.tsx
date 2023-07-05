@@ -7,26 +7,20 @@ import { SpringValue, animated } from '@react-spring/web';
 
 /**TS**/
 interface Props {
-  opacity: SpringValue<number>;
   scale: SpringValue<number>;
   transform: SpringValue<string>;
   hintIsMobile: boolean;
 }
 
 /**-------------------------------**/
-const StickyContainer = ({
-  opacity,
-  scale,
-  transform,
-  hintIsMobile,
-}: Props) => {
+const StickyContainer = ({ scale, transform, hintIsMobile }: Props) => {
   /****/
 
   /**JSX**/
   return (
     <div
       data-component="StickyContainer"
-      className="sticky h-screen top-0 bottom-0 inset-x-0 overflow-hidden -z-0"
+      className="sticky h-screen top-0 bottom-0 inset-x-0 overflow-hidden -z-0 "
       //___  flex justify-center items-center -z-10
     >
       <div className="relative w-full h-full">
@@ -52,19 +46,13 @@ const StickyContainer = ({
               buttonsHeight={[0.4, 0.3]}
             />
           </animated.div>
-
-          <animated.div
-            /*
-            ___1. why such animated.div?
-            ___2. It works as overlay that covers "canvas" reflecting scroll progress;
-            ___3. its value comes from 0 to 1; 
-            */
-            style={{ opacity: opacity }}
-            className="absolute inset-0 bg-dark pointer-events-none"
-          />
         </div>
         {hintIsMobile ? null : (
-          <PageContent transform={transform} hintIsMobile={hintIsMobile} />
+          <PageContent
+            transform={transform}
+            hintIsMobile={hintIsMobile}
+            isVisible={true}
+          />
         )}
       </div>
     </div>
@@ -72,6 +60,14 @@ const StickyContainer = ({
 };
 
 export default StickyContainer;
+
+{
+  /* <animated.div
+            
+            style={{ opacity: opacity }}
+            className="absolute inset-0 bg-dark pointer-events-none"
+          /> */
+}
 
 {
   /* <PageContent transform={transform} hintIsMobile={hintIsMobile} /> */

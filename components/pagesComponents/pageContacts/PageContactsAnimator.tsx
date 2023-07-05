@@ -2,7 +2,7 @@
 import React from 'react';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
-import { ScrollableContainer } from '@/components';
+import PageContent from './pageContent/PageContent';
 /**Hook**/
 import useElementSize from '@/hooks/useElementSize';
 /**Spring Staff**/
@@ -13,7 +13,7 @@ import { useScroll } from '@use-gesture/react';
 import { basicConfigs } from '@/data/basicData';
 
 const {
-  pageContact: { opacityFactor, scaleFactor },
+  pageContact: { scaleFactor },
 } = basicConfigs;
 
 /*
@@ -26,17 +26,16 @@ interface Props {
 }
 /**----------------------------------------**/
 const PageContactsAnimator = ({ hintIsMobile }: Props) => {
-  /**Hook Section*/
+  /*
+  ___1. we need this hook to get height value of "scrollableContainer" 
+  */
   const [squareRef, { height }] = useElementSize(); // innerHeight * 2
   // console.log('PageContactsContent | height:', height);
   /*
   ___1. spring imperative API for <StickyContainer>'s overlay opacity that hides <InstantContactButtons2D/>
   ___2. this opacity goes from 0 to 1;
   */
-  const [{ opacity }, comp1Api] = useSpring(() => ({
-    opacity: 0,
-  }));
-  const [{ transform, scale }, comp2Api] = useSpring(() => ({
+  const [{ transform, scale }, api] = useSpring(() => ({
     transform: 'translateY(0%)',
     scale: 1,
   }));
@@ -47,44 +46,15 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
     ___1. her we utilize some gesture state offers by useGesture
     ___2. value "y" => returns progress of scrolling; let's take such case: (a) scrollHeight property of scrollableContainer has value of 1654; (b) window.innerHeight is 827; (c) final value (at the end of scrolling) of y is 827;
     */
-    ({
-      xy: [x, y],
-    }: // direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
-    {
-      xy: number[];
-      // direction: number[];
-    }) => {
-      // console.log('dirY:', dirY);
+    ({ xy: [x, y] }: { xy: number[] }) => {
       // console.log('y:', y);
-      // console.log('window.innerHeight:', window.innerHeight);
-      // console.log('height:', height);
-      // console.log(
-      //   'y / ((height / basicConfigs.pageContact.viewports) * speedupFactor):',
-      //   1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)
-      // );
-      //__________conditions section
-      /*
-      ___1. here we actually use "gesture state values" to set two boolean const that works as switcher when springValues are imperatively modified;
-      ___2. if scroll down && scrolled more then half of the element scrollHeight property our cond1 is true
-      */
-      // const cond1 =
-      //   dirY === 1 && y >= height / basicConfigs.pageContact.viewports - 5;
-      // const cond2 =
-      //   dirY === -1 && y < height / basicConfigs.pageContact.viewports; // /basicConfigs.pageContact.viewports;
-
       //__________springValues Modification section
-      comp1Api.start({
-        opacity:
-          y / ((height / basicConfigs.pageContact.viewports) * opacityFactor),
-      });
-      comp2Api.start({
-        // transform: `translateX(${cond1 ? 0 : cond2 ? 100 : 100}%)`,
-        // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
-        transform: `translateY(${
-          (y / (height - window.innerHeight)) *
-          // -basicConfigs.pageContact.viewportsTotal
-          -100
-        }%)`,
+      const val1 = Math.min(y / window.innerHeight, 1);
+      // console.log('y/window.innerHeight:', (y / window.innerHeight) * 0.75);
+      // console.log('val1', val1);
+
+      api.start({
+        transform: `translateY(${(y / (height - window.innerHeight)) * -100}%)`,
         /*
         ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values;
         ___2. these negative values make object scale "positive" i.e. object extends (=augment)! that is why I use ternary op. to end scroll progress detection on value 0 => I want <InstantContactButtons2D> container to disappears === to "disable" buttons...
@@ -114,17 +84,16 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   /**JSX**/
   return (
     <div
-      data-container="PageContactsContent"
+      data-container="PageContactsAnimator"
       ref={squareRef}
       className="relative"
     >
       <StickyContainer
-        opacity={opacity}
         scale={scale}
         transform={transform}
         hintIsMobile={hintIsMobile}
       />
-      <ScrollableContainer hintIsMobile={hintIsMobile} />
+      <PageContent hintIsMobile={hintIsMobile} />
     </div>
   );
 };

@@ -153,9 +153,9 @@ const CameraControler = () => {
 
       const scrollYProgress = progressOnZ
         ? y / (state.size.height * -cameraControler.zAxisFactor)
-        : regressOnZ
-        ? y / (state.size.height * cameraControler.zAxisFactor)
-        : 0;
+        : // : regressOnZ
+          // ? y / (state.size.height * cameraControler.zAxisFactor)
+          0;
 
       //__________springValues Modification section
       comp2Api.start({

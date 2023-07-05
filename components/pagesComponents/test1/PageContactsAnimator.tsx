@@ -30,7 +30,7 @@ interface Props {
   hintIsMobile: boolean;
 }
 /**----------------------------------------**/
-const PageTest1Animator = ({ hintIsMobile }: Props) => {
+const PageContactAnimator = ({ hintIsMobile }: Props) => {
   /**Hook Section*/
   const [squareRef, { height }] = useElementSize(); // innerHeight * 2
   // console.log('PageContactsContent | height:', height);
@@ -125,4 +125,4 @@ const PageTest1Animator = ({ hintIsMobile }: Props) => {
   );
 };
 
-export default PageTest1Animator;
+export default PageContactAnimator;

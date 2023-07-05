@@ -12,10 +12,11 @@ import {
 interface Props {
   transform?: SpringValue<string>;
   hintIsMobile: boolean;
+  isVisible?: boolean;
 }
 
 /**-------------------------------**/
-const PageContent = ({ transform, hintIsMobile }: Props) => {
+const PageContent = ({ transform, hintIsMobile, isVisible = false }: Props) => {
   const componentsArray = [
     { Component: DirectContactsSection },
     { Component: OtherContactsSection },
@@ -26,25 +27,20 @@ const PageContent = ({ transform, hintIsMobile }: Props) => {
   return (
     <animated.div
       /*
-    ___1. transform is an optional props
-    ___2. in case of mobile, transform is not passed
+    ___1. transform is an optional props; 
+    ___2. in case of mobile, transform is not passed; when we pass nothing style is just "undefined"
     ___3. in case of desktop transform has some SpringValue and behave like pseudoScrollableContainer
+    ___4. in case of desktop we actually have two PageContent>s one is invisible and play role of scrollableContainer and the second one is visible, rendered as <StickyContainer> child 
     */
       style={{ transform }}
-      data-component="PageContent"
+      data-component="PageContactContent"
       // className={`${
       //   hintIsMobile ? '' : 'absolute inset-0 w-full pointer-events-none'
       // }`}
+      className={`${hintIsMobile ? '' : isVisible ? 'opacity-1' : 'opacity-0'}`}
     >
-      <div className="h-screen w-[1px] " />
       {componentsArray.map(({ Component }, i) => (
-        <div
-          key={i}
-          // className={`fc h-screen w-full wrapper-1 ${
-          //   hintIsMobile ? 'bg-gray-500' : 'bg-gray-800'
-          // }`}
-          className="w-full h-screen wrapper-1"
-        >
+        <div key={i} className="w-full h-screen border-b border-neutral-700">
           <Component />
         </div>
       ))}

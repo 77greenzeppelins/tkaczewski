@@ -39,7 +39,10 @@ const OtherContactsSection = () => {
 
   /**JSX**/
   return (
-    <div ref={ref} className="relative w-full">
+    <div
+      ref={ref}
+      className="relative w-full h-full flex flex-col justify-center wrapper-1"
+    >
       <div className="flex flex-col gap-0 items-start justify-center w-full">
         {dz.map((item, i) => (
           <div key={item} className=" overflow-hidden">

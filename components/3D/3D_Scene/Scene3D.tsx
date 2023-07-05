@@ -10,12 +10,17 @@ import {
   DreiPerspectiveCamera,
   PageTest1,
 } from '@/components';
+/**Basic Data**/
+import { pagesPath } from '@/data/basicData';
+
 /**-------------------------------**/
 const Scene3D = () => {
-  /**Fog Modificator*/
+  /*
+  ___1. this staff is used to modify fog's distance from camera; if you want 3D object to immers in fog and therefor become invisible "quicker" i.e with position-z={-1} add relevant path;
+  */
   const path = usePathname();
-  const nearFor = path === '/test1';
-  //___? ['#01030d', 1.5, 1.7] : ['#01030d', 3, 4.3];
+  const closeFog =
+    path === pagesPath.test1Path || path === pagesPath.contactcPath;
   /**JSX**/
   return (
     <BasicMaterialProvider>
@@ -25,7 +30,7 @@ const Scene3D = () => {
       {/*-----Canvas Infrastructure--------------------------------*/}
       <fog
         attach="fog"
-        args={['#01030d', nearFor ? 1.5 : 3, nearFor ? 1.8 : 4.3]}
+        args={['#01030d', closeFog ? 1.5 : 3, closeFog ? 1.8 : 4.3]}
       />
 
       {/*-----Canvas Content--------------------------------*/}

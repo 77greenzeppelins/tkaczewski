@@ -1,6 +1,9 @@
 import React from 'react';
 import { headers } from 'next/headers';
+/**Components**/
 import PageContactsAnimator from './PageContactsAnimator';
+/**Basic Data**/
+import { scrollableContainerNames } from '@/data/basicData';
 
 const PageContactsSSContainer = () => {
   const headersList = headers();
@@ -19,7 +22,10 @@ const PageContactsSSContainer = () => {
   );
   /**JSX**/
   return (
-    <div data-container="PageContactsSSContainer">
+    <div
+      id={scrollableContainerNames.pageContacts}
+      data-container="PageContactsSSContainer"
+    >
       <PageContactsAnimator hintIsMobile={isMobile || isMobileView} />
     </div>
   );

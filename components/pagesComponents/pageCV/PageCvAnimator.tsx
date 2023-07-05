@@ -8,8 +8,9 @@ import { PageCvContent, SmoothCvContainer } from '@/components';
 import { useSpring, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
-
 /**Basic Data*/
+import { scrollableContainerNames } from '@/data/basicData';
+
 /**TS**/
 interface Props {
   hintIsMobile: boolean;
@@ -28,19 +29,29 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
     ___1. here we utilize some gesture state offers by useGesture
     ___2. value "y" => returns progress of scrolling; let's take such case: (a) scrollHeight property of scrollableContainer has value of 1654; (b) window.innerHeight is 827; (c) final value (at the end of scrolling) of y is 827;
     */
-    ({
-      xy: [x, y],
-    }: // direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
-    {
-      xy: number[];
-      // direction: number[];
-    }) => {
+    ({ xy: [x, y] }: { xy: number[] }) => {
       // console.log('y:', y);
-      //__________springValues Modification section
+      const sH = Number(
+        typeof window !== 'undefined'
+          ? window.document.getElementById(scrollableContainerNames.pageCV)
+              ?.scrollHeight
+          : undefined
+      );
+      /*
+      ___1. const calcSH ==> is a sort of calculated height that takes scrollableContainer's scrollHeight property and subtract window.innerHeight ==> final value is equal "y" we get from hook state
+      ___2. minVal & maxVal is a range of values we want to "map" to
+      ___3. How it happens: scrollDriven dynamic value that works in this range [0,1] multuplied by this range [0 - someNumberOfPixels] ==> 
+      */
+      const calcSH = sH - window.innerHeight;
+      const minVal = 0;
+      const maxVal = calcSH - window.innerHeight;
+      // console.log('y', y);
+      // console.log('y / calcSH', y / calcSH);
+      const normalizedValue = (y / calcSH) * (minVal - maxVal);
+      //__________springValues modification section
       comp2Api.start({
-        transform: `translateY(${-y}px)`,
+        transform: `translateY(${normalizedValue}px)`,
         config: config.slow,
-        // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
       });
     },
     //__________ ... section
@@ -53,13 +64,11 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
   /**JSX**/
   return (
     <div
-      // ref={squareRef}
+      id={scrollableContainerNames.pageCV} // ref={squareRef}
       data-component="PageCvAnimator"
-      className="relative w-full h-full"
+      className="relative flex flex-col w-full h-full"
     >
-      <div>
-        <PageCvContent hintIsMobile={hintIsMobile} />
-      </div>
+      <PageCvContent hintIsMobile={hintIsMobile} />
       {hintIsMobile ? null : <SmoothCvContainer transform={transform} />}
     </div>
   );

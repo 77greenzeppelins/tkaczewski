@@ -14,6 +14,9 @@ import ThreePlane from '../basicShapes/plane/ThreePlane';
 import { MeshBasicMaterial } from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 
+/**BasicData*/
+import { scrollableContainerNames } from '@/data/basicData';
+
 /**-----------------------------------------*/
 const PageTest1 = () => {
   /*
@@ -53,48 +56,27 @@ const PageTest1 = () => {
       xy: number[];
       // direction: number[];
     }) => {
-      // console.log('y / 100:', y / 100);
-      // console.log(
-      //   'y * (window.innerHeight * 0.000001):',
-      //   y * (window.innerHeight * 0.000001)
-      // );
-      // console.log('y * 0.000000000001:', y * 0.00000000000000001);
-
-      const viewportHeightFraction = window.innerHeight * 0.85;
-      const testFraction = window.innerHeight * 0.0085;
-
-      // console.log('posY:', y * testFraction);
-      // console.log(
-      //   "typeof window !== 'undefined' ? window.document.scrollHeight : window.document.scrollHeight:",
-      //   typeof window !== 'undefined'
-      //     ? window.document.getElementById('PageTest1SSContainer')?.scrollHeight
-      //     : " window === 'undefined'"
-      // );
-
-      /*
-      normalizedScrollY ==> normalizes the scrollY value to the range of 0 to 1; when user scrolls and  (scrollY < viewportHeightFraction) ==> resulta are values like: 0.001, 0.3, 0.99...; and 3D object move into center of the scene ==> it looks as if the scale was decreasing;  
+      /* 
+      ___0. let's calculate valu for <InstantContactPanel>
+      ___1. what is const viewportHeightFraction ==> it's arbitary value that respect current screen height and sets a sort of "velocity factor" i.e. how fast <ICC> goes deep into a scene;
+      ___2.  const normalizedScrollY ==> normalizes the scrollY value to the range [0, 1]; when user scrolls and  (scrollY < viewportHeightFraction) ==> resulta are values like: 0.001, 0.3, 0.99...; and 3D object move into center of the scene ==> it looks as if the scale was decreasing;  
       */
+      const viewportHeightFraction = window.innerHeight * 0.85;
       const normalizedScrollY =
         Math.max(0, Math.min(y, viewportHeightFraction)) /
         viewportHeightFraction;
 
       /*
-      the normalized value is passed through the sin function, which maps the range from 0 to 1 to oscillate between -1 and 1. By multiplying it by 3, we stretch the resulting range to oscillate between -3 and 3.
-      */
-      // const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
-      /*
-      the mappedValue is clamped to ensure it stays within the range of 0 to 3 using the clamp function; the resulting value represents the desired mapping from window.scrollY to the range of 0 to 3
-      */
-      // const clampedValue = Math.max(0, Math.min(mappedValue, 3));
-
-      /*
-      ___1. the aim is: to normalize value to range [0,30] ==> from "pixelized" scrollY to "canvasUnits"
+      ___0. let's calculate value for AnimatedGroup that works as ScrollableContainer 
+      ___1. the aim is: to normalize value to range [0,3] ==> from "pixelized" scrollY to "canvasUnits" ===> why such range, especially why "3" ? ==> my buess is: calcSH / window.innerHeight; initially I set 4 and it was hard to coordinate scrolling of 2DScrollableContainer ant 3DSS; 
       ___2. const sH is "numbered" scrollHeight value of scrollable container; it turned out that it's possible to get 2D element within useScroll() hook and read his property! it seems that usage of "typeof window !== 'undefined'" condition is safe and doesn't produces errors; 
-      ___3. const calcSH allows to align 
+      ___3. const calcSH contains: (a) it's actually a scalling proces (y / calcSH) that gives the same result as classic normalization i.e. values from [0,1]; in this cara it's equaivalent to: (currentVal - minVal) / (maxVal - minVal) ==> (currentVal - 0) / (calcSH - 0) ==> reduce "zeros" and have (currentVal / calcSH)
       */
       const sH = Number(
         typeof window !== 'undefined'
-          ? window.document.getElementById('PageTest1SSContainer')?.scrollHeight
+          ? window.document.getElementById(
+              scrollableContainerNames.pageContacts
+            )?.scrollHeight
           : undefined
       ); // const calcSH = sH || 0;
       const calcSH = sH - window.innerHeight;
@@ -104,26 +86,28 @@ const PageTest1 = () => {
       // console.log('calcSH / window.innerHeight ', calcSH / window.innerHeight);
       // const normalizedValue = (window.innerHeight / calcSH) * (0 - 20);
       const normalizedValue = (y / calcSH) * (minVal - maxVal);
-      console.log('normalizedValue:', normalizedValue);
+      // console.log('y:', y / calcSH);
+      // console.log('y-norm:', (y - 0) / (calcSH - 0));
+      // console.log('y  / calcSH:', y / calcSH);
+      // console.log('normalizedValue:', normalizedValue);
       // console.log('y :', y);
-      const finalScrollVal = Math.min(
-        Math.max(minVal, normalizedValue),
-        maxVal
-      );
-      console.log('finalScrollVal :', finalScrollVal);
-
+      // const finalScrollVal = Math.min(
+      //   Math.max(minVal, normalizedValue),
+      //   maxVal
+      // );
+      // console.log('finalScrollVal :', finalScrollVal);
       //__________springValues Modification section
-      comp2Api.start({
-        posY: -normalizedValue,
-        posInstantContacts: -normalizedScrollY,
-
-        config: config.slow,
-        // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
-      });
+      isPath &&
+        comp2Api.start({
+          posY: -normalizedValue,
+          posInstantContacts: -normalizedScrollY,
+          config: config.slow,
+          // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
+        });
     },
     //__________ ... section
     {
-      enabled: true,
+      enabled: isPath ? true : false,
       target: typeof window !== 'undefined' ? window : undefined,
     }
   );
@@ -145,8 +129,8 @@ const PageTest1 = () => {
   return (
     <group visible={isPath} position-x={pages3DPositions.pageTest1.x}>
       {/*-----AnimatedGroup for preudoScrollableContainer*/}
-      <animated.group position-x={0} position-y={posY} position-z={0}>
-        <mesh position={[0, 0, 0]}>
+      <animated.group position-y={posY}>
+        {/* <mesh position={[0, 0, 0]}>
           <ThreePlane
             // argsWidth={0.04}
             // argsHeight={0.04}
@@ -158,7 +142,7 @@ const PageTest1 = () => {
             heightSegments={2}
           />
           <meshBasicMaterial wireframe color={0x394867} />
-        </mesh>
+        </mesh> */}
         <mesh position={[0, -1, 0]}>
           <ThreePlane
             argsWidth={sideSize}
@@ -168,7 +152,7 @@ const PageTest1 = () => {
           />
           <meshBasicMaterial wireframe color={0x00ff00} />
         </mesh>
-        <mesh position={[0, -2, 0]}>
+        {/* <mesh position={[0, -2, 0]}>
           <ThreePlane
             argsWidth={sideSize}
             argsHeight={sideSize}
@@ -176,7 +160,7 @@ const PageTest1 = () => {
             heightSegments={2}
           />
           <meshBasicMaterial wireframe color={0xe11299} />
-        </mesh>
+        </mesh> */}
         <mesh position={[0, -3, 0]}>
           <ThreePlane
             argsWidth={sideSize}
@@ -190,9 +174,8 @@ const PageTest1 = () => {
 
       {/*-----AnimatedGroup for instantContactPanel*/}
       <animated.group
-        // ref={ref}
         /*
-        concept: mowe from 0 to -1
+        ___1: general concept: move from 0 to -1; why? simple because position-x={-1} guarantee object is invisible and there in no need to move deeper and probably consume resources; 
         */
         position-z={posInstantContacts}
       >
@@ -222,3 +205,12 @@ export default PageTest1;
   return clampedValue;
 };
   */
+
+/*
+      the normalized value is passed through the sin function, which maps the range from 0 to 1 to oscillate between -1 and 1. By multiplying it by 3, we stretch the resulting range to oscillate between -3 and 3.
+      */
+// const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
+/*
+      the mappedValue is clamped to ensure it stays within the range of 0 to 3 using the clamp function; the resulting value represents the desired mapping from window.scrollY to the range of 0 to 3
+      */
+// const clampedValue = Math.max(0, Math.min(mappedValue, 3));

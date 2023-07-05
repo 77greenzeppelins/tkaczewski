@@ -1,5 +1,5 @@
 // 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HeroSectionPageCv, CvSection, AskAI } from '@/components';
 /**Basic Data**/
 import { cvSections } from '@/data/textData';
@@ -18,12 +18,21 @@ const PageCvContent = ({
   transform,
   isVisible = false,
 }: Props) => {
+  //___
+  // useEffect(() => {
+  //   hintIsMobile
+  //     ? console.log('hintIsMobile')
+  //     : isVisible
+  //     ? console.log(' !hintIsMobile && isVisible')
+  //     : console.log(' !hintIsMobile && !isVisible');
+  // }, [hintIsMobile, isVisible]);
+
   /**JSX**/
   return (
     <animated.div
       data-component={`PageCvContent-${hintIsMobile.toString()}`}
       style={{ transform }}
-      aria-hidden={hintIsMobile ? false : true}
+      aria-hidden={hintIsMobile || isVisible ? false : true}
       className={`${
         hintIsMobile
           ? 'w-full h-full'
@@ -42,11 +51,11 @@ const PageCvContent = ({
       ___2. it's a sort of "fake way" of tweaking height to scroll on desktop
       ___3. I cut this layout by 100vh because <SmoothCvContainer> itself has 100vh;
       */
-        !hintIsMobile && !isVisible ? null : (
-          <div className="flex justify-center items-center h-[100vh] w-full">
-            <AskAI />
-          </div>
-        )
+        // !hintIsMobile && !isVisible ? null : (
+        <div className="flex justify-center items-center h-[100vh] w-full">
+          <AskAI />
+        </div>
+        // )
       }
       {/* <div className="flex justify-center items-center h-[100vh] w-full">
         <AskAI />

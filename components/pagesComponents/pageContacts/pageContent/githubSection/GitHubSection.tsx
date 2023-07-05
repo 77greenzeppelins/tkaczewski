@@ -37,10 +37,15 @@ const GitHubSection = () => {
 
   /**JSX**/
   return (
-    <div ref={ref} className="relative flex justify-center w-full h-full ">
-      <div className="flex flex-col items-start justify-center w-full gap-0">
+    <div
+      ref={ref}
+      className="relative flex justify-center w-full h-full wrapper-1"
+    >
+      <div className="w-full h-full py-[60px]">
         <animated.div
-          className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
+          className={`${
+            inView ? inViewStyle.show : inViewStyle.hide
+          } flex flex-col items-start justify-between w-full h-full`}
         >
           <p className="select-none p-medium text-corpo">{gitHub[0]}</p>
           <GitHubIcon

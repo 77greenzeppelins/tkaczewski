@@ -50,6 +50,13 @@ const assetsPaths = {
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };
 /*
+__1. names of scrollable container are used in 2D actuall scrollableContainer as its id and in "paralel" 3D components within useScroll() hooks
+*/
+const scrollableContainerNames = {
+  pageContacts: 'PageContactsScrollableContainer',
+  pageCV: 'PageCvScrollableContainer',
+};
+/*
 __1. let's assume there is a responsiveness treshold set to 768px
 __2. condition should look like this: "x >= 768" as it corresponds to tailwind "md" setting
 __3. ternay : respTreshold ? desktopSettings : mobilesettings
@@ -63,8 +70,8 @@ const basicConfigs = {
     endErrorMargin: 100,
   },
   pageContact: {
-    opacityFactor: 1.125,
-    scaleFactor: 0.25,
+    // opacityFactor: 1.125,
+    scaleFactor: 0.75, //___for pseudoInstantContactButtons
     viewports: 3,
     viewportsTotal: 3 * 100,
     rootMargin: '10% 0% 10% 0%',
@@ -371,6 +378,8 @@ const springConfigs = {
 };
 
 export {
+  //___
+  scrollableContainerNames,
   //___
   pagesPath,
   pagesLinks,
