@@ -26,7 +26,7 @@ const PageTest1SSContainer = () => {
       // id={scrollableContainerNames.pageContacts}
       data-container="PageContactsSSContainer"
     >
-      <PageContactAnimator hintIsMobile={isMobile || isMobileView} />
+      <PageContactAnimator />
     </div>
   );
 };
