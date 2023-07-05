@@ -15,20 +15,10 @@ const AppContainer = ({ children }: { children: React.ReactNode }) => {
       id="appContainer"
       className="relative z-[400]"
     >
-      {/* <div className="fixed w-screen h-screen z-1">
-        <CanvasOverlay />
-        <MainCanvas />
-      </div>
-      <div className="relative z-10">{children}</div> */}
-      {/*
-      just a test; prototype of context...
-      */}
       <GlobalContextProvider
         IntroOverlay={IntroOverlay}
         CanvasOverlay={CanvasOverlay}
         MainCanvas={MainCanvas}
-        // MainCanvas={() => <MainCanvas />}
-        // IntroOverlay={IntroOverlay}
       >
         {children}
       </GlobalContextProvider>

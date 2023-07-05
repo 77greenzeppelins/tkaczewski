@@ -17,7 +17,6 @@ const pagesLinks = [
   { href: pagesPath.homePath, label: '3D' },
   { href: pagesPath.cvPath, label: 'CV' },
   { href: pagesPath.contactcPath, label: 'Contact' },
-  { href: pagesPath.test1Path, label: 'T-est' },
 ];
 
 const contactData = {

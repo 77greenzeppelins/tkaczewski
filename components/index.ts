@@ -20,7 +20,6 @@ import HeroSectionPageCv from './pagesComponents/pageCV/pageContent/heroSection/
 import CvSection from './pagesComponents/pageCV/pageContent/infoSection/CvSection';
 import AskAI from './pagesComponents/pageCV/pageContent/askAI/AskAI';
 //___pageContacts
-import ScrollableContainer from './pagesComponents/pageContacts/scrollableContainer/ScrollableContainer';
 import ScrollableContent from './pagesComponents/pageContacts/stickyContainer/scrollableContent/ScrollableContent';
 /*
 __________3D
@@ -86,7 +85,6 @@ export {
   BasicFrame,
   ImageCanvas,
   //___
-  ScrollableContainer,
   ScrollableContent,
   //___3D | PageHome
   Act1,

@@ -1,5 +1,7 @@
 'use client';
 import React from 'react';
+/**Hook Staff**/
+import { usePathname } from 'next/navigation';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
 import PageContent from './pageContent/PageContent';
@@ -10,7 +12,7 @@ import { useSpring, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
-import { basicConfigs } from '@/data/basicData';
+import { basicConfigs, pagesPath } from '@/data/basicData';
 
 const {
   pageContact: { scaleFactor },
@@ -27,17 +29,26 @@ interface Props {
 /**----------------------------------------**/
 const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   /*
+  ___1. concept: each <PageNameAnimator> with useScroll needs some booleanFlag that switch on / off listening of scroll within relevant page
+  */
+  const route = usePathname();
+  const scrollAnimationCondition = route === pagesPath.contactcPath;
+  /*
   ___1. we need this hook to get height value of "scrollableContainer" 
   */
   const [squareRef, { height }] = useElementSize(); // innerHeight * 2
   // console.log('PageContactsContent | height:', height);
   /*
-  ___1. spring imperative API for <StickyContainer>'s overlay opacity that hides <InstantContactButtons2D/>
+  ___1. spring imperative API_transform for <StickyContainer>'s overlay opacity that hides <InstantContactButtons2D/>
   ___2. this opacity goes from 0 to 1;
   */
-  const [{ transform, scale }, api] = useSpring(() => ({
+  const [{ transform }, api_transform] = useSpring(() => ({
     transform: 'translateY(0%)',
+    config: config.slow,
+  }));
+  const [{ scale }, api_scale] = useSpring(() => ({
     scale: 1,
+    config: { duration: 0 },
   }));
 
   /** */
@@ -48,35 +59,28 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
     */
     ({ xy: [x, y] }: { xy: number[] }) => {
       // console.log('y:', y);
-      //__________springValues Modification section
-      const val1 = Math.min(y / window.innerHeight, 1);
-      // console.log('y/window.innerHeight:', (y / window.innerHeight) * 0.75);
+      // const val1 = Math.min((y / window.innerHeight) * 3, 1);
+      const val1 = Math.min(y / (window.innerHeight * 0.3), 1);
+      //const normalizedValue = (y / calcSH) * (minVal - maxVal);
+      const scale1 = 1 - val1 * (1 - 0.75);
       // console.log('val1', val1);
-
-      api.start({
-        transform: `translateY(${(y / (height - window.innerHeight)) * -100}%)`,
-        /*
-        ___1. "1 - y / ((height / basicConfigs.pageContact.viewports) * speedupFactor)" returns values from 1 via 0 to relatively large negative values;
-        ___2. these negative values make object scale "positive" i.e. object extends (=augment)! that is why I use ternary op. to end scroll progress detection on value 0 => I want <InstantContactButtons2D> container to disappears === to "disable" buttons...
-        */
-        scale:
-          1 -
-            y / ((height / basicConfigs.pageContact.viewports) * scaleFactor) >
-          0
-            ? 1 -
-              y / ((height / basicConfigs.pageContact.viewports) * scaleFactor)
-            : 0,
-        config: config.slow,
-        // config: { mass: 5, friction: 120, tension: 120 },
-        // config: {
-        //   duration: hintIsMobile ? 0 : 400,
-        //   easing: easings.easeOutQuint,
-        // }, // value in ms
-      });
+      // console.log('scale1', scale1);
+      scrollAnimationCondition &&
+        api_transform.start({
+          transform: `translateY(${
+            (y / (height - window.innerHeight)) * -100
+          }%)`,
+        });
+      scrollAnimationCondition &&
+        api_scale.start({
+          /*
+           */
+          scale: val1 < 1 ? scale1 : 0,
+        });
     },
     //__________ ... section
     {
-      enabled: true,
+      enabled: scrollAnimationCondition && true,
       target: typeof window !== 'undefined' ? window : undefined,
     }
   );

@@ -36,7 +36,6 @@ export default function RootLayout({
         */
       >
         <Header />
-        {/* <PseudoFooter /> */}
         <AppContainer>{children}</AppContainer>
         <PseudoFooter />
       </body>
