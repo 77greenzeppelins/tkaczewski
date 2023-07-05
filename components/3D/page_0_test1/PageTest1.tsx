@@ -88,24 +88,28 @@ const PageTest1 = () => {
       // const clampedValue = Math.max(0, Math.min(mappedValue, 3));
 
       /*
-      normalize valu to [0,30]
+      ___1. the aim is: to normalize value to range [0,30] ==> from "pixelized" scrollY to "canvasUnits"
+      ___2. const sH is "numbered" scrollHeight value of scrollable container; it turned out that it's possible to get 2D element within useScroll() hook and read his property! it seems that usage of "typeof window !== 'undefined'" condition is safe and doesn't produces errors; 
+      ___3. const calcSH allows to align 
       */
-      // const sH =
-      //   typeof window !== 'undefined'
-      //     ? window.document.getElementById('PageTest1SSContainer')?.scrollHeight
-      //     : undefined;
       const sH = Number(
         typeof window !== 'undefined'
           ? window.document.getElementById('PageTest1SSContainer')?.scrollHeight
           : undefined
       ); // const calcSH = sH || 0;
       const calcSH = sH - window.innerHeight;
+      const minVal = 0;
+      const maxVal = 3; //___ ? calcSH / window.innerHeight
       // console.log('calcSH:', calcSH);
+      // console.log('calcSH / window.innerHeight ', calcSH / window.innerHeight);
       // const normalizedValue = (window.innerHeight / calcSH) * (0 - 20);
-      const normalizedValue = (y / calcSH) * (0 - 4);
+      const normalizedValue = (y / calcSH) * (minVal - maxVal);
       console.log('normalizedValue:', normalizedValue);
       // console.log('y :', y);
-      const finalScrollVal = Math.min(Math.max(0, normalizedValue), 4);
+      const finalScrollVal = Math.min(
+        Math.max(minVal, normalizedValue),
+        maxVal
+      );
       console.log('finalScrollVal :', finalScrollVal);
 
       //__________springValues Modification section
@@ -155,12 +159,8 @@ const PageTest1 = () => {
           />
           <meshBasicMaterial wireframe color={0x394867} />
         </mesh>
-        <mesh position={[0, -1.35, 0]}>
+        <mesh position={[0, -1, 0]}>
           <ThreePlane
-            // argsWidth={0.04}
-            // argsHeight={0.04}
-            // argsWidth={(width / distance) * 0.98}
-            // argsHeight={(width / distance) * 0.98}
             argsWidth={sideSize}
             argsHeight={sideSize}
             widthSegments={2}
@@ -168,12 +168,8 @@ const PageTest1 = () => {
           />
           <meshBasicMaterial wireframe color={0x00ff00} />
         </mesh>
-        <mesh position={[0, -2.7, 0]}>
+        <mesh position={[0, -2, 0]}>
           <ThreePlane
-            // argsWidth={0.04}
-            // argsHeight={0.04}
-            // argsWidth={(width / distance) * 0.98}
-            // argsHeight={(width / distance) * 0.98}
             argsWidth={sideSize}
             argsHeight={sideSize}
             widthSegments={2}
@@ -181,12 +177,8 @@ const PageTest1 = () => {
           />
           <meshBasicMaterial wireframe color={0xe11299} />
         </mesh>
-        <mesh position={[0, -4, 0]}>
+        <mesh position={[0, -3, 0]}>
           <ThreePlane
-            // argsWidth={0.04}
-            // argsHeight={0.04}
-            // argsWidth={(width / distance) * 0.98}
-            // argsHeight={(width / distance) * 0.98}
             argsWidth={sideSize}
             argsHeight={sideSize}
             widthSegments={2}
