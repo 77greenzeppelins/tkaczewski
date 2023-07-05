@@ -81,20 +81,32 @@ const PageTest1Animator = ({ hintIsMobile }: Props) => {
       <div className="h-screen w-[5px] bg-amber-500" />
       {/* <div className="h-[20vh] w-full bg-gradient-to-b from-transparent to-dark" /> */}
       <div className="h-screen w-full">
-        <div className="h-[20vh] w-full bg-gradient-to-b from-transparent to-dark" />
-        <div className="h-[80vh] w-full wrapper-1 bg-dark">
+        <div
+          className="h-[20vh] w-full "
+          //__bg-gradient-to-b from-transparent to-dark
+        />
+        <div
+          className="h-[80vh] w-full wrapper-1 "
+          //___bg-dark
+        >
           {' '}
           <DirectContactsSection />
         </div>
       </div>
       <div className="h-screen w-full ">
-        <div className="h-[80%] bg-dark">
+        <div
+          className="h-[80%] "
+          //__bg-dark
+        >
           <div className="wrapper-1">
             <OtherContactsSection />
           </div>
         </div>
 
-        <div className="h-[20%] w-full bg-gradient-to-b from-dark to-transparent" />
+        <div
+          className="h-[20%] w-full "
+          //___bg-gradient-to-b from-dark to-transparent
+        />
       </div>
       <div className="h-screen w-full wrapper-1">
         <GitHubSectionTrans />

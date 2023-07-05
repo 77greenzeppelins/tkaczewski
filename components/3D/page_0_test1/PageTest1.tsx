@@ -140,8 +140,9 @@ const PageTest1 = () => {
   /**JSX**/
   return (
     <group visible={isPath} position-x={pages3DPositions.pageTest1.x}>
-      <animated.group position-y={posY}>
-        <animated.mesh>
+      {/*-----AnimatedGroup for preudoScrollableContainer*/}
+      <animated.group position-x={0} position-y={posY} position-z={0}>
+        <mesh position={[0, 0, 0]}>
           <ThreePlane
             // argsWidth={0.04}
             // argsHeight={0.04}
@@ -152,9 +153,37 @@ const PageTest1 = () => {
             widthSegments={2}
             heightSegments={2}
           />
-          <meshBasicMaterial wireframe color={0xff0000} />
-        </animated.mesh>
+          <meshBasicMaterial wireframe color={0x394867} />
+        </mesh>
+        <mesh position={[0, -1.25, 0]}>
+          <ThreePlane
+            // argsWidth={0.04}
+            // argsHeight={0.04}
+            // argsWidth={(width / distance) * 0.98}
+            // argsHeight={(width / distance) * 0.98}
+            argsWidth={sideSize}
+            argsHeight={sideSize}
+            widthSegments={2}
+            heightSegments={2}
+          />
+          <meshBasicMaterial wireframe color={0x00ff00} />
+        </mesh>
+        <mesh position={[0, -2.5, 0]}>
+          <ThreePlane
+            // argsWidth={0.04}
+            // argsHeight={0.04}
+            // argsWidth={(width / distance) * 0.98}
+            // argsHeight={(width / distance) * 0.98}
+            argsWidth={sideSize}
+            argsHeight={sideSize}
+            widthSegments={2}
+            heightSegments={2}
+          />
+          <meshBasicMaterial wireframe color={0xe11299} />
+        </mesh>
       </animated.group>
+
+      {/*-----AnimatedGroup for instantContactPanel*/}
       <animated.group
         // ref={ref}
         /*
