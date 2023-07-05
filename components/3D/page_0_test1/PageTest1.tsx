@@ -155,7 +155,7 @@ const PageTest1 = () => {
           />
           <meshBasicMaterial wireframe color={0x394867} />
         </mesh>
-        <mesh position={[0, -1.25, 0]}>
+        <mesh position={[0, -1.35, 0]}>
           <ThreePlane
             // argsWidth={0.04}
             // argsHeight={0.04}
@@ -168,7 +168,7 @@ const PageTest1 = () => {
           />
           <meshBasicMaterial wireframe color={0x00ff00} />
         </mesh>
-        <mesh position={[0, -2.5, 0]}>
+        <mesh position={[0, -2.7, 0]}>
           <ThreePlane
             // argsWidth={0.04}
             // argsHeight={0.04}
@@ -180,6 +180,19 @@ const PageTest1 = () => {
             heightSegments={2}
           />
           <meshBasicMaterial wireframe color={0xe11299} />
+        </mesh>
+        <mesh position={[0, -4, 0]}>
+          <ThreePlane
+            // argsWidth={0.04}
+            // argsHeight={0.04}
+            // argsWidth={(width / distance) * 0.98}
+            // argsHeight={(width / distance) * 0.98}
+            argsWidth={sideSize}
+            argsHeight={sideSize}
+            widthSegments={2}
+            heightSegments={2}
+          />
+          <meshBasicMaterial wireframe color={0xffa41b} />
         </mesh>
       </animated.group>
 
