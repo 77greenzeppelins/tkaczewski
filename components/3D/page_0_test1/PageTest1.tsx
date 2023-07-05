@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 /**Components**/
 import { InstantContactPanel } from '@/components';
 /**BasicData*/
@@ -12,7 +12,7 @@ import { animated, config, useSpring } from '@react-spring/three';
 import { useScroll } from '@use-gesture/react';
 import ThreePlane from '../basicShapes/plane/ThreePlane';
 import { MeshBasicMaterial } from 'three';
-import { useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 
 /**-----------------------------------------*/
 const PageTest1 = () => {
@@ -61,27 +61,56 @@ const PageTest1 = () => {
       // console.log('y * 0.000000000001:', y * 0.00000000000000001);
 
       const viewportHeightFraction = window.innerHeight * 0.85;
+      const testFraction = window.innerHeight * 0.0085;
+
+      // console.log('posY:', y * testFraction);
+      // console.log(
+      //   "typeof window !== 'undefined' ? window.document.scrollHeight : window.document.scrollHeight:",
+      //   typeof window !== 'undefined'
+      //     ? window.document.getElementById('PageTest1SSContainer')?.scrollHeight
+      //     : " window === 'undefined'"
+      // );
+
       /*
-      normalizedScrollY ==> normalizes the scrollY value to the range of 0 to 1 based on the viewport height, ensuring that values above halfViewportHeight are clamped to halfViewportHeight.
+      normalizedScrollY ==> normalizes the scrollY value to the range of 0 to 1; when user scrolls and  (scrollY < viewportHeightFraction) ==> resulta are values like: 0.001, 0.3, 0.99...; and 3D object move into center of the scene ==> it looks as if the scale was decreasing;  
       */
       const normalizedScrollY =
-        Math.max(0, Math.min(scrollY, viewportHeightFraction)) /
+        Math.max(0, Math.min(y, viewportHeightFraction)) /
         viewportHeightFraction;
 
       /*
       the normalized value is passed through the sin function, which maps the range from 0 to 1 to oscillate between -1 and 1. By multiplying it by 3, we stretch the resulting range to oscillate between -3 and 3.
       */
-      const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
-      const clampedValue = Math.max(0, Math.min(mappedValue, 3));
+      // const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
+      /*
+      the mappedValue is clamped to ensure it stays within the range of 0 to 3 using the clamp function; the resulting value represents the desired mapping from window.scrollY to the range of 0 to 3
+      */
+      // const clampedValue = Math.max(0, Math.min(mappedValue, 3));
 
-      console.log('normalizedScrollY:', normalizedScrollY);
-      console.log('mappedValue:', mappedValue);
+      /*
+      normalize valu to [0,30]
+      */
+      // const sH =
+      //   typeof window !== 'undefined'
+      //     ? window.document.getElementById('PageTest1SSContainer')?.scrollHeight
+      //     : undefined;
+      const sH = Number(
+        typeof window !== 'undefined'
+          ? window.document.getElementById('PageTest1SSContainer')?.scrollHeight
+          : undefined
+      ); // const calcSH = sH || 0;
+      const calcSH = sH - window.innerHeight;
+      // console.log('calcSH:', calcSH);
+      // const normalizedValue = (window.innerHeight / calcSH) * (0 - 20);
+      const normalizedValue = (y / calcSH) * (0 - 4);
+      console.log('normalizedValue:', normalizedValue);
+      // console.log('y :', y);
+      const finalScrollVal = Math.min(Math.max(0, normalizedValue), 4);
+      console.log('finalScrollVal :', finalScrollVal);
 
       //__________springValues Modification section
       comp2Api.start({
-        // posY: y * (window.innerHeight * 0.00000125),
-        posY: y * 0.002,
-        // posInstantContacts: y * (window.innerHeight * 0.00000125),
+        posY: -normalizedValue,
         posInstantContacts: -normalizedScrollY,
 
         config: config.slow,
@@ -100,42 +129,37 @@ const PageTest1 = () => {
     viewport: { width, height, aspect, distance },
   } = state;
   const sideSize =
-    aspect >= 1 ? (height / distance) * 0.96 : (width / distance) * 0.96;
+    aspect >= 0.8 ? (height / distance) * 0.7 : (width / distance) * 0.96;
 
   // console.log('state:', state);
 
-  /*
-  const scrollYToValue = (scrollY: number, viewportHeight: number): number => {
-  const halfViewportHeight = viewportHeight / 2;
-  const normalizedScrollY = Math.max(0, Math.min(scrollY, halfViewportHeight)) / halfViewportHeight;
-  const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
-  const clampedValue = Math.max(0, Math.min(mappedValue, 3));
-  return clampedValue;
-};
-  
-  */
+  // const ref = useRef();
+  // useFrame(state => {
+  //   console.log('ref.current:', ref.current.position);
+  // });
   /**JSX**/
   return (
-    <animated.group
-      visible={isPath}
-      position-x={pages3DPositions.pageTest1.x}
-      // position-y={posY}
-    >
-      {/* <animated.mesh>
-        <ThreePlane
-          // argsWidth={0.04}
-          // argsHeight={0.04}
-          // argsWidth={(width / distance) * 0.98}
-          // argsHeight={(width / distance) * 0.98}
-          argsWidth={sideSize}
-          argsHeight={sideSize}
-          widthSegments={2}
-          heightSegments={2}
-        />
-        <meshBasicMaterial wireframe color={0xff0000} />
-      </animated.mesh> */}
+    <group visible={isPath} position-x={pages3DPositions.pageTest1.x}>
+      <animated.group position-y={posY}>
+        <animated.mesh>
+          <ThreePlane
+            // argsWidth={0.04}
+            // argsHeight={0.04}
+            // argsWidth={(width / distance) * 0.98}
+            // argsHeight={(width / distance) * 0.98}
+            argsWidth={sideSize}
+            argsHeight={sideSize}
+            widthSegments={2}
+            heightSegments={2}
+          />
+          <meshBasicMaterial wireframe color={0xff0000} />
+        </animated.mesh>
+      </animated.group>
       <animated.group
-        //  position-y={posY}
+        // ref={ref}
+        /*
+        concept: mowe from 0 to -1
+        */
         position-z={posInstantContacts}
       >
         <InstantContactPanel
@@ -149,8 +173,18 @@ const PageTest1 = () => {
           scaleImage={page3DConfigs.pageContacts.contactButtonConfig.scaleImage}
         />
       </animated.group>
-    </animated.group>
+    </group>
   );
 };
 
 export default PageTest1;
+
+/*
+  const scrollYToValue = (scrollY: number, viewportHeight: number): number => {
+  const halfViewportHeight = viewportHeight / 2;
+  const normalizedScrollY = Math.max(0, Math.min(scrollY, halfViewportHeight)) / halfViewportHeight;
+  const mappedValue = Math.sin(normalizedScrollY * Math.PI) * 3;
+  const clampedValue = Math.max(0, Math.min(mappedValue, 3));
+  return clampedValue;
+};
+  */
