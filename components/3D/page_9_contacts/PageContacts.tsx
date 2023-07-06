@@ -104,7 +104,7 @@ const PageContacts = () => {
     },
     //__________ ... section
     {
-      // enabled: isPath ? true : false,
+      enabled: isPath ? true : false,
       target: typeof window !== 'undefined' ? window : undefined,
     }
   );
