@@ -2,8 +2,8 @@ import React from 'react';
 // import * as THREE from 'three';
 /**TS**/
 interface Props {
-  argsWidth: number;
-  argsHeight: number;
+  argsWidth?: number;
+  argsHeight?: number;
   widthSegments?: number;
   heightSegments?: number;
 }

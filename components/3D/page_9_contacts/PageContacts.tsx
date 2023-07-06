@@ -127,19 +127,6 @@ const PageContacts = () => {
     <group visible={isPath} position-x={pages3DPositions.pageContacts.x}>
       {/*-----AnimatedGroup for preudoScrollableContainer*/}
       <animated.group position-y={posY}>
-        {/* <mesh position={[0, 0, 0]}>
-          <ThreePlane
-            // argsWidth={0.04}
-            // argsHeight={0.04}
-            // argsWidth={(width / distance) * 0.98}
-            // argsHeight={(width / distance) * 0.98}
-            argsWidth={sideSize}
-            argsHeight={sideSize}
-            widthSegments={2}
-            heightSegments={2}
-          />
-          <meshBasicMaterial wireframe color={0x394867} />
-        </mesh> */}
         <mesh position={[0, -1, 0]}>
           <ThreePlane
             argsWidth={sideSize}
@@ -149,28 +136,10 @@ const PageContacts = () => {
           />
           <meshBasicMaterial wireframe color={0x212a3e} />
         </mesh>
-        {/* <mesh position={[0, -2, 0]}>
-          <ThreePlane
-            argsWidth={sideSize}
-            argsHeight={sideSize}
-            widthSegments={2}
-            heightSegments={2}
-          />
-          <meshBasicMaterial wireframe color={0xe11299} />
-        </mesh> */}
-        {/* <mesh position={[0, -3, 0]}>
-          <ThreePlane
-            argsWidth={sideSize}
-            argsHeight={sideSize}
-            widthSegments={2}
-            heightSegments={2}
-          />
-          <meshBasicMaterial color={0x212a3e} />
-        </mesh> */}
         {/* <MovingPlane /> */}
         {/* <BackgroundPlane /> */}
         <PlaneShader
-          position={[0, -3, -0.5]}
+          position={[0, 0, -0.5]}
           // rotation={[-Math.PI * 0.33, 0, 0]}
         />
       </animated.group>
@@ -182,7 +151,7 @@ const PageContacts = () => {
         */
         position-z={posInstantContacts}
       >
-        <InstantContactPanel
+        {/* <InstantContactPanel
           topButtonPos={
             page3DConfigs.pageContacts.contactButtonConfig.topButtonPos
           }
@@ -191,7 +160,7 @@ const PageContacts = () => {
           }
           scaleFrame={page3DConfigs.pageContacts.contactButtonConfig.scaleFrame}
           scaleImage={page3DConfigs.pageContacts.contactButtonConfig.scaleImage}
-        />
+        /> */}
       </animated.group>
     </group>
   );

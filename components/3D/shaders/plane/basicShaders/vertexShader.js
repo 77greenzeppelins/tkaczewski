@@ -1,9 +1,12 @@
 const vertexShader = `
 
+//__data from JS
   uniform float u_time;
+  // uniform sampler2D u_positionTexture;
+//__data for fragmentShader
+  varying vec2 v_uv;
   varying float v_zPosition;
 
-  // varying vec2 v_Uv;
 
 void main() {
 
@@ -25,6 +28,9 @@ void main() {
 
 
   gl_Position = projectedPosition;
+
+  //__data for fragmentShader
+  v_uv = uv;
 
 }
 
