@@ -4,16 +4,28 @@ import ThreePlane from '@/components/3D/basicShapes/plane/ThreePlane';
 /**R3F Staff**/
 import { useFrame, useThree } from '@react-three/fiber';
 /**Shader staff**/
-import fragmentShader from '../fragmentShader';
-import vertexShader from '../vertexShader';
+import fragmentShader from '../basicShaders/fragmentShader';
+import vertexShader from '../basicShaders/vertexShader';
 /** */
 import { cameraSettings } from '@/data/basicData';
 import * as THREE from 'three';
-// import fragmentShader from '../../planes/movingPlane/fragmentShader';
-// import vertexShader from '../../planes/movingPlane/vertexShader';
 
+/**TS**/
+interface Props {
+  position?: number[];
+  rotation?: number[];
+  scale?: number[];
+  planeWidthSegments?: number;
+  planeHeightSegments?: number;
+}
 /**---------------------------**/
-const PlaneShader = () => {
+const PlaneShader = ({
+  position = [0, 0, 0],
+  rotation,
+  scale,
+  planeWidthSegments = 1,
+  planeHeightSegments = 1,
+}: Props) => {
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
   const shaderMaterialRef = useRef<THREE.ShaderMaterial>(null!);
@@ -21,8 +33,7 @@ const PlaneShader = () => {
   __1. staff necessary to calculate plane so that it covers the viewport
   */
   //__basic data
-  const zPosition = 0.5;
-  const scaleFactor = 0.7;
+  const zPosition = position[2];
   //__staff from R3F state
   const { viewport } = useThree();
   const width = viewport.width;
@@ -33,8 +44,8 @@ const PlaneShader = () => {
   //__calculations
   const distance = cameraSettings.z - zPosition; // distance between camera and plane
   const fov = cameraSettings.fov; // desired field of view
-  const planeHeight = 2 * distance * Math.tan((fov * Math.PI) / 360);
-  const scale = planeHeight / height;
+  const specPlaneHeight = 2 * distance * Math.tan((fov * Math.PI) / 360);
+  const finalScale = specPlaneHeight / height;
 
   /*
   Section Animate / Manipulate / make shaders
@@ -69,19 +80,14 @@ const PlaneShader = () => {
   return (
     <mesh
       ref={meshRef}
-      position={[0, 0, -0.5]}
-      //   rotation={[0, 0, 0]}
-      //   scale={0.02}
-      rotation={[-Math.PI * 0.33, 0, 0]}
-      //   scale={[scale * scaleFactor, scale * scaleFactor, scale * scaleFactor]}
+      position={position ? new THREE.Vector3(...position) : [0, 0, 0]}
+      rotation={rotation ? new THREE.Euler(...rotation) : [0, 0, 0]}
     >
       <ThreePlane
-        // argsWidth={width * scale * 1.2}
-        // argsHeight={height * scale * 1.2}
         argsWidth={1 * aspect}
         argsHeight={1}
-        widthSegments={32}
-        heightSegments={32}
+        widthSegments={planeWidthSegments}
+        heightSegments={planeHeightSegments}
       />
       {/* <boxGeometry args={[1, 1, 1]} /> */}
       {/* <meshBasicMaterial wireframe /> */}

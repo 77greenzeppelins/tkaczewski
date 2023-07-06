@@ -169,7 +169,10 @@ const PageContacts = () => {
         </mesh> */}
         {/* <MovingPlane /> */}
         {/* <BackgroundPlane /> */}
-        <PlaneShader />
+        <PlaneShader
+          position={[0, -3, -0.5]}
+          // rotation={[-Math.PI * 0.33, 0, 0]}
+        />
       </animated.group>
 
       {/*-----AnimatedGroup for instantContactPanel*/}
