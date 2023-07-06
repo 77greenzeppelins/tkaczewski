@@ -116,18 +116,16 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    const handleRouteChange = () => {
-      window.scrollTo(0, 0);
-      console.log('window.scrollY');
-    };
-
-    window.addEventListener('beforeunload', handleRouteChange);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleRouteChange);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleRouteChange = () => {
+  //     window.scrollTo(0, 0);
+  //     console.log('window.scrollY');
+  //   };
+  //   window.addEventListener('beforeunload', handleRouteChange);
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleRouteChange);
+  //   };
+  // }, []);
 
   /**JSX**/
   return (
