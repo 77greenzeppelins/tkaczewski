@@ -4,13 +4,13 @@ import ThreePlane from '@/components/3D/basicShapes/plane/ThreePlane';
 /**R3F Staff**/
 import { useFrame, useThree } from '@react-three/fiber';
 /**Shader staff**/
-// import fragmentShader from '../fragmentShader';
-// import vertexShader from '../vertexShader';
+import fragmentShader from '../fragmentShader';
+import vertexShader from '../vertexShader';
 /** */
 import { cameraSettings } from '@/data/basicData';
 import * as THREE from 'three';
-import fragmentShader from '../../planes/movingPlane/fragmentShader';
-import vertexShader from '../../planes/movingPlane/vertexShader';
+// import fragmentShader from '../../planes/movingPlane/fragmentShader';
+// import vertexShader from '../../planes/movingPlane/vertexShader';
 
 /**---------------------------**/
 const PlaneShader = () => {

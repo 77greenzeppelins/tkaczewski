@@ -16,6 +16,9 @@ import { useFrame, useThree } from '@react-three/fiber';
 
 /**BasicData*/
 import { scrollableContainerNames } from '@/data/basicData';
+import MovingPlane from '../shaders/planes/movingPlane/MovingPlane';
+import BackgroundPlane from '../shaders/planes/backgroundPlane/BackgroundPlane';
+import PlaneShader from '../shaders/plane/3DObj/PlaneShader';
 
 /**-----------------------------------------*/
 const PageContacts = () => {
@@ -144,7 +147,7 @@ const PageContacts = () => {
             widthSegments={2}
             heightSegments={2}
           />
-          <meshBasicMaterial wireframe color={0x00ff00} />
+          <meshBasicMaterial wireframe color={0x212a3e} />
         </mesh>
         {/* <mesh position={[0, -2, 0]}>
           <ThreePlane
@@ -155,15 +158,18 @@ const PageContacts = () => {
           />
           <meshBasicMaterial wireframe color={0xe11299} />
         </mesh> */}
-        <mesh position={[0, -3, 0]}>
+        {/* <mesh position={[0, -3, 0]}>
           <ThreePlane
             argsWidth={sideSize}
             argsHeight={sideSize}
             widthSegments={2}
             heightSegments={2}
           />
-          <meshBasicMaterial wireframe color={0xffa41b} />
-        </mesh>
+          <meshBasicMaterial color={0x212a3e} />
+        </mesh> */}
+        {/* <MovingPlane /> */}
+        {/* <BackgroundPlane /> */}
+        <PlaneShader />
       </animated.group>
 
       {/*-----AnimatedGroup for instantContactPanel*/}

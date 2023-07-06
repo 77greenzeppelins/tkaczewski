@@ -20,9 +20,13 @@ body,
     @apply scroll-bar-style;
     @apply bg-dark w-full h-full;
   }
+  /*
+  (!) always coordinate with basicData / colors
+  --color-darkTint: #1a1c25;
+  */
   :root {
     --color-dark: #01030d;
-    --color-darkTint: #1a1c25;
+    --color-darkTint: #212a3e;
     --color-light: #f1f5f9;
     --color-lightDark: #c0c4c7;
     --color-corpo: #38bdf8;

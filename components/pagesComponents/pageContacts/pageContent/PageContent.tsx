@@ -40,7 +40,7 @@ const PageContent = ({ transform, hintIsMobile, isVisible = false }: Props) => {
       className={`${hintIsMobile ? '' : isVisible ? 'opacity-1' : 'opacity-0'}`}
     >
       {componentsArray.map(({ Component }, i) => (
-        <div key={i} className="w-full h-screen border-b border-neutral-700">
+        <div key={i} className="w-full h-screen border-b border-darkTint">
           <Component />
         </div>
       ))}

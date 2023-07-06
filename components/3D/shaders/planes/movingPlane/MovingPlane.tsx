@@ -36,7 +36,7 @@ const MovingPlane = () => {
   return (
     <mesh
       ref={mesh}
-      position={[0, 0, -0.5]}
+      position={[0, -3, -0.5]}
       rotation={[-Math.PI * 0.3, 0, 0]}
       scale={1}
     >

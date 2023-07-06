@@ -68,7 +68,7 @@ const BackgroundPlane = () => {
   return (
     <mesh
       ref={meshRef}
-      position={[0, 0, zPosition]}
+      position={[0, -3, zPosition]}
       //   rotation={[0, 0, 0]}
       rotation={[0, 0, 0]}
       // scale={[scale * scaleFactor, scale * scaleFactor, scale * scaleFactor]}
