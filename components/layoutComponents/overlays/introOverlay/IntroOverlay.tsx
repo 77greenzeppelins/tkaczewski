@@ -23,6 +23,7 @@ const IntroOverlay = () => {
     //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
     timerRef.current = setTimeout(() => {
       setIsIntroOverlay(false);
+      window.scrollTo(0, 0); //________________________?
     }, animationsDelays.introOverlayDurance);
     return () => {
       clearTimeout(timerRef.current as NodeJS.Timeout);

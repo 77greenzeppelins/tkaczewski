@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 /**Hook Staff**/
 import { usePathname, useRouter } from 'next/navigation';
 import { Router } from 'next/router';
@@ -89,11 +89,12 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   /*
   scrollBar Reset
   */
-  // const router = useRouter();
+  const router = useRouter();
 
   // useEffect(() => {
   //   const handleRouteChange = () => {
   //     window.scrollTo(0, 0);
+  //     console.log('...PageContactsAnimator');
   //   };
 
   //   router.events.on('routeChangeComplete', handleRouteChange);
@@ -125,6 +126,72 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   //   return () => {
   //     window.removeEventListener('beforeunload', handleRouteChange);
   //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleNavigation = (event: PerformanceNavigation) => {
+  //     if (event.type === 'reload') {
+  //       setIsRefreshed(true);
+  //     }
+  //   };
+
+  //   window.performance.addEventListener('navigation', handleNavigation);
+
+  //   return () => {
+  //     window.performance.removeEventListener('navigation', handleNavigation);
+  //   };
+  // }, []);
+
+  //__________________________
+
+  const [isRefreshed, setIsRefreshed] = useState<boolean>(false);
+
+  // useEffect(() => {
+  // const handleNavigation = (event: PerformanceNavigationTiming) => {
+  //   if (event.type === 'reload') {
+  //     setIsRefreshed(true);
+  //   }
+  // };
+
+  // window.performance.getEntriesByType('navigation').forEach(handleNavigation);
+
+  // const handleNavigation = (entry: PerformanceEntry) => {
+  //   if (
+  //     entry.type === 'navigation' &&
+  //     (entry as PerformanceNavigationTiming).type === 'reload'
+  //   ) {
+  //     setIsRefreshed(true);
+  //   }
+  // };
+
+  // window.performance.getEntriesByType('navigation').forEach(handleNavigation);
+
+  // return () => {
+  //   window.performance.clearResourceTimings();
+  // };
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log('isRefreshed:', isRefreshed);
+  // }, [isRefreshed]);
+
+  // useEffect(() => {
+  //   const handleNavigation = () => {
+  //     // if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+  //     //   // setIsRefreshed(true);
+  //     // }
+  //     console.log('load, window.scrollY', window.scrollY);
+  //   };
+
+  //   window.addEventListener('load', handleNavigation);
+
+  //   return () => {
+  //     window.removeEventListener('load', handleNavigation);
+  //   };
+  // });
+
+  // useEffect(() => {
+  //   console.log('...PageContactsAnimator');
   // }, []);
 
   /**JSX**/
