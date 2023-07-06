@@ -33,7 +33,7 @@ const PlaneShader = ({
   __1. staff necessary to calculate plane so that it covers the viewport
   */
   //__basic data
-  const zPosition = position[2];
+  // const zPosition = position[2];
   //__staff from R3F state
   const { viewport } = useThree();
   const width = viewport.width;
@@ -42,10 +42,10 @@ const PlaneShader = ({
   // const distance = 0.5 / Math.tan((Math.PI * 0.5 * 45) / 180);
   // const cameraPosition = [0, 0, distance];
   //__calculations
-  const distance = cameraSettings.z - zPosition; // distance between camera and plane
-  const fov = cameraSettings.fov; // desired field of view
-  const specPlaneHeight = 2 * distance * Math.tan((fov * Math.PI) / 360);
-  const finalScale = specPlaneHeight / height;
+  // const distance = cameraSettings.z - zPosition; // distance between camera and plane
+  // const fov = cameraSettings.fov; // desired field of view
+  // const specPlaneHeight = 2 * distance * Math.tan((fov * Math.PI) / 360);
+  // const finalScale = specPlaneHeight / height;
 
   /*
   Section Animate / Manipulate / make shaders

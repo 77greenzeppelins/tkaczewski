@@ -1,7 +1,8 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 /**Hook Staff**/
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { Router } from 'next/router';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
 import PageContent from './pageContent/PageContent';
@@ -84,6 +85,49 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
       target: typeof window !== 'undefined' ? window : undefined,
     }
   );
+
+  /*
+  scrollBar Reset
+  */
+  // const router = useRouter();
+
+  // useEffect(() => {
+  //   const handleRouteChange = () => {
+  //     window.scrollTo(0, 0);
+  //   };
+
+  //   router.events.on('routeChangeComplete', handleRouteChange);
+
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleRouteChange = () => {
+  //     window.scrollTo(0, 0);
+  //     console.log('window.scrollY');
+  //   };
+
+  //   Router.events.on('routeChangeComplete', handleRouteChange);
+
+  //   return () => {
+  //     Router.events.off('routeChangeComplete', handleRouteChange);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+      console.log('window.scrollY');
+    };
+
+    window.addEventListener('beforeunload', handleRouteChange);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleRouteChange);
+    };
+  }, []);
 
   /**JSX**/
   return (
