@@ -64,8 +64,8 @@ const PageContacts = () => {
         viewportHeightFraction;
 
       /*
-      ___0. let's calculate value for AnimatedGroup that works as ScrollableContainer 
-      ___1. the aim is: to normalize value to range [0,3] ==> from "pixelized" scrollY to "canvasUnits" ===> why such range, especially why "3" ? ==> my buess is: calcSH / window.innerHeight; initially I set 4 and it was hard to coordinate scrolling of 2DScrollableContainer ant 3DSS; 
+      ___0. let's calculate value for <animated.group> this 3d component works as a sort of standard 2D ScrollableContainer ==> reacts on scrolling;
+      ___1. the aim is: to normalize value to range [0,3] ==> we actually want to translate values of scrollY that are "pixelUnit" to "canvasUnits" ===> why such range, especially why "3" ? ==> my guess is: calcSH / window.innerHeight; initially I set 4 and it was hard to coordinate scrolling of 2DScrollableContainer ant 3DSS; 
       ___2. const sH is "numbered" scrollHeight value of scrollable container; it turned out that it's possible to get 2D element within useScroll() hook and read his property! it seems that usage of "typeof window !== 'undefined'" condition is safe and doesn't produces errors; 
       ___3. const calcSH contains: (a) it's actually a scalling proces (y / calcSH) that gives the same result as classic normalization i.e. values from [0,1]; in this cara it's equaivalent to: (currentVal - minVal) / (maxVal - minVal) ==> (currentVal - 0) / (calcSH - 0) ==> reduce "zeros" and have (currentVal / calcSH)
       */
@@ -80,19 +80,8 @@ const PageContacts = () => {
       const minVal = 0;
       const maxVal = 3; //___ ? calcSH / window.innerHeight
       // console.log('calcSH:', calcSH);
-      // console.log('calcSH / window.innerHeight ', calcSH / window.innerHeight);
-      // const normalizedValue = (window.innerHeight / calcSH) * (0 - 20);
+
       const normalizedValue = (y / calcSH) * (minVal - maxVal);
-      // console.log('y:', y / calcSH);
-      // console.log('y-norm:', (y - 0) / (calcSH - 0));
-      // console.log('y  / calcSH:', y / calcSH);
-      // console.log('normalizedValue:', normalizedValue);
-      // console.log('y :', y);
-      // const finalScrollVal = Math.min(
-      //   Math.max(minVal, normalizedValue),
-      //   maxVal
-      // );
-      // console.log('finalScrollVal :', finalScrollVal);
       //__________springValues Modification section
       isPath &&
         comp2Api.start({
@@ -116,12 +105,6 @@ const PageContacts = () => {
   const sideSize =
     aspect >= 0.8 ? (height / distance) * 0.7 : (width / distance) * 0.96;
 
-  // console.log('state:', state);
-
-  // const ref = useRef();
-  // useFrame(state => {
-  //   console.log('ref.current:', ref.current.position);
-  // });
   /**JSX**/
   return (
     <group visible={isPath} position-x={pages3DPositions.pageContacts.x}>
@@ -138,10 +121,7 @@ const PageContacts = () => {
         </mesh>
         {/* <MovingPlane /> */}
         {/* <BackgroundPlane /> */}
-        <PlaneShader
-          position={[0, -3, -0.5]}
-          // rotation={[-Math.PI * 0.33, 0, 0]}
-        />
+        <PlaneShader position={[0, -3, -0.5]} />
       </animated.group>
 
       {/*-----AnimatedGroup for instantContactPanel*/}

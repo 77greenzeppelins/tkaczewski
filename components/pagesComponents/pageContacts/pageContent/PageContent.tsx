@@ -4,7 +4,8 @@ import React from 'react';
 import { SpringValue, animated } from '@react-spring/web';
 import {
   DirectContactsSection,
-  GitHubSection,
+  // GitHubSection,
+  GitHubSectionTrans,
   OtherContactsSection,
 } from '@/components';
 
@@ -20,7 +21,7 @@ const PageContent = ({ transform, hintIsMobile, isVisible = false }: Props) => {
   const componentsArray = [
     { Component: DirectContactsSection },
     { Component: OtherContactsSection },
-    { Component: GitHubSection },
+    { Component: GitHubSectionTrans },
   ];
 
   /**JSX**/

@@ -42,14 +42,9 @@ const GitHubSectionTrans = () => {
   /**JSX**/
   return (
     <div ref={ref} className="relative w-full h-full">
-      <div className="flex flex-col items-start justify-between w-full h-full py-[60px]">
+      <div className="flex flex-col items-start justify-between w-full h-full py-[60px] wrapper-1">
         <div className={`${inView ? inViewStyle.show : inViewStyle.hide}`}>
           <p className="select-none p-medium text-corpo">{gitHub[0]}</p>
-          {/* <GitHubIcon
-            fill={colors.corpo}
-            containerStyle="color-light w-60 h-60"
-          />
-          <p className="select-none p-medium text-corpo">{gitHub[1]}</p> */}
         </div>
         <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
           <p className="select-none p-medium text-corpo">{gitHub[1]}</p>

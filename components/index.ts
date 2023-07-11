@@ -12,6 +12,7 @@ import DirectPhone from './multipagesComponents/_basicComponents/links/directCon
 import DirectContactsSection from './pagesComponents/pageContacts/pageContent/directContactSection/DirectContactSection';
 import OtherContactsSection from './pagesComponents/pageContacts/pageContent/otherContactsSection/OtherContactsSection';
 import GitHubSection from './pagesComponents/pageContacts/pageContent/githubSection/GitHubSection';
+import GitHubSectionTrans from './pagesComponents/pageContacts/pageContent/githubSection/GitHubSectionTrans';
 import StickyContainer from './pagesComponents/pageContacts/stickyContainer/StickyContainer';
 //___pageCV
 import PageCvContent from './pagesComponents/pageCV/pageContent/PageCvContent';
@@ -67,6 +68,7 @@ export {
   StickyContainer,
   OtherContactsSection,
   GitHubSection,
+  GitHubSectionTrans,
   //___pageCV
   PageCvContent,
   HeroSectionPageCv,
