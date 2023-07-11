@@ -3,6 +3,8 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import ThreePlane from '@/components/3D/basicShapes/plane/ThreePlane';
 /**THREE Staff**/
 import * as THREE from 'three';
+/**Drei Staff**/
+// import { shaderMaterial } from '@react-three/drei';
 /**R3F Staff**/
 import { useFrame, useThree } from '@react-three/fiber';
 /**Shader staff**/
@@ -12,7 +14,6 @@ import fragmentShader from '../texturedShaders/fragmentShader';
 import vertexShader from '../texturedShaders/vertexShader';
 /**Basic data**/
 import { assetsPaths } from '@/data/basicData';
-import { shaderMaterial } from '@react-three/drei';
 
 /**TS**/
 interface Props {
@@ -32,7 +33,7 @@ const PlaneShader = ({
 }: Props) => {
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
-  const shaderMaterialRef = useRef<THREE.ShaderMaterial>(null!);
+  // const shaderMaterialRef = useRef<THREE.ShaderMaterial>(null!);
   /*
   ___1.
   */
@@ -133,7 +134,7 @@ const PlaneShader = ({
         uniforms={uniforms}
         // wireframe={true}
         // depthWrite={false}
-        ref={shaderMaterialRef}
+        // ref={shaderMaterialRef}
       />
     </mesh>
   );

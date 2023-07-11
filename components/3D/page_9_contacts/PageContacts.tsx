@@ -139,7 +139,7 @@ const PageContacts = () => {
         {/* <MovingPlane /> */}
         {/* <BackgroundPlane /> */}
         <PlaneShader
-          position={[0, 0, -0.5]}
+          position={[0, -3, -0.5]}
           // rotation={[-Math.PI * 0.33, 0, 0]}
         />
       </animated.group>
@@ -151,7 +151,7 @@ const PageContacts = () => {
         */
         position-z={posInstantContacts}
       >
-        {/* <InstantContactPanel
+        <InstantContactPanel
           topButtonPos={
             page3DConfigs.pageContacts.contactButtonConfig.topButtonPos
           }
@@ -160,7 +160,7 @@ const PageContacts = () => {
           }
           scaleFrame={page3DConfigs.pageContacts.contactButtonConfig.scaleFrame}
           scaleImage={page3DConfigs.pageContacts.contactButtonConfig.scaleImage}
-        /> */}
+        />
       </animated.group>
     </group>
   );

@@ -48,10 +48,10 @@ const GitHubSection = () => {
           } flex flex-col items-start justify-between w-full h-full`}
         >
           <p className="select-none p-medium text-corpo">{gitHub[0]}</p>
-          <GitHubIcon
+          {/* <GitHubIcon
             fill={colors.corpo}
             containerStyle="color-light w-60 h-60"
-          />
+          /> */}
           <p className="select-none p-medium text-corpo">{gitHub[1]}</p>
         </animated.div>
         {/* {dz.map((item, i) => (
