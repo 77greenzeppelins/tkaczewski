@@ -80,8 +80,8 @@ ___1.
     
 //---------------  
   // fragColor = noiseTexture;
-  // fragColor = gitHubTexture;
-  fragColor = vec4(testCol, 1.0);
+  fragColor = gitHubTexture;
+  // fragColor = vec4(testCol, 1.0);
 	//fragColor = color;
   // fragColor = vec4(mix(bg, col, alpha), 1.0);
   // fragColor = vec4(v_uv.x * u_time, 0. ,0. ,1.);
