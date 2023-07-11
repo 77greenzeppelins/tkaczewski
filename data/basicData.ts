@@ -154,7 +154,7 @@ const contactButtonConfig = {
 */
 const page3DConfigs = {
   //___general confige to set "pseudo-opacity-animations" during routing;
-  visibilityDelay: 200,
+  visibilityDelay: 300,
   canvasOverlayDelay: 400,
 
   //___for pageHome
