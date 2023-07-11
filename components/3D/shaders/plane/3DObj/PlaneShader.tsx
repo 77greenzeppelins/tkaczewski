@@ -6,10 +6,13 @@ import * as THREE from 'three';
 /**R3F Staff**/
 import { useFrame, useThree } from '@react-three/fiber';
 /**Shader staff**/
-import fragmentShader from '../basicShaders/fragmentShader';
-import vertexShader from '../basicShaders/vertexShader';
-/** */
-// import { cameraSettings } from '@/data/basicData';
+// import fragmentShader from '../basicShaders/fragmentShader';
+// import vertexShader from '../basicShaders/vertexShader';
+import fragmentShader from '../texturedShaders/fragmentShader';
+import vertexShader from '../texturedShaders/vertexShader';
+/**Basic data**/
+import { assetsPaths } from '@/data/basicData';
+import { shaderMaterial } from '@react-three/drei';
 
 /**TS**/
 interface Props {
@@ -30,6 +33,16 @@ const PlaneShader = ({
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
   const shaderMaterialRef = useRef<THREE.ShaderMaterial>(null!);
+  /*
+  ___1.
+  */
+  const noiseTexture = new THREE.TextureLoader().load(assetsPaths.noise);
+  noiseTexture.wrapS = THREE.RepeatWrapping;
+  noiseTexture.wrapT = THREE.RepeatWrapping;
+  // noiseTexture.repeat.set(4, 4);
+  const gitHubTexture = new THREE.TextureLoader().load(assetsPaths.gitHub);
+  gitHubTexture.wrapS = THREE.RepeatWrapping;
+  gitHubTexture.wrapT = THREE.RepeatWrapping;
   /*
   __1. staff necessary to calculate plane so that it covers the viewport
   */
@@ -65,10 +78,12 @@ const PlaneShader = ({
         value: 0.0,
         //   // value: Math.min(size.width, size.height),
       },
+      u_noise: { value: noiseTexture },
+      u_gitHub: { value: gitHubTexture },
       u_colorA: { value: new THREE.Color('#FFE486') },
       u_colorB: { value: new THREE.Color('#FEB3D9') },
     }),
-    []
+    [gitHubTexture, noiseTexture]
   );
 
   useFrame(state => {
@@ -81,6 +96,12 @@ const PlaneShader = ({
     (
       meshRef.current.material as THREE.ShaderMaterial
     ).uniforms.u_resolution_height.value = state.size.height;
+
+    // console.log(
+    //   '',
+    //   (shaderMaterialRef.current.uniforms.u_time.value =
+    //     state.clock.elapsedTime)
+    // );
   });
 
   //   useEffect(() => {
@@ -111,8 +132,8 @@ const PlaneShader = ({
         vertexShader={vertexShader}
         uniforms={uniforms}
         // wireframe={true}
-        // ref={shaderMaterialRef}
         // depthWrite={false}
+        ref={shaderMaterialRef}
       />
     </mesh>
   );

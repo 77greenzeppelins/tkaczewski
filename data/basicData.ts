@@ -1,5 +1,7 @@
 const colors = {
   dark: '#01030d',
+  darRGB: [1, 3, 13],
+  darkNorRGB: [1 / 255, 3 / 155, 13 / 255], //[0.0039,0.0117, 0.0509 ]
   darkTint: '#212a3e',
   light: '#f1f5f9',
   corpo: '#38bdf8',
@@ -45,7 +47,9 @@ const assetsPaths = {
   phone: '../assets/images/contacts/instantContact_phone.webp',
   email: '../assets/images/contacts/instantContact_email.webp',
   family: '../assets/images/various/family_3.webp',
-
+  noise: '../assets/images/various/noise_708x708.jpg',
+  // noise: '../assets/images/various/gitHubIcon.jpg',
+  gitHub: '../assets/images/various/gitHubIcon.jpg',
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
 };
