@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 /**Components**/
 import { InstantContactPanel } from '@/components';
 /**BasicData*/
@@ -11,13 +11,13 @@ import { animated, config, useSpring } from '@react-spring/three';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 import ThreePlane from '../basicShapes/plane/ThreePlane';
-import { MeshBasicMaterial } from 'three';
-import { useFrame, useThree } from '@react-three/fiber';
+// import { MeshBasicMaterial } from 'three';
+import { useThree } from '@react-three/fiber';
 
 /**BasicData*/
 import { scrollableContainerNames } from '@/data/basicData';
-import MovingPlane from '../shaders/planes/movingPlane/MovingPlane';
-import BackgroundPlane from '../shaders/planes/backgroundPlane/BackgroundPlane';
+// import MovingPlane from '../shaders/planes/movingPlane/MovingPlane';
+// import BackgroundPlane from '../shaders/planes/backgroundPlane/BackgroundPlane';
 import PlaneShader from '../shaders/plane/3DObj/PlaneShader';
 
 /**-----------------------------------------*/
