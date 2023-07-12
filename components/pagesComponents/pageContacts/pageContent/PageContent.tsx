@@ -43,7 +43,7 @@ const PageContent = ({ transform, hintIsMobile, isVisible = false }: Props) => {
       {componentsArray.map(({ Component }, i) => (
         <div
           key={i}
-          className="w-full h-screen "
+          // className="w-full h-screen "
           //____border-b border-darkTint
         >
           <Component />

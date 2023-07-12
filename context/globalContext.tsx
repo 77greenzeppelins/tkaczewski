@@ -18,6 +18,8 @@ interface ContextProps {
   setScrollableHeight: Dispatch<SetStateAction<number>>;
   hintIsMobile: boolean;
   setHintIsMobile: Dispatch<SetStateAction<boolean>>;
+  // hintIsMobile: true | false;
+  // setHintIsMobile: Dispatch<SetStateAction<true | false>>;
   // property1: DataType[];
   // setProperty1: Dispatch<SetStateAction<DataType[]>>;
 }
@@ -34,6 +36,8 @@ export const GlobalContext = createContext<ContextProps>({
   setScrollableHeight: val => val,
   hintIsMobile: false,
   setHintIsMobile: val => val,
+  // hintIsMobile: false,
+  // setHintIsMobile: (val): true| false => true|| false,
   // property1: [],
   // setProperty1: (): DataType[] => [],
 });

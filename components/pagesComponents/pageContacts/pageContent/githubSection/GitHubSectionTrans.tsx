@@ -41,11 +41,24 @@ const GitHubSectionTrans = () => {
   /**JSX**/
   return (
     <div ref={ref} className="relative w-full h-full">
-      <div className="flex flex-col items-start justify-between w-full h-full py-[60px] wrapper-1">
-        <div className={`${inView ? inViewStyle.show : inViewStyle.hide}`}>
-          <p className="select-none p-medium text-corpo">{gitHub[0]}</p>
+      <div
+        className="w-full h-screen wrapper-1 bg-dark"
+        //__bg-gradient-to-b from-dark via-dark to-transparent
+      >
+        <div
+          className="flex items-center w-full lg:w-[70%] h-full"
+          //  className={`${inView ? inViewStyle.show : inViewStyle.hide}`}
+        >
+          <p className="font-serif select-none p-u-large text-light">
+            {gitHub[0]}
+          </p>
         </div>
-        <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
+      </div>
+      <div className="w-full h-screen wrapper-1 pb-[40px]">
+        <div
+          className="flex items-end justify-end h-full"
+          //  className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
+        >
           <p className="select-none p-medium text-corpo">{gitHub[1]}</p>
         </div>
       </div>
@@ -54,6 +67,18 @@ const GitHubSectionTrans = () => {
 };
 
 export default GitHubSectionTrans;
+
+//___ver1
+{
+  /* <div className="flex flex-col items-start justify-between w-full h-full py-[60px] wrapper-1">
+  <div className={`${inView ? inViewStyle.show : inViewStyle.hide}`}>
+    <p className="select-none p-medium text-corpo">{gitHub[0]}</p>
+  </div>
+  <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
+    <p className="select-none p-medium text-corpo">{gitHub[1]}</p>
+  </div>
+</div>; */
+}
 
 {
   /* {dz.map((item, i) => (

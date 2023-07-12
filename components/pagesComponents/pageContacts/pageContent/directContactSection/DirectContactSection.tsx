@@ -53,7 +53,7 @@ const DirectContactsSection = () => {
     <div
       data-component="DirectContactsSection"
       ref={ref}
-      className="relative flex w-full h-full item-center wrapper-1 k bg-gradient-to-b from-transparent via-dark to-dark"
+      className="relative flex w-full h-screen item-center wrapper-1 k bg-gradient-to-b from-transparent via-dark to-dark"
     >
       <div className="flex flex-col items-start justify-center w-full gap-6">
         {buttonContent.map(({ Component, label }, i) => (

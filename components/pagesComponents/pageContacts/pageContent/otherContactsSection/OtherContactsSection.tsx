@@ -41,26 +41,26 @@ const OtherContactsSection = () => {
   return (
     <div
       ref={ref}
-      className="relative w-full h-full flex flex-col justify-center wrapper-1"
+      className="relative flex flex-col justify-center w-full h-screen wrapper-1"
     >
-      <div className="flex flex-col gap-0 items-start justify-center w-full">
+      {/* <div className="flex flex-col items-start justify-center w-full gap-0">
         {dz.map((item, i) => (
-          <div key={item} className=" overflow-hidden">
+          <div key={item} className="overflow-hidden ">
             <animated.div
               //  style={{ opacity: opacity }}
               // style={springs}
               className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
-              <p className="p-u-large text-corpo select-none font-serif">
+              <p className="font-serif select-none p-u-large text-corpo">
                 {item}
               </p>
             </animated.div>
           </div>
         ))}
-      </div>
-      <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
-        <p className="p-medium text-corpo select-none">Poland</p>
-      </div>
+      </div> */}
+      {/* <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
+        <p className="select-none p-medium text-corpo">Poland</p>
+      </div> */}
     </div>
   );
 };

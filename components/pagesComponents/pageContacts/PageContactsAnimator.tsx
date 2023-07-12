@@ -80,8 +80,6 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
         });
       scrollAnimationCondition &&
         api_scale.start({
-          /*
-           */
           scale: val1 < 1 ? scale1 : 0,
         });
     },

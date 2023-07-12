@@ -348,6 +348,24 @@ const page3DConfigs = {
       topButtonPos: [0, 0.165, -0.09],
       bottomButtonPos: [0.1, -0.265, -0.4],
     },
+    dzConfig: [
+      {
+        text: 'Dzi',
+        position: [0, 0.2, -0.55],
+        rotation: [0, Math.PI * -0.2, 0],
+        scale: [1, 1, 1],
+      },
+      {
+        text: 'erzo',
+        position: [0, 0, -0.55],
+        rotation: [0, Math.PI * 0.2, 0],
+      },
+      {
+        text: 'niow',
+        position: [0, -0.29, -0.55],
+        rotation: [0, Math.PI * -0.2, 0],
+      },
+    ],
   },
 
   pageTest1: {
