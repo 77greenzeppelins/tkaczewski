@@ -5,19 +5,27 @@ import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '@/context/globalContext';
 /**Components**/
 import { InstantContactPanel } from '@/components';
-/**BasicData*/
-import { pagesPath, page3DConfigs, pages3DPositions } from '@/data/basicData';
+import PlaneShader from '../shaders/plane/3DObj/PlaneShader';
+import ThreePlane from '../basicShapes/plane/ThreePlane';
+/**THREE Staff**/
+import * as THREE from 'three';
+/**Fiber Staff**/
+import { useThree } from '@react-three/fiber';
 /**Spring Staff**/
 import { animated, config, useSpring } from '@react-spring/three';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**BasicData*/
-import { scrollableContainerNames } from '@/data/basicData';
+import {
+  pagesPath,
+  page3DConfigs,
+  pages3DPositions,
+  scrollableContainerNames,
+} from '@/data/basicData';
+import Dzierzoniow from './dzierzoniow/Dzierzoniow';
+
 // import MovingPlane from '../shaders/planes/movingPlane/MovingPlane';
 // import BackgroundPlane from '../shaders/planes/backgroundPlane/BackgroundPlane';
-import PlaneShader from '../shaders/plane/3DObj/PlaneShader';
-import ThreePlane from '../basicShapes/plane/ThreePlane';
-import { useThree } from '@react-three/fiber';
 
 /**-----------------------------------------*/
 const PageContacts = () => {
@@ -94,7 +102,7 @@ const PageContacts = () => {
       ); // const calcSH = sH || 0;
       const calcSH = sH - window.innerHeight;
       const minVal = 0;
-      const maxVal = 3; //___ ? calcSH / window.innerHeight
+      const maxVal = 4; //___ ? calcSH / window.innerHeight
       // console.log('calcSH / window.innerHeight:', calcSH / window.innerHeight);
 
       const normalizedValue = (y / calcSH) * (minVal - maxVal);
@@ -143,7 +151,7 @@ const PageContacts = () => {
         </mesh> */}
         {/* <MovingPlane /> */}
         {/* <BackgroundPlane /> */}
-        <PlaneShader position={[0, -3, -0.5]} />
+        <PlaneShader position={[0, -4, -0.5]} />
       </animated.group>
 
       {/*-----AnimatedGroup for instantContactPanel
@@ -162,7 +170,7 @@ const PageContacts = () => {
         />
       </animated.group>
 
-      <mesh position={[0, 0, 0]}>
+      {/* <mesh position={[0, 0, 0]}>
         <ThreePlane
           argsWidth={sideSize}
           argsHeight={sideSize}
@@ -170,7 +178,12 @@ const PageContacts = () => {
           heightSegments={2}
         />
         <meshBasicMaterial wireframe color={0x212a3e} />
-      </mesh>
+      </mesh> */}
+      <Dzierzoniow
+        groupProps={{
+          position: new THREE.Vector3(0, 0, 0),
+        }}
+      />
     </group>
   );
 };
