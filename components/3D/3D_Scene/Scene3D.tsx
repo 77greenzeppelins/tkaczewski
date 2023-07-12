@@ -19,8 +19,7 @@ const Scene3D = () => {
   ___1. this staff is used to modify fog's distance from camera; if you want 3D object to immers in fog and therefor become invisible "quicker" i.e with position-z={-1} add relevant path;
   */
   const path = usePathname();
-  const closeFog =
-    path === pagesPath.test1Path || path === pagesPath.contactcPath;
+  const closeFog = path === pagesPath.contactcPath;
   /**JSX**/
   return (
     <BasicMaterialProvider>
