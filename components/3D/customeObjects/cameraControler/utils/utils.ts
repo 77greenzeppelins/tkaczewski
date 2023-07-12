@@ -16,8 +16,6 @@ const setXPosition = (path: string) => {
       return pages3DPositions.pageCV.x;
     case pagesPath.contactcPath:
       return pages3DPositions.pageContacts.x;
-    case pagesPath.test1Path:
-      return pages3DPositions.pageTest1.x;
   }
 };
 
