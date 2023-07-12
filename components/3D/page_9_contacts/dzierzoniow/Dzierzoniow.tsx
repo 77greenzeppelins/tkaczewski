@@ -7,6 +7,7 @@ import * as THREE from 'three';
 /**BasicData*/
 import { page3DConfigs } from '@/data/basicData';
 import { animated, config, useSpring } from '@react-spring/three';
+import { useFrame } from '@react-three/fiber';
 
 /**TS**/
 interface Props {
@@ -17,6 +18,11 @@ interface Props {
 const Dzierzoniow = ({ groupProps, isVisible }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
+
+  useFrame(
+    (state, delta) =>
+      (groupRef.current.rotation.z += Math.abs(Math.sin(delta * 0.3)))
+  );
 
   /**Animate / */
   const { posZ } = useSpring({
