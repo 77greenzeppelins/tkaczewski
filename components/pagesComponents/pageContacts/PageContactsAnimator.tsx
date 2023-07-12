@@ -1,8 +1,7 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 /**Hook Staff**/
 import { usePathname, useRouter } from 'next/navigation';
-import { Router } from 'next/router';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
 import PageContent from './pageContent/PageContent';
@@ -13,11 +12,12 @@ import { useSpring, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
-import { basicConfigs, pagesPath } from '@/data/basicData';
+import { pagesPath } from '@/data/basicData';
+import { useGlobalContext } from '@/context/globalContext';
 
-const {
-  pageContact: { scaleFactor },
-} = basicConfigs;
+// const {
+//   pageContact: { scaleFactor },
+// } = basicConfigs;
 
 /*
 this const allows to tweek "acceleration" of darkness; if 1 darknes is 100% when whole viewport was scrolled; if less then 1 darkness comes earlier;
@@ -29,6 +29,12 @@ interface Props {
 }
 /**----------------------------------------**/
 const PageContactsAnimator = ({ hintIsMobile }: Props) => {
+  /*
+  ___1. we use  GlobalContext to set hintIsMobile value; it's important in 3D world as we want to apply various spring animation' s config for desktop and others*/
+  const { setHintIsMobile } = useGlobalContext();
+  useEffect(() => {
+    setHintIsMobile(hintIsMobile);
+  }, [setHintIsMobile, hintIsMobile]);
   /*
   ___1. concept: each <PageNameAnimator> with useScroll needs some booleanFlag that switch on / off listening of scroll within relevant page
   */
@@ -86,114 +92,6 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
     }
   );
 
-  /*
-  scrollBar Reset
-  */
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     window.scrollTo(0, 0);
-  //     console.log('...PageContactsAnimator');
-  //   };
-
-  //   router.events.on('routeChangeComplete', handleRouteChange);
-
-  //   return () => {
-  //     router.events.off('routeChangeComplete', handleRouteChange);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     window.scrollTo(0, 0);
-  //     console.log('window.scrollY');
-  //   };
-
-  //   Router.events.on('routeChangeComplete', handleRouteChange);
-
-  //   return () => {
-  //     Router.events.off('routeChangeComplete', handleRouteChange);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     window.scrollTo(0, 0);
-  //     console.log('window.scrollY');
-  //   };
-  //   window.addEventListener('beforeunload', handleRouteChange);
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleRouteChange);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleNavigation = (event: PerformanceNavigation) => {
-  //     if (event.type === 'reload') {
-  //       setIsRefreshed(true);
-  //     }
-  //   };
-
-  //   window.performance.addEventListener('navigation', handleNavigation);
-
-  //   return () => {
-  //     window.performance.removeEventListener('navigation', handleNavigation);
-  //   };
-  // }, []);
-
-  //__________________________
-
-  const [isRefreshed, setIsRefreshed] = useState<boolean>(false);
-
-  // useEffect(() => {
-  // const handleNavigation = (event: PerformanceNavigationTiming) => {
-  //   if (event.type === 'reload') {
-  //     setIsRefreshed(true);
-  //   }
-  // };
-
-  // window.performance.getEntriesByType('navigation').forEach(handleNavigation);
-
-  // const handleNavigation = (entry: PerformanceEntry) => {
-  //   if (
-  //     entry.type === 'navigation' &&
-  //     (entry as PerformanceNavigationTiming).type === 'reload'
-  //   ) {
-  //     setIsRefreshed(true);
-  //   }
-  // };
-
-  // window.performance.getEntriesByType('navigation').forEach(handleNavigation);
-
-  // return () => {
-  //   window.performance.clearResourceTimings();
-  // };
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log('isRefreshed:', isRefreshed);
-  // }, [isRefreshed]);
-
-  // useEffect(() => {
-  //   const handleNavigation = () => {
-  //     // if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
-  //     //   // setIsRefreshed(true);
-  //     // }
-  //     console.log('load, window.scrollY', window.scrollY);
-  //   };
-
-  //   window.addEventListener('load', handleNavigation);
-
-  //   return () => {
-  //     window.removeEventListener('load', handleNavigation);
-  //   };
-  // });
-
-  // useEffect(() => {
-  //   console.log('...PageContactsAnimator');
-  // }, []);
-
   /**JSX**/
   return (
     <div
@@ -212,3 +110,111 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
 };
 
 export default PageContactsAnimator;
+
+/*
+  scrollBar Reset
+  */
+// const router = useRouter();
+
+// useEffect(() => {
+//   const handleRouteChange = () => {
+//     window.scrollTo(0, 0);
+//     console.log('...PageContactsAnimator');
+//   };
+
+//   router.events.on('routeChangeComplete', handleRouteChange);
+
+//   return () => {
+//     router.events.off('routeChangeComplete', handleRouteChange);
+//   };
+// }, []);
+
+// useEffect(() => {
+//   const handleRouteChange = () => {
+//     window.scrollTo(0, 0);
+//     console.log('window.scrollY');
+//   };
+
+//   Router.events.on('routeChangeComplete', handleRouteChange);
+
+//   return () => {
+//     Router.events.off('routeChangeComplete', handleRouteChange);
+//   };
+// }, []);
+
+// useEffect(() => {
+//   const handleRouteChange = () => {
+//     window.scrollTo(0, 0);
+//     console.log('window.scrollY');
+//   };
+//   window.addEventListener('beforeunload', handleRouteChange);
+//   return () => {
+//     window.removeEventListener('beforeunload', handleRouteChange);
+//   };
+// }, []);
+
+// useEffect(() => {
+//   const handleNavigation = (event: PerformanceNavigation) => {
+//     if (event.type === 'reload') {
+//       setIsRefreshed(true);
+//     }
+//   };
+
+//   window.performance.addEventListener('navigation', handleNavigation);
+
+//   return () => {
+//     window.performance.removeEventListener('navigation', handleNavigation);
+//   };
+// }, []);
+
+//__________________________
+
+// const [isRefreshed, setIsRefreshed] = useState<boolean>(false);
+
+// useEffect(() => {
+// const handleNavigation = (event: PerformanceNavigationTiming) => {
+//   if (event.type === 'reload') {
+//     setIsRefreshed(true);
+//   }
+// };
+
+// window.performance.getEntriesByType('navigation').forEach(handleNavigation);
+
+// const handleNavigation = (entry: PerformanceEntry) => {
+//   if (
+//     entry.type === 'navigation' &&
+//     (entry as PerformanceNavigationTiming).type === 'reload'
+//   ) {
+//     setIsRefreshed(true);
+//   }
+// };
+
+// window.performance.getEntriesByType('navigation').forEach(handleNavigation);
+
+// return () => {
+//   window.performance.clearResourceTimings();
+// };
+// }, []);
+
+// useEffect(() => {
+//   console.log('isRefreshed:', isRefreshed);
+// }, [isRefreshed]);
+
+// useEffect(() => {
+//   const handleNavigation = () => {
+//     // if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+//     //   // setIsRefreshed(true);
+//     // }
+//     console.log('load, window.scrollY', window.scrollY);
+//   };
+
+//   window.addEventListener('load', handleNavigation);
+
+//   return () => {
+//     window.removeEventListener('load', handleNavigation);
+//   };
+// });
+
+// useEffect(() => {
+//   console.log('...PageContactsAnimator');
+// }, []);

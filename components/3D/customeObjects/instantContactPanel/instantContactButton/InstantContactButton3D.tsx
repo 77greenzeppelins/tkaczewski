@@ -41,7 +41,7 @@ const InstantContactButton3D = ({
         floatIntensity={floatIntens || 0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
         floatingRange={[-0.1, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
       >
-        {/* <BasicFrame meshProps={frameMeshProps} /> */}
+        <BasicFrame meshProps={frameMeshProps} />
         <ImageCanvas
           meshProps={imageMeshProps}
           argsWidth={width}

@@ -1,19 +1,16 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+/**Global State Staff**/
+import { useGlobalContext } from '@/context/globalContext';
 /**Components**/
 import { InstantContactPanel } from '@/components';
 /**BasicData*/
 import { pagesPath, page3DConfigs, pages3DPositions } from '@/data/basicData';
-
 /**Spring Staff**/
 import { animated, config, useSpring } from '@react-spring/three';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
-import ThreePlane from '../basicShapes/plane/ThreePlane';
-// import { MeshBasicMaterial } from 'three';
-import { useThree } from '@react-three/fiber';
-
 /**BasicData*/
 import { scrollableContainerNames } from '@/data/basicData';
 // import MovingPlane from '../shaders/planes/movingPlane/MovingPlane';
@@ -22,6 +19,11 @@ import PlaneShader from '../shaders/plane/3DObj/PlaneShader';
 
 /**-----------------------------------------*/
 const PageContacts = () => {
+  const { hintIsMobile } = useGlobalContext();
+
+  /*
+  __1. we need to know if user is mobile ! 
+  */
   /*
   (!) the code below concerns the matter of "3dObjects visibility" and is used in every 3D-pseudoPage => property "visible" must receive boolean value with delay of 1 second => that is why setTimeout() is used to change initial false value to true;
   */
@@ -41,9 +43,13 @@ const PageContacts = () => {
   }, [path]);
 
   /**Spring Section*/
-  const [{ posY, posInstantContacts }, comp2Api] = useSpring(() => ({
-    posY: 0,
+  const [{ posInstantContacts }, api_1] = useSpring(() => ({
+    // posY: 0,
     posInstantContacts: 0,
+  }));
+
+  const [{ posY }, api_2] = useSpring(() => ({
+    posY: 0,
   }));
 
   /** */
@@ -56,12 +62,20 @@ const PageContacts = () => {
       /* 
       ___0. let's calculate valu for <InstantContactPanel>
       ___1. what is const viewportHeightFraction ==> it's arbitary value that respect current screen height and sets a sort of "velocity factor" i.e. how fast <ICC> goes deep into a scene;
-      ___2.  const normalizedScrollY ==> normalizes the scrollY value to the range [0, 1]; when user scrolls and  (scrollY < viewportHeightFraction) ==> resulta are values like: 0.001, 0.3, 0.99...; and 3D object move into center of the scene ==> it looks as if the scale was decreasing;  
+      ___2.  const normalizedScrollY ==> normalizes the scrollY value to the range [0, 1]; when user scrolls and  (scrollY < viewportHeightFraction) ==> results are values like: 0.001, 0.3, 0.99...; and 3D object move into center of the scene ==> it looks as if the scale was decreasing;  
       */
-      const viewportHeightFraction = window.innerHeight * 0.85;
+      const viewportHeightFraction = window.innerHeight * 0.85; //scaled "viewportHeight" a little bit;
       const normalizedScrollY =
-        Math.max(0, Math.min(y, viewportHeightFraction)) /
-        viewportHeightFraction;
+        Math.min(y, viewportHeightFraction) / viewportHeightFraction;
+      //__Math.max is not necessary
+      // Math.max(0, Math.min(y, viewportHeightFraction)) /
+      // viewportHeightFraction;
+      // console.log('viewportHeightFraction:', viewportHeightFraction);
+      // console.log('normalizedScrollY:', normalizedScrollY);
+      // console.log(
+      //   'Math.min(y, viewportHeightFraction)):',
+      //   Math.min(y, viewportHeightFraction)
+      // );
 
       /*
       ___0. let's calculate value for <animated.group> this 3d component works as a sort of standard 2D ScrollableContainer ==> reacts on scrolling;
@@ -79,16 +93,19 @@ const PageContacts = () => {
       const calcSH = sH - window.innerHeight;
       const minVal = 0;
       const maxVal = 3; //___ ? calcSH / window.innerHeight
-      // console.log('calcSH:', calcSH);
+      // console.log('calcSH / window.innerHeight:', calcSH / window.innerHeight);
 
       const normalizedValue = (y / calcSH) * (minVal - maxVal);
       //__________springValues Modification section
       isPath &&
-        comp2Api.start({
-          posY: -normalizedValue,
+        api_1.start({
           posInstantContacts: -normalizedScrollY,
           config: config.slow,
-          // transform: `translateY(${(y / (height - window.innerHeight)) * -300}%)`,
+        });
+      isPath &&
+        api_2.start({
+          posY: -normalizedValue,
+          config: hintIsMobile ? config.gentle : config.slow,
         });
     },
     //__________ ... section
@@ -98,12 +115,12 @@ const PageContacts = () => {
     }
   );
 
-  const state = useThree();
-  const {
-    viewport: { width, height, aspect, distance },
-  } = state;
-  const sideSize =
-    aspect >= 0.8 ? (height / distance) * 0.7 : (width / distance) * 0.96;
+  // const state = useThree();
+  // const {
+  //   viewport: { width, height, aspect, distance },
+  // } = state;
+  // const sideSize =
+  //   aspect >= 0.8 ? (height / distance) * 0.7 : (width / distance) * 0.96;
 
   /**JSX**/
   return (
