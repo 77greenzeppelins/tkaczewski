@@ -21,57 +21,32 @@ import { config, useSpring, animated, easings } from '@react-spring/three';
 const CameraControler = () => {
   /**Condition of visibility**/
   const path = usePathname();
-  // const scrollableOnZ = path === pagesPath.homePath;
-  // const scrollableOnY = path === pagesPath.contactcPath;
-  //___
   const progressOnZ = path === pagesPath.homePath;
-  const regressOnZ = path === pagesPath.contactcPath;
-
-  // const comparePath = () => {
-  //   switch (path) {
-  //     case pagesPath.homePath:
-  //       return path === pagesPath.homePath;
-  //     case pagesPath.contactcPath:
-  //       return path === pagesPath.contactcPath;
-  //   }
-  // };
 
   /*
-  ___1. this section is ment to controll path changes 
+  ___1. this section is meant to control path changes 
   ___2. local state stores info about path, but changes should by register with a sort of delay
   ___3. this delay should allows to omit "scroll-to-top" behaviour
   */
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const [flag, setFlag] = useState(true);
-  // const [currentPath, setCurrentPath] = useState(path);
+  // const timerRef = useRef<NodeJS.Timeout | null>(null);
+  // const [flag, setFlag] = useState(true);
 
-  useEffect(() => {
-    setFlag(false);
-    // console.log('...useEffect / path:', path);
-    //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
-    timerRef.current = setTimeout(() => {
-      // console.log('...setTimeout / currentPath:', currentPath);
-      setFlag(true);
-    }, 10);
-    //___cleaner
-    return () => {
-      clearTimeout(timerRef.current as NodeJS.Timeout);
-    };
-  }, [path]);
+  // useEffect(() => {
+  //   setFlag(false);
+  //   // console.log('...useEffect / path:', path);
+  //   //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
+  //   timerRef.current = setTimeout(() => {
+  //     // console.log('...setTimeout / currentPath:', currentPath);
+  //     setFlag(true);
+  //   }, 10);
+  //   //___cleaner
+  //   return () => {
+  //     clearTimeout(timerRef.current as NodeJS.Timeout);
+  //   };
+  // }, [path]);
 
   //___wtf...
-  // console.log('...currentPath:', currentPath);
-  // console.log('...path:', path);
   // console.log('...flag:', flag);
-
-  // console.log('path === currentPath', path === currentPath);
-
-  // console.log('fakeFlag', fakeFlag);
-  // const scrollableOnZ = currentPath === pagesPath.homePath;
-  // console.log(
-  //   'currentPath === pagesPath.homePath:',
-  //   currentPath === pagesPath.homePath
-  // );
 
   /**References**/
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -80,6 +55,7 @@ const CameraControler = () => {
   useFrame(state => {
     /*
     __1. settings solely for HomePage; only z-axis is animated
+    __2. alternatively, we can use useScroll + useSpring for the same purpose; performace seems to be the same, but the second solution give more possibilities to specify kind of move; another alternative is to move whole homePage 3D content instead of camera ==> like in ContactsPage;
     */
     // if (scrollableOnZ) {
     //   meshRef.current.position.set(
@@ -92,14 +68,9 @@ const CameraControler = () => {
     //     )
     //   );
     // }
-
-    // console.log(
-    //   'window.scrollY / (state.size.height * cameraControler.zAxisFactor):',
-    //   window.scrollY / (state.size.height * cameraControler.zAxisFactor)
-    // );
     /*
     __1. general settings for all Pages;
-    __2. concept: each page should be deploy in "separate" sector on x-axis;
+    __2. concept: 3D content of each page should be positioned in "separate" sector on x-axis;
     __3. when user changes among paths, camera jumps to relevant x-axis position; 
     __4. it seems that Vector3 value is "constantly" updated so we can use it in copy() method;
     __5. how copy() works? ==> 
@@ -108,7 +79,7 @@ const CameraControler = () => {
       //___camera position-x ==> just go to a new position when path got changed
       setXPosition(path),
       //___camera position-y ==> just remain unmoved / stay at the same level
-      cameraSettings.y + meshRef.current.position.y,
+      cameraSettings.y,
       //___camera position-z ==> just follow the mesh...
       cameraSettings.z + meshRef.current.position.z
     );
@@ -123,9 +94,6 @@ const CameraControler = () => {
   const [{ positionZ }, comp2Api] = useSpring(() => ({
     // transform: 'translateY(0%)',
     positionZ: 0,
-    // config: flag
-    //   ? { tension: 280, friction: 120, precision: 0.0001 }
-    //   : { duration: 200 }, //molasses
   }));
 
   useScroll(
@@ -153,56 +121,19 @@ const CameraControler = () => {
 
       const scrollYProgress = progressOnZ
         ? y / (state.size.height * -cameraControler.zAxisFactor)
-        : // : regressOnZ
-          // ? y / (state.size.height * cameraControler.zAxisFactor)
-          0;
+        : 0;
 
       //__________springValues Modification section
       comp2Api.start({
         positionZ: scrollYProgress,
-        config: flag
-          ? { tension: 280, friction: 120, precision: 0.0001 }
-          : config.slow, //molasses
         /*
          ___1. why config with ternary operator? case: on pageHome strong scroll ==> fast path change ==> fast return to pageHome ==> return to positionZ = 0 is still in progress what gives poor UX;
         */
-        // config: progressOnZ
-        //   ? // { mass: 5, friction: 120, tension: 120 }
-        //     { tension: 280, friction: 120, precision: 0.0001 }
-        //   : config.slow,
-        // config:
-        //   typeof window !== 'undefined' && window.scrollY === 0
-        //     ? {
-        //         duration: 400,
-        //         easing: easings.easeOutQuint,
-        //       }
-        //     : { tension: 280, friction: 120, precision: 0.0001 },
-        // config: { tension: 280, friction: 120, precision: 0.0001 },
-        /*
-          config: typeof window !== 'undefined' && window.scrollY === 0 ?
-          {
-         duration: 0
-       } :  { tension: 280, friction: 120, precision: 0.0001 }
-          */
-
-        // config: config.molasses,
-        // config: {
-        //   duration: 800,
-        //   easing: easings.easeOutQuint,
-        // }, // value in ms
+        config: progressOnZ
+          ? // { mass: 5, friction: 120, tension: 120 }
+            { tension: 280, friction: 120, precision: 0.0001 }
+          : { duration: 100 }, //___works better then config.slow
       });
-      //___wtf...
-      // console.log('dirY:', dirY);
-      // console.log('y:', y);
-      /*
-      ___1. when path changes log shows value "-0" 
-      ___2. it means that useScroll() reacts to Next.js default behaviour "scroll-to-top"; 
-      */
-      // console.log(
-      //   'y / (state.size.height * cameraControler.zAxisFactor):',
-      //   y / (state.size.height * cameraControler.zAxisFactor)
-      // );
-      // console.log('scrollYProgress:', scrollYProgress);
     },
     //__________ ... section
     {
@@ -221,9 +152,7 @@ const CameraControler = () => {
         position-x={0}
         position-y={0}
         position-z={positionZ}
-        // position={[0, 0, 0]}
         scale={[0.5, 0.5, 0.5]}
-        //  {...meshProps}
         visible={false}
       >
         <ThreePlane argsWidth={1} argsHeight={1} />

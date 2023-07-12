@@ -1,11 +1,10 @@
 'use client';
 import React from 'react';
 /**Components**/
-import { GitHubIcon } from '@/components';
 /**Spring Staff**/
-import { useInView, animated } from '@react-spring/web';
+import { useInView } from '@react-spring/web';
 /**Basic Data**/
-import { basicConfigs, colors } from '@/data/basicData';
+import { basicConfigs } from '@/data/basicData';
 import { pageContactsText } from '@/data/textData';
 const {
   pageContact: { rootMargin, amount, inViewStyle },
@@ -18,7 +17,7 @@ const GitHubSectionTrans = () => {
   /**Spring Section**/
   const [ref, inView] = useInView({
     /*
-    ___1. rootMarginthat is the viewPort 
+    ___1. rootMargin that is the viewPort 
     ___2. initially the whole viewPort is an observableArea
     ___3. it's possible to manipulate all observableArea's margins so that some innerAreas aroun top, left, bottom and right might be excluded from observation; here observed object is invissible;
     ___4. order of cutting: top, _ , bottom, _  
