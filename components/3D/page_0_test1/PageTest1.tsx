@@ -25,17 +25,17 @@ const PageTest1 = () => {
   const path = usePathname();
   const [isPath, setIsPath] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsPath(path === pagesPath.test1Path);
-    }, page3DConfigs.visibilityDelay);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsPath(path === pagesPath.test1Path);
+  //   }, page3DConfigs.visibilityDelay);
 
-    /**cleaner**/
-    return () => {
-      clearTimeout(timer);
-      setIsPath(false);
-    };
-  }, [path]);
+  //   /**cleaner**/
+  //   return () => {
+  //     clearTimeout(timer);
+  //     setIsPath(false);
+  //   };
+  // }, [path]);
 
   /**Spring Section*/
   const [{ posY, posInstantContacts }, comp2Api] = useSpring(() => ({
