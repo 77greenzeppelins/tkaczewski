@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 /**Spring Staff**/
 import { useInView, animated, SpringValue } from '@react-spring/web';
 import { useGlobalContext } from '@/context/globalContext';
+import useDeviceRotation from '@/hooks/useDeviceRotation';
 /**Basic Data**/
 // import { basicConfigs } from '@/data/basicData';
 // const {
@@ -15,6 +16,8 @@ const OtherContactsSection = () => {
   ___1. why BC?
   */
   const { setIsDz } = useGlobalContext();
+
+  const isRotated = useDeviceRotation();
 
   /**Spring Section**/
   const [ref, inView] = useInView({
@@ -44,6 +47,10 @@ const OtherContactsSection = () => {
       () => {
         setIsDz(inView);
       },
+      /*
+      ___1. why conditional?
+      ___2. it seems to be okey to have animation when 3D component enters the scene and it's better when 3d component goes deep into scene when should be invisible
+      */
       inView ? 400 : 0
     );
 
@@ -62,11 +69,17 @@ const OtherContactsSection = () => {
       className="relative flex w-full h-screen wrapper-1"
       //___border-t border-b border-orange-600
     >
-      {/* <p className="relative font-serif select-none p-u-large text-corpo z-2">
-        {inView.toString()}
-      </p> */}
+      <p className="relative select-none p-medium text-corpo z-2">
+        {`orientation is landscape:  ${isRotated.toString().toUpperCase()}`}
+      </p>
+    </div>
+  );
+};
 
-      {/* <div className="flex flex-col items-start justify-center w-full gap-0">
+export default OtherContactsSection;
+
+{
+  /* <div className="flex flex-col items-start justify-center w-full gap-0">
         {dz.map((item, i) => (
           <div key={item} className="overflow-hidden ">
             <animated.div
@@ -80,12 +93,10 @@ const OtherContactsSection = () => {
             </animated.div>
           </div>
         ))}
-      </div> */}
-      {/* <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
+      </div> */
+}
+{
+  /* <div className={`${inView ? inViewStyle.show : inViewStyle.hide} `}>
         <p className="select-none p-medium text-corpo">Poland</p>
-      </div> */}
-    </div>
-  );
-};
-
-export default OtherContactsSection;
+      </div> */
+}
