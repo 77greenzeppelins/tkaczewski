@@ -16,6 +16,8 @@ import { scrollableContainerNames } from '@/data/basicData';
 // import MovingPlane from '../shaders/planes/movingPlane/MovingPlane';
 // import BackgroundPlane from '../shaders/planes/backgroundPlane/BackgroundPlane';
 import PlaneShader from '../shaders/plane/3DObj/PlaneShader';
+import ThreePlane from '../basicShapes/plane/ThreePlane';
+import { useThree } from '@react-three/fiber';
 
 /**-----------------------------------------*/
 const PageContacts = () => {
@@ -115,12 +117,15 @@ const PageContacts = () => {
     }
   );
 
-  // const state = useThree();
-  // const {
-  //   viewport: { width, height, aspect, distance },
-  // } = state;
-  // const sideSize =
-  //   aspect >= 0.8 ? (height / distance) * 0.7 : (width / distance) * 0.96;
+  /*
+  ___1. how it works
+  */
+  const state = useThree();
+  const {
+    viewport: { width, height, aspect, distance },
+  } = state;
+  const sideSize =
+    aspect >= 0.8 ? (height / distance) * 0.7 : (width / distance) * 0.96;
 
   /**JSX**/
   return (
@@ -156,6 +161,16 @@ const PageContacts = () => {
           scaleImage={page3DConfigs.pageContacts.contactButtonConfig.scaleImage}
         />
       </animated.group>
+
+      <mesh position={[0, 0, 0]}>
+        <ThreePlane
+          argsWidth={sideSize}
+          argsHeight={sideSize}
+          widthSegments={2}
+          heightSegments={2}
+        />
+        <meshBasicMaterial wireframe color={0x212a3e} />
+      </mesh>
     </group>
   );
 };

@@ -53,17 +53,17 @@ const DirectContactsSection = () => {
     <div
       data-component="DirectContactsSection"
       ref={ref}
-      className="relative w-full h-full flex item-center wrapper-1"
+      className="relative flex w-full h-full item-center wrapper-1 k bg-gradient-to-b from-transparent via-dark to-dark"
     >
-      <div className="flex flex-col gap-6 items-start justify-center w-full">
+      <div className="flex flex-col items-start justify-center w-full gap-6">
         {buttonContent.map(({ Component, label }, i) => (
-          <div key={label} className=" overflow-hidden">
+          <div key={label} className="overflow-hidden ">
             <animated.div
               //  style={{ opacity: opacity }}
               // style={springs}
               className={`${inView ? inViewStyle.show : inViewStyle.hide} `}
             >
-              <p className="p-u-large text-corpo select-none font-serif">
+              <p className="font-serif select-none p-u-large text-light">
                 {label}
               </p>
               <Component
