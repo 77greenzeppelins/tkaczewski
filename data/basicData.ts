@@ -13,7 +13,6 @@ const pagesPath = {
   homePath: '/',
   cvPath: '/cv',
   contactcPath: '/contact',
-  test1Path: '/test1',
 };
 
 const pagesLinks = [
@@ -48,7 +47,6 @@ const assetsPaths = {
   email: '../assets/images/contacts/instantContact_email.webp',
   family: '../assets/images/various/family_3.webp',
   noise: '../assets/images/various/noise_708x708.jpg',
-  // noise: '../assets/images/various/gitHubIcon.jpg',
   gitHub: '../assets/images/various/gitHubIcon.jpg',
   //___fonts
   font: '/assets/fonts/eb-garamond-v26-latin-regular.woff',
@@ -143,8 +141,6 @@ settings for <InstantContactPenel> | <InstantContactButton>
 const contactButtonConfig = {
   scaleFrame: [0.178, 0.178, 0.178],
   scaleImage: [0.385, 0.385, 0.385],
-  // topButtonPos: [pages3DPositions.pageContacts.x, 0.19, 0],
-  // bottomButtonPos: [pages3DPositions.pageContacts.x, -0.19, 0],
   topButtonPos: [0, 0.19, 0],
   bottomButtonPos: [0, -0.19, 0],
 };

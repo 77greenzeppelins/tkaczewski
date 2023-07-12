@@ -108,9 +108,9 @@ const PageContacts = () => {
   /**JSX**/
   return (
     <group visible={isPath} position-x={pages3DPositions.pageContacts.x}>
-      {/*-----AnimatedGroup for preudoScrollableContainer*/}
+      {/*-----animated.group ==> preudoScrollableContainer*/}
       <animated.group position-y={posY}>
-        <mesh position={[0, -1, 0]}>
+        {/* <mesh position={[0, -1, 0]}>
           <ThreePlane
             argsWidth={sideSize}
             argsHeight={sideSize}
@@ -118,19 +118,16 @@ const PageContacts = () => {
             heightSegments={2}
           />
           <meshBasicMaterial wireframe color={0x212a3e} />
-        </mesh>
+        </mesh> */}
         {/* <MovingPlane /> */}
         {/* <BackgroundPlane /> */}
         <PlaneShader position={[0, -3, -0.5]} />
       </animated.group>
 
-      {/*-----AnimatedGroup for instantContactPanel*/}
-      <animated.group
-        /*
-        ___1: general concept: move from 0 to -1; why? simple because position-x={-1} guarantee object is invisible and there in no need to move deeper and probably consume resources; 
-        */
-        position-z={posInstantContacts}
-      >
+      {/*-----AnimatedGroup for instantContactPanel
+       ___1: general concept: move on z-axis from 0 to -1; why? simple because position-x={-1} guarantee object is invisible and there in no need to move deeper and probably consume resources; value {-1} is strictly associated with canvas's fog setting that changes if path === "/contacts"
+      */}
+      <animated.group position-z={posInstantContacts}>
         <InstantContactPanel
           topButtonPos={
             page3DConfigs.pageContacts.contactButtonConfig.topButtonPos
