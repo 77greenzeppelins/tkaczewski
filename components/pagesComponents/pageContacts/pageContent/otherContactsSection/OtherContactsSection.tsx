@@ -1,15 +1,21 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 /**Spring Staff**/
 import { useInView, animated, SpringValue } from '@react-spring/web';
+import { useGlobalContext } from '@/context/globalContext';
 /**Basic Data**/
-import { basicConfigs } from '@/data/basicData';
-const {
-  pageContact: { rootMargin, amount, inViewStyle },
-} = basicConfigs;
+// import { basicConfigs } from '@/data/basicData';
+// const {
+//   pageContact: { rootMargin, amount, inViewStyle },
+// } = basicConfigs;
 
 /**--------------------------------**/
 const OtherContactsSection = () => {
+  /*
+  ___1. why BC?
+  */
+  const { setIsDz } = useGlobalContext();
+
   /**Spring Section**/
   const [ref, inView] = useInView({
     /*
@@ -26,13 +32,25 @@ const OtherContactsSection = () => {
     */
     // amount: 1,
     //___
-    rootMargin: rootMargin,
-    amount: amount,
+    rootMargin: '0% 0px 0% 0px',
+    amount: 0.1,
   });
 
-  // useEffect(() => {
-  //   stateSetter(inView);
-  // }, [inView, stateSetter]);
+  /**reference for setTimeout() ID**/
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    timerRef.current = setTimeout(
+      () => {
+        setIsDz(inView);
+      },
+      inView ? 400 : 0
+    );
+
+    return () => {
+      clearTimeout(timerRef.current as NodeJS.Timeout);
+    };
+  }, [inView, setIsDz]);
 
   /**Basic Data*/
   const dz = ['Dzi', 'erżo', 'niów'];
@@ -41,8 +59,13 @@ const OtherContactsSection = () => {
   return (
     <div
       ref={ref}
-      className="relative flex flex-col justify-center w-full h-screen wrapper-1"
+      className="relative flex w-full h-screen wrapper-1"
+      //___border-t border-b border-orange-600
     >
+      {/* <p className="relative font-serif select-none p-u-large text-corpo z-2">
+        {inView.toString()}
+      </p> */}
+
       {/* <div className="flex flex-col items-start justify-center w-full gap-0">
         {dz.map((item, i) => (
           <div key={item} className="overflow-hidden ">

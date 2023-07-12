@@ -29,8 +29,11 @@ import Dzierzoniow from './dzierzoniow/Dzierzoniow';
 
 /**-----------------------------------------*/
 const PageContacts = () => {
-  const { hintIsMobile } = useGlobalContext();
-
+  /*
+  ___1. why BC?
+  ___2. setter is used in 2D <OtherContactsSection>
+  */
+  const { hintIsMobile, isDz } = useGlobalContext();
   /*
   __1. we need to know if user is mobile ! 
   */
@@ -182,7 +185,9 @@ const PageContacts = () => {
       <Dzierzoniow
         groupProps={{
           position: new THREE.Vector3(0, 0, 0),
+          // visible: isDz,
         }}
+        isVisible={isDz}
       />
     </group>
   );

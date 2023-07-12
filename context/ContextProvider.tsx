@@ -30,6 +30,7 @@ export const GlobalContextProvider = ({
   const [askAI, setAskAI] = useState(false);
   const [scrollableHeight, setScrollableHeight] = useState(0);
   const [hintIsMobile, setHintIsMobile] = useState(false);
+  const [isDz, setIsDz] = useState(false);
 
   /**JSX**/
   return (
@@ -43,6 +44,9 @@ export const GlobalContextProvider = ({
         setScrollableHeight,
         hintIsMobile,
         setHintIsMobile,
+        //___used in: 3D PageContacts,
+        isDz,
+        setIsDz,
       }}
     >
       <>

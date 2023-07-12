@@ -350,21 +350,34 @@ const page3DConfigs = {
     },
     dzConfig: [
       {
-        text: 'Dzi',
-        position: [0, 0.2, -0.55],
-        rotation: [0, Math.PI * -0.2, 0],
+        text: 'Dzierzoniow',
+        position: [0, 0, -0.55],
+        rotation: [0, Math.PI * 0.175, 0],
         scale: [1, 1, 1],
       },
       {
-        text: 'erzo',
+        text: 'Dzierzoniow',
         position: [0, 0, -0.55],
-        rotation: [0, Math.PI * 0.2, 0],
+        rotation: [0, Math.PI * -0.175, 0],
+        scale: [1, 1, 1],
       },
-      {
-        text: 'niow',
-        position: [0, -0.29, -0.55],
-        rotation: [0, Math.PI * -0.2, 0],
-      },
+
+      // {
+      //   text: 'Dzi',
+      //   position: [0, 0.2, -0.55],
+      //   rotation: [0, Math.PI * -0.2, 0],
+      //   scale: [1, 1, 1],
+      // },
+      // {
+      //   text: 'erzo',
+      //   position: [0, 0, -0.55],
+      //   rotation: [0, Math.PI * 0.2, 0],
+      // },
+      // {
+      //   text: 'niow',
+      //   position: [0, -0.29, -0.55],
+      //   rotation: [0, Math.PI * -0.2, 0],
+      // },
     ],
   },
 
