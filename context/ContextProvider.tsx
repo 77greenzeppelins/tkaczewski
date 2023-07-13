@@ -11,8 +11,8 @@ interface ProviderProps {
 }
 
 /*
-___1. is used in <AppContainer>;
-___2. such localization allows to access global values in 2D & 3D world;
+___1. is used in layoutComponents | appContainer |  <AppContainer>;
+___2. such localization of GlobalContextProvider> anable access to global values in 2D & 3D world;
 ___3. we can't add provider to some _app.js file to wrap it around our application content; it worked in next.js before app directory and concept of server-side rendered layout were introduced / applied;
 ___4. we actually face the following issue: how to wrap "RootLayout" and keep it "server-side"; we can't put <Provider> in it !;   
 ___5. We have to creat <Provider> here, in that file because it requiers "client environment" to work;

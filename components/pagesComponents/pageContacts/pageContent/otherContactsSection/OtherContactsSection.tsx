@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 /**Spring Staff**/
 import { useInView, animated, SpringValue } from '@react-spring/web';
 import { useGlobalContext } from '@/context/globalContext';
-import useDeviceRotation from '@/hooks/useDeviceRotation';
+import useDeviceProperties from '@/hooks/useDeviceProperties';
 /**Basic Data**/
 // import { basicConfigs } from '@/data/basicData';
 // const {
@@ -17,7 +17,9 @@ const OtherContactsSection = () => {
   */
   const { setIsDz } = useGlobalContext();
 
-  const isRotated = useDeviceRotation();
+  const { isLandscape } = useDeviceProperties({
+    mqLandscape: '(orientation: landscape)',
+  });
 
   /**Spring Section**/
   const [ref, inView] = useInView({
@@ -66,11 +68,13 @@ const OtherContactsSection = () => {
   return (
     <div
       ref={ref}
-      className="relative flex w-full h-screen wrapper-1"
+      className="relative flex flex-col w-full h-screen wrapper-1"
       //___border-t border-b border-orange-600
     >
-      <p className="relative select-none p-medium text-corpo z-2">
-        {`orientation is landscape:  ${isRotated.toString().toUpperCase()}`}
+      <p className="relative select-none p-small text-corpo z-2">
+        {`useDeviceProperties - landscape:  ${isLandscape
+          .toString()
+          .toUpperCase()}`}
       </p>
     </div>
   );

@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 /**Components**/
 import { DreiText } from '@/components';
 /**THREE staff*/
@@ -8,6 +8,7 @@ import * as THREE from 'three';
 import { page3DConfigs } from '@/data/basicData';
 import { animated, config, useSpring } from '@react-spring/three';
 import { useFrame } from '@react-three/fiber';
+import useDeviceProperties from '@/hooks/useDeviceProperties';
 
 /**TS**/
 interface Props {
@@ -18,6 +19,17 @@ interface Props {
 const Dzierzoniow = ({ groupProps, isVisible }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
+
+  const { isLandscape } = useDeviceProperties({
+    mqLandscape: '(orientation: landscape)',
+  });
+
+  //____________________________________
+  const [state, setstate] = useState(false);
+  useEffect(() => {
+    console.log('isLandscape value changes');
+  }, [isLandscape]);
+  //____________________________________
 
   useFrame(
     (state, delta) =>

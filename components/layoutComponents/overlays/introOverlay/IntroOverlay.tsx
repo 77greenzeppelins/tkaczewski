@@ -11,16 +11,22 @@ import { animationsDelays } from '@/data/basicData';
 
 /**-----------------------------**/
 const IntroOverlay = () => {
-  /**GlobalContext  Section**/
+  /*
+  ___1. GlobalContext  Section ==> initial value is true
+  */
   const { isIntroOverlay, setIsIntroOverlay } = useGlobalContext();
   /**reference for setTimeout() ID**/
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   /*
-  ---1. this lifeCycleHook allows to set component existence to a specific duration (circa 2.6 sec)
+  ___1. this lifeCycleHook allows to set component existence to a specific duration (circa 2.6 sec); 
+  ___2. overlay should be triggered: [1] during initial render and exist for 2.6 sec.; [2] when page was refresed
   */
   useEffect(() => {
-    //___here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
+    /*
+    ___1.here we're setting the current property of the ref to the timer ID; this ID is returned value of setTimeout() method;
+    ___2. why "window.scrollTo(0, 0)" ? seems to solve a problem that occures when page is refreshing ==> [1] in one scenario, if there are no 3D elements or fakeScrollableContainer all seems to work correctly; [2] on pages where 2D & 3D coexist and fakeScrollableContainer come into a scene we have sytuaction that page refresh changes position of 3D components but 2D staff sticks to scrollBar position ==> lack of coordination and bad UX;
+    */
     timerRef.current = setTimeout(() => {
       setIsIntroOverlay(false);
       window.scrollTo(0, 0); //________________________?
@@ -50,7 +56,7 @@ const IntroOverlay = () => {
         <animated.div
           data-component="IntroOverlay"
           style={style}
-          className="fixed w-screen h-screen bg-dark z-[100]"
+          className="fixed w-screen h-screen bg-dark z-50"
           //___pointer-events-none
         >
           <IntroOverlayContent />

@@ -182,13 +182,13 @@ const PageContacts = () => {
         />
         <meshBasicMaterial wireframe color={0x212a3e} />
       </mesh> */}
-      <Dzierzoniow
+      {/* <Dzierzoniow
         groupProps={{
           position: new THREE.Vector3(0, 0, 0),
           // visible: isDz,
         }}
         isVisible={isDz}
-      />
+      /> */}
     </group>
   );
 };
