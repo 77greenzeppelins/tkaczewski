@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-/**Hooks**/
-// import useElementSize from '@/hooks/useElementSize';
+/**Hook Staff**/
+import { usePathname } from 'next/navigation';
 /**Components**/
 import { PageCvContent, SmoothCvContainer } from '@/components';
 /**Spring Staff**/
@@ -9,7 +9,7 @@ import { useSpring, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
-import { scrollableContainerNames } from '@/data/basicData';
+import { scrollableContainerNames, pagesPath } from '@/data/basicData';
 
 /**TS**/
 interface Props {
@@ -18,6 +18,11 @@ interface Props {
 
 /**---------------------------------------------------**/
 const PageCvAnimator = ({ hintIsMobile }: Props) => {
+  /*
+  ___1. concept: each <PageNameAnimator> with useScroll needs some booleanFlag that switch on / off listening of scroll within relevant page
+  */
+  const route = usePathname();
+  const scrollAnimationCondition = route === pagesPath.contactcPath;
   /**Spring Section*/
   const [{ transform }, comp2Api] = useSpring(() => ({
     transform: 'translateY(0px)',
@@ -49,14 +54,15 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
       // console.log('y / calcSH', y / calcSH);
       const normalizedValue = (y / calcSH) * (minVal - maxVal);
       //__________springValues modification section
-      comp2Api.start({
-        transform: `translateY(${normalizedValue}px)`,
-        config: config.slow,
-      });
+      scrollAnimationCondition &&
+        comp2Api.start({
+          transform: `translateY(${normalizedValue}px)`,
+          config: config.slow,
+        });
     },
     //__________ ... section
     {
-      enabled: true,
+      enabled: scrollAnimationCondition && true,
       target: typeof window !== 'undefined' ? window : undefined,
     }
   );

@@ -42,7 +42,7 @@ const GitHubSectionTrans = () => {
   return (
     <div ref={ref} className="relative w-full h-full">
       <div
-        className="w-full h-screen wrapper-1 bg-dark"
+        className="w-full min-h-screen wrapper-1 bg-dark"
         //__bg-gradient-to-b from-dark via-dark to-transparent
       >
         <div
@@ -54,7 +54,7 @@ const GitHubSectionTrans = () => {
           </p>
         </div>
       </div>
-      <div className="w-full h-screen wrapper-1 pb-[40px]">
+      <div className="w-full min-h-screen wrapper-1 pb-[40px]">
         <div
           className="flex items-end justify-end h-full"
           //  className={`${inView ? inViewStyle.show : inViewStyle.hide} `}

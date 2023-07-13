@@ -1,7 +1,9 @@
 'use client';
 import React, { useEffect } from 'react';
+/**Globas State Staff*/
+import { useGlobalContext } from '@/context/globalContext';
 /**Hook Staff**/
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 /**Components**/
 import StickyContainer from './stickyContainer/StickyContainer';
 import PageContent from './pageContent/PageContent';
@@ -12,8 +14,7 @@ import { useSpring, config } from '@react-spring/web';
 /**Gesture Staff**/
 import { useScroll } from '@use-gesture/react';
 /**Basic Data*/
-import { pagesPath } from '@/data/basicData';
-import { useGlobalContext } from '@/context/globalContext';
+import { pagesPath, scrollableContainerNames } from '@/data/basicData';
 
 // const {
 //   pageContact: { scaleFactor },
@@ -30,7 +31,7 @@ interface Props {
 /**----------------------------------------**/
 const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   /*
-  ___1. we use  GlobalContext to set hintIsMobile value; it's important in 3D world as we want to apply various spring animation' s config for desktop and others*/
+  ___1. we use  GlobalContext to set hintIsMobile value; it's important in 3D world as we want to apply various spring animation's config for desktop and others*/
   const { setHintIsMobile } = useGlobalContext();
   useEffect(() => {
     setHintIsMobile(hintIsMobile);
@@ -49,13 +50,17 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   ___1. spring imperative API_transform for <StickyContainer>'s overlay opacity that hides <InstantContactButtons2D/>
   ___2. this opacity goes from 0 to 1;
   */
-  const [{ transform }, api_transform] = useSpring(() => ({
-    transform: 'translateY(0%)',
-    config: config.slow,
-  }));
+  // const [{ transform }, api_transform] = useSpring(() => ({
+  //   transform: 'translateY(0%)',
+  //   config: config.slow,
+  // }));
   const [{ scale }, api_scale] = useSpring(() => ({
     scale: 1,
     config: { duration: 0 },
+  }));
+
+  const [{ transform }, api_transform] = useSpring(() => ({
+    transform: 'translateY(0px)',
   }));
 
   /** */
@@ -72,17 +77,41 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
       const scale1 = 1 - val1 * (1 - 0.75);
       // console.log('val1', val1);
       // console.log('scale1', scale1);
-      scrollAnimationCondition &&
-        api_transform.start({
-          transform: `translateY(${
-            (y / (height - window.innerHeight)) * -100
-          }%)`,
-        });
+      // scrollAnimationCondition &&
+      //   api_transform.start({
+      //     transform: `translateY(${
+      //       (y / (height - window.innerHeight)) * -100
+      //     }%)`,
+      //   });
       scrollAnimationCondition &&
         api_scale.start({
           scale: val1 < 1 ? scale1 : 0,
         });
+
+      //________
+      const sH = Number(
+        typeof window !== 'undefined'
+          ? window.document.getElementById(scrollableContainerNames.pageCV)
+              ?.scrollHeight
+          : undefined
+      );
+
+      const calcSH = sH - window.innerHeight;
+      const minVal = 0;
+      const maxVal = calcSH;
+      // console.log('y', y);
+      // console.log('y / calcSH', y / calcSH);
+      const normalizedValue = (y / calcSH) * (minVal - maxVal);
+      //__________springValues modification section
+      scrollAnimationCondition &&
+        api_transform.start({
+          transform: `translateY(${normalizedValue}px)`,
+          config: config.slow,
+        });
+
+      //___________
     },
+
     //__________ ... section
     {
       enabled: scrollAnimationCondition && true,
@@ -93,6 +122,7 @@ const PageContactsAnimator = ({ hintIsMobile }: Props) => {
   /**JSX**/
   return (
     <div
+      id={scrollableContainerNames.pageCV}
       data-container="PageContactsAnimator"
       ref={squareRef}
       className="relative"
