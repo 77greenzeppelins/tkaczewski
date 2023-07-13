@@ -9,6 +9,7 @@ import '@/styles/globals.css';
 /**Font Staff*/
 import { inter, garamond } from './fonts/fonts';
 import PseudoFooter from '@/components/layoutComponents/pseudoFooter/PseudoFooter';
+import EmergencyOverlay from '@/components/layoutComponents/overlays/emergencyOverlay/EmergencyOverlay';
 
 /**<Head> staff*/
 export const metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({
         ___1. z-order: <Header z-[500]>; <AppContainer z-[400]>; <PseudoFooter z-[450]>
         */
       >
+        {/* <EmergencyOverlay /> */}
         <Header />
         <AppContainer>{children}</AppContainer>
         <PseudoFooter />

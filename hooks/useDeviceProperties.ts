@@ -16,6 +16,15 @@ const useDeviceProperties = ({ mqLandscape = '', mqMinHeight = '' }: Props) => {
     isMinHeight: false,
   });
 
+  //   console.log(
+  //     'useDeviceProperties / isMinHeight:',
+  //     deviceProperties.isMinHeight
+  //   );
+  //   console.log(
+  //     'useDeviceProperties / isLandscape:',
+  //     deviceProperties.isLandscape
+  //   );
+
   const handleMediaQueryChange = (event: MediaQueryListEvent) => {
     setDeviceProperties(prevProperties => ({
       ...prevProperties,

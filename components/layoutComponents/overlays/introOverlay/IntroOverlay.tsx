@@ -15,6 +15,7 @@ const IntroOverlay = () => {
   ___1. GlobalContext  Section ==> initial value is true
   */
   const { isIntroOverlay, setIsIntroOverlay } = useGlobalContext();
+
   /**reference for setTimeout() ID**/
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 

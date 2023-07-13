@@ -5,6 +5,7 @@ import { GlobalContextProvider } from '@/context/ContextProvider';
 import MainCanvas from '@/components/3D/3D_Canvas/MainCanvas';
 import CanvasOverlay from '../overlays/canvasOverlay/CanvasOverlay';
 import IntroOverlay from '../overlays/introOverlay/IntroOverlay';
+import EmergencyOverlay from '../overlays/emergencyOverlay/EmergencyOverlay';
 
 /**---------------------------------------------------------------------**/
 const AppContainer = ({ children }: { children: React.ReactNode }) => {
@@ -19,6 +20,7 @@ const AppContainer = ({ children }: { children: React.ReactNode }) => {
         IntroOverlay={IntroOverlay}
         CanvasOverlay={CanvasOverlay}
         MainCanvas={MainCanvas}
+        EmergencyOverlay={EmergencyOverlay}
       >
         {children}
       </GlobalContextProvider>
