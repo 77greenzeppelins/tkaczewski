@@ -9,7 +9,7 @@ const NotHeightEnought = () => {
   ___1. this component should be mounted always when height is then 351px | someone plays with scrren and makes it very low;
   ___2. I don't know why I can't use "match" directly... problem: "Text content does not match server-rendered HTML" occures ==> it's a problem of hydration...
   */
-  const matches = useMediaQuery('(max-height: 350px)');
+  const matches = useMediaQuery('(max-height: 550px)');
 
   useEffect(() => {
     setIsLow(matches);
