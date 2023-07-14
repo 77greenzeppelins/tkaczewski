@@ -7,32 +7,36 @@ import { SpringValue, animated } from '@react-spring/web';
 
 /**TS**/
 interface Props {
-  isMobile: boolean; // mix of hintIsMobile && systemIsMobile
+  isMobile: boolean;
   transform?: SpringValue<string>;
-  isVisible?: boolean;
+  isVisibleOnDesktop?: boolean;
 }
 
 /**-------------------------------**/
-const PageCvContent = ({ isMobile, transform, isVisible = false }: Props) => {
+const PageCvContent = ({
+  isMobile,
+  transform,
+  isVisibleOnDesktop = false,
+}: Props) => {
   //___
   // useEffect(() => {
   //   isMobile
   //     ? console.log('isMobile')
-  //     : isVisible
-  //     ? console.log(' !isMobile && isVisible')
-  //     : console.log(' !isMobile && !isVisible');
-  // }, [isMobile, isVisible]);
+  //     : isVisibleOnDesktop
+  //     ? console.log(' !isMobile && isVisibleOnDesktop')
+  //     : console.log(' !isMobile && !isVisibleOnDesktop');
+  // }, [isMobile, isVisibleOnDesktop]);
 
   /**JSX**/
   return (
     <animated.div
       data-component={`PageCvContent-${isMobile.toString()}`}
       style={{ transform }}
-      aria-hidden={isMobile || isVisible ? false : true}
+      aria-hidden={isMobile || isVisibleOnDesktop ? false : true}
       className={`${
         isMobile
           ? 'w-full h-full'
-          : isVisible
+          : isVisibleOnDesktop
           ? 'relative w-full h-full pointer-events-none opacity-1'
           : 'relative w-full h-full pointer-events-none opacity-0'
       }`}
@@ -47,7 +51,7 @@ const PageCvContent = ({ isMobile, transform, isVisible = false }: Props) => {
       ___2. it's a sort of "fake way" of tweaking height to scroll on desktop
       ___3. I cut this layout by 100vh because <SmoothCvContainer> itself has 100vh;
       */
-        // !isMobile && !isVisible ? null : (
+        // !isMobile && !isVisibleOnDesktop ? null : (
         <div className="flex justify-center items-center h-[100vh] w-full">
           <AskAI />
         </div>

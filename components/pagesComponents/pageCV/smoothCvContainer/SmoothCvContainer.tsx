@@ -17,9 +17,9 @@ const SmoothCvContainer = ({ transform }: Props) => {
     >
       {' '}
       <PageCvContent
-        hintIsMobile={false}
+        isMobile={false}
         transform={transform}
-        isVisible={true}
+        isVisibleOnDesktop={true}
       />
     </div>
   );
