@@ -40,6 +40,7 @@ const TesterComponent = ({ entries, isMobile }: Props) => {
       </div>
       <div className="flex flex-col gap-6 text-corpo text-[12px]">
         <p className="">{screen.orientation.type} </p>
+        <p className="">{screen.orientation.angle} </p>
       </div>
     </>
   );
