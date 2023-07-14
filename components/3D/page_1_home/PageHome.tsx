@@ -7,6 +7,7 @@ import { Act1, Act2, Act3, Act4, Act5, Act6, Act7, Act8 } from '@/components';
 import * as THREE from 'three';
 /**BasicData**/
 import { page3DConfigs, pagesLinks } from '@/data/basicData';
+import { useThree } from '@react-three/fiber';
 
 /**TS**/
 
@@ -33,14 +34,35 @@ const PageHome = () => {
     };
   }, [path]);
 
+  /*
+  ___1. it was used in scenario when group move instead of cameraControler  
+  */
+  // useEffect(() => {
+  //   const groupRefReset = groupRef.current;
+  //   return () => {
+  //     if (!setIsPath) {
+  //       groupRefReset.position.set(0, 0, 0);
+  //     }
+  //   };
+  // }, [setIsPath]);
+
+  /*
+  ___1. prevent rotation if height is smaller then 560px
+  */
+  const state = useThree();
+  console.log('state:', state.size.height);
+
   useEffect(() => {
-    const groupRefReset = groupRef.current;
-    return () => {
-      if (!setIsPath) {
-        groupRefReset.position.set(0, 0, 0);
+    if (state.size.height < 560) {
+      if (window.screen.orientation?.lock) {
+        console.log('...is screen orientation locked?');
+        // Disable screen rotation
+        window.screen.orientation.lock('portrait').catch(error => {
+          console.error('Failed to lock screen orientation:', error);
+        });
       }
-    };
-  }, [setIsPath]);
+    }
+  }, [state.size.height]);
 
   /**JSX**/
   return (

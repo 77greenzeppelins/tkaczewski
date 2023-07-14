@@ -102,12 +102,32 @@ const CameraControler = () => {
     ___2. value "y" ==> returns progress of scrolling ==> window.scrollY; let's take such case: (a) scrollHeight property of scrollableContainer has value of 1654; (b) window.innerHeight is 827; (c) final value (at the end of scrolling) of y is 827 ==> so document must moove up by 827px to show its end;
     */
     ({
+      // event,
       xy: [x, y],
-    }: // direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
+    }: // initial,
+    // delta,
+    // movement,
+    // velocity,
+    // direction: [dirX, dirY], // scroll down = progress = 1; otherwise -1
     {
+      // event: any;
       xy: number[];
+      // initial: number[];
+      // delta: any;
+      // movement: number[];
+      // velocity: any;
       // direction: number[];
     }) => {
+      //______________________________
+      // console.log('event:', event);
+      // console.log('y:', y);
+      // console.log('initial:', initial);
+      // console.log('delta:', delta);
+      // console.log('movement:', movement);
+      // console.log('velocity:', velocity);
+
+      //______________________________
+
       /*
       const scrollYProgress = scrollableOnZ ?
         y / (state.size.height * cameraControler.zAxisFactor)
