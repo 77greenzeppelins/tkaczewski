@@ -1,12 +1,14 @@
 import React from 'react';
 import { headers } from 'next/headers';
 import PageCvAnimator from './PageCvAnimator';
+import TesterComponent from './pageContent/tester/TesterComponent';
 
 /**-------------------------------**/
 const PageCvSSContainer = () => {
   const headersList = headers();
   const userAgent = headersList.get('user-agent');
-  const entries = Array.from(headersList.entries());
+  const x = headersList.entries();
+  const entries = Array.from(x);
 
   /*
   ___1. 'sec-ch-ua-mobile' possible values: "?0" or "?1"; mobile phone returns "?1" but desktop and tablet return "?0";  
@@ -26,20 +28,9 @@ const PageCvSSContainer = () => {
   */
   /**JSX**/
   return (
-    <div
-      data-container="PageCvSSContainer"
-      className="flex flex-col gap-6 text-corpo text-[12px]"
-    >
+    <div data-container="PageCvSSContainer">
       {/* <PageCvAnimator hintIsMobile={isMobile || isMobileView} /> */}
-
-      <div className="flex flex-col">
-        {entries.map((item, i) => (
-          <p className="flex gap-4" key={i}>
-            <span>{item[0]}:</span>
-            <span>{item[1]}</span>
-          </p>
-        ))}
-      </div>
+      <TesterComponent entries={entries} />
     </div>
   );
   5;
