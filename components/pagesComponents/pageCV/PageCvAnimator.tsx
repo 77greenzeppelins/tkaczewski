@@ -13,11 +13,11 @@ import { scrollableContainerNames, pagesPath } from '@/data/basicData';
 
 /**TS**/
 interface Props {
-  hintIsMobile: boolean;
+  isMobile: boolean; // mix of hintIsMobile && systemIsMobile
 }
 
 /**---------------------------------------------------**/
-const PageCvAnimator = ({ hintIsMobile }: Props) => {
+const PageCvAnimator = ({ isMobile }: Props) => {
   /*
   ___1. concept: each <PageNameAnimator> with useScroll needs some booleanFlag that switch on / off listening of scroll within relevant page
   */
@@ -74,8 +74,8 @@ const PageCvAnimator = ({ hintIsMobile }: Props) => {
       data-component="PageCvAnimator"
       className="relative flex flex-col w-full h-full"
     >
-      <PageCvContent hintIsMobile={hintIsMobile} />
-      {hintIsMobile ? null : <SmoothCvContainer transform={transform} />}
+      <PageCvContent isMobile={isMobile} />
+      {isMobile ? null : <SmoothCvContainer transform={transform} />}
     </div>
   );
 };

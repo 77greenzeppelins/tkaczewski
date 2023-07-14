@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import NotHeightEnought from './notHeightEnought/NotHeightEnought';
+import DeviceRotated from './deviceRotated/DeviceRotated';
 /**Components**/
 /**Hooks Staff**/
 // import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -19,7 +20,8 @@ const EmergencyOverlayContent = () => {
   /**JSX**/
   return (
     <>
-      <NotHeightEnought />
+      {/* <NotHeightEnought /> */}
+      <DeviceRotated />
     </>
   );
   //   return height > 350 ? null : (

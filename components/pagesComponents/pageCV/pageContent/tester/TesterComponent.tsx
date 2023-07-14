@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 
 interface Props {
   entries: [string, string][];
-  isMobile: boolean | undefined;
+  hintIsMobile: boolean | undefined;
 }
 
-const TesterComponent = ({ entries, isMobile }: Props) => {
+const TesterComponent = ({ entries, hintIsMobile }: Props) => {
   /** */
   //   console.log('screen.orientation:', screen.orientation);
   //   console.log('screen.orientation.type:', screen.orientation.type);
@@ -20,13 +20,14 @@ const TesterComponent = ({ entries, isMobile }: Props) => {
   useEffect(() => {
     console.log('screen.orientation.type:', screen.orientation.type);
     console.log('screen.orientation.angle:', screen.orientation.angle);
-  }, []);
+    if (hintIsMobile) screen.orientation.lock('natural');
+  }, [hintIsMobile]);
   //   useEffect(() => {
-  //     if (isMobile && screen.orientation && screen.orientation?.lock) {
+  //     if (hintIsMobile && screen.orientation && screen.orientation?.lock) {
   //       lock('portrait');
   //     }
   //     // return unlock();
-  //   }, [isMobile]);
+  //   }, [hintIsMobile]);
   /**JSX**/
   return (
     <>

@@ -16,18 +16,23 @@ interface ContextProps {
   setAskAI: Dispatch<SetStateAction<boolean>>;
   scrollableHeight: number;
   setScrollableHeight: Dispatch<SetStateAction<number>>;
-  hintIsMobile: boolean;
-  setHintIsMobile: Dispatch<SetStateAction<boolean>>;
+
   isDz: boolean;
   setIsDz: Dispatch<SetStateAction<boolean>>;
+  hintIsMobile: boolean;
+  setHintIsMobile: Dispatch<SetStateAction<boolean>>;
+  sysIsMobile: boolean;
+  setSysIsMobile: Dispatch<SetStateAction<boolean>>;
+
   // hintIsMobile: true | false;
   // setHintIsMobile: Dispatch<SetStateAction<true | false>>;
   // property1: DataType[];
   // setProperty1: Dispatch<SetStateAction<DataType[]>>;
 }
 /*
-___0. Here we create context;
-___1. It is ment to be used as top level global state is accessible in both 3D & 2D world
+___0. Here we create context using react inbuilt staff "createContext";
+___1. arguments for cC() is an object with all values we want to share globaly;
+___2. It is ment to be used as top level global state is accessible in both 3D & 2D world
 */
 export const GlobalContext = createContext<ContextProps>({
   isIntroOverlay: true,
@@ -36,11 +41,14 @@ export const GlobalContext = createContext<ContextProps>({
   setAskAI: (prev): boolean => !prev,
   scrollableHeight: 0,
   setScrollableHeight: val => val,
-  hintIsMobile: false,
-  setHintIsMobile: val => val,
   //___used in: 3D PageContacts,
   isDz: false,
   setIsDz: val => val,
+  //___set in
+  hintIsMobile: false,
+  setHintIsMobile: val => val,
+  sysIsMobile: false,
+  setSysIsMobile: val => val,
   // hintIsMobile: false,
   // setHintIsMobile: (val): true| false => true|| false,
   // property1: [],

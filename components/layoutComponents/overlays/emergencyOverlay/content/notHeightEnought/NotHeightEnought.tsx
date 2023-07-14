@@ -16,12 +16,12 @@ const NotHeightEnought = () => {
   }, [matches]);
 
   /**JSX**/
-  return null;
-  // return isLow ? (
-  //   <div className="fc text-medium text-light w-screen h-screen bg-dark">
-  //     <p>3D elements need at lest 500px</p>
-  //   </div>
-  // ) : null;
+
+  return isLow ? (
+    <div className="fc text-medium text-light w-screen h-screen bg-dark">
+      <p>3D elements need at lest 350px</p>
+    </div>
+  ) : null;
 };
 
 export default NotHeightEnought;

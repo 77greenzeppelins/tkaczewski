@@ -31,21 +31,26 @@ export const GlobalContextProvider = ({
   const [isIntroOverlay, setIsIntroOverlay] = useState(true);
   const [askAI, setAskAI] = useState(false);
   const [scrollableHeight, setScrollableHeight] = useState(0);
-  const [hintIsMobile, setHintIsMobile] = useState(false);
   const [isDz, setIsDz] = useState(false);
+  const [hintIsMobile, setHintIsMobile] = useState(false);
+  const [sysIsMobile, setSysIsMobile] = useState(false);
 
   /**JSX**/
   return (
     <GlobalContext.Provider
       value={{
+        //
+        hintIsMobile,
+        setHintIsMobile,
+        sysIsMobile,
+        setSysIsMobile,
+        //
         isIntroOverlay,
         setIsIntroOverlay,
         askAI,
         setAskAI,
         scrollableHeight,
         setScrollableHeight,
-        hintIsMobile,
-        setHintIsMobile,
         //___used in: 3D PageContacts,
         isDz,
         setIsDz,
