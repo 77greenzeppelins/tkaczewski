@@ -15,7 +15,6 @@ const PageCvSSContainer = () => {
   __2. docs: "?1" indicates that the user-agent prefers a mobile experience (true). "?0" indicates that user-agent does not prefer a mobile experience (false).
   */
   let isMobile = headersList.get('sec-ch-ua-mobile')?.includes('1');
-  console.log('userAgent:', typeof userAgent);
   /*
   ___1. The match() method will return either a truthy value (a match) or null (no match). Applying the double negation operator (!!) to the result will convert it into a boolean value. If there is a match, isMobileView will be true; otherwise, it will be false.
   */
@@ -30,7 +29,7 @@ const PageCvSSContainer = () => {
   return (
     <div data-container="PageCvSSContainer">
       {/* <PageCvAnimator hintIsMobile={isMobile || isMobileView} /> */}
-      <TesterComponent entries={entries} />
+      <TesterComponent entries={entries} isMobile={isMobile} />
     </div>
   );
   5;

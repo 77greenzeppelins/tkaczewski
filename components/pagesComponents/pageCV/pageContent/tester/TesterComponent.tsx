@@ -1,13 +1,32 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
   entries: [string, string][];
+  isMobile: boolean | undefined;
 }
 
-const TesterComponent = ({ entries }: Props) => {
-  console.log('screen.orientation:', screen.orientation);
-  console.log('screen.orientation.type:', screen.orientation.type);
+const TesterComponent = ({ entries, isMobile }: Props) => {
+  /** */
+  //   console.log('screen.orientation:', screen.orientation);
+  //   console.log('screen.orientation.type:', screen.orientation.type);
+  /** */
+  function lock(orientation: OrientationLockType) {
+    screen.orientation.lock(orientation);
+  }
+  function unlock() {
+    screen.orientation.unlock();
+  }
+  useEffect(() => {
+    console.log('screen.orientation.type:', screen.orientation.type);
+    console.log('screen.orientation.angle:', screen.orientation.angle);
+  }, []);
+  //   useEffect(() => {
+  //     if (isMobile && screen.orientation && screen.orientation?.lock) {
+  //       lock('portrait');
+  //     }
+  //     // return unlock();
+  //   }, [isMobile]);
   /**JSX**/
   return (
     <>
