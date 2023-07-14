@@ -7,7 +7,7 @@ import useWindowSize from '@/hooks/useWindowSize';
 /**----------------------------**/
 const DeviceRotated = () => {
   const [rotation, setRotation] = useState(0);
-  const [alteredRotation, setAlteredRotation] = useState(rotation);
+  const [alteredRotation, setAlteredRotation] = useState(1);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -22,10 +22,10 @@ const DeviceRotated = () => {
 
   useEffect(() => {
     setRotation(prev => prev + 1);
-    console.log('portrait', portrait);
+    // console.log('portrait', portrait);
     timerRef.current = setTimeout(() => {
-      //   setMounted(false);
-    }, 0.4);
+      setAlteredRotation(prev => prev + 1);
+    }, 2000);
     /*
     __1. it's a cleaner
     __2. why: setMounted(true) ? when user changes path this component should be mounted again so local state must be true ! 
@@ -39,16 +39,14 @@ const DeviceRotated = () => {
   console.log('rotation', rotation);
   console.log('alteredRotation', alteredRotation);
 
-  return (
+  return rotation !== alteredRotation && alteredRotation > 1 ? (
     <div className="fc flex-col gap-3 text-medium text-light w-screen h-screen bg-dark">
       <p>rotation:{rotation}</p>
-      <p>rotation:{alteredRotation}</p>
+      <p>alteredRotation:{alteredRotation}</p>
 
-      {rotation === alteredRotation ? (
-        <p>portrait:{portrait.toString()}</p>
-      ) : null}
+      <p>portrait:{portrait.toString()}</p>
     </div>
-  );
+  ) : null;
 };
 
 export default DeviceRotated;
