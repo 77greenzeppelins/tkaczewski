@@ -25,7 +25,7 @@ const DeviceRotated = () => {
     // console.log('portrait', portrait);
     timerRef.current = setTimeout(() => {
       setAlteredRotation(prev => prev + 1);
-    }, 2000);
+    }, 200);
     /*
     __1. it's a cleaner
     __2. why: setMounted(true) ? when user changes path this component should be mounted again so local state must be true ! 
