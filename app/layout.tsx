@@ -38,9 +38,9 @@ export default function RootLayout({
         ___1. z-order: <Header z-[500]>; <AppContainer z-[400]>; <PseudoFooter z-[450]>
         */
       >
-        {/* <OverlayForResizing /> */}
+        <OverlayForResizing />
         <Header />
-        {/* <AppContainer>{children}</AppContainer> */}
+        <AppContainer>{children}</AppContainer>
         <PseudoFooter />
       </body>
     </html>
