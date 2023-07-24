@@ -1,14 +1,13 @@
 'use client';
-
 import React, { useEffect, useRef, useState } from 'react';
 /**Components**/
-import IntroOverlayContent from '../introOverlay/content/IntroOverlayContent';
+import IntroOverlayContent from './content/IntroOverlayContent';
 /**Spring Staff**/
 import { animated, useTransition } from '@react-spring/web';
 /**BasicData**/
 import { animationsDelays } from '@/data/basicData';
 
-export default function IntroOverlay() {
+export default function OverlayForIntro() {
   /**reference for setTimeout() ID**/
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const [isIntroOverlay, setIsIntroOverlay] = useState(true);

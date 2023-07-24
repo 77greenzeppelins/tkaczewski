@@ -5,10 +5,8 @@ import { GlobalContext } from './globalContext';
 /**TS**/
 interface ProviderProps {
   children: React.ReactNode;
-  // IntroOverlay: () => React.JSX.Element;
   CanvasOverlay: () => React.JSX.Element;
   MainCanvas: () => React.JSX.Element;
-  // EmergencyOverlay: () => React.JSX.Element;
 }
 
 /*
@@ -20,11 +18,9 @@ ___5. We have to creat <Provider> here, in that file because it requiers "client
 */
 export const GlobalContextProvider = ({
   children,
-  // IntroOverlay,
   CanvasOverlay,
   MainCanvas,
-}: // EmergencyOverlay,
-ProviderProps) => {
+}: ProviderProps) => {
   /*
   ___1. states for all "values" we want to access (read/write) within global state 
   */
@@ -57,8 +53,6 @@ ProviderProps) => {
       }}
     >
       <>
-        {/* <EmergencyOverlay /> */}
-        {/* <IntroOverlay /> */}
         <div className="fixed w-screen h-screen z-1">
           <CanvasOverlay />
           <MainCanvas />

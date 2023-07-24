@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useDebounce from '@/hooks/useDebounce';
 import useWindowSize from '@/hooks/useWindowSize';
 
@@ -15,7 +15,6 @@ export default function OverlayForResizing() {
   useEffect(() => {
     setMakeVisible(true);
   }, [width, height]);
-
   /*
   ___1. make invisible
   */
