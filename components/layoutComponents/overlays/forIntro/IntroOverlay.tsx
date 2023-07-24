@@ -51,10 +51,10 @@ export default function IntroOverlay() {
         <animated.div
           data-component="IntroOverlay"
           style={style}
-          className="fixed z-[700] left-0 right-0 h-screen  bg-dark pointer-events-none "
+          className="fc fixed z-[700] left-0 right-0 h-screen  bg-dark pointer-events-none "
         >
           {/* <IntroOverlayContent /> */}
-          <p className="font-serif fc p-v-large text-corpo">INTRO</p>
+          <p className="font-serif fc p-v-large text-corpo">INTROO</p>
         </animated.div>
       )
   );
