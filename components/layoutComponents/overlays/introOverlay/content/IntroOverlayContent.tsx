@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 /** Components**/
 import IntroMessage from './message/IntroMessage';
 import IntroTimers from './timers/IntroTimers';
