@@ -40,7 +40,7 @@ export default function RootLayout({
       >
         {/* <OverlayForResizing /> */}
         <Header />
-        <AppContainer>{children}</AppContainer>
+        {/* <AppContainer>{children}</AppContainer> */}
         <PseudoFooter />
       </body>
     </html>
