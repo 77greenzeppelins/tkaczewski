@@ -1,20 +1,18 @@
+// import './globals.css';
+// import '../styles/globals.css';
 import React from 'react';
-import type { Metadata } from 'next';
 /**Components**/
 import Header from '@/components/layoutComponents/header/Header';
 import AppContainer from '@/components/layoutComponents/appContent/AppContainer';
-import PseudoFooter from '@/components/layoutComponents/pseudoFooter/PseudoFooter';
 /**CSS Staff**/
 import '@/styles/globals.css';
 /**Font Staff*/
 import { inter, garamond } from './fonts/fonts';
-import OverlayForResizing from '@/components/layoutComponents/overlays/overlayForResize/OverlayForResize';
+import PseudoFooter from '@/components/layoutComponents/pseudoFooter/PseudoFooter';
+// import EmergencyOverlay from '@/components/layoutComponents/overlays/emergencyOverlay/EmergencyOverlay';
 
-/*
-___1. docs: a Metadata API can be used to define your application metadata (e.g. meta and link tags inside your HTML head element) for improved SEO and web shareability"
-___2. so there is no neeed to create <head> element inside <html> like in pre-13.3 version;
-*/
-export const metadata: Metadata = {
+/**<Head> staff*/
+export const metadata = {
   title: 'tkaczewski | unique experiance',
   description: 'Provider of true take-offs in the Internet.',
 };
@@ -38,7 +36,7 @@ export default function RootLayout({
         ___1. z-order: <Header z-[500]>; <AppContainer z-[400]>; <PseudoFooter z-[450]>
         */
       >
-        <OverlayForResizing />
+        {/*<EmergencyOverlay /> */}
         <Header />
         <AppContainer>{children}</AppContainer>
         <PseudoFooter />

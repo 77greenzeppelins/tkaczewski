@@ -25,7 +25,7 @@ const EmergencyOverlayContent = () => {
     </>
   );
   //   return height > 350 ? null : (
-  //     <div className="fixed w-screen h-screen fc text-medium text-light bg-dark">
+  //     <div className="fixed fc text-medium text-light w-screen h-screen bg-dark">
   //       {/* <p>3D elements need at lest 500px</p> */}
   //       <NotHeightEnought />
   //     </div>
