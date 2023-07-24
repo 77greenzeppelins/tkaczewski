@@ -8,7 +8,7 @@ interface ProviderProps {
   IntroOverlay: () => React.JSX.Element;
   CanvasOverlay: () => React.JSX.Element;
   MainCanvas: () => React.JSX.Element;
-  EmergencyOverlay: () => React.JSX.Element;
+  // EmergencyOverlay: () => React.JSX.Element;
 }
 
 /*
@@ -23,8 +23,8 @@ export const GlobalContextProvider = ({
   IntroOverlay,
   CanvasOverlay,
   MainCanvas,
-  EmergencyOverlay,
-}: ProviderProps) => {
+}: // EmergencyOverlay,
+ProviderProps) => {
   /*
   ___1. states for all "values" we want to access (read/write) within global state 
   */
@@ -57,7 +57,7 @@ export const GlobalContextProvider = ({
       }}
     >
       <>
-        <EmergencyOverlay />
+        {/* <EmergencyOverlay /> */}
         <IntroOverlay />
         <div className="fixed w-screen h-screen z-1">
           <CanvasOverlay />
