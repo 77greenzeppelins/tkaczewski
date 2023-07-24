@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import useWindowSize from '@/hooks/useWindowSize';
 import useDebounce from '@/hooks/useDebounce';
@@ -53,8 +53,9 @@ export default function OverlayForResizing() {
     >
       {/* <p className="p-v-large"> {isHidden ? ' invisible' : ' visible'}</p>
       <p>counter: {counter}</p>
-      <p className="p-v-large">{makeVisible ? 'YES' : 'NO'}</p> */}
+       */}
       {/* <p>val: {val}</p> */}
+      {/* <p className="p-v-large">{makeVisible ? 'YES' : 'NO'}</p> */}
     </div>
   );
 }
