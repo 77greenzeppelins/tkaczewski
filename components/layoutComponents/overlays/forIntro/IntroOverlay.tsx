@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 /**Components**/
-import IntroOverlayContent from '../introOverlay/content/IntroOverlayContent';
+// import IntroOverlayContent from '../introOverlay/content/IntroOverlayContent';
 /**Spring Staff**/
 import { animated, useTransition } from '@react-spring/web';
 /**BasicData**/
@@ -53,8 +53,8 @@ export default function IntroOverlay() {
           style={style}
           className="fixed z-[700] left-0 right-0 h-screen  bg-dark pointer-events-none "
         >
-          <IntroOverlayContent />
-          {/* <p className="font-serif fc p-v-large text-corpo">INTRO</p> */}
+          {/* <IntroOverlayContent /> */}
+          <p className="font-serif fc p-v-large text-corpo">INTRO</p>
         </animated.div>
       )
   );
