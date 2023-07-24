@@ -1,6 +1,12 @@
 'use client';
-import { animated, useTransition } from '@react-spring/web';
+
 import React, { useEffect, useRef, useState } from 'react';
+/**Components**/
+import IntroOverlayContent from '../introOverlay/content/IntroOverlayContent';
+/**Spring Staff**/
+import { animated, useTransition } from '@react-spring/web';
+/**BasicData**/
+import { animationsDelays } from '@/data/basicData';
 
 export default function IntroOverlay() {
   /**reference for setTimeout() ID**/
@@ -19,7 +25,7 @@ export default function IntroOverlay() {
     timerRef.current = setTimeout(() => {
       setIsIntroOverlay(false);
       window.scrollTo(0, 0); //________________________?
-    }, 2000);
+    }, animationsDelays.introOverlayDurance);
     return () => {
       clearTimeout(timerRef.current as NodeJS.Timeout);
     };
@@ -45,11 +51,10 @@ export default function IntroOverlay() {
         <animated.div
           data-component="IntroOverlay"
           style={style}
-          className="fixed fc flex-col gap-y-4 z-[700] left-0 right-0 h-screen  dg-dark  pointer-events-none "
-          //___pointer-events-none
+          className="fixed z-[700] left-0 right-0 h-screen  bg-dark pointer-events-none "
         >
-          {/* <IntroOverlayContent /> */}
-          <p className="font-serif fc p-v-large text-corpo">INTRO</p>
+          <IntroOverlayContent />
+          {/* <p className="font-serif fc p-v-large text-corpo">INTRO</p> */}
         </animated.div>
       )
   );
