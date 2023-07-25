@@ -57,7 +57,6 @@ const PageContacts = () => {
 
   /**Spring Section*/
   const [{ posInstantContacts }, api_1] = useSpring(() => ({
-    // posY: 0,
     posInstantContacts: 0,
   }));
 
