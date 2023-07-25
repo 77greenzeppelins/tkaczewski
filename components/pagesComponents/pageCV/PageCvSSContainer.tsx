@@ -8,9 +8,9 @@ const PageCvSSContainer = () => {
   //______________
   const headersList = headers();
   const userAgent = headersList.get('user-agent');
-  const x = headersList.entries();
-  const entries = Array.from(x);
-
+  //___for <TestComponent>
+  // const x = headersList.entries();
+  // const entries = Array.from(x);
   /*
   ___1. 'sec-ch-ua-mobile' possible values: "?0" or "?1"; mobile phone returns "?1" but desktop and tablet return "?0";  
   __2. docs: "?1" indicates that the user-agent prefers a mobile experience (true). "?0" indicates that user-agent does not prefer a mobile experience (false).
