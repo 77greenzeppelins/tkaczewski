@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 /**GlobalContext  Staff**/
 import { useGlobalContext } from '@/context/globalContext';
 /**Hooks**/
@@ -19,13 +19,14 @@ import {
 } from '@react-spring/web';
 /**BasicData*/
 import { springConfigs } from '@/data/basicData';
+import { useDebounce } from '@/hooks/useDeboince';
 
 /**------------------------**/
 const AskAI = () => {
   /**GlobalContext Section**/
   const { askAI, setAskAI } = useGlobalContext();
   /**Staff for responsiveness condition**/
-  const { width } = useWindowSize();
+  const { width, height } = useWindowSize();
   const isDesktopCondition = width >= 1024;
 
   /**Spring Section**/
@@ -72,25 +73,56 @@ const AskAI = () => {
     ___4. order of cutting: top, _ , bottom, _  
     ___5. if top = 20% => imagine a line 20% of viewPort height from the top, and this is the margin; when observed object reaches the margin it becomes invissible;
     */
-    rootMargin: '-10% 0px -10% 0px',
+    rootMargin: '0% 0px 0% 0px',
     /*
     ___1. amount has valu from range [0,1]
     ___2. We set how much of observed element shoud be in observableArea to make it fully observable
     */
-    amount: 0.7,
+    amount: 0.85,
   });
 
+  //__________________
+  const [makeVisible, setMakeVisible] = useState(true);
+  const val = (width / height).toString();
+  const debouncedValue = useDebounce<string>(val, height * 2.9);
+
+  useEffect(() => {
+    setMakeVisible(false);
+    setAskAI(false);
+    // window.scrollTo(0, 0);
+    // if (condition) {
+    //   setMakeVisible(true);
+    //   window.scrollTo(0, 0);
+    // }
+  }, [width, height, setAskAI]);
+  /*
+  ___1. let overlay be invisible!
+  */
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    setMakeVisible(true);
+    // setCounter(val => val + 1);
+  }, [debouncedValue]);
+
+  /**...*/
   useEffect(() => {
     if (!inView) {
       setAskAI(false);
+      // console.log('if (!inView && makeVisible){}.....');
     }
   }, [inView, setAskAI]);
+
+  useEffect(() => {
+    // console.log('if (!inView && makeVisible){}.....');
+    // console.log('makeVisible:', makeVisible);
+    console.log('inView:', inView);
+  }, [inView]);
 
   /**JSX**/
   return (
     <div
       ref={ref} //ref from react-spring isInView
-      className=" fc w-full h-full"
+      className="w-full h-full fc "
     >
       <div className="relative flex items-center w-[94%] lg:w-[90%] h-[90%]  border-l border-corpo pl-4 lg:pl-10 overflow-hidden">
         <animated.div
@@ -100,15 +132,7 @@ const AskAI = () => {
         >
           <DoubtsSection />
         </animated.div>
-        <div className="absolute flex justify-end items-end bottom-0 left-0 pl-4 lg:pl-10  pr-4">
-          <animated.div
-            style={spring2}
-            className={` hidden lg:block ${
-              askAI ? 'pointer-events-auto' : 'pointer-events-none'
-            }`}
-          >
-            <ThanksAISection />
-          </animated.div>
+        <div className="absolute bottom-0 left-0 flex items-end justify-end pl-4 pr-4 lg:pl-10 ">
           <animated.div
             style={spring2}
             className={`lg:hidden fc bg-corpo w-[28px] h-[28px] ${
@@ -126,6 +150,17 @@ const AskAI = () => {
 };
 
 export default AskAI;
+
+{
+  /* <animated.div
+            style={spring2}
+            className={` hidden lg:block ${
+              askAI ? 'pointer-events-auto' : 'pointer-events-none'
+            }`}
+          >
+            <ThanksAISection />
+          </animated.div> */
+}
 
 {
   /* {transitions(style => (

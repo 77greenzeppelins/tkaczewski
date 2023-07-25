@@ -33,7 +33,7 @@ const PageCvContent = ({
       data-component={`PageCvContent-${isMobile.toString()}`}
       style={{ transform }}
       aria-hidden={isMobile || isVisibleOnDesktop ? false : true}
-      className={`${
+      className={` bg-gradient-to-b from-dark  to-transparent ${
         isMobile
           ? 'w-full h-full'
           : isVisibleOnDesktop

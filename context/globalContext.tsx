@@ -37,8 +37,10 @@ ___2. It is ment to be used as top level global state is accessible in both 3D &
 export const GlobalContext = createContext<ContextProps>({
   isIntroOverlay: true,
   setIsIntroOverlay: (prev): boolean => !prev,
+  // askAI: false,
+  // setAskAI: (prev): boolean => !prev,
   askAI: false,
-  setAskAI: (prev): boolean => !prev,
+  setAskAI: val => val,
   scrollableHeight: 0,
   setScrollableHeight: val => val,
   //___used in: 3D PageContacts,

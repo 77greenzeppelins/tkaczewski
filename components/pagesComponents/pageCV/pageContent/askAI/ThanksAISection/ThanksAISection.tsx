@@ -12,9 +12,9 @@ const ThanksAISection = () => {
   /**JSX**/
   return (
     <ButtonSwitcher onClickHandler={setAskAI}>
-      <p className="text-light text-1xl ">
+      {/* <p className="text-light text-1xl ">
         Thank <span className="text-corpo">AI</span> for your answer...
-      </p>
+      </p> */}
     </ButtonSwitcher>
   );
 };
