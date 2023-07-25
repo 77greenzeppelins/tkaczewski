@@ -25,7 +25,7 @@ export default function OverlayForResizing() {
     //   setMakeVisible(true);
     //   window.scrollTo(0, 0);
     // }
-  }, [width, height, condition]);
+  }, [width]);
   /*
   ___1. let overlay be invisible!
   */
