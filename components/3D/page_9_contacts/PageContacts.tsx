@@ -156,10 +156,11 @@ const PageContacts = () => {
         {/* <BackgroundPlane /> */}
         <Dzierzoniow
           groupProps={{
-            position: new THREE.Vector3(0, -2.25, 0),
+            position: new THREE.Vector3(0, -2, 0),
             // visible: isDz,
           }}
-          isVisible={isDz}
+          // isVisible={isDz}
+          isVisible={true}
         />
 
         <PlaneShader position={[0, -4, -0.5]} />
