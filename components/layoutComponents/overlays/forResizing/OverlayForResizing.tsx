@@ -7,17 +7,24 @@ export default function OverlayForResizing() {
   const [makeVisible, setMakeVisible] = useState(false);
   const { width, height } = useWindowSize();
   const val = (width / height).toString();
-  const aR = width / height;
   const debouncedValue = useDebounce<string>(val, height * 2.9);
   /*
-  ___1. make visible
+  ___1. why such condition? If starting aR is close to 1 (device has square-like shape) and "resizing" is subtle don't trigger <OverlayForResizing> 
+  */
+  const aR = width / height;
+  const condition = aR < 0.8 || aR > 1.2;
+
+  /*
+  ___1. let overlay be visible!
   */
   useEffect(() => {
-    setMakeVisible(true);
-    window.scrollTo(0, 0);
-  }, [width, height]);
+    if (condition) {
+      setMakeVisible(true);
+      window.scrollTo(0, 0);
+    }
+  }, [width, height, condition]);
   /*
-  ___1. make invisible
+  ___1. let overlay be invisible!
   */
   useEffect(() => {
     // window.scrollTo(0, 0);
@@ -25,9 +32,9 @@ export default function OverlayForResizing() {
     // setCounter(val => val + 1);
   }, [debouncedValue]);
 
-  useEffect(() => {
-    console.log('aR:', aR);
-  }, [aR]);
+  // useEffect(() => {
+  //   console.log('aR:', aR);
+  // }, [aR]);
 
   /**JSX**/
   return (
