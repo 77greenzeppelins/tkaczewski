@@ -68,14 +68,17 @@ const OtherContactsSection = () => {
   return (
     <div
       ref={ref}
-      className="relative flex flex-col w-full h-screen border-yellow-600 border-dotted border-y wrapper-1"
+      className="relative flex flex-col w-full border-yellow-600 border-dotted border-y wrapper-1"
       //___border-t border-b border-orange-600
     >
-      <p className="relative select-none p-small text-corpo z-2">
-        {`useDeviceProperties - landscape:  ${isLandscape
-          .toString()
-          .toUpperCase()}`}
-      </p>
+      <div className="w-full h-screen ">
+        <p className="relative select-none p-small text-corpo z-2">
+          {`useDeviceProperties - landscape:  ${isLandscape
+            .toString()
+            .toUpperCase()}`}
+        </p>
+      </div>
+      <div className="w-full h-[50vh] "></div>
     </div>
   );
 };

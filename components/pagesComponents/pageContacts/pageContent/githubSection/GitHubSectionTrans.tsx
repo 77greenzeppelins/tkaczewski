@@ -42,7 +42,7 @@ const GitHubSectionTrans = () => {
   return (
     <div ref={ref} className="relative w-full h-full">
       <div
-        className="w-full min-h-screen wrapper-1 bg-gradient-to-b from-dark to-transparent"
+        className="w-full h-[50vh] wrapper-1 bg-gradient-to-b from-dark to-transparent"
         //__bg-gradient-to-b from-dark via-dark to-transparent
       >
         <div
