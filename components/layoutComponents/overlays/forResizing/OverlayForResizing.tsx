@@ -11,8 +11,8 @@ export default function OverlayForResizing() {
   /*
   ___1. why such condition? If starting aR is close to 1 (device has square-like shape) and "resizing" is subtle don't trigger <OverlayForResizing> 
   */
-  const aR = width / height;
-  const condition = aR < 0.8 || aR > 1.2;
+  // const aR = width / height;
+  // const condition = aR < 0.8 || aR > 1.2;
 
   /*
   ___1. let overlay be visible!
@@ -42,9 +42,10 @@ export default function OverlayForResizing() {
   /**JSX**/
   return (
     <div
-      className={`fixed fc flex-col gap-y-4 z-[600] left-0 right-0 h-screen  backdrop-blur-xl backdrop-grayscale pointer-events-none 
+      className={`fixed fc flex-col gap-y-4 z-[600] left-0 right-0 h-screen  backdrop-blur-xl backdrop-grayscale backdrop-brightness-50 pointer-events-none 
       ${makeVisible ? 'opacity-100' : 'opacity-0'}
-      `}
+      transition ease-in-out`}
+      //___backdrop-contrast-100
     >
       {/* <p className="p-v-large"> {isHidden ? ' invisible' : ' visible'}</p>
       <p>counter: {counter}</p>
