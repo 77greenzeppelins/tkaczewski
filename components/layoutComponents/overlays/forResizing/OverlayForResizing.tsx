@@ -18,10 +18,13 @@ export default function OverlayForResizing() {
   ___1. let overlay be visible!
   */
   useEffect(() => {
-    if (condition) {
-      setMakeVisible(true);
-      window.scrollTo(0, 0);
-    }
+    setMakeVisible(true);
+    window.scrollTo(0, 0);
+
+    // if (condition) {
+    //   setMakeVisible(true);
+    //   window.scrollTo(0, 0);
+    // }
   }, [width, height, condition]);
   /*
   ___1. let overlay be invisible!
