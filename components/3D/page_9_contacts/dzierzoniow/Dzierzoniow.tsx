@@ -20,21 +20,21 @@ const Dzierzoniow = ({ groupProps, isVisible }: Props) => {
   /**References**/
   const groupRef = useRef<THREE.Group>(null!);
 
-  const { isLandscape } = useDeviceProperties({
-    mqLandscape: '(orientation: landscape)',
+  // const { isLandscape } = useDeviceProperties({
+  //   mqLandscape: '(orientation: landscape)',
+  // });
+  //____________________________________
+  // const [state, setstate] = useState(false);
+  // useEffect(() => {
+  //   console.log('isLandscape value changes');
+  // }, [isLandscape]);
+  // //____________________________________
+
+  useFrame((state, delta) => {
+    groupRef.current.rotation.z += Math.abs(Math.sin(delta * 0.3));
+    // groupRef.current.rotation.y += Math.abs(Math.sin(delta * 0.5) * 0.2);
+    // groupRef.current.rotation.x += Math.abs(Math.sin(delta * 0.5) * 0.2);
   });
-
-  //____________________________________
-  const [state, setstate] = useState(false);
-  useEffect(() => {
-    console.log('isLandscape value changes');
-  }, [isLandscape]);
-  //____________________________________
-
-  useFrame(
-    (state, delta) =>
-      (groupRef.current.rotation.z += Math.abs(Math.sin(delta * 0.3)))
-  );
 
   /**Animate / */
   const { posZ } = useSpring({

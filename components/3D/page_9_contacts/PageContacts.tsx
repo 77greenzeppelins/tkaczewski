@@ -158,8 +158,8 @@ const PageContacts = () => {
             position: new THREE.Vector3(0, -2, 0),
             // visible: isDz,
           }}
-          // isVisible={isDz}
-          isVisible={true}
+          isVisible={isDz}
+          // isVisible={true}
         />
 
         <PlaneShader position={[0, -4, -0.5]} />
