@@ -22,7 +22,7 @@ const PageCvAnimator = ({ isMobile }: Props) => {
   ___1. concept: each <PageNameAnimator> with useScroll needs some booleanFlag that switch on / off listening of scroll within relevant page
   */
   const route = usePathname();
-  const scrollAnimationCondition = route === pagesPath.contactcPath;
+  const scrollAnimationCondition = route === pagesPath.cvPath;
   /**Spring Section*/
   const [{ transform }, comp2Api] = useSpring(() => ({
     transform: 'translateY(0px)',

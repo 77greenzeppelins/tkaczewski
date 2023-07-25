@@ -29,9 +29,10 @@ const PageContent = ({ transform, hintIsMobile, isVisible = false }: Props) => {
     <animated.div
       /*
     ___1. transform is an optional props; 
-    ___2. in case of mobile, transform is not passed; when we pass nothing style is just "undefined"
-    ___3. in case of desktop transform has some SpringValue and behave like pseudoScrollableContainer
-    ___4. in case of desktop we actually have two PageContent>s one is invisible and play role of scrollableContainer and the second one is visible, rendered as <StickyContainer> child 
+    ___2. in case of mobile (i.d. hintIsMobile === true), transform is not passed; when we pass nothing style is just "undefined"; 
+    ___3. in case of mobile (i.d. hintIsMobile === true), <PageContent> is just a container without any specific className just to behave according to client / browser settings ==> should have smooth-scrolling typical for mobile browsers;  
+    ___4. in case of desktop transform has some SpringValue and behave like pseudoScrollableContainer
+    ___5. in case of desktop we actually have two <PageContent>; one is invisible and play role of scrollableContainer and the second one is visible, rendered within <StickyContainer> as its child 
     */
       style={{ transform }}
       data-component="PageContactContent"
