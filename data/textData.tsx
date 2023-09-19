@@ -148,7 +148,7 @@ const cvSections = [
     header: 'worth visiting',
     body: {
       part1:
-        'o get to know my current computer skills, check out the latest work for the Polish branch of an international corporation in the industrial electrical sector',
+        'To get to know my current computer skills, check out the latest work for the Polish branch of an international corporation in the industrial electrical sector',
       part2:
         '(tech stack includes: React v18.2, Next.js v13.4, TypeScript, Tailwind CSS, Framer Motion):',
       linkLabel: ' famatel.pl ',
