@@ -122,7 +122,7 @@ const AskAI = () => {
   return (
     <div
       ref={ref} //ref from react-spring isInView
-      className="w-full h-full fc "
+      className="w-full h-full fc"
     >
       <div className="relative flex items-center w-[94%] lg:w-[90%] h-[90%]  border-l border-corpo pl-4 lg:pl-10 overflow-hidden">
         <animated.div
@@ -135,12 +135,12 @@ const AskAI = () => {
         <div className="absolute bottom-0 left-0 flex items-end justify-end pl-4 pr-4 lg:pl-10 ">
           <animated.div
             style={spring2}
-            className={`lg:hidden fc bg-corpo w-[28px] h-[28px] ${
+            className={` fc  w-[28px] h-[28px] ${
               askAI ? 'pointer-events-auto' : 'pointer-events-none'
             }`}
           >
             <ButtonSwitcher onClickHandler={setAskAI}>
-              <CloseXIcon />
+              <CloseXIcon containerStyle="fc origin-center w-6 h-6 stroke-corpo" />
             </ButtonSwitcher>
           </animated.div>
         </div>

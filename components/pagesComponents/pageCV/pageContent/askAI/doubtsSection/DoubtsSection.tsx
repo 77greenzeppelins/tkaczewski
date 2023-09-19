@@ -12,10 +12,10 @@ const DoubtsSection = () => {
   /**JSX**/
   return (
     <div className={`flex flex-col`}>
-      <p className="text-light text-3xl ">Any doubts?</p>
+      <p className="text-3xl text-light ">Any doubts?</p>
       <div className="flex gap-2 pl-1">
         <ButtonSwitcher onClickHandler={setAskAI}>
-          <p className="text-light text-3xl">
+          <p className="text-3xl text-light">
             Ask <span className="text-corpo">AI</span>
           </p>
         </ButtonSwitcher>

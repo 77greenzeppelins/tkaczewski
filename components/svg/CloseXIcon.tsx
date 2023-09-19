@@ -14,8 +14,12 @@ const CloseXIcon = ({ containerStyle, pathStyle }: Props) => {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={2}
-      stroke={colors.dark}
-      className={containerStyle ? containerStyle : 'fc origin-center w-6 h-6'}
+      // stroke={colors.dark}
+      className={
+        containerStyle
+          ? containerStyle
+          : 'fc origin-center w-6 h-6 stroke-light'
+      }
     >
       <path
         className={pathStyle ? pathStyle : 'color-light w-6 h-6'}

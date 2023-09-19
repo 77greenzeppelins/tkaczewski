@@ -33,7 +33,7 @@ const PageCvContent = ({
       data-component={`PageCvContent-${isMobile.toString()}`}
       style={{ transform }}
       aria-hidden={isMobile || isVisibleOnDesktop ? false : true}
-      className={` bg-gradient-to-b from-dark  to-transparent ${
+      className={` ${
         isMobile
           ? 'w-full h-full'
           : isVisibleOnDesktop
@@ -42,9 +42,11 @@ const PageCvContent = ({
       }`}
     >
       <HeroSectionPageCv />
-      {cvSections.map(({ header, body }) => (
-        <CvSection key={header} headerText={header} bodyText={body} />
-      ))}
+      <div className="bg-gradient-to-b from-dark to-transparent">
+        {cvSections.map(({ header, body }) => (
+          <CvSection key={header} headerText={header} bodyText={body} />
+        ))}
+      </div>
       {
         /*
       ___1. why this ternary operator?
